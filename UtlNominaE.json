@@ -1,7 +1,7 @@
 {
-  "Url":"jdbc:oracle:thin:@10.100.4.41:1521:BANDEV",
-  "Username":"sigaaupb",
-  "Password":"upb_p1ck_1t",
+  "Url":"jdbc:oracle:thin:@10.100.4.41:1521:BANTRN",
+  "Username":"upb_nominae",
+  "Password":"Hq0xRq0M4R",
   "Server":"upb.adminfo.net",
   "Port":"22",
   "FtpUsername":"upb",

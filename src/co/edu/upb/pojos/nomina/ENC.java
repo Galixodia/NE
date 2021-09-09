@@ -1,283 +1,329 @@
 package co.edu.upb.pojos.nomina;
 
+import co.edu.upb.nominae.Comprobante;
+import static co.edu.upb.nominae.Queries.HZRNENC_QUERY;
+import java.sql.PreparedStatement;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
-
+@XmlRootElement(name = "ENC")
+@XmlType (propOrder={"HZRNENC_TIPO_DOC",
+    "HZRNENC_FECHA_ING",
+    "HZRNENC_FECHA_RET",
+    "HZRNENC_FECHA_LIQ_INI",
+    "HZRNENC_FECHA_LIQ_FIN",
+    "HZRNENC_TIEMPO_LAB",
+    "HZRNENC_FECHA_EMISION",
+    "HZRNENC_CODIGO_TRAB",
+    "HZRNENC_PREFIJO",
+    "HZRNENC_CONSECUTIVO",
+    "HZRNENC_NUMERO",
+    "HZRNENC_PAIS",
+    "HZRNENC_DEPART_ESTADO",
+    "HZRNENC_MUNICIPIO_CIUDAD",
+    "HZRNENC_IDIOMA",
+    "HZRNENC_VERSION",
+    "HZRNENC_AMBIENTE",
+    "HZRNENC_TIPO_XML",
+    "HZRNENC_CUNE",
+    "HZRNENC_FECHA_GENERA",
+    "HZRNENC_HORA_GENERA",
+    "HZRNENC_PERIODO_NOM",
+    "HZRNENC_TIPO_MONEDA",
+    "HZRNENC_TRM",
+    "HZRNENC_NUM_PRED",
+    "HZRNENC_CUNE_PRED",
+    "HZRNENC_FECHA_GEN_PRED"})
 public class ENC {
     
+    private String      HZRNENC_CUNE_INTERNO;
     @XmlElement(name="ENC_1")
-    private String      ENC_1;
+    private String      HZRNENC_TIPO_DOC;
     @XmlElement(name="ENC_2")
-    private String      ENC_2;
+    private Date      HZRNENC_FECHA_ING;
     @XmlElement(name="ENC_3")
-    private String      ENC_3;
+    private Date      HZRNENC_FECHA_RET;
     @XmlElement(name="ENC_4")
-    private String      ENC_4;
+    private Date      HZRNENC_FECHA_LIQ_INI;
     @XmlElement(name="ENC_5")
-    private String      ENC_5;
+    private Date      HZRNENC_FECHA_LIQ_FIN;
     @XmlElement(name="ENC_6")
-    private Double      ENC_6;
+    private Double      HZRNENC_TIEMPO_LAB;
     @XmlElement(name="ENC_7")
-    private String      ENC_7;
+    private Date      HZRNENC_FECHA_EMISION;
     @XmlElement(name="ENC_8")
-    private String      ENC_8;
+    private String      HZRNENC_CODIGO_TRAB;
     @XmlElement(name="ENC_9")
-    private String      ENC_9;
+    private String      HZRNENC_PREFIJO;
     @XmlElement(name="ENC_10")
-    private Long        ENC_10;
+    private Long        HZRNENC_CONSECUTIVO;
     @XmlElement(name="ENC_12")
-    private String      ENC_11;
+    private String      HZRNENC_NUMERO;
     @XmlElement(name="ENC_13")
-    private String      ENC_12;
+    private String      HZRNENC_PAIS;
     @XmlElement(name="ENC_1")
-    private Integer     ENC_13;
+    private Integer     HZRNENC_DEPART_ESTADO;
     @XmlElement(name="ENC_14")
-    private Integer     ENC_14;
+    private Integer     HZRNENC_MUNICIPIO_CIUDAD;
     @XmlElement(name="ENC_15")
-    private String      ENC_15;
+    private String      HZRNENC_IDIOMA;
     @XmlElement(name="ENC_16")
-    private String      ENC_16;
+    private String      HZRNENC_VERSION;
     @XmlElement(name="ENC_17")
-    private Integer     ENC_17;
+    private Integer     HZRNENC_AMBIENTE;
     @XmlElement(name="ENC_18")
-    private Integer     ENC_18;
+    private Integer     HZRNENC_TIPO_XML;
     @XmlElement(name="ENC_19")
-    private String      ENC_19;
+    private String      HZRNENC_CUNE;
     @XmlElement(name="ENC_20")
-    private String      ENC_20;
+    private Date      HZRNENC_FECHA_GENERA;
     @XmlElement(name="ENC_21")
-    private String      ENC_21;
+    private String      HZRNENC_HORA_GENERA;
     @XmlElement(name="ENC_22")
-    private Integer     ENC_22;
+    private Integer     HZRNENC_PERIODO_NOM;
     @XmlElement(name="ENC_23")
-    private String      ENC_23;
+    private String      HZRNENC_TIPO_MONEDA;
     @XmlElement(name="ENC_24")
-    private Double      ENC_24;
+    private Double      HZRNENC_TRM;
     @XmlElement(name="ENC_25")
-    private String      ENC_25;
+    private String      HZRNENC_NUM_PRED;
     @XmlElement(name="ENC_26")
-    private String      ENC_26;
+    private String      HZRNENC_CUNE_PRED;
     @XmlElement(name="ENC_27")
-    private String      ENC_27;
+    private Date      HZRNENC_FECHA_GEN_PRED;
 
     @XmlTransient
-    public String getENC_1() {
-        return ENC_1;
+    public String getHZRNENC_CUNE_INTERNO() {
+        return HZRNENC_CUNE_INTERNO;
     }
 
-    public void setENC_1(String ENC_1) {
-        this.ENC_1 = ENC_1;
+    public void setHZRNENC_CUNE_INTERNO(String HZRNENC_CUNE_INTERNO) {
+        this.HZRNENC_CUNE_INTERNO = HZRNENC_CUNE_INTERNO;
     }
     @XmlTransient
-    public String getENC_2() {
-        return ENC_2;
+    public String getHZRNENC_TIPO_DOC() {
+        return HZRNENC_TIPO_DOC;
     }
 
-    public void setENC_2(String ENC_2) {
-        this.ENC_2 = ENC_2;
+    public void setHZRNENC_TIPO_DOC(String HZRNENC_TIPO_DOC) {
+        this.HZRNENC_TIPO_DOC = HZRNENC_TIPO_DOC;
     }
     @XmlTransient
-    public String getENC_3() {
-        return ENC_3;
+    public Date getHZRNENC_FECHA_ING() {
+        return HZRNENC_FECHA_ING;
     }
 
-    public void setENC_3(String ENC_3) {
-        this.ENC_3 = ENC_3;
+    public void setHZRNENC_FECHA_ING(Date HZRNENC_FECHA_ING) {
+        this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
     }
     @XmlTransient
-    public String getENC_4() {
-        return ENC_4;
+    public Date getHZRNENC_FECHA_RET() {
+        return HZRNENC_FECHA_RET;
     }
 
-    public void setENC_4(String ENC_4) {
-        this.ENC_4 = ENC_4;
+    public void setHZRNENC_FECHA_RET(Date HZRNENC_FECHA_RET) {
+        this.HZRNENC_FECHA_RET = HZRNENC_FECHA_RET;
     }
     @XmlTransient
-    public String getENC_5() {
-        return ENC_5;
+    public Date getHZRNENC_FECHA_LIQ_INI() {
+        return HZRNENC_FECHA_LIQ_INI;
     }
 
-    public void setENC_5(String ENC_5) {
-        this.ENC_5 = ENC_5;
+    public void setHZRNENC_FECHA_LIQ_INI(Date HZRNENC_FECHA_LIQ_INI) {
+        this.HZRNENC_FECHA_LIQ_INI = HZRNENC_FECHA_LIQ_INI;
     }
     @XmlTransient
-    public Double getENC_6() {
-        return ENC_6;
+    public Date getHZRNENC_FECHA_LIQ_FIN() {
+        return HZRNENC_FECHA_LIQ_FIN;
     }
 
-    public void setENC_6(Double ENC_6) {
-        this.ENC_6 = ENC_6;
+    public void setHZRNENC_FECHA_LIQ_FIN(Date HZRNENC_FECHA_LIQ_FIN) {
+        this.HZRNENC_FECHA_LIQ_FIN = HZRNENC_FECHA_LIQ_FIN;
     }
     @XmlTransient
-    public String getENC_7() {
-        return ENC_7;
+    public Double getHZRNENC_TIEMPO_LAB() {
+        return HZRNENC_TIEMPO_LAB;
     }
 
-    public void setENC_7(String ENC_7) {
-        this.ENC_7 = ENC_7;
+    public void setHZRNENC_TIEMPO_LAB(Double HZRNENC_TIEMPO_LAB) {
+        this.HZRNENC_TIEMPO_LAB = HZRNENC_TIEMPO_LAB;
     }
     @XmlTransient
-    public String getENC_8() {
-        return ENC_8;
+    public Date getHZRNENC_FECHA_EMISION() {
+        return HZRNENC_FECHA_EMISION;
     }
 
-    public void setENC_8(String ENC_8) {
-        this.ENC_8 = ENC_8;
+    public void setHZRNENC_FECHA_EMISION(Date HZRNENC_FECHA_EMISION) {
+        this.HZRNENC_FECHA_EMISION = HZRNENC_FECHA_EMISION;
     }
     @XmlTransient
-    public String getENC_9() {
-        return ENC_9;
+    public String getHZRNENC_CODIGO_TRAB() {
+        return HZRNENC_CODIGO_TRAB;
     }
 
-    public void setENC_9(String ENC_9) {
-        this.ENC_9 = ENC_9;
+    public void setHZRNENC_CODIGO_TRAB(String HZRNENC_CODIGO_TRAB) {
+        this.HZRNENC_CODIGO_TRAB = HZRNENC_CODIGO_TRAB;
     }
     @XmlTransient
-    public Long getENC_10() {
-        return ENC_10;
+    public String getHZRNENC_PREFIJO() {
+        return HZRNENC_PREFIJO;
     }
 
-    public void setENC_10(Long ENC_10) {
-        this.ENC_10 = ENC_10;
+    public void setHZRNENC_PREFIJO(String HZRNENC_PREFIJO) {
+        this.HZRNENC_PREFIJO = HZRNENC_PREFIJO;
     }
     @XmlTransient
-    public String getENC_11() {
-        return ENC_11;
+    public Long getHZRNENC_CONSECUTIVO() {
+        return HZRNENC_CONSECUTIVO;
     }
 
-    public void setENC_11(String ENC_11) {
-        this.ENC_11 = ENC_11;
+    public void setHZRNENC_CONSECUTIVO(Long HZRNENC_CONSECUTIVO) {
+        this.HZRNENC_CONSECUTIVO = HZRNENC_CONSECUTIVO;
     }
     @XmlTransient
-    public String getENC_12() {
-        return ENC_12;
+    public String getHZRNENC_NUMERO() {
+        return HZRNENC_NUMERO;
     }
 
-    public void setENC_12(String ENC_12) {
-        this.ENC_12 = ENC_12;
+    public void setHZRNENC_NUMERO(String HZRNENC_NUMERO) {
+        this.HZRNENC_NUMERO = HZRNENC_NUMERO;
     }
     @XmlTransient
-    public Integer getENC_13() {
-        return ENC_13;
+    public String getHZRNENC_PAIS() {
+        return HZRNENC_PAIS;
     }
 
-    public void setENC_13(Integer ENC_13) {
-        this.ENC_13 = ENC_13;
+    public void setHZRNENC_PAIS(String HZRNENC_PAIS) {
+        this.HZRNENC_PAIS = HZRNENC_PAIS;
     }
     @XmlTransient
-    public Integer getENC_14() {
-        return ENC_14;
+    public Integer getHZRNENC_DEPART_ESTADO() {
+        return HZRNENC_DEPART_ESTADO;
     }
 
-    public void setENC_14(Integer ENC_14) {
-        this.ENC_14 = ENC_14;
+    public void setHZRNENC_DEPART_ESTADO(Integer HZRNENC_DEPART_ESTADO) {
+        this.HZRNENC_DEPART_ESTADO = HZRNENC_DEPART_ESTADO;
     }
     @XmlTransient
-    public String getENC_15() {
-        return ENC_15;
+    public Integer getHZRNENC_MUNICIPIO_CIUDAD() {
+        return HZRNENC_MUNICIPIO_CIUDAD;
     }
 
-    public void setENC_15(String ENC_15) {
-        this.ENC_15 = ENC_15;
+    public void setHZRNENC_MUNICIPIO_CIUDAD(Integer HZRNENC_MUNICIPIO_CIUDAD) {
+        this.HZRNENC_MUNICIPIO_CIUDAD = HZRNENC_MUNICIPIO_CIUDAD;
     }
     @XmlTransient
-    public String getENC_16() {
-        return ENC_16;
+    public String getHZRNENC_IDIOMA() {
+        return HZRNENC_IDIOMA;
     }
 
-    public void setENC_16(String ENC_16) {
-        this.ENC_16 = ENC_16;
+    public void setHZRNENC_IDIOMA(String HZRNENC_IDIOMA) {
+        this.HZRNENC_IDIOMA = HZRNENC_IDIOMA;
     }
     @XmlTransient
-    public Integer getENC_17() {
-        return ENC_17;
+    public String getHZRNENC_VERSION() {
+        return HZRNENC_VERSION;
     }
 
-    public void setENC_17(Integer ENC_17) {
-        this.ENC_17 = ENC_17;
+    public void setHZRNENC_VERSION(String HZRNENC_VERSION) {
+        this.HZRNENC_VERSION = HZRNENC_VERSION;
     }
     @XmlTransient
-    public Integer getENC_18() {
-        return ENC_18;
+    public Integer getHZRNENC_AMBIENTE() {
+        return HZRNENC_AMBIENTE;
     }
 
-    public void setENC_18(Integer ENC_18) {
-        this.ENC_18 = ENC_18;
+    public void setHZRNENC_AMBIENTE(Integer HZRNENC_AMBIENTE) {
+        this.HZRNENC_AMBIENTE = HZRNENC_AMBIENTE;
     }
     @XmlTransient
-    public String getENC_19() {
-        return ENC_19;
-    }
-    
-    public void setENC_19(String ENC_19) {
-        this.ENC_19 = ENC_19;
-    }
-    @XmlTransient
-    public String getENC_20() {
-        return ENC_20;
+    public Integer getHZRNENC_TIPO_XML() {
+        return HZRNENC_TIPO_XML;
     }
 
-    public void setENC_20(String ENC_20) {
-        this.ENC_20 = ENC_20;
+    public void setHZRNENC_TIPO_XML(Integer HZRNENC_TIPO_XML) {
+        this.HZRNENC_TIPO_XML = HZRNENC_TIPO_XML;
     }
     @XmlTransient
-    public String getENC_21() {
-        return ENC_21;
+    public String getHZRNENC_CUNE() {
+        return HZRNENC_CUNE;
     }
 
-    public void setENC_21(String ENC_21) {
-        this.ENC_21 = ENC_21;
+    public void setHZRNENC_CUNE(String HZRNENC_CUNE) {
+        this.HZRNENC_CUNE = HZRNENC_CUNE;
     }
     @XmlTransient
-    public Integer getENC_22() {
-        return ENC_22;
+    public Date getHZRNENC_FECHA_GENERA() {
+        return HZRNENC_FECHA_GENERA;
     }
 
-    public void setENC_22(Integer ENC_22) {
-        this.ENC_22 = ENC_22;
+    public void setHZRNENC_FECHA_GENERA(Date HZRNENC_FECHA_GENERA) {
+        this.HZRNENC_FECHA_GENERA = HZRNENC_FECHA_GENERA;
     }
     @XmlTransient
-    public String getENC_23() {
-        return ENC_23;
+    public String getHZRNENC_HORA_GENERA() {
+        return HZRNENC_HORA_GENERA;
     }
 
-    public void setENC_23(String ENC_23) {
-        this.ENC_23 = ENC_23;
+    public void setHZRNENC_HORA_GENERA(String HZRNENC_HORA_GENERA) {
+        this.HZRNENC_HORA_GENERA = HZRNENC_HORA_GENERA;
     }
     @XmlTransient
-    public Double getENC_24() {
-        return ENC_24;
+    public Integer getHZRNENC_PERIODO_NOM() {
+        return HZRNENC_PERIODO_NOM;
     }
 
-    public void setENC_24(Double ENC_24) {
-        this.ENC_24 = ENC_24;
+    public void setHZRNENC_PERIODO_NOM(Integer HZRNENC_PERIODO_NOM) {
+        this.HZRNENC_PERIODO_NOM = HZRNENC_PERIODO_NOM;
     }
     @XmlTransient
-    public String getENC_25() {
-        return ENC_25;
+    public String getHZRNENC_TIPO_MONEDA() {
+        return HZRNENC_TIPO_MONEDA;
     }
 
-    public void setENC_25(String ENC_25) {
-        this.ENC_25 = ENC_25;
+    public void setHZRNENC_TIPO_MONEDA(String HZRNENC_TIPO_MONEDA) {
+        this.HZRNENC_TIPO_MONEDA = HZRNENC_TIPO_MONEDA;
     }
     @XmlTransient
-    public String getENC_26() {
-        return ENC_26;
+    public Double getHZRNENC_TRM() {
+        return HZRNENC_TRM;
     }
 
-    public void setENC_26(String ENC_26) {
-        this.ENC_26 = ENC_26;
+    public void setHZRNENC_TRM(Double HZRNENC_TRM) {
+        this.HZRNENC_TRM = HZRNENC_TRM;
     }
     @XmlTransient
-    public String getENC_27() {
-        return ENC_27;
+    public String getHZRNENC_NUM_PRED() {
+        return HZRNENC_NUM_PRED;
     }
 
-    public void setENC_27(String ENC_27) {
-        this.ENC_27 = ENC_27;
+    public void setHZRNENC_NUM_PRED(String HZRNENC_NUM_PRED) {
+        this.HZRNENC_NUM_PRED = HZRNENC_NUM_PRED;
+    }
+    @XmlTransient
+    public String getHZRNENC_CUNE_PRED() {
+        return HZRNENC_CUNE_PRED;
+    }
+
+    public void setHZRNENC_CUNE_PRED(String HZRNENC_CUNE_PRED) {
+        this.HZRNENC_CUNE_PRED = HZRNENC_CUNE_PRED;
+    }
+    @XmlTransient
+    public Date getHZRNENC_FECHA_GEN_PRED() {
+        return HZRNENC_FECHA_GEN_PRED;
+    }
+
+    public void setHZRNENC_FECHA_GEN_PRED(Date HZRNENC_FECHA_GEN_PRED) {
+        this.HZRNENC_FECHA_GEN_PRED = HZRNENC_FECHA_GEN_PRED;
+    }
+
+    @Override
+    public String toString() {
+        return "ENC{" + "HZRNENC_CUNE_INTERNO=" + HZRNENC_CUNE_INTERNO + ", HZRNENC_TIPO_DOC=" + HZRNENC_TIPO_DOC + ", HZRNENC_FECHA_ING=" + HZRNENC_FECHA_ING + ", HZRNENC_FECHA_RET=" + HZRNENC_FECHA_RET + ", HZRNENC_FECHA_LIQ_INI=" + HZRNENC_FECHA_LIQ_INI + ", HZRNENC_FECHA_LIQ_FIN=" + HZRNENC_FECHA_LIQ_FIN + ", HZRNENC_TIEMPO_LAB=" + HZRNENC_TIEMPO_LAB + ", HZRNENC_FECHA_EMISION=" + HZRNENC_FECHA_EMISION + ", HZRNENC_CODIGO_TRAB=" + HZRNENC_CODIGO_TRAB + ", HZRNENC_PREFIJO=" + HZRNENC_PREFIJO + ", HZRNENC_CONSECUTIVO=" + HZRNENC_CONSECUTIVO + ", HZRNENC_NUMERO=" + HZRNENC_NUMERO + ", HZRNENC_PAIS=" + HZRNENC_PAIS + ", HZRNENC_DEPART_ESTADO=" + HZRNENC_DEPART_ESTADO + ", HZRNENC_MUNICIPIO_CIUDAD=" + HZRNENC_MUNICIPIO_CIUDAD + ", HZRNENC_IDIOMA=" + HZRNENC_IDIOMA + ", HZRNENC_VERSION=" + HZRNENC_VERSION + ", HZRNENC_AMBIENTE=" + HZRNENC_AMBIENTE + ", HZRNENC_TIPO_XML=" + HZRNENC_TIPO_XML + ", HZRNENC_CUNE=" + HZRNENC_CUNE + ", HZRNENC_FECHA_GENERA=" + HZRNENC_FECHA_GENERA + ", HZRNENC_HORA_GENERA=" + HZRNENC_HORA_GENERA + ", HZRNENC_PERIODO_NOM=" + HZRNENC_PERIODO_NOM + ", HZRNENC_TIPO_MONEDA=" + HZRNENC_TIPO_MONEDA + ", HZRNENC_TRM=" + HZRNENC_TRM + ", HZRNENC_NUM_PRED=" + HZRNENC_NUM_PRED + ", HZRNENC_CUNE_PRED=" + HZRNENC_CUNE_PRED + ", HZRNENC_FECHA_GEN_PRED=" + HZRNENC_FECHA_GEN_PRED + '}';
     }
  
-    
     
 }

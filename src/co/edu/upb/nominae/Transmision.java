@@ -1,8 +1,9 @@
-package upb_nominae;
+package co.edu.upb.nominae;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -27,16 +28,7 @@ public class Transmision {
         String username = null;
         String password = null;
         String loop= "30000"; //eliminar valor quemado
-        Comprobante C = new Comprobante();
-        
-        //CONECCION
-        System.out.println("UPB_FacturacionE: <1> Obtaining Connection Data...");
-//        url      = T.getConnection("Url");
-//        username = T.getConnection("Username");
-//        password = T.getConnection("Password");
-//        loop     = T.getConnection("loop-milis");
-        System.out.println("UPB_FacturacionE: <2> Connection data obtained.");
-        //System.out.println(username+"----"+password);
+        Comprobante C;
         
         if(loop == null){
             loop = "30000";
@@ -48,10 +40,16 @@ public class Transmision {
         
         //THE MF MAGIC
         try {
+            C = new Comprobante();
+            
+            System.out.println("getComprobanteLive: " + C.getComprobanteLive());
+            System.out.println("getComprobanteExist: " + C.getComprobanteExist());
+            
+
             while(true){                
                 if(C.getComprobanteLive() == 0){
                     if(C.getComprobanteExist()==1){
-                        C.getComprobanteExtracted(url, username, password);   
+                        C.getFileExtracted();   
                     }else{
                         Thread.sleep(Integer.parseInt(loop));
                     }
@@ -61,6 +59,8 @@ public class Transmision {
         }catch (InterruptedException e) {
             e.printStackTrace();
         } catch (SQLException ex) {
+            Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JAXBException ex) {
             Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
         }
         

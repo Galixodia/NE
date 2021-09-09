@@ -1,4 +1,4 @@
-package upb_nominae;
+package co.edu.upb.nominae;
 
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
