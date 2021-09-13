@@ -1,53 +1,63 @@
 package co.edu.upb.pojos.nomina;
 
+import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "EHL")
+@XmlType (propOrder={"HZRNEHL_FECHA_INICIO",
+    "HZRNEHL_FECHA_FIN",
+    "HZRNEHL_CANTIDAD"})
 
 public class EHL {
     
     @XmlElement(name = "EHL_1")
-    private String EHL_1;
+    private Date HZRNEHL_FECHA_INICIO;
     @XmlElement(name = "EHL_2")
-    private String EHL_2;
+    private Date HZRNEHL_FECHA_FIN;
     @XmlElement(name = "EHL_3")
-    private long EHL_3;
+    private Long HZRNEHL_CANTIDAD;
+    private Integer HZRNEHL_ITE_ID;       
 
-    public EHL() {
+    @XmlTransient
+    public Date getHZRNEHL_FECHA_INICIO() {
+        return HZRNEHL_FECHA_INICIO;
     }
 
-    public EHL(String EHL_1, String EHL_2, long EHL_3) {
-        this.EHL_1 = EHL_1;
-        this.EHL_2 = EHL_2;
-        this.EHL_3 = EHL_3;
+    public void setHZRNEHL_FECHA_INICIO(Date HZRNEHL_FECHA_INICIO) {
+        this.HZRNEHL_FECHA_INICIO = HZRNEHL_FECHA_INICIO;
     }
     @XmlTransient
-    public String getEHL_1() {
-        return EHL_1;
+    public Date getHZRNEHL_FECHA_FIN() {
+        return HZRNEHL_FECHA_FIN;
     }
 
-    public void setEHL_1(String EHL_1) {
-        this.EHL_1 = EHL_1;
+    public void setHZRNEHL_FECHA_FIN(Date HZRNEHL_FECHA_FIN) {
+        this.HZRNEHL_FECHA_FIN = HZRNEHL_FECHA_FIN;
     }
     @XmlTransient
-    public String getEHL_2() {
-        return EHL_2;
+    public Long getHZRNEHL_CANTIDAD() {
+        return HZRNEHL_CANTIDAD;
     }
 
-    public void setEHL_2(String EHL_2) {
-        this.EHL_2 = EHL_2;
+    public void setHZRNEHL_CANTIDAD(Long HZRNEHL_CANTIDAD) {
+        this.HZRNEHL_CANTIDAD = HZRNEHL_CANTIDAD;
     }
     @XmlTransient
-    public long getEHL_3() {
-        return EHL_3;
+    public Integer getHZRNEHL_ITE_ID() {
+        return HZRNEHL_ITE_ID;
     }
 
-    public void setEHL_3(long EHL_3) {
-        this.EHL_3 = EHL_3;
+    public void setHZRNEHL_ITE_ID(Integer HZRNEHL_ITE_ID) {
+        this.HZRNEHL_ITE_ID = HZRNEHL_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EHL{" + "EHL_1=" + EHL_1 + ", EHL_2=" + EHL_2 + ", EHL_3=" + EHL_3 + '}';
+        return "EHL{" + "HZRNEHL_FECHA_INICIO=" + HZRNEHL_FECHA_INICIO + ", HZRNEHL_FECHA_FIN=" + HZRNEHL_FECHA_FIN + ", HZRNEHL_CANTIDAD=" + HZRNEHL_CANTIDAD + ", HZRNEHL_ITE_ID=" + HZRNEHL_ITE_ID + '}';
     }
-    
+
+ 
 }

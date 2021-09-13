@@ -1,43 +1,51 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "EBN")
+@XmlType (propOrder={"HZRNEBN_BONI_SALARIAL",
+    "HZRNEBN_BONI_NO_SALARIAL"})
 
 public class EBN {
     
     @XmlElement(name = "EBN_1")
-    private Double EBN_1;
+    private Double HZRNEBN_BONI_SALARIAL;
     @XmlElement(name = "EBN_2")
-    private Double EBN_2;
+    private Double HZRNEBN_BONI_NO_SALARIAL;
+    private Integer HZRNEBN_ITE_ID;   
 
-    public EBN() {
+    @XmlTransient
+    public Double getHZRNEBN_BONI_SALARIAL() {
+        return HZRNEBN_BONI_SALARIAL;
     }
 
-    public EBN(Double EBN_1, Double EBN_2) {
-        this.EBN_1 = EBN_1;
-        this.EBN_2 = EBN_2;
+    public void setHZRNEBN_BONI_SALARIAL(Double HZRNEBN_BONI_SALARIAL) {
+        this.HZRNEBN_BONI_SALARIAL = HZRNEBN_BONI_SALARIAL;
     }
     @XmlTransient
-    public Double getEBN_1() {
-        return EBN_1;
+    public Double getHZRNEBN_BONI_NO_SALARIAL() {
+        return HZRNEBN_BONI_NO_SALARIAL;
     }
 
-    public void setEBN_1(Double EBN_1) {
-        this.EBN_1 = EBN_1;
+    public void setHZRNEBN_BONI_NO_SALARIAL(Double HZRNEBN_BONI_NO_SALARIAL) {
+        this.HZRNEBN_BONI_NO_SALARIAL = HZRNEBN_BONI_NO_SALARIAL;
     }
     @XmlTransient
-    public Double getEBN_2() {
-        return EBN_2;
+    public Integer getHZRNEBN_ITE_ID() {
+        return HZRNEBN_ITE_ID;
     }
 
-    public void setEBN_2(Double EBN_2) {
-        this.EBN_2 = EBN_2;
+    public void setHZRNEBN_ITE_ID(Integer HZRNEBN_ITE_ID) {
+        this.HZRNEBN_ITE_ID = HZRNEBN_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EBN{" + "EBN_1=" + EBN_1 + ", EBN_2=" + EBN_2 + '}';
+        return "EBN{" + "HZRNEBN_BONI_SALARIAL=" + HZRNEBN_BONI_SALARIAL + ", HZRNEBN_BONI_NO_SALARIAL=" + HZRNEBN_BONI_NO_SALARIAL + ", HZRNEBN_ITE_ID=" + HZRNEBN_ITE_ID + '}';
     }
     
-    
-}
+  
+ }

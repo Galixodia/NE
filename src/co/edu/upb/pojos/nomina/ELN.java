@@ -1,55 +1,62 @@
 package co.edu.upb.pojos.nomina;
 
+import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "ELN")
+@XmlType (propOrder={"HZRNELN_FECHA_INICIO",
+    "HZRNELN_FECHA_FIN",
+    "HZRNELN_CANTIDAD"})
 
 public class ELN {
     
     @XmlElement(name = "ELN_1")
-    private String ELN_1;
+    private Date HZRNELN_FECHA_INICIO;
     @XmlElement(name = "ELN_2")
-    private String ELN_2;
+    private Date HZRNELN_FECHA_FIN;
     @XmlElement(name = "ELN_3")
-    private long ELN_3;
+    private Long HZRNELN_CANTIDAD;
+    private Integer HZRNELN_ITE_ID;       
 
-    public ELN() {
+    @XmlTransient
+    public Date getHZRNELN_FECHA_INICIO() {
+        return HZRNELN_FECHA_INICIO;
     }
 
-    public ELN(String ELN_1, String ELN_2, long ELN_3) {
-        this.ELN_1 = ELN_1;
-        this.ELN_2 = ELN_2;
-        this.ELN_3 = ELN_3;
+    public void setHZRNELN_FECHA_INICIO(Date HZRNELN_FECHA_INICIO) {
+        this.HZRNELN_FECHA_INICIO = HZRNELN_FECHA_INICIO;
     }
     @XmlTransient
-    public String getELN_1() {
-        return ELN_1;
+    public Date getHZRNELN_FECHA_FIN() {
+        return HZRNELN_FECHA_FIN;
     }
 
-    public void setELN_1(String ELN_1) {
-        this.ELN_1 = ELN_1;
+    public void setHZRNELN_FECHA_FIN(Date HZRNELN_FECHA_FIN) {
+        this.HZRNELN_FECHA_FIN = HZRNELN_FECHA_FIN;
     }
     @XmlTransient
-    public String getELN_2() {
-        return ELN_2;
+    public Long getHZRNELN_CANTIDAD() {
+        return HZRNELN_CANTIDAD;
     }
 
-    public void setELN_2(String ELN_2) {
-        this.ELN_2 = ELN_2;
+    public void setHZRNELN_CANTIDAD(Long HZRNELN_CANTIDAD) {
+        this.HZRNELN_CANTIDAD = HZRNELN_CANTIDAD;
     }
     @XmlTransient
-    public long getELN_3() {
-        return ELN_3;
+    public Integer getHZRNELN_ITE_ID() {
+        return HZRNELN_ITE_ID;
     }
 
-    public void setELN_3(long ELN_3) {
-        this.ELN_3 = ELN_3;
+    public void setHZRNELN_ITE_ID(Integer HZRNELN_ITE_ID) {
+        this.HZRNELN_ITE_ID = HZRNELN_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "ELN{" + "ELN_1=" + ELN_1 + ", ELN_2=" + ELN_2 + ", ELN_3=" + ELN_3 + '}';
+        return "ELN{" + "HZRNELN_FECHA_INICIO=" + HZRNELN_FECHA_INICIO + ", HZRNELN_FECHA_FIN=" + HZRNELN_FECHA_FIN + ", HZRNELN_CANTIDAD=" + HZRNELN_CANTIDAD + ", HZRNELN_ITE_ID=" + HZRNELN_ITE_ID + '}';
     }
-    
-    
     
 }

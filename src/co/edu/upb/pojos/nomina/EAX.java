@@ -1,44 +1,52 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "EAX")
+@XmlType (propOrder={"HZRNEAX_AUX_SALARIAL",
+    "HZRNEAX_AUX_NO_SALARIAL"})
+
 
 public class EAX {
     
     @XmlElement(name = "EAX_1")
-    private Double EAX_1;
+    private Double HZRNEAX_AUX_SALARIAL;
     @XmlElement(name = "EAX_2")
-    private Double EAX_2;
+    private Double HZRNEAX_AUX_NO_SALARIAL;
+    private Integer HZRNEAX_ITE_ID;       
 
-    public EAX() {
+    @XmlTransient
+    public Double getHZRNEAX_AUX_SALARIAL() {
+        return HZRNEAX_AUX_SALARIAL;
     }
 
-    public EAX(Double EAX_1, Double EAX_2) {
-        this.EAX_1 = EAX_1;
-        this.EAX_2 = EAX_2;
+    public void setHZRNEAX_AUX_SALARIAL(Double HZRNEAX_AUX_SALARIAL) {
+        this.HZRNEAX_AUX_SALARIAL = HZRNEAX_AUX_SALARIAL;
     }
     @XmlTransient
-    public Double getEAX_1() {
-        return EAX_1;
+    public Double getHZRNEAX_AUX_NO_SALARIAL() {
+        return HZRNEAX_AUX_NO_SALARIAL;
     }
 
-    public void setEAX_1(Double EAX_1) {
-        this.EAX_1 = EAX_1;
+    public void setHZRNEAX_AUX_NO_SALARIAL(Double HZRNEAX_AUX_NO_SALARIAL) {
+        this.HZRNEAX_AUX_NO_SALARIAL = HZRNEAX_AUX_NO_SALARIAL;
     }
     @XmlTransient
-    public Double getEAX_2() {
-        return EAX_2;
+    public Integer getHZRNEAX_ITE_ID() {
+        return HZRNEAX_ITE_ID;
     }
 
-    public void setEAX_2(Double EAX_2) {
-        this.EAX_2 = EAX_2;
+    public void setHZRNEAX_ITE_ID(Integer HZRNEAX_ITE_ID) {
+        this.HZRNEAX_ITE_ID = HZRNEAX_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EAX{" + "EAX_1=" + EAX_1 + ", EAX_2=" + EAX_2 + '}';
+        return "EAX{" + "HZRNEAX_AUX_SALARIAL=" + HZRNEAX_AUX_SALARIAL + ", HZRNEAX_AUX_NO_SALARIAL=" + HZRNEAX_AUX_NO_SALARIAL + ", HZRNEAX_ITE_ID=" + HZRNEAX_ITE_ID + '}';
     }
-    
-    
-    
+
+     
 }

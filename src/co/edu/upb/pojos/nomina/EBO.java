@@ -1,64 +1,72 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "EBO")
+@XmlType (propOrder={"HZRNEBO_PAGO_SALARIAL",
+    "HZRNEBO_PAGO_NO_SALARIAL",
+    "HZRNEBO_PAGO_ALIMENT_SALARIAL",
+    "HZRNEBO_PAGO_ALIMENT_NO_SALARY"})
 
 public class EBO {
     
     @XmlElement(name = "EBO_1")
-    private Double EBO_1;
+    private Double HZRNEBO_PAGO_SALARIAL;
     @XmlElement(name = "EBO_2")
-    private Double EBO_2;
+    private Double HZRNEBO_PAGO_NO_SALARIAL;
     @XmlElement(name = "EBO_3")
-    private Double EBO_3;
+    private Double HZRNEBO_PAGO_ALIMENT_SALARIAL;
     @XmlElement(name = "EBO_4")
-    private Double EBO_4;
+    private Double HZRNEBO_PAGO_ALIMENT_NO_SALARY;
+    private Integer HZRNEBO_ITE_ID;      
 
-    public EBO() {
+    @XmlTransient
+    public Double getHZRNEBO_PAGO_SALARIAL() {
+        return HZRNEBO_PAGO_SALARIAL;
     }
 
-    public EBO(Double EBO_1, Double EBO_2, Double EBO_3, Double EBO_4) {
-        this.EBO_1 = EBO_1;
-        this.EBO_2 = EBO_2;
-        this.EBO_3 = EBO_3;
-        this.EBO_4 = EBO_4;
+    public void setHZRNEBO_PAGO_SALARIAL(Double HZRNEBO_PAGO_SALARIAL) {
+        this.HZRNEBO_PAGO_SALARIAL = HZRNEBO_PAGO_SALARIAL;
     }
     @XmlTransient
-    public Double getEBO_1() {
-        return EBO_1;
+    public Double getHZRNEBO_PAGO_NO_SALARIAL() {
+        return HZRNEBO_PAGO_NO_SALARIAL;
     }
 
-    public void setEBO_1(Double EBO_1) {
-        this.EBO_1 = EBO_1;
+    public void setHZRNEBO_PAGO_NO_SALARIAL(Double HZRNEBO_PAGO_NO_SALARIAL) {
+        this.HZRNEBO_PAGO_NO_SALARIAL = HZRNEBO_PAGO_NO_SALARIAL;
     }
     @XmlTransient
-    public Double getEBO_2() {
-        return EBO_2;
+    public Double getHZRNEBO_PAGO_ALIMENT_SALARIAL() {
+        return HZRNEBO_PAGO_ALIMENT_SALARIAL;
     }
 
-    public void setEBO_2(Double EBO_2) {
-        this.EBO_2 = EBO_2;
+    public void setHZRNEBO_PAGO_ALIMENT_SALARIAL(Double HZRNEBO_PAGO_ALIMENT_SALARIAL) {
+        this.HZRNEBO_PAGO_ALIMENT_SALARIAL = HZRNEBO_PAGO_ALIMENT_SALARIAL;
     }
     @XmlTransient
-    public Double getEBO_3() {
-        return EBO_3;
+    public Double getHZRNEBO_PAGO_ALIMENT_NO_SALARY() {
+        return HZRNEBO_PAGO_ALIMENT_NO_SALARY;
     }
 
-    public void setEBO_3(Double EBO_3) {
-        this.EBO_3 = EBO_3;
+    public void setHZRNEBO_PAGO_ALIMENT_NO_SALARY(Double HZRNEBO_PAGO_ALIMENT_NO_SALARY) {
+        this.HZRNEBO_PAGO_ALIMENT_NO_SALARY = HZRNEBO_PAGO_ALIMENT_NO_SALARY;
     }
     @XmlTransient
-    public Double getEBO_4() {
-        return EBO_4;
+    public Integer getHZRNEBO_ITE_ID() {
+        return HZRNEBO_ITE_ID;
     }
 
-    public void setEBO_4(Double EBO_4) {
-        this.EBO_4 = EBO_4;
+    public void setHZRNEBO_ITE_ID(Integer HZRNEBO_ITE_ID) {
+        this.HZRNEBO_ITE_ID = HZRNEBO_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EBO{" + "EBO_1=" + EBO_1 + ", EBO_2=" + EBO_2 + ", EBO_3=" + EBO_3 + ", EBO_4=" + EBO_4 + '}';
+        return "EBO{" + "HZRNEBO_PAGO_SALARIAL=" + HZRNEBO_PAGO_SALARIAL + ", HZRNEBO_PAGO_NO_SALARIAL=" + HZRNEBO_PAGO_NO_SALARIAL + ", HZRNEBO_PAGO_ALIMENT_SALARIAL=" + HZRNEBO_PAGO_ALIMENT_SALARIAL + ", HZRNEBO_PAGO_ALIMENT_NO_SALARY=" + HZRNEBO_PAGO_ALIMENT_NO_SALARY + ", HZRNEBO_ITE_ID=" + HZRNEBO_ITE_ID + '}';
     }
-               
+
 }

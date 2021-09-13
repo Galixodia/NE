@@ -1,44 +1,50 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "ECM")
+@XmlType (propOrder={"HZRNECM_COMPENS_ORDINARIA",
+    "HZRNECM_COMPENS_EXTRAORDINARIA"})
 
 public class ECM {
     
     @XmlElement(name = "ECM_1")
-    private Double ECM_1;
+    private Double HZRNECM_COMPENS_ORDINARIA;
     @XmlElement(name = "ECM_2")
-    private Double ECM_2;
+    private Double HZRNECM_COMPENS_EXTRAORDINARIA;
+    private Integer HZRNECM_ITE_ID;       
 
-    public ECM() {
+    @XmlTransient
+    public Double getHZRNECM_COMPENS_ORDINARIA() {
+        return HZRNECM_COMPENS_ORDINARIA;
     }
 
-    public ECM(Double ECM_1, Double ECM_2) {
-        this.ECM_1 = ECM_1;
-        this.ECM_2 = ECM_2;
+    public void setHZRNECM_COMPENS_ORDINARIA(Double HZRNECM_COMPENS_ORDINARIA) {
+        this.HZRNECM_COMPENS_ORDINARIA = HZRNECM_COMPENS_ORDINARIA;
     }
     @XmlTransient
-    public Double getECM_1() {
-        return ECM_1;
+    public Double getHZRNECM_COMPENS_EXTRAORDINARIA() {
+        return HZRNECM_COMPENS_EXTRAORDINARIA;
     }
 
-    public void setECM_1(Double ECM_1) {
-        this.ECM_1 = ECM_1;
+    public void setHZRNECM_COMPENS_EXTRAORDINARIA(Double HZRNECM_COMPENS_EXTRAORDINARIA) {
+        this.HZRNECM_COMPENS_EXTRAORDINARIA = HZRNECM_COMPENS_EXTRAORDINARIA;
     }
     @XmlTransient
-    public Double getECM_2() {
-        return ECM_2;
+    public Integer getHZRNECM_ITE_ID() {
+        return HZRNECM_ITE_ID;
     }
 
-    public void setECM_2(Double ECM_2) {
-        this.ECM_2 = ECM_2;
+    public void setHZRNECM_ITE_ID(Integer HZRNECM_ITE_ID) {
+        this.HZRNECM_ITE_ID = HZRNECM_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "ECM{" + "ECM_1=" + ECM_1 + ", ECM_2=" + ECM_2 + '}';
+        return "ECM{" + "HZRNECM_COMPENS_ORDINARIA=" + HZRNECM_COMPENS_ORDINARIA + ", HZRNECM_COMPENS_EXTRAORDINARIA=" + HZRNECM_COMPENS_EXTRAORDINARIA + ", HZRNECM_ITE_ID=" + HZRNECM_ITE_ID + '}';
     }
-    
-    
-    
+
 }

@@ -1,147 +1,158 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
- * @author 000329745
+ * @author 000329744 Xiomara Torrez Muñoz
+ * @since 00/09/2021
+ * @version 1.0
+ * 
+ * Segmento  Obligatorio. Puede repetirse  una sola (1) vez en el archivo.
+ * Utilizado para Atributos del Empleador o Emisor del Documento 
  */
-class EMI {
-    
+
+@XmlRootElement(name = "EMI")
+@XmlType (propOrder={"HZRNEMI_RAZON_SOCIAL",
+    "HZRNEMI_PRIMER_APELLIDO",
+    "HZRNEMI_SEGUNDO_APELLIDO",
+    "HZRNEMI_PRIMER_NOMBRE",
+    "HZRNEMI_OTROS_NOMBRES",
+    "HZRNEMI_NIT",
+    "HZRNEMI_DV",
+    "HZRNEMI_PAIS",
+    "HZRNEMI_DEPART_ESTADO",
+    "HZRNEMI_MUNICIPIO_CIUDAD",
+    "HZRNEMI_DIRECCION"})
+public class EMI {
+
+    private String HZRNEMI_CUNE_INTERNO;
     @XmlElement(name = "EMI_1")
-    private String EMI_1; 
+    private String HZRNEMI_RAZON_SOCIAL; 
     @XmlElement(name = "EMI_2")
-    private String EMI_2; 
+    private String HZRNEMI_PRIMER_APELLIDO; 
     @XmlElement(name = "EMI_3")
-    private String EMI_3; 
+    private String HZRNEMI_SEGUNDO_APELLIDO; 
     @XmlElement(name = "EMI_4")
-    private String EMI_4; 
+    private String HZRNEMI_PRIMER_NOMBRE; 
     @XmlElement(name = "EMI_5")
-    private String EMI_5; 
+    private String HZRNEMI_OTROS_NOMBRES; 
     @XmlElement(name = "EMI_6")
-    private long EMI_6; 
+    private Long HZRNEMI_NIT; 
     @XmlElement(name = "EMI_7")
-    private int EMI_7; 
+    private Integer HZRNEMI_DV; 
     @XmlElement(name = "EMI_8")
-    private String EMI_8; 
+    private String HZRNEMI_PAIS; 
     @XmlElement(name = "EMI_9")
-    private int EMI_9; 
+    private Integer HZRNEMI_DEPART_ESTADO; 
     @XmlElement(name = "EMI_10")
-    private int EMI_10; 
+    private Integer HZRNEMI_MUNICIPIO_CIUDAD; 
     @XmlElement(name = "EMI_11")
-    private String EMI_11; 
-
-    public EMI() {
+    private String HZRNEMI_DIRECCION; 
+    @XmlTransient
+    public String getHZRNEMI_CUNE_INTERNO() {
+        return HZRNEMI_CUNE_INTERNO;
     }
 
-    public EMI(String EMI_1, String EMI_2, String EMI_3, String EMI_4, String EMI_5, long EMI_6, int EMI_7, String EMI_8, int EMI_9, int EMI_10, String EMI_11) {
-        this.EMI_1 = EMI_1;
-        this.EMI_2 = EMI_2;
-        this.EMI_3 = EMI_3;
-        this.EMI_4 = EMI_4;
-        this.EMI_5 = EMI_5;
-        this.EMI_6 = EMI_6;
-        this.EMI_7 = EMI_7;
-        this.EMI_8 = EMI_8;
-        this.EMI_9 = EMI_9;
-        this.EMI_10 = EMI_10;
-        this.EMI_11 = EMI_11;
+    public void setHZRNEMI_CUNE_INTERNO(String HZRNEMI_CUNE_INTERNO) {
+        this.HZRNEMI_CUNE_INTERNO = HZRNEMI_CUNE_INTERNO;
     }
     @XmlTransient
-    public String getEMI_1() {
-        return EMI_1;
+    public String getHZRNEMI_RAZON_SOCIAL() {
+        return HZRNEMI_RAZON_SOCIAL;
     }
 
-    public void setEMI_1(String EMI_1) {
-        this.EMI_1 = EMI_1;
+    public void setHZRNEMI_RAZON_SOCIAL(String HZRNEMI_RAZON_SOCIAL) {
+        this.HZRNEMI_RAZON_SOCIAL = HZRNEMI_RAZON_SOCIAL;
     }
     @XmlTransient
-    public String getEMI_2() {
-        return EMI_2;
+    public String getHZRNEMI_PRIMER_APELLIDO() {
+        return HZRNEMI_PRIMER_APELLIDO;
     }
 
-    public void setEMI_2(String EMI_2) {
-        this.EMI_2 = EMI_2;
+    public void setHZRNEMI_PRIMER_APELLIDO(String HZRNEMI_PRIMER_APELLIDO) {
+        this.HZRNEMI_PRIMER_APELLIDO = HZRNEMI_PRIMER_APELLIDO;
     }
     @XmlTransient
-    public String getEMI_3() {
-        return EMI_3;
+    public String getHZRNEMI_SEGUNDO_APELLIDO() {
+        return HZRNEMI_SEGUNDO_APELLIDO;
     }
 
-    public void setEMI_3(String EMI_3) {
-        this.EMI_3 = EMI_3;
+    public void setHZRNEMI_SEGUNDO_APELLIDO(String HZRNEMI_SEGUNDO_APELLIDO) {
+        this.HZRNEMI_SEGUNDO_APELLIDO = HZRNEMI_SEGUNDO_APELLIDO;
     }
     @XmlTransient
-    public String getEMI_4() {
-        return EMI_4;
+    public String getHZRNEMI_PRIMER_NOMBRE() {
+        return HZRNEMI_PRIMER_NOMBRE;
     }
 
-    public void setEMI_4(String EMI_4) {
-        this.EMI_4 = EMI_4;
+    public void setHZRNEMI_PRIMER_NOMBRE(String HZRNEMI_PRIMER_NOMBRE) {
+        this.HZRNEMI_PRIMER_NOMBRE = HZRNEMI_PRIMER_NOMBRE;
     }
     @XmlTransient
-    public String getEMI_5() {
-        return EMI_5;
+    public String getHZRNEMI_OTROS_NOMBRES() {
+        return HZRNEMI_OTROS_NOMBRES;
     }
 
-    public void setEMI_5(String EMI_5) {
-        this.EMI_5 = EMI_5;
+    public void setHZRNEMI_OTROS_NOMBRES(String HZRNEMI_OTROS_NOMBRES) {
+        this.HZRNEMI_OTROS_NOMBRES = HZRNEMI_OTROS_NOMBRES;
     }
     @XmlTransient
-    public long getEMI_6() {
-        return EMI_6;
+    public Long getHZRNEMI_NIT() {
+        return HZRNEMI_NIT;
     }
 
-    public void setEMI_6(long EMI_6) {
-        this.EMI_6 = EMI_6;
+    public void setHZRNEMI_NIT(Long HZRNEMI_NIT) {
+        this.HZRNEMI_NIT = HZRNEMI_NIT;
     }
     @XmlTransient
-    public int getEMI_7() {
-        return EMI_7;
+    public Integer getHZRNEMI_DV() {
+        return HZRNEMI_DV;
     }
 
-    public void setEMI_7(int EMI_7) {
-        this.EMI_7 = EMI_7;
+    public void setHZRNEMI_DV(Integer HZRNEMI_DV) {
+        this.HZRNEMI_DV = HZRNEMI_DV;
     }
     @XmlTransient
-    public String getEMI_8() {
-        return EMI_8;
+    public String getHZRNEMI_PAIS() {
+        return HZRNEMI_PAIS;
     }
 
-    public void setEMI_8(String EMI_8) {
-        this.EMI_8 = EMI_8;
+    public void setHZRNEMI_PAIS(String HZRNEMI_PAIS) {
+        this.HZRNEMI_PAIS = HZRNEMI_PAIS;
     }
     @XmlTransient
-    public int getEMI_9() {
-        return EMI_9;
+    public Integer getHZRNEMI_DEPART_ESTADO() {
+        return HZRNEMI_DEPART_ESTADO;
     }
 
-    public void setEMI_9(int EMI_9) {
-        this.EMI_9 = EMI_9;
+    public void setHZRNEMI_DEPART_ESTADO(Integer HZRNEMI_DEPART_ESTADO) {
+        this.HZRNEMI_DEPART_ESTADO = HZRNEMI_DEPART_ESTADO;
     }
     @XmlTransient
-    public int getEMI_10() {
-        return EMI_10;
+    public Integer getHZRNEMI_MUNICIPIO_CIUDAD() {
+        return HZRNEMI_MUNICIPIO_CIUDAD;
     }
 
-    public void setEMI_10(int EMI_10) {
-        this.EMI_10 = EMI_10;
+    public void setHZRNEMI_MUNICIPIO_CIUDAD(Integer HZRNEMI_MUNICIPIO_CIUDAD) {
+        this.HZRNEMI_MUNICIPIO_CIUDAD = HZRNEMI_MUNICIPIO_CIUDAD;
     }
     @XmlTransient
-    public String getEMI_11() {
-        return EMI_11;
+    public String getHZRNEMI_DIRECCION() {
+        return HZRNEMI_DIRECCION;
     }
 
-    public void setEMI_11(String EMI_11) {
-        this.EMI_11 = EMI_11;
+    public void setHZRNEMI_DIRECCION(String HZRNEMI_DIRECCION) {
+        this.HZRNEMI_DIRECCION = HZRNEMI_DIRECCION;
     }
 
     @Override
     public String toString() {
-        return "EMI{" + "EMI_1=" + EMI_1 + ", EMI_2=" + EMI_2 + ", EMI_3=" + EMI_3 + ", EMI_4=" + EMI_4 + ", EMI_5=" + EMI_5 + ", EMI_6=" + EMI_6 + ", EMI_7=" + EMI_7 + ", EMI_8=" + EMI_8 + ", EMI_9=" + EMI_9 + ", EMI_10=" + EMI_10 + ", EMI_11=" + EMI_11 + '}';
+        return "EMI{" + "HZRNEMI_CUNE_INTERNO=" + HZRNEMI_CUNE_INTERNO + ", HZRNEMI_RAZON_SOCIAL=" + HZRNEMI_RAZON_SOCIAL + ", HZRNEMI_PRIMER_APELLIDO=" + HZRNEMI_PRIMER_APELLIDO + ", HZRNEMI_SEGUNDO_APELLIDO=" + HZRNEMI_SEGUNDO_APELLIDO + ", HZRNEMI_PRIMER_NOMBRE=" + HZRNEMI_PRIMER_NOMBRE + ", HZRNEMI_OTROS_NOMBRES=" + HZRNEMI_OTROS_NOMBRES + ", HZRNEMI_NIT=" + HZRNEMI_NIT + ", HZRNEMI_DV=" + HZRNEMI_DV + ", HZRNEMI_PAIS=" + HZRNEMI_PAIS + ", HZRNEMI_DEPART_ESTADO=" + HZRNEMI_DEPART_ESTADO + ", HZRNEMI_MUNICIPIO_CIUDAD=" + HZRNEMI_MUNICIPIO_CIUDAD + ", HZRNEMI_DIRECCION=" + HZRNEMI_DIRECCION + '}';
     }
 
-    
     
 }

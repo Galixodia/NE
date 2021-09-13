@@ -1,53 +1,61 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "ECE")
+@XmlType (propOrder={"HZRNECE_PAGO",
+    "HZRNECE_PORCENTAJE",
+    "HZRNECE_PAGO_INTERESES"})
 
 public class ECE {
     
     @XmlElement(name = "ECE_1")
-    private Double ECE_1;
+    private Double HZRNECE_PAGO;
     @XmlElement(name = "ECE_2")
-    private int ECE_2;
+    private Double HZRNECE_PORCENTAJE;
     @XmlElement(name = "ECE_3")
-    private Double ECE_3;   
+    private Double HZRNECE_PAGO_INTERESES;   
+    private Integer HZRNECE_ITE_ID;    
 
-    public ECE() {
+    @XmlTransient
+    public Double getHZRNECE_PAGO() {
+        return HZRNECE_PAGO;
     }
 
-    public ECE(Double ECE_1, int ECE_2, Double ECE_3) {
-        this.ECE_1 = ECE_1;
-        this.ECE_2 = ECE_2;
-        this.ECE_3 = ECE_3;
+    public void setHZRNECE_PAGO(Double HZRNECE_PAGO) {
+        this.HZRNECE_PAGO = HZRNECE_PAGO;
     }
     @XmlTransient
-    public Double getECE_1() {
-        return ECE_1;
+    public Double getHZRNECE_PORCENTAJE() {
+        return HZRNECE_PORCENTAJE;
     }
 
-    public void setECE_1(Double ECE_1) {
-        this.ECE_1 = ECE_1;
+    public void setHZRNECE_PORCENTAJE(Double HZRNECE_PORCENTAJE) {
+        this.HZRNECE_PORCENTAJE = HZRNECE_PORCENTAJE;
     }
     @XmlTransient
-    public int getECE_2() {
-        return ECE_2;
+    public Double getHZRNECE_PAGO_INTERESES() {
+        return HZRNECE_PAGO_INTERESES;
     }
 
-    public void setECE_2(int ECE_2) {
-        this.ECE_2 = ECE_2;
+    public void setHZRNECE_PAGO_INTERESES(Double HZRNECE_PAGO_INTERESES) {
+        this.HZRNECE_PAGO_INTERESES = HZRNECE_PAGO_INTERESES;
     }
     @XmlTransient
-    public Double getECE_3() {
-        return ECE_3;
+    public Integer getHZRNECE_ITE_ID() {
+        return HZRNECE_ITE_ID;
     }
 
-    public void setECE_3(Double ECE_3) {
-        this.ECE_3 = ECE_3;
+    public void setHZRNECE_ITE_ID(Integer HZRNECE_ITE_ID) {
+        this.HZRNECE_ITE_ID = HZRNECE_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "ECE{" + "ECE_1=" + ECE_1 + ", ECE_2=" + ECE_2 + ", ECE_3=" + ECE_3 + '}';
+        return "ECE{" + "HZRNECE_PAGO=" + HZRNECE_PAGO + ", HZRNECE_PORCENTAJE=" + HZRNECE_PORCENTAJE + ", HZRNECE_PAGO_INTERESES=" + HZRNECE_PAGO_INTERESES + ", HZRNECE_ITE_ID=" + HZRNECE_ITE_ID + '}';
     }
 
     

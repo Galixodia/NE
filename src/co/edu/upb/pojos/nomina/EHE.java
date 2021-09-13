@@ -1,86 +1,104 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+/**
+ *
+ * @author 000329744 Xiomara Torrez Muñoz
+ * @since 00/09/2021
+ * @version 1.0
+ * 
+ * Segmento Opcional. Utilizado para Atributos de Horas Extras. Este segmento es dependiente Ver Nota 3 
+ * Puede repetirse hasta 100 veces por cada registro de Devengado  Basico(ITE). Ver nota 4
+ */
+
+@XmlRootElement(name = "EHE")
+@XmlType (propOrder={"HZRNEHE_HORAS_EXTRA",
+    "HZRNEHE_HORA_INICIO",
+    "HZRNEHE_HORA_FIN",
+    "HZRNEHE_CANTIDAD",
+    "HZRNEHE_PORCENTAJE",    
+    "HZRNEHE_PAGO"})
 
 public class EHE {
     
     @XmlElement(name = "EHE_1")
-    private String EHE_1;
+    private String HZRNEHE_HORAS_EXTRA;
     @XmlElement(name = "EHE_2")
-    private String EHE_2;
+    private String HZRNEHE_HORA_INICIO;
     @XmlElement(name = "EHE_3")
-    private String EHE_3;
+    private String HZRNEHE_HORA_FIN;
     @XmlElement(name = "EHE_4")
-    private Double EHE_4;
+    private Double HZRNEHE_CANTIDAD;
     @XmlElement(name = "EHE_5")
-    private Double EHE_5;
+    private Double HZRNEHE_PORCENTAJE;
     @XmlElement(name = "EHE_6")
-    private Double EHE_6;
+    private Double HZRNEHE_PAGO;
+    private Integer HZRNEHE_ITE_ID;       
 
-    public EHE() {
+    @XmlTransient
+    public String getHZRNEHE_HORAS_EXTRA() {
+        return HZRNEHE_HORAS_EXTRA;
     }
 
-    public EHE(String EHE_1, String EHE_2, String EHE_3, Double EHE_4, Double EHE_5, Double EHE_6) {
-        this.EHE_1 = EHE_1;
-        this.EHE_2 = EHE_2;
-        this.EHE_3 = EHE_3;
-        this.EHE_4 = EHE_4;
-        this.EHE_5 = EHE_5;
-        this.EHE_6 = EHE_6;
+    public void setHZRNEHE_HORAS_EXTRA(String HZRNEHE_HORAS_EXTRA) {
+        this.HZRNEHE_HORAS_EXTRA = HZRNEHE_HORAS_EXTRA;
     }
     @XmlTransient
-    public String getEHE_1() {
-        return EHE_1;
+    public String getHZRNEHE_HORA_INICIO() {
+        return HZRNEHE_HORA_INICIO;
     }
 
-    public void setEHE_1(String EHE_1) {
-        this.EHE_1 = EHE_1;
+    public void setHZRNEHE_HORA_INICIO(String HZRNEHE_HORA_INICIO) {
+        this.HZRNEHE_HORA_INICIO = HZRNEHE_HORA_INICIO;
     }
     @XmlTransient
-    public String getEHE_2() {
-        return EHE_2;
+    public String getHZRNEHE_HORA_FIN() {
+        return HZRNEHE_HORA_FIN;
     }
 
-    public void setEHE_2(String EHE_2) {
-        this.EHE_2 = EHE_2;
+    public void setHZRNEHE_HORA_FIN(String HZRNEHE_HORA_FIN) {
+        this.HZRNEHE_HORA_FIN = HZRNEHE_HORA_FIN;
     }
     @XmlTransient
-    public String getEHE_3() {
-        return EHE_3;
+    public Double getHZRNEHE_CANTIDAD() {
+        return HZRNEHE_CANTIDAD;
     }
 
-    public void setEHE_3(String EHE_3) {
-        this.EHE_3 = EHE_3;
+    public void setHZRNEHE_CANTIDAD(Double HZRNEHE_CANTIDAD) {
+        this.HZRNEHE_CANTIDAD = HZRNEHE_CANTIDAD;
     }
     @XmlTransient
-    public Double getEHE_4() {
-        return EHE_4;
+    public Double getHZRNEHE_PORCENTAJE() {
+        return HZRNEHE_PORCENTAJE;
     }
 
-    public void setEHE_4(Double EHE_4) {
-        this.EHE_4 = EHE_4;
+    public void setHZRNEHE_PORCENTAJE(Double HZRNEHE_PORCENTAJE) {
+        this.HZRNEHE_PORCENTAJE = HZRNEHE_PORCENTAJE;
     }
     @XmlTransient
-    public Double getEHE_5() {
-        return EHE_5;
+    public Double getHZRNEHE_PAGO() {
+        return HZRNEHE_PAGO;
     }
 
-    public void setEHE_5(Double EHE_5) {
-        this.EHE_5 = EHE_5;
+    public void setHZRNEHE_PAGO(Double HZRNEHE_PAGO) {
+        this.HZRNEHE_PAGO = HZRNEHE_PAGO;
     }
     @XmlTransient
-    public Double getEHE_6() {
-        return EHE_6;
+    public Integer getHZRNEHE_ITE_ID() {
+        return HZRNEHE_ITE_ID;
     }
 
-    public void setEHE_6(Double EHE_6) {
-        this.EHE_6 = EHE_6;
+    public void setHZRNEHE_ITE_ID(Integer HZRNEHE_ITE_ID) {
+        this.HZRNEHE_ITE_ID = HZRNEHE_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EHE{" + "EHE_1=" + EHE_1 + ", EHE_2=" + EHE_2 + ", EHE_3=" + EHE_3 + ", EHE_4=" + EHE_4 + ", EHE_5=" + EHE_5 + ", EHE_6=" + EHE_6 + '}';
+        return "EHE{" + "HZRNEHE_HORAS_EXTRA=" + HZRNEHE_HORAS_EXTRA + ", HZRNEHE_HORA_INICIO=" + HZRNEHE_HORA_INICIO + ", HZRNEHE_HORA_FIN=" + HZRNEHE_HORA_FIN + ", HZRNEHE_CANTIDAD=" + HZRNEHE_CANTIDAD + ", HZRNEHE_PORCENTAJE=" + HZRNEHE_PORCENTAJE + ", HZRNEHE_PAGO=" + HZRNEHE_PAGO + ", HZRNEHE_ITE_ID=" + HZRNEHE_ITE_ID + '}';
     }
-    
+
 }

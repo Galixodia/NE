@@ -1,75 +1,84 @@
 package co.edu.upb.pojos.nomina;
 
+import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "EIN")
+@XmlType (propOrder={"HZRNEIN_FECHA_INICIO",
+    "HZRNEIN_FECHA_FIN",
+    "HZRNEIN_CANTIDAD",
+    "HZRNEIN_TIPO",    
+    "HZRNEIN_PAGO"})
 
 public class EIN {
     
     @XmlElement(name = "EIN_1")
-    private String EIN_1;
+    private Date HZRNEIN_FECHA_INICIO;
     @XmlElement(name = "EIN_2")
-    private String EIN_2;
+    private Date HZRNEIN_FECHA_FIN;
     @XmlElement(name = "EIN_3")
-    private long EIN_3;
+    private Long HZRNEIN_CANTIDAD;
     @XmlElement(name = "EIN_4")
-    private int EIN_4;
+    private Integer HZRNEIN_TIPO;
     @XmlElement(name = "EIN_5")
-    private Double EIN_5;
+    private Double HZRNEIN_PAGO;
+    private Integer HZRNEIN_ITE_ID;      
 
-    public EIN() {
+    @XmlTransient
+    public Date getHZRNEIN_FECHA_INICIO() {
+        return HZRNEIN_FECHA_INICIO;
     }
 
-    public EIN(String EIN_1, String EIN_2, long EIN_3, int EIN_4, Double EIN_5) {
-        this.EIN_1 = EIN_1;
-        this.EIN_2 = EIN_2;
-        this.EIN_3 = EIN_3;
-        this.EIN_4 = EIN_4;
-        this.EIN_5 = EIN_5;
+    public void setHZRNEIN_FECHA_INICIO(Date HZRNEIN_FECHA_INICIO) {
+        this.HZRNEIN_FECHA_INICIO = HZRNEIN_FECHA_INICIO;
     }
     @XmlTransient
-    public String getEIN_1() {
-        return EIN_1;
+    public Date getHZRNEIN_FECHA_FIN() {
+        return HZRNEIN_FECHA_FIN;
     }
 
-    public void setEIN_1(String EIN_1) {
-        this.EIN_1 = EIN_1;
+    public void setHZRNEIN_FECHA_FIN(Date HZRNEIN_FECHA_FIN) {
+        this.HZRNEIN_FECHA_FIN = HZRNEIN_FECHA_FIN;
     }
     @XmlTransient
-    public String getEIN_2() {
-        return EIN_2;
+    public Long getHZRNEIN_CANTIDAD() {
+        return HZRNEIN_CANTIDAD;
     }
 
-    public void setEIN_2(String EIN_2) {
-        this.EIN_2 = EIN_2;
+    public void setHZRNEIN_CANTIDAD(Long HZRNEIN_CANTIDAD) {
+        this.HZRNEIN_CANTIDAD = HZRNEIN_CANTIDAD;
     }
     @XmlTransient
-    public long getEIN_3() {
-        return EIN_3;
+    public Integer getHZRNEIN_TIPO() {
+        return HZRNEIN_TIPO;
     }
 
-    public void setEIN_3(long EIN_3) {
-        this.EIN_3 = EIN_3;
+    public void setHZRNEIN_TIPO(Integer HZRNEIN_TIPO) {
+        this.HZRNEIN_TIPO = HZRNEIN_TIPO;
     }
     @XmlTransient
-    public int getEIN_4() {
-        return EIN_4;
+    public Double getHZRNEIN_PAGO() {
+        return HZRNEIN_PAGO;
     }
 
-    public void setEIN_4(int EIN_4) {
-        this.EIN_4 = EIN_4;
+    public void setHZRNEIN_PAGO(Double HZRNEIN_PAGO) {
+        this.HZRNEIN_PAGO = HZRNEIN_PAGO;
     }
     @XmlTransient
-    public Double getEIN_5() {
-        return EIN_5;
+    public Integer getHZRNEIN_ITE_ID() {
+        return HZRNEIN_ITE_ID;
     }
 
-    public void setEIN_5(Double EIN_5) {
-        this.EIN_5 = EIN_5;
+    public void setHZRNEIN_ITE_ID(Integer HZRNEIN_ITE_ID) {
+        this.HZRNEIN_ITE_ID = HZRNEIN_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EIN{" + "EIN_1=" + EIN_1 + ", EIN_2=" + EIN_2 + ", EIN_3=" + EIN_3 + ", EIN_4=" + EIN_4 + ", EIN_5=" + EIN_5 + '}';
+        return "EIN{" + "HZRNEIN_FECHA_INICIO=" + HZRNEIN_FECHA_INICIO + ", HZRNEIN_FECHA_FIN=" + HZRNEIN_FECHA_FIN + ", HZRNEIN_CANTIDAD=" + HZRNEIN_CANTIDAD + ", HZRNEIN_TIPO=" + HZRNEIN_TIPO + ", HZRNEIN_PAGO=" + HZRNEIN_PAGO + ", HZRNEIN_ITE_ID=" + HZRNEIN_ITE_ID + '}';
     }
  
 }

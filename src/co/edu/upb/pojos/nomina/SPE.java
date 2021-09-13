@@ -1,44 +1,51 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "SPE")
+@XmlType (propOrder={"HZRNSPE_PORCENTAJE",
+    "HZRNSPE_DEDUCCION"})
 
 public class SPE {
     
     @XmlElement(name = "SPE_1")
-    private Double SPE_1;
+    private Double HZRNSPE_PORCENTAJE;
     @XmlElement(name = "SPE_2")
-    private Double SPE_2;    
+    private Double HZRNSPE_DEDUCCION;
+    private Integer HZRNSPE_ITS_ID;      
 
-    public SPE() {
+    @XmlTransient
+    public Double getHZRNSPE_PORCENTAJE() {
+        return HZRNSPE_PORCENTAJE;
     }
 
-    public SPE(Double SPE_1, Double SPE_2) {
-        this.SPE_1 = SPE_1;
-        this.SPE_2 = SPE_2;
+    public void setHZRNSPE_PORCENTAJE(Double HZRNSPE_PORCENTAJE) {
+        this.HZRNSPE_PORCENTAJE = HZRNSPE_PORCENTAJE;
     }
     @XmlTransient
-    public Double getSPE_1() {
-        return SPE_1;
+    public Double getHZRNSPE_DEDUCCION() {
+        return HZRNSPE_DEDUCCION;
     }
 
-    public void setSPE_1(Double SPE_1) {
-        this.SPE_1 = SPE_1;
+    public void setHZRNSPE_DEDUCCION(Double HZRNSPE_DEDUCCION) {
+        this.HZRNSPE_DEDUCCION = HZRNSPE_DEDUCCION;
     }
     @XmlTransient
-    public Double getSPE_2() {
-        return SPE_2;
+    public Integer getHZRNSPE_ITS_ID() {
+        return HZRNSPE_ITS_ID;
     }
 
-    public void setSPE_2(Double SPE_2) {
-        this.SPE_2 = SPE_2;
+    public void setHZRNSPE_ITS_ID(Integer HZRNSPE_ITS_ID) {
+        this.HZRNSPE_ITS_ID = HZRNSPE_ITS_ID;
     }
 
     @Override
     public String toString() {
-        return "SPE{" + "SPE_1=" + SPE_1 + ", SPE_2=" + SPE_2 + '}';
+        return "SPE{" + "HZRNSPE_PORCENTAJE=" + HZRNSPE_PORCENTAJE + ", HZRNSPE_DEDUCCION=" + HZRNSPE_DEDUCCION + ", HZRNSPE_ITS_ID=" + HZRNSPE_ITS_ID + '}';
     }
-    
-    
+
     
 }

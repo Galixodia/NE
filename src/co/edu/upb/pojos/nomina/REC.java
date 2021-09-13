@@ -1,214 +1,223 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
- * @author 000329745
+ * @author 000329744 Xiomara Torrez Muñoz
+ * @since 00/09/2021
+ * @version 1.0
+ * Segmento Obligatorio. Puede repetirse  una sola (1) vez en el archivo.
+ * Utilizado para Atributos del Trabajador o Receptor del Documento. Este Segemento es dependiente Ver Nota 3
  */
-class REC {
+
+@XmlRootElement(name = "REC")
+@XmlType (propOrder={"HZRNREC_TIPO_TRABAJADOR",
+    "HZRNREC_SUB_TIPO_TRABAJ",
+    "HZRNREC_ALTO_RIESGO_PENS",
+    "HZRNREC_TIPO_DOC",
+    "HZRNREC_NUM_DOC",
+    "HZRNREC_PRIMER_APELLIDO",
+    "HZRNREC_SEGUNDO_APELLIDO",
+    "HZRNREC_PRIMER_NOMBRE",
+    "HZRNREC_OTROS_NOMBRES",
+    "HZRNREC_LUGAR_TRAB_PAIS",
+    "HZRNREC_LUGAR_TRAB_DEPT_EST",
+    "HZRNREC_LUGAR_TRAB_MUN_CIUD",
+    "HZRNREC_LUGAR_TRAB_DIREC",
+    "HZRNREC_SALARIO_INTEGRAL",
+    "HZRNREC_TIPO_CONTRATO",
+    "HZRNREC_SUELDO",
+    "HZRNREC_COD_TRABAJADOR"})
+public class REC {
     
+    private String HZRNREC_CUNE_INTERNO;
     @XmlElement(name = "REC_1")
-    private int REC_1;
+    private Integer HZRNREC_TIPO_TRABAJADOR;
     @XmlElement(name = "REC_2")
-    private int REC_2;
+    private Integer HZRNREC_SUB_TIPO_TRABAJ;
     @XmlElement(name = "REC_3")
-    private String REC_3;
+    private String HZRNREC_ALTO_RIESGO_PENS;
     @XmlElement(name = "REC_4")
-    private int REC_4;
+    private Integer HZRNREC_TIPO_DOC;
     @XmlElement(name = "REC_5")
-    private long REC_5;
+    private Long HZRNREC_NUM_DOC;
     @XmlElement(name = "REC_6")
-    private String REC_6;
+    private String HZRNREC_PRIMER_APELLIDO;
     @XmlElement(name = "REC_7")
-    private String REC_7;
+    private String HZRNREC_SEGUNDO_APELLIDO;
     @XmlElement(name = "REC_8")
-    private String REC_8;
+    private String HZRNREC_PRIMER_NOMBRE;
     @XmlElement(name = "REC_9")
-    private String REC_9;
+    private String HZRNREC_OTROS_NOMBRES;
     @XmlElement(name = "REC_10")
-    private int REC_10;
+    private Integer HZRNREC_LUGAR_TRAB_PAIS;
     @XmlElement(name = "REC_11")
-    private int REC_11;
+    private Integer HZRNREC_LUGAR_TRAB_DEPT_EST;
     @XmlElement(name = "REC_12")
-    private int REC_12;
+    private Integer HZRNREC_LUGAR_TRAB_MUN_CIUD;
     @XmlElement(name = "REC_13")
-    private String REC_13;
+    private String HZRNREC_LUGAR_TRAB_DIREC;
     @XmlElement(name = "REC_14")
-    private String REC_14;
+    private String HZRNREC_SALARIO_INTEGRAL;
     @XmlElement(name = "REC_15")
-    private int REC_15;
+    private Integer HZRNREC_TIPO_CONTRATO;
     @XmlElement(name = "REC_16")
-    private Double REC_16;
+    private Double HZRNREC_SUELDO;
     @XmlElement(name = "REC_17")
-    private String REC_17;
-
-    public REC() {
-    }
-
-    public REC(int REC_1, int REC_2, String REC_3, int REC_4, long REC_5, String REC_6, String REC_7, String REC_8, String REC_9, int REC_10, int REC_11, int REC_12, String REC_13, String REC_14, int REC_15, Double REC_16, String REC_17) {
-        this.REC_1 = REC_1;
-        this.REC_2 = REC_2;
-        this.REC_3 = REC_3;
-        this.REC_4 = REC_4;
-        this.REC_5 = REC_5;
-        this.REC_6 = REC_6;
-        this.REC_7 = REC_7;
-        this.REC_8 = REC_8;
-        this.REC_9 = REC_9;
-        this.REC_10 = REC_10;
-        this.REC_11 = REC_11;
-        this.REC_12 = REC_12;
-        this.REC_13 = REC_13;
-        this.REC_14 = REC_14;
-        this.REC_15 = REC_15;
-        this.REC_16 = REC_16;
-        this.REC_17 = REC_17;
-    }
-
+    private String HZRNREC_COD_TRABAJADOR;
+    
     @XmlTransient
-    public int getREC_1() {
-        return REC_1;
+    public String getHZRNREC_CUNE_INTERNO() {
+        return HZRNREC_CUNE_INTERNO;
     }
 
-    public void setREC_1(int REC_1) {
-        this.REC_1 = REC_1;
+    public void setHZRNREC_CUNE_INTERNO(String HZRNREC_CUNE_INTERNO) {
+        this.HZRNREC_CUNE_INTERNO = HZRNREC_CUNE_INTERNO;
     }
     @XmlTransient
-    public int getREC_2() {
-        return REC_2;
+    public Integer getHZRNREC_TIPO_TRABAJADOR() {
+        return HZRNREC_TIPO_TRABAJADOR;
     }
 
-    public void setREC_2(int REC_2) {
-        this.REC_2 = REC_2;
+    public void setHZRNREC_TIPO_TRABAJADOR(Integer HZRNREC_TIPO_TRABAJADOR) {
+        this.HZRNREC_TIPO_TRABAJADOR = HZRNREC_TIPO_TRABAJADOR;
     }
     @XmlTransient
-    public String getREC_3() {
-        return REC_3;
+    public Integer getHZRNREC_SUB_TIPO_TRABAJ() {
+        return HZRNREC_SUB_TIPO_TRABAJ;
     }
 
-    public void setREC_3(String REC_3) {
-        this.REC_3 = REC_3;
+    public void setHZRNREC_SUB_TIPO_TRABAJ(Integer HZRNREC_SUB_TIPO_TRABAJ) {
+        this.HZRNREC_SUB_TIPO_TRABAJ = HZRNREC_SUB_TIPO_TRABAJ;
     }
     @XmlTransient
-    public int getREC_4() {
-        return REC_4;
+    public String getHZRNREC_ALTO_RIESGO_PENS() {
+        return HZRNREC_ALTO_RIESGO_PENS;
     }
 
-    public void setREC_4(int REC_4) {
-        this.REC_4 = REC_4;
+    public void setHZRNREC_ALTO_RIESGO_PENS(String HZRNREC_ALTO_RIESGO_PENS) {
+        this.HZRNREC_ALTO_RIESGO_PENS = HZRNREC_ALTO_RIESGO_PENS;
     }
     @XmlTransient
-    public long getREC_5() {
-        return REC_5;
+    public Integer getHZRNREC_TIPO_DOC() {
+        return HZRNREC_TIPO_DOC;
     }
 
-    public void setREC_5(long REC_5) {
-        this.REC_5 = REC_5;
+    public void setHZRNREC_TIPO_DOC(Integer HZRNREC_TIPO_DOC) {
+        this.HZRNREC_TIPO_DOC = HZRNREC_TIPO_DOC;
     }
     @XmlTransient
-    public String getREC_6() {
-        return REC_6;
+    public Long getHZRNREC_NUM_DOC() {
+        return HZRNREC_NUM_DOC;
     }
 
-    public void setREC_6(String REC_6) {
-        this.REC_6 = REC_6;
+    public void setHZRNREC_NUM_DOC(Long HZRNREC_NUM_DOC) {
+        this.HZRNREC_NUM_DOC = HZRNREC_NUM_DOC;
     }
     @XmlTransient
-    public String getREC_7() {
-        return REC_7;
+    public String getHZRNREC_PRIMER_APELLIDO() {
+        return HZRNREC_PRIMER_APELLIDO;
     }
 
-    public void setREC_7(String REC_7) {
-        this.REC_7 = REC_7;
+    public void setHZRNREC_PRIMER_APELLIDO(String HZRNREC_PRIMER_APELLIDO) {
+        this.HZRNREC_PRIMER_APELLIDO = HZRNREC_PRIMER_APELLIDO;
     }
     @XmlTransient
-    public String getREC_8() {
-        return REC_8;
+    public String getHZRNREC_SEGUNDO_APELLIDO() {
+        return HZRNREC_SEGUNDO_APELLIDO;
     }
 
-    public void setREC_8(String REC_8) {
-        this.REC_8 = REC_8;
+    public void setHZRNREC_SEGUNDO_APELLIDO(String HZRNREC_SEGUNDO_APELLIDO) {
+        this.HZRNREC_SEGUNDO_APELLIDO = HZRNREC_SEGUNDO_APELLIDO;
     }
     @XmlTransient
-    public String getREC_9() {
-        return REC_9;
+    public String getHZRNREC_PRIMER_NOMBRE() {
+        return HZRNREC_PRIMER_NOMBRE;
     }
 
-    public void setREC_9(String REC_9) {
-        this.REC_9 = REC_9;
+    public void setHZRNREC_PRIMER_NOMBRE(String HZRNREC_PRIMER_NOMBRE) {
+        this.HZRNREC_PRIMER_NOMBRE = HZRNREC_PRIMER_NOMBRE;
     }
     @XmlTransient
-    public int getREC_10() {
-        return REC_10;
+    public String getHZRNREC_OTROS_NOMBRES() {
+        return HZRNREC_OTROS_NOMBRES;
     }
 
-    public void setREC_10(int REC_10) {
-        this.REC_10 = REC_10;
+    public void setHZRNREC_OTROS_NOMBRES(String HZRNREC_OTROS_NOMBRES) {
+        this.HZRNREC_OTROS_NOMBRES = HZRNREC_OTROS_NOMBRES;
     }
     @XmlTransient
-    public int getREC_11() {
-        return REC_11;
+    public Integer getHZRNREC_LUGAR_TRAB_PAIS() {
+        return HZRNREC_LUGAR_TRAB_PAIS;
     }
 
-    public void setREC_11(int REC_11) {
-        this.REC_11 = REC_11;
+    public void setHZRNREC_LUGAR_TRAB_PAIS(Integer HZRNREC_LUGAR_TRAB_PAIS) {
+        this.HZRNREC_LUGAR_TRAB_PAIS = HZRNREC_LUGAR_TRAB_PAIS;
     }
     @XmlTransient
-    public int getREC_12() {
-        return REC_12;
+    public Integer getHZRNREC_LUGAR_TRAB_DEPT_EST() {
+        return HZRNREC_LUGAR_TRAB_DEPT_EST;
     }
 
-    public void setREC_12(int REC_12) {
-        this.REC_12 = REC_12;
+    public void setHZRNREC_LUGAR_TRAB_DEPT_EST(Integer HZRNREC_LUGAR_TRAB_DEPT_EST) {
+        this.HZRNREC_LUGAR_TRAB_DEPT_EST = HZRNREC_LUGAR_TRAB_DEPT_EST;
     }
     @XmlTransient
-    public String getREC_13() {
-        return REC_13;
+    public Integer getHZRNREC_LUGAR_TRAB_MUN_CIUD() {
+        return HZRNREC_LUGAR_TRAB_MUN_CIUD;
     }
 
-    public void setREC_13(String REC_13) {
-        this.REC_13 = REC_13;
+    public void setHZRNREC_LUGAR_TRAB_MUN_CIUD(Integer HZRNREC_LUGAR_TRAB_MUN_CIUD) {
+        this.HZRNREC_LUGAR_TRAB_MUN_CIUD = HZRNREC_LUGAR_TRAB_MUN_CIUD;
     }
     @XmlTransient
-    public String getREC_14() {
-        return REC_14;
+    public String getHZRNREC_LUGAR_TRAB_DIREC() {
+        return HZRNREC_LUGAR_TRAB_DIREC;
     }
 
-    public void setREC_14(String REC_14) {
-        this.REC_14 = REC_14;
+    public void setHZRNREC_LUGAR_TRAB_DIREC(String HZRNREC_LUGAR_TRAB_DIREC) {
+        this.HZRNREC_LUGAR_TRAB_DIREC = HZRNREC_LUGAR_TRAB_DIREC;
     }
     @XmlTransient
-    public int getREC_15() {
-        return REC_15;
+    public String getHZRNREC_SALARIO_INTEGRAL() {
+        return HZRNREC_SALARIO_INTEGRAL;
     }
 
-    public void setREC_15(int REC_15) {
-        this.REC_15 = REC_15;
+    public void setHZRNREC_SALARIO_INTEGRAL(String HZRNREC_SALARIO_INTEGRAL) {
+        this.HZRNREC_SALARIO_INTEGRAL = HZRNREC_SALARIO_INTEGRAL;
     }
     @XmlTransient
-    public Double getREC_16() {
-        return REC_16;
+    public Integer getHZRNREC_TIPO_CONTRATO() {
+        return HZRNREC_TIPO_CONTRATO;
     }
 
-    public void setREC_16(Double REC_16) {
-        this.REC_16 = REC_16;
+    public void setHZRNREC_TIPO_CONTRATO(Integer HZRNREC_TIPO_CONTRATO) {
+        this.HZRNREC_TIPO_CONTRATO = HZRNREC_TIPO_CONTRATO;
     }
     @XmlTransient
-    public String getREC_17() {
-        return REC_17;
+    public Double getHZRNREC_SUELDO() {
+        return HZRNREC_SUELDO;
     }
 
-    public void setREC_17(String REC_17) {
-        this.REC_17 = REC_17;
+    public void setHZRNREC_SUELDO(Double HZRNREC_SUELDO) {
+        this.HZRNREC_SUELDO = HZRNREC_SUELDO;
+    }
+    @XmlTransient
+    public String getHZRNREC_COD_TRABAJADOR() {
+        return HZRNREC_COD_TRABAJADOR;
+    }
+
+    public void setHZRNREC_COD_TRABAJADOR(String HZRNREC_COD_TRABAJADOR) {
+        this.HZRNREC_COD_TRABAJADOR = HZRNREC_COD_TRABAJADOR;
     }
 
     @Override
     public String toString() {
-        return "REC{" + "REC_1=" + REC_1 + ", REC_2=" + REC_2 + ", REC_3=" + REC_3 + ", REC_4=" + REC_4 + ", REC_5=" + REC_5 + ", REC_6=" + REC_6 + ", REC_7=" + REC_7 + ", REC_8=" + REC_8 + ", REC_9=" + REC_9 + ", REC_10=" + REC_10 + ", REC_11=" + REC_11 + ", REC_12=" + REC_12 + ", REC_13=" + REC_13 + ", REC_14=" + REC_14 + ", REC_15=" + REC_15 + ", REC_16=" + REC_16 + ", REC_17=" + REC_17 + '}';
+        return "REC{" + "HZRNREC_CUNE_INTERNO=" + HZRNREC_CUNE_INTERNO + ", HZRNREC_TIPO_TRABAJADOR=" + HZRNREC_TIPO_TRABAJADOR + ", HZRNREC_SUB_TIPO_TRABAJ=" + HZRNREC_SUB_TIPO_TRABAJ + ", HZRNREC_ALTO_RIESGO_PENS=" + HZRNREC_ALTO_RIESGO_PENS + ", HZRNREC_TIPO_DOC=" + HZRNREC_TIPO_DOC + ", HZRNREC_NUM_DOC=" + HZRNREC_NUM_DOC + ", HZRNREC_PRIMER_APELLIDO=" + HZRNREC_PRIMER_APELLIDO + ", HZRNREC_SEGUNDO_APELLIDO=" + HZRNREC_SEGUNDO_APELLIDO + ", HZRNREC_PRIMER_NOMBRE=" + HZRNREC_PRIMER_NOMBRE + ", HZRNREC_OTROS_NOMBRES=" + HZRNREC_OTROS_NOMBRES + ", HZRNREC_LUGAR_TRAB_PAIS=" + HZRNREC_LUGAR_TRAB_PAIS + ", HZRNREC_LUGAR_TRAB_DEPT_EST=" + HZRNREC_LUGAR_TRAB_DEPT_EST + ", HZRNREC_LUGAR_TRAB_MUN_CIUD=" + HZRNREC_LUGAR_TRAB_MUN_CIUD + ", HZRNREC_LUGAR_TRAB_DIREC=" + HZRNREC_LUGAR_TRAB_DIREC + ", HZRNREC_SALARIO_INTEGRAL=" + HZRNREC_SALARIO_INTEGRAL + ", HZRNREC_TIPO_CONTRATO=" + HZRNREC_TIPO_CONTRATO + ", HZRNREC_SUELDO=" + HZRNREC_SUELDO + ", HZRNREC_COD_TRABAJADOR=" + HZRNREC_COD_TRABAJADOR + '}';
     }
-
-    
     
 }

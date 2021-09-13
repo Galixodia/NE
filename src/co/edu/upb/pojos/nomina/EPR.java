@@ -1,54 +1,61 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "EPR")
+@XmlType (propOrder={"HZRNEPR_CANTIDAD",
+    "HZRNEPR_PAGO",
+    "HZRNEPR_PAGONS"})
 
 public class EPR {
     
     @XmlElement(name = "EPR_1")
-    private long EPR_1;
+    private Integer HZRNEPR_CANTIDAD;
     @XmlElement(name = "EPR_2")
-    private Double EPR_2;
+    private Double HZRNEPR_PAGO;
     @XmlElement(name = "EPR_3")
-    private Double EPR_3;
+    private Double HZRNEPR_PAGONS;
+    private Integer HZRNEPR_ITE_ID;
 
-    public EPR() {
+    @XmlTransient
+    public Integer getHZRNEPR_CANTIDAD() {
+        return HZRNEPR_CANTIDAD;
     }
 
-    public EPR(long EPR_1, Double EPR_2) {
-        this.EPR_1 = EPR_1;
-        this.EPR_2 = EPR_2;
+    public void setHZRNEPR_CANTIDAD(Integer HZRNEPR_CANTIDAD) {
+        this.HZRNEPR_CANTIDAD = HZRNEPR_CANTIDAD;
     }
     @XmlTransient
-    public long getEPR_1() {
-        return EPR_1;
+    public Double getHZRNEPR_PAGO() {
+        return HZRNEPR_PAGO;
     }
 
-    public void setEPR_1(long EPR_1) {
-        this.EPR_1 = EPR_1;
+    public void setHZRNEPR_PAGO(Double HZRNEPR_PAGO) {
+        this.HZRNEPR_PAGO = HZRNEPR_PAGO;
     }
     @XmlTransient
-    public Double getEPR_2() {
-        return EPR_2;
+    public Double getHZRNEPR_PAGONS() {
+        return HZRNEPR_PAGONS;
     }
 
-    public void setEPR_2(Double EPR_2) {
-        this.EPR_2 = EPR_2;
+    public void setHZRNEPR_PAGONS(Double HZRNEPR_PAGONS) {
+        this.HZRNEPR_PAGONS = HZRNEPR_PAGONS;
     }
     @XmlTransient
-    public Double getEPR_3() {
-        return EPR_3;
+    public Integer getHZRNEPR_ITE_ID() {
+        return HZRNEPR_ITE_ID;
     }
 
-    public void setEPR_3(Double EPR_3) {
-        this.EPR_3 = EPR_3;
+    public void setHZRNEPR_ITE_ID(Integer HZRNEPR_ITE_ID) {
+        this.HZRNEPR_ITE_ID = HZRNEPR_ITE_ID;
     }
 
     @Override
     public String toString() {
-        return "EPR{" + "EPR_1=" + EPR_1 + ", EPR_2=" + EPR_2 + ", EPR_3=" + EPR_3 + '}';
+        return "EPR{" + "HZRNEPR_CANTIDAD=" + HZRNEPR_CANTIDAD + ", HZRNEPR_PAGO=" + HZRNEPR_PAGO + ", HZRNEPR_PAGONS=" + HZRNEPR_PAGONS + ", HZRNEPR_ITE_ID=" + HZRNEPR_ITE_ID + '}';
     }
-    
-    
-    
+
 }

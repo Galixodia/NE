@@ -9,6 +9,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ *
+ * @author 000329745 Juan Camilo Villa 
+ * @since 00/09/2021
+ * @version 1.0
+ * 
+ * Segmento Obligatorio. Puede repetirse  una sola (1) vez en el archivo.
+ */
+
 @XmlRootElement(name = "ENC")
 @XmlType (propOrder={"HZRNENC_TIPO_DOC",
     "HZRNENC_FECHA_ING",

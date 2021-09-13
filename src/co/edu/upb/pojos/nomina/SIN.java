@@ -1,44 +1,51 @@
 package co.edu.upb.pojos.nomina;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "SIN")
+@XmlType (propOrder={"HZRNSIN_PORCENTAJE",
+    "HZRNSIN_DEDUCCION"})
+
 
 public class SIN {
     
     @XmlElement(name = "SIN_1")
-    private Double SIN_1;
+    private Double HZRNSIN_PORCENTAJE;
     @XmlElement(name = "SIN_2")
-    private Double SIN_5;
+    private Double HZRNSIN_DEDUCCION;
+    private Integer HZRNSIN_ITS_ID;       
 
-    public SIN() {
+    @XmlTransient
+    public Double getHZRNSIN_PORCENTAJE() {
+        return HZRNSIN_PORCENTAJE;
     }
 
-    public SIN(Double SIN_1, Double SIN_5) {
-        this.SIN_1 = SIN_1;
-        this.SIN_5 = SIN_5;
+    public void setHZRNSIN_PORCENTAJE(Double HZRNSIN_PORCENTAJE) {
+        this.HZRNSIN_PORCENTAJE = HZRNSIN_PORCENTAJE;
     }
     @XmlTransient
-    public Double getSIN_1() {
-        return SIN_1;
+    public Double getHZRNSIN_DEDUCCION() {
+        return HZRNSIN_DEDUCCION;
     }
 
-    public void setSIN_1(Double SIN_1) {
-        this.SIN_1 = SIN_1;
+    public void setHZRNSIN_DEDUCCION(Double HZRNSIN_DEDUCCION) {
+        this.HZRNSIN_DEDUCCION = HZRNSIN_DEDUCCION;
     }
     @XmlTransient
-    public Double getSIN_5() {
-        return SIN_5;
+    public Integer getHZRNSIN_ITS_ID() {
+        return HZRNSIN_ITS_ID;
     }
 
-    public void setSIN_5(Double SIN_5) {
-        this.SIN_5 = SIN_5;
+    public void setHZRNSIN_ITS_ID(Integer HZRNSIN_ITS_ID) {
+        this.HZRNSIN_ITS_ID = HZRNSIN_ITS_ID;
     }
 
     @Override
     public String toString() {
-        return "SIN{" + "SIN_1=" + SIN_1 + ", SIN_5=" + SIN_5 + '}';
+        return "SIN{" + "HZRNSIN_PORCENTAJE=" + HZRNSIN_PORCENTAJE + ", HZRNSIN_DEDUCCION=" + HZRNSIN_DEDUCCION + ", HZRNSIN_ITS_ID=" + HZRNSIN_ITS_ID + '}';
     }
-    
-    
     
 }
