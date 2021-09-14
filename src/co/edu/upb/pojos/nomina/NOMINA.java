@@ -57,16 +57,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 
 @XmlRootElement(name = "NOMINA")
-@XmlType (propOrder={"ENC",
-    "NOV",
-    "NOT",
-    "EMI",
-    "REC",
-    "PAG",
-    "FEP",
-    "ITE",
-    "ITS",
-    "TOT"})
+@XmlType (propOrder={"encabezado",
+    "novedad",
+    "notas",
+    "emisor",
+    "receptor",
+    "pago",
+    "fecha_pagos",
+    "basico_trab",
+    "deducciones_salud",
+    "totales_nomina"})
 public class NOMINA {
     
     private String HZRNNOM_ESTADO;

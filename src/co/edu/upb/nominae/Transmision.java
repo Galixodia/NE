@@ -62,6 +62,8 @@ public class Transmision {
             Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JAXBException ex) {
             Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

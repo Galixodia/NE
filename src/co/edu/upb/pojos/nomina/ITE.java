@@ -9,24 +9,24 @@ import javax.xml.bind.annotation.XmlType;
 
 
 //@XmlRootElement(name = "ITE")
-@XmlType (propOrder={"ITE_1",
-    "ITE_2",
-    "ETR",
-    "EHE",
-    "EVC",
-    "EVA",
-    "EPR",
-    "ECE",
-    "EIN",
-    "ELI",
-    "ELR",
-    "ELN",
-    "EBN",
-    "EAX",
-    "EOT",
-    "ECM",
-    "ECO",
-    "EVO"})
+@XmlType (propOrder={"HZRNITE_DIAS_TRAB",
+    "HZRNITE_SUELDO_TRAB",
+    "transporte_pagado_trab",
+    "horas_extras_trab",
+    "vacaciones_trabajador",
+    "vacaciones_comp_trab",
+    "primas_trab",
+    "cesantias_trab",
+    "incapacidades_trab",
+    "licencia_mat_pat",
+    "licencia_remunerada",
+    "licencia_no_remunerada",
+    "bonificacion_para_trab",
+    "auxilio_trab",
+    "otros_conceptos_trab",
+    "compensaciones_dev_trab",
+    "pago_terceros_anticipos_nom",
+    "opciones_varias_devengados"})
 public class ITE {
     
     @XmlElement(name = "ITE_1")

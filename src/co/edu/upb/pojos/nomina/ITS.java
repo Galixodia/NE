@@ -9,15 +9,15 @@ import javax.xml.bind.annotation.XmlType;
 
 
 //@XmlRootElement(name = "ITS")
-@XmlType (propOrder={"ITS_1",
-    "ITS_2",
-    "SPE",
-    "SSP",
-    "SPE",
-    "SIN",
-    "SLI",
-    "SOT",
-    "SVA"})
+@XmlType (propOrder={"HZRNITS_PORCENTAJE",
+    "HZRNITS_DEDUCCION",
+    "deducciones_pension",
+    "deduc_fondo_seguridad_p",
+    "deduc_pension",
+    "deduc_sindicatos",
+    "deduc_libranza",
+    "otras_deduc",
+    "deduc_varias"})
 public class ITS {
     
     @XmlElement(name = "ITS_1")

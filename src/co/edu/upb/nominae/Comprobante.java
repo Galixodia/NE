@@ -204,6 +204,7 @@ public class Comprobante {
                         enc.setHZRNENC_FECHA_GEN_PRED(rs.getDate("HZRNENC_FECHA_GEN_PRED"));
 
                         nom.setEncabezado(enc);
+                        enc = null;
                     }
 
                 }
@@ -223,6 +224,7 @@ public class Comprobante {
                         nov.setHZRNNOV_CUNE_NOV(rs.getString("HZRNNOV_CUNE_NOV"));
 
                         nom.setNovedad(nov);
+                        nov = null;
                     }
 
                 }
@@ -237,8 +239,11 @@ public class Comprobante {
                         NOT not = new NOT();
                         not.setHZRNNOT_CUNE_INTERNO(rs.getString("HZRNNOT_CUNE_INTERNO"));
                         not.setHZRNNOT_NOTAS(rs.getString("HZRNNOT_NOTAS"));
-
-                        nom.notas.add(not);
+                        
+                        System.out.println("rs.getString(\"HZRNNOT_CUNE_INTERNO\") " + rs.getString("HZRNNOT_CUNE_INTERNO"));
+                        System.out.println("rs.getString(\"HZRNNOT_NOTAS\") " + rs.getString("HZRNNOT_NOTAS"));                        
+                        
+                        nom.notas.set(0, not);
                         not = null;
                     }
 
@@ -268,6 +273,7 @@ public class Comprobante {
                         emi.setHZRNEMI_DIRECCION(rs.getString("HZRNEMI_DIRECCION"));
 
                         nom.setEmisor(emi);
+                        emi = null;
                     }
 
                 }
@@ -302,6 +308,7 @@ public class Comprobante {
                         rec.setHZRNREC_COD_TRABAJADOR(rs.getString("HZRNREC_COD_TRABAJADOR"));
 
                         nom.setReceptor(rec);
+                        rec = null;
                     }
 
                 }
@@ -324,6 +331,7 @@ public class Comprobante {
                         pag.setHZRNPAG_NUM_CUENTA(rs.getString("HZRNPAG_NUM_CUENTA"));                
 
                         nom.setPago(pag);
+                        pag = null;
                     }
 
                 }
@@ -341,7 +349,7 @@ public class Comprobante {
                         fep.setHZRNFEP_CUNE_INTERNO(rs.getString("HZRNFEP_CUNE_INTERNO"));
                         fep.setHZRNFEP_FECHA_PAGO(rs.getDate("HZRNFEP_FECHA_PAGO"));
 
-                        nom.fecha_pagos.add(fep);
+                        nom.fecha_pagos.set(0, fep);
                         fep = null;
                     }
 
@@ -378,7 +386,7 @@ public class Comprobante {
                             etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getDouble("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
                             etr.setHZRNETR_ITE_ID(rs.getInt("HZRNETR_ITE_ID"));
 
-                            ite.transporte_pagado_trab.add(etr);
+                            ite.transporte_pagado_trab.set(0,etr);
                             etr = null;
                         }
 
@@ -402,7 +410,7 @@ public class Comprobante {
                             ehe.setHZRNEHE_PAGO(rs.getDouble("HZRNEHE_PAGO"));
                             ehe.setHZRNEHE_ITE_ID(rs.getInt("HZRNEHE_ITE_ID"));
 
-                            ite.horas_extras_trab.add(ehe);
+                            ite.horas_extras_trab.set(0,ehe);
                             ehe = null;
                         }
 
@@ -424,512 +432,525 @@ public class Comprobante {
                             evc.setHZRNEVC_PAGO(rs.getDouble("HZRNEVC_PAGO"));
                             evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
 
-                            ite.vacaciones_trabajador.add(evc);
+                            ite.vacaciones_trabajador.set(0,evc);
                             evc = null;
+                        }
+                    }
+                    
+                    //EVA
+                    {
+                        stmt = HZRNEVA_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EVA eva = new EVA();
+
+                        while (rs.next()) {
+
+                            eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
+                            eva.setHZRNEVA_PAGO(rs.getDouble("HZRNEVA_PAGO"));
+                            eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
+
+                            ite.vacaciones_comp_trab.set(0,eva);
+                            eva = null;
+                        }
+                    }
+                    
+                    //EPR
+                    {
+                        stmt = HZRNEPR_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EPR epr = new EPR();
+
+                        while (rs.next()) {
+
+                            epr.setHZRNEPR_CANTIDAD(rs.getInt("HZRNEPR_CANTIDAD"));
+                            epr.setHZRNEPR_PAGO(rs.getDouble("HZRNEPR_PAGO"));
+                            epr.setHZRNEPR_PAGONS(rs.getDouble("HZRNEPR_PAGONS"));
+                            epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
+                            
+                            ite.setPrimas_trab(epr);
+                            epr = null;
+
+                        }
+                    }
+                    
+                    //ECE
+                    {
+                        stmt = HZRNECE_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        ECE ece = new ECE();
+
+                        while (rs.next()) {
+
+                            ece.setHZRNECE_PAGO(rs.getDouble("HZRNECE_PAGO"));
+                            ece.setHZRNECE_PORCENTAJE(rs.getDouble("HZRNECE_PORCENTAJE"));
+                            ece.setHZRNECE_PAGO_INTERESES(rs.getDouble("HZRNECE_PAGO_INTERESES"));
+                            ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
+
+                            ite.setCesantias_trab(ece);
+                            ece = null;
+                        }
+                    }
+                    
+                    //EIN
+                    {
+                        stmt = HZRNEIN_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EIN ein = new EIN();
+
+                        while (rs.next()) {
+
+                            ein.setHZRNEIN_FECHA_INICIO(rs.getDate("HZRNEIN_FECHA_INICIO"));
+                            ein.setHZRNEIN_FECHA_FIN(rs.getDate("HZRNEIN_FECHA_FIN"));
+                            ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
+                            ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
+                            ein.setHZRNEIN_PAGO(rs.getDouble("HZRNEIN_PAGO"));
+                            ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
+
+                            ite.incapacidades_trab.set(0,ein);
+                            ein = null;
+                        }
+                    }
+                    
+                    //ELI
+                    {
+                        stmt = HZRNELI_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        ELI eli = new ELI();
+
+                        while (rs.next()) {
+
+                            eli.setHZRNELI_FECHA_INICIO(rs.getDate("HZRNELI_FECHA_INICIO"));
+                            eli.setHZRNELI_FECHA_FIN(rs.getDate("HZRNELI_FECHA_FIN"));
+                            eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
+                            eli.setHZRNELI_PAGO(rs.getDouble("HZRNELI_PAGO"));
+                            eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
+
+                            ite.licencia_mat_pat.set(0,eli);
+                            eli = null;
+                            
                         }
 
                     }
                     
-                    //SEGUIR ACA
+                    //ELR
+                    {
+                        stmt = HZRNELR_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        ELR elr = new ELR();
+
+                        while (rs.next()) {
+
+                            elr.setHZRNELR_FECHA_INICIO(rs.getDate("HZRNELR_FECHA_INICIO"));
+                            elr.setHZRNELR_FECHA_FIN(rs.getDate("HZRNELR_FECHA_FIN"));
+                            elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
+                            elr.setHZRNELR_PAGO(rs.getDouble("HZRNELR_PAGO"));
+                            elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
+
+                            ite.licencia_remunerada.set(0,elr);
+                            elr = null;                            
+                        }
+
+                    }
                     
+                    //ELN
+                    {
+                        stmt = HZRNELN_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        ELN eln = new ELN();
+
+                        while (rs.next()) {
+
+                            eln.setHZRNELN_FECHA_INICIO(rs.getDate("HZRNELN_FECHA_INICIO"));
+                            eln.setHZRNELN_FECHA_FIN(rs.getDate("HZRNELN_FECHA_FIN"));
+                            eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
+                            eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
+
+                            ite.licencia_no_remunerada.set(0,eln);
+                            eln = null;
+                        }
+
+                    }
                     
+                    //EBN
+                    {
+                        stmt = HZRNEBN_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EBN ebn = new EBN();
+
+                        while (rs.next()) {
+
+                            ebn.setHZRNEBN_BONI_SALARIAL(rs.getDouble("HZRNEBN_BONI_SALARIAL"));
+                            ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getDouble("HZRNEBN_BONI_NO_SALARIAL"));
+                            ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
+
+                            ite.bonificacion_para_trab.set(0,ebn);
+                            ebn = null;
+                        }
+
+                    }
+                    
+                    //EAX
+                    {
+                        stmt = HZRNEAX_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EAX eax = new EAX();
+
+                        while (rs.next()) {
+
+                            eax.setHZRNEAX_AUX_SALARIAL(rs.getDouble("HZRNEAX_AUX_SALARIAL"));
+                            eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getDouble("HZRNEAX_AUX_NO_SALARIAL"));
+                            eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
+
+                            ite.auxilio_trab.set(0,eax);
+                            eax = null;
+                        }
+
+                    }
+                    
+                     //EHL //NO SE EMITIRA POR PARTE DE LA UPB
+//                {
+//                    stmt = HZRNEHL_QUERY;
+//                    pstmt = conn.prepareStatement(stmt);
+//                    ResultSet rs = pstmt.executeQuery();
+//        
+//                    EHL ehl = new EHL();
+//                    
+//                    while (rs.next()) {
+//                                       
+//                        ehl.setHZRNEHL_FECHA_INICIO(rs.getDate("HZRNEHL_FECHA_INICIO"));
+//                        ehl.setHZRNEHL_FECHA_FIN(rs.getDate("HZRNEHL_FECHA_FIN"));
+//                        ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
+//                        ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
+//                        
+//                        ite.huelgas_legales.set(0,ehl);
+//                        ehl = null;
+//                    }
+//            
+//                } 
+                    
+                    //EOT
+                    {
+                        stmt = HZRNEOT_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EOT eot = new EOT();
+
+                        while (rs.next()) {
+
+                            eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
+                            eot.setHZRNEOT_CONCEP_SALARIAL(rs.getDouble("HZRNEOT_CONCEP_SALARIAL"));
+                            eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getDouble("HZRNEOT_CONCEP_NO_SALARIAL"));
+                            eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
+
+                            ite.otros_conceptos_trab.set(0,eot);
+                            eot = null;
+                        }
+
+                    }  
+                    
+                    //ECM
+                    {
+                        stmt = HZRNECM_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        ECM ecm = new ECM();
+
+                        while (rs.next()) {
+
+                            ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getDouble("HZRNECM_COMPENS_ORDINARIA"));
+                            ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getDouble("HZRNECM_COMPENS_EXTRAORDINARIA"));
+                            ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
+
+                            ite.compensaciones_dev_trab.set(0,ecm);
+                            ecm = null;
+                        }
+
+                    }   
+                    
+                    //EBO //NO SE EMITIRA POR PARTE DE LA UPB
+        //        {
+        //            stmt = HZRNEBO_QUERY;
+        //            pstmt = conn.prepareStatement(stmt);
+        //            ResultSet rs = pstmt.executeQuery();
+        //
+        //            EBO ebo = new EBO();
+        //            
+        //            while (rs.next()) {
+        //                               
+        //                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getDouble("HZRNEBO_PAGO_SALARIAL"));
+        //                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getDouble("HZRNEBO_PAGO_NO_SALARIAL"));
+        //                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getDouble("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
+        //                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getDouble("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
+        //                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
+        //                
+        //                ite.bonos_pagados_electro.set(0,ebo);
+        //                ecm = ebo;
+        //            }
+        //    
+        //        }
+                    
+                    //ECO
+                    {
+                        stmt = HZRNECO_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        ECO eco = new ECO();
+
+                        while (rs.next()) {
+
+                            eco.setHZRNECO_COMISION(rs.getDouble("HZRNECO_COMISION"));
+                            eco.setHZRNECO_PAGO_TERCERO(rs.getDouble("HZRNECO_PAGO_TERCERO"));
+                            eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getDouble("HZRNECO_ANTICIPOS_NOMINA"));
+                            eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
+
+                            ite.pago_terceros_anticipos_nom.set(0,eco);
+                            eco = null;
+                        }
+
+                    } 
+                    
+                    //EVO
+                    {
+                        stmt = HZRNEVO_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        EVO evo = new EVO();
+
+                        while (rs.next()) {
+
+                            evo.setHZRNEVO_DOTACION(rs.getDouble("HZRNEVO_DOTACION"));
+                            evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getDouble("HZRNEVO_APOYO_SOSTENIMIENT"));
+                            evo.setHZRNEVO_TELETRABAJO(rs.getDouble("HZRNEVO_TELETRABAJO"));
+                            evo.setHZRNEVO_BONIF_RETIRO(rs.getDouble("HZRNEVO_BONIF_RETIRO"));
+                            evo.setHZRNEVO_INDEMNIZACION(rs.getDouble("HZRNEVO_INDEMNIZACION"));
+                            evo.setHZRNEVO_REINTEGRO(rs.getDouble("HZRNEVO_REINTEGRO"));
+                            evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
+
+                            ite.setOpciones_varias_devengados(evo);
+                            evo = null;
+                        }
+                    }
+                nom.setBasico_trab(ite);
+                ite  = null;
+                }
+                
+                //ITS
+                {
+                    stmt = HZRNITS_QUERY;
+                    pstmt = conn.prepareStatement(stmt);
+                    ResultSet rs_ite = pstmt.executeQuery();
+
+                    ITS its = new ITS();
+
+                    while (rs_ite.next()) {
+
+                        its.setHZRNITS_PORCENTAJE(rs_ite.getDouble("HZRNITS_PORCENTAJE"));
+                        its.setHZRNITS_DEDUCCION(rs_ite.getDouble("HZRNITS_DEDUCCION"));
+
+                        nom.setDeducciones_salud(its);
+                    }
+                    
+                    //SPE
+                    {
+                        stmt = HZRNSPE_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        SPE spe = new SPE();
+
+                        while (rs.next()) {
+
+                            spe.setHZRNSPE_PORCENTAJE(rs.getDouble("HZRNSPE_PORCENTAJE"));
+                            spe.setHZRNSPE_DEDUCCION(rs.getDouble("HZRNSPE_DEDUCCION"));
+                            spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
+
+                            its.setDeducciones_pension(spe);
+                            spe = null;
+                        }
+                    }
+                    
+                    //SSP
+                    {
+                        stmt = HZRNSSP_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        SSP ssp = new SSP();
+
+                        while (rs.next()) {
+
+                            ssp.setHZRNSSP_PORCENTAJE(rs.getDouble("HZRNSSP_PORCENTAJE"));
+                            ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getDouble("HZRNSSP_DEDUC_SEG_PENSIONAL"));
+                            ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getDouble("HZRNSSP_PORCENTAJE_SUBSISTEN"));
+                            ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getDouble("HZRNSSP_DEDUC_SUBSISTEN"));
+                            ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
+
+                            its.setDeduc_fondo_seguridad_p(ssp);
+                            ssp = null;
+                        }
+                    }  
+                    
+                    //SIN
+                    {
+                        stmt = HZRNSIN_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        SIN sin = new SIN();
+
+                        while (rs.next()) {
+
+                            sin.setHZRNSIN_PORCENTAJE(rs.getDouble("HZRNSIN_PORCENTAJE"));
+                            sin.setHZRNSIN_DEDUCCION(rs.getDouble("HZRNSIN_DEDUCCION"));
+                            sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
+
+                            its.deduc_sindicatos.set(0,sin);
+                            sin = null;
+                        }
+                    } 
+                    
+                  //SAN
+        //        {
+        //            stmt = HZRNSAN_QUERY;
+        //            pstmt = conn.prepareStatement(stmt);
+        //            ResultSet rs = pstmt.executeQuery();
+        //
+        //            SAN san = new SAN();
+        //            
+        //            while (rs.next()) {
+        //                               
+        //                san.setHZRNSAN_SANCION_PUBLICA(rs.getDouble("HZRNSAN_SANCION_PUBLICA"));
+        //                san.setHZRNSAN_SANCION_PRIVADA(rs.getDouble("HZRNSAN_SANCION_PRIVADA"));
+        //                san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
+        //                
+        //                its.deduc_varias.set(0,san);
+        //                san = null;
+        //            }
+        //    
+        //        }  
+                    
+                  //SLI
+                    {
+                        stmt = HZRNSLI_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        SLI sli = new SLI();
+
+                        while (rs.next()) {
+
+                            sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
+                            sli.setHZRNSLI_DEDUCCION(rs.getDouble("HZRNSLI_DEDUCCION"));
+                            sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
+
+                            its.deduc_libranza.set(0,sli);
+                            sli = null;
+                        }
+                    }   
+                    
+                    //SOT
+                    {
+                        stmt = HZRNSOT_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        SOT sot = new SOT();
+
+                        while (rs.next()) {
+
+                            sot.setHZRNSOT_PAGO_TERCERO(rs.getDouble("HZRNSOT_PAGO_TERCERO"));
+                            sot.setHZRNSOT_ANTICIPO(rs.getDouble("HZRNSOT_ANTICIPO"));
+                            sot.setHZRNSOT_OTRA_DEDUCCION(rs.getDouble("HZRNSOT_OTRA_DEDUCCION"));
+                            sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
+
+                            its.otras_deduc.set(0,sot);
+                            sot = null;
+                        }
+                    }
+                    
+                    //SVA
+                    {
+                        stmt = HZRNSVA_QUERY;
+                        pstmt = conn.prepareStatement(stmt);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        SVA sva = new SVA();
+
+                        while (rs.next()) {
+
+                            sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getDouble("HZRNSVA_PENSION_VOLUNTARIA"));
+                            sva.setHZRNSVA_RENTENCION_FTE(rs.getDouble("HZRNSVA_RENTENCION_FTE"));
+                            sva.setHZRNSVA_AFC(rs.getDouble("HZRNSVA_AFC"));
+                            sva.setHZRNSVA_COOPERATIVA(rs.getDouble("HZRNSVA_COOPERATIVA"));
+                            sva.setHZRNSVA_EMBARGO(rs.getDouble("HZRNSVA_EMBARGO"));
+                            sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getDouble("HZRNSVA_PLAN_COMPLEMENT"));
+                            sva.setHZRNSVA_EDUCACION(rs.getDouble("HZRNSVA_EDUCACION"));
+                            sva.setHZRNSVA_REINTEGRO(rs.getDouble("HZRNSVA_REINTEGRO"));
+                            sva.setHZRNSVA_DEUDA(rs.getDouble("HZRNSVA_DEUDA"));                
+                            sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
+
+                            its.setDeduc_varias(sva);
+                            sva = null;
+                        }
+                    } 
+                nom.setDeducciones_salud(its);
+                its = null;
+                }
+                
+                 //TOT
+                {
+                    stmt = HZRNTOT_QUERY;
+                    pstmt = conn.prepareStatement(stmt);
+                    ResultSet rs = pstmt.executeQuery();
+
+                    TOT tot = new TOT();
+
+                    while (rs.next()) {
+
+                        tot.setHZRNTOT_CUNE_INTERNO(rs.getString("HZRNTOT_CUNE_INTERNO"));
+                        tot.setHZRNTOT_REDONDEO(rs.getDouble("HZRNTOT_REDONDEO"));
+                        tot.setHZRNTOT_DEVENGADOS_TOTAL(rs.getDouble("HZRNTOT_DEVENGADOS_TOTAL"));
+                        tot.setHZRNTOT_DEDUCCIONES_TOTAL(rs.getDouble("HZRNTOT_DEDUCCIONES_TOTAL"));
+                        tot.setHZRNTOT_COMPROBANTE_TOTAL(rs.getDouble("HZRNTOT_COMPROBANTE_TOTAL"));
+
+                        nom.setTotales_nomina(tot);
+                        tot = null;
+                        
+                        Xml xml = new Xml();
+                        System.out.println(xml.ObjectToXML(nom));
+                        nom = null;
+                    }
                 }  
             }
-            
-                
+ 
         
         }else{
             //con es nulo
         }
-        
-
-
-
-
-
-
-
-
-        
-        
-             
-          
-           
-           
-          
-         
-        
-                
-        //EVA
-        {
-            stmt = HZRNEVA_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EVA eva = new EVA();
-            
-            while (rs.next()) {
-                               
-                eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
-                eva.setHZRNEVA_PAGO(rs.getDouble("HZRNEVA_PAGO"));
-                eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(eva));
-            }
-    
-        }        
-        //EPR
-        {
-            stmt = HZRNEPR_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EPR epr = new EPR();
-            
-            while (rs.next()) {
-                               
-                epr.setHZRNEPR_CANTIDAD(rs.getInt("HZRNEPR_CANTIDAD"));
-                epr.setHZRNEPR_PAGO(rs.getDouble("HZRNEPR_PAGO"));
-                epr.setHZRNEPR_PAGONS(rs.getDouble("HZRNEPR_PAGONS"));
-                epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(epr));
-            }
-    
-        }          
-        //ECE
-        {
-            stmt = HZRNECE_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            ECE ece = new ECE();
-            
-            while (rs.next()) {
-                               
-                ece.setHZRNECE_PAGO(rs.getDouble("HZRNECE_PAGO"));
-                ece.setHZRNECE_PORCENTAJE(rs.getDouble("HZRNECE_PORCENTAJE"));
-                ece.setHZRNECE_PAGO_INTERESES(rs.getDouble("HZRNECE_PAGO_INTERESES"));
-                ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(ece));
-            }
-    
-        }           
-        //EIN
-        {
-            stmt = HZRNEIN_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EIN ein = new EIN();
-            
-            while (rs.next()) {
-                               
-                ein.setHZRNEIN_FECHA_INICIO(rs.getDate("HZRNEIN_FECHA_INICIO"));
-                ein.setHZRNEIN_FECHA_FIN(rs.getDate("HZRNEIN_FECHA_FIN"));
-                ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
-                ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
-                ein.setHZRNEIN_PAGO(rs.getDouble("HZRNEIN_PAGO"));
-                ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(ein));
-            }
-    
-        }           
-        //ELI
-        {
-            stmt = HZRNELI_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            ELI eli = new ELI();
-            
-            while (rs.next()) {
-                               
-                eli.setHZRNELI_FECHA_INICIO(rs.getDate("HZRNELI_FECHA_INICIO"));
-                eli.setHZRNELI_FECHA_FIN(rs.getDate("HZRNELI_FECHA_FIN"));
-                eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
-                eli.setHZRNELI_PAGO(rs.getDouble("HZRNELI_PAGO"));
-                eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(eli));
-            }
-    
-        }         
-        //ELR
-        {
-            stmt = HZRNELR_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            ELR elr = new ELR();
-            
-            while (rs.next()) {
-                               
-                elr.setHZRNELR_FECHA_INICIO(rs.getDate("HZRNELR_FECHA_INICIO"));
-                elr.setHZRNELR_FECHA_FIN(rs.getDate("HZRNELR_FECHA_FIN"));
-                elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
-                elr.setHZRNELR_PAGO(rs.getDouble("HZRNELR_PAGO"));
-                elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(elr));
-            }
-    
-        }         
-        //ELN
-        {
-            stmt = HZRNELN_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            ELN eln = new ELN();
-            
-            while (rs.next()) {
-                               
-                eln.setHZRNELN_FECHA_INICIO(rs.getDate("HZRNELN_FECHA_INICIO"));
-                eln.setHZRNELN_FECHA_FIN(rs.getDate("HZRNELN_FECHA_FIN"));
-                eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
-                eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(eln));
-            }
-    
-        }       
-        //EBN
-        {
-            stmt = HZRNEBN_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EBN ebn = new EBN();
-            
-            while (rs.next()) {
-                               
-                ebn.setHZRNEBN_BONI_SALARIAL(rs.getDouble("HZRNEBN_BONI_SALARIAL"));
-                ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getDouble("HZRNEBN_BONI_NO_SALARIAL"));
-                ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(ebn));
-            }
-    
-        }    
-        //EAX
-        {
-            stmt = HZRNEAX_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EAX eax = new EAX();
-            
-            while (rs.next()) {
-                               
-                eax.setHZRNEAX_AUX_SALARIAL(rs.getDouble("HZRNEAX_AUX_SALARIAL"));
-                eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getDouble("HZRNEAX_AUX_NO_SALARIAL"));
-                eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(eax));
-            }
-    
-        }    
-        //EHL //NO SE EMITIRA POR PARTE DE LA UPB
-//        {
-//            stmt = HZRNEHL_QUERY;
-//            PreparedStatement pstmt = conn.prepareStatement(stmt);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            EHL ehl = new EHL();
-//            
-//            while (rs.next()) {
-//                               
-//                ehl.setHZRNEHL_FECHA_INICIO(rs.getDate("HZRNEHL_FECHA_INICIO"));
-//                ehl.setHZRNEHL_FECHA_FIN(rs.getDate("HZRNEHL_FECHA_FIN"));
-//                ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
-//                ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
-//                
-//                Xml xml = new Xml();
-//                System.out.println(xml.ObjectToXML(ehl));
-//            }
-//    
-//        } 
-        //EOT
-        {
-            stmt = HZRNEOT_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EOT eot = new EOT();
-            
-            while (rs.next()) {
-                               
-                eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
-                eot.setHZRNEOT_CONCEP_SALARIAL(rs.getDouble("HZRNEOT_CONCEP_SALARIAL"));
-                eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getDouble("HZRNEOT_CONCEP_NO_SALARIAL"));
-                eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(eot));
-            }
-    
-        }  
-        //ECM
-        {
-            stmt = HZRNECM_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            ECM ecm = new ECM();
-            
-            while (rs.next()) {
-                               
-                ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getDouble("HZRNECM_COMPENS_ORDINARIA"));
-                ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getDouble("HZRNECM_COMPENS_EXTRAORDINARIA"));
-                ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(ecm));
-            }
-    
-        }     
-        //EBO //NO SE EMITIRA POR PARTE DE LA UPB
-//        {
-//            stmt = HZRNEBO_QUERY;
-//            PreparedStatement pstmt = conn.prepareStatement(stmt);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            EBO ebo = new EBO();
-//            
-//            while (rs.next()) {
-//                               
-//                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getDouble("HZRNEBO_PAGO_SALARIAL"));
-//                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getDouble("HZRNEBO_PAGO_NO_SALARIAL"));
-//                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getDouble("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
-//                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getDouble("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
-//                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
-//                
-//                Xml xml = new Xml();
-//                System.out.println(xml.ObjectToXML(ebo));
-//            }
-//    
-//        }  
-        //ECO
-        {
-            stmt = HZRNECO_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            ECO eco = new ECO();
-            
-            while (rs.next()) {
-                               
-                eco.setHZRNECO_COMISION(rs.getDouble("HZRNECO_COMISION"));
-                eco.setHZRNECO_PAGO_TERCERO(rs.getDouble("HZRNECO_PAGO_TERCERO"));
-                eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getDouble("HZRNECO_ANTICIPOS_NOMINA"));
-                eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(eco));
-            }
-    
-        }         
-        //EVO
-        {
-            stmt = HZRNEVO_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            EVO evo = new EVO();
-            
-            while (rs.next()) {
-                               
-                evo.setHZRNEVO_DOTACION(rs.getDouble("HZRNEVO_DOTACION"));
-                evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getDouble("HZRNEVO_APOYO_SOSTENIMIENT"));
-                evo.setHZRNEVO_TELETRABAJO(rs.getDouble("HZRNEVO_TELETRABAJO"));
-                evo.setHZRNEVO_BONIF_RETIRO(rs.getDouble("HZRNEVO_BONIF_RETIRO"));
-                evo.setHZRNEVO_INDEMNIZACION(rs.getDouble("HZRNEVO_INDEMNIZACION"));
-                evo.setHZRNEVO_REINTEGRO(rs.getDouble("HZRNEVO_REINTEGRO"));
-                evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(evo));
-            }
-    
-        }     
-        //SPE
-        {
-            stmt = HZRNSPE_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            SPE spe = new SPE();
-            
-            while (rs.next()) {
-                               
-                spe.setHZRNSPE_PORCENTAJE(rs.getDouble("HZRNSPE_PORCENTAJE"));
-                spe.setHZRNSPE_DEDUCCION(rs.getDouble("HZRNSPE_DEDUCCION"));
-                spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(spe));
-            }
-    
-        }    
-        //SSP
-        {
-            stmt = HZRNSSP_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            SSP ssp = new SSP();
-            
-            while (rs.next()) {
-                               
-                ssp.setHZRNSSP_PORCENTAJE(rs.getDouble("HZRNSSP_PORCENTAJE"));
-                ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getDouble("HZRNSSP_DEDUC_SEG_PENSIONAL"));
-                ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getDouble("HZRNSSP_PORCENTAJE_SUBSISTEN"));
-                ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getDouble("HZRNSSP_DEDUC_SUBSISTEN"));
-                ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(ssp));
-            }
-    
-        }          
-        //SIN
-        {
-            stmt = HZRNSIN_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            SIN sin = new SIN();
-            
-            while (rs.next()) {
-                               
-                sin.setHZRNSIN_PORCENTAJE(rs.getDouble("HZRNSIN_PORCENTAJE"));
-                sin.setHZRNSIN_DEDUCCION(rs.getDouble("HZRNSIN_DEDUCCION"));
-                sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(sin));
-            }
-    
-        }          
-        //SAN
-//        {
-//            stmt = HZRNSAN_QUERY;
-//            PreparedStatement pstmt = conn.prepareStatement(stmt);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            SAN san = new SAN();
-//            
-//            while (rs.next()) {
-//                               
-//                san.setHZRNSAN_SANCION_PUBLICA(rs.getDouble("HZRNSAN_SANCION_PUBLICA"));
-//                san.setHZRNSAN_SANCION_PRIVADA(rs.getDouble("HZRNSAN_SANCION_PRIVADA"));
-//                san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
-//                
-//                Xml xml = new Xml();
-//                System.out.println(xml.ObjectToXML(san));
-//            }
-//    
-//        }          
-        //SLI
-        {
-            stmt = HZRNSLI_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            SLI sli = new SLI();
-            
-            while (rs.next()) {
-                               
-                sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
-                sli.setHZRNSLI_DEDUCCION(rs.getDouble("HZRNSLI_DEDUCCION"));
-                sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(sli));
-            }
-    
-        }     
-        //SOT
-        {
-            stmt = HZRNSOT_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            SOT sot = new SOT();
-            
-            while (rs.next()) {
-                               
-                sot.setHZRNSOT_PAGO_TERCERO(rs.getDouble("HZRNSOT_PAGO_TERCERO"));
-                sot.setHZRNSOT_ANTICIPO(rs.getDouble("HZRNSOT_ANTICIPO"));
-                sot.setHZRNSOT_OTRA_DEDUCCION(rs.getDouble("HZRNSOT_OTRA_DEDUCCION"));
-                sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(sot));
-            }
-    
-        }    
-        //SVA
-        {
-            stmt = HZRNSVA_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            SVA sva = new SVA();
-            
-            while (rs.next()) {
-                               
-                sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getDouble("HZRNSVA_PENSION_VOLUNTARIA"));
-                sva.setHZRNSVA_RENTENCION_FTE(rs.getDouble("HZRNSVA_RENTENCION_FTE"));
-                sva.setHZRNSVA_AFC(rs.getDouble("HZRNSVA_AFC"));
-                sva.setHZRNSVA_COOPERATIVA(rs.getDouble("HZRNSVA_COOPERATIVA"));
-                sva.setHZRNSVA_EMBARGO(rs.getDouble("HZRNSVA_EMBARGO"));
-                sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getDouble("HZRNSVA_PLAN_COMPLEMENT"));
-                sva.setHZRNSVA_EDUCACION(rs.getDouble("HZRNSVA_EDUCACION"));
-                sva.setHZRNSVA_REINTEGRO(rs.getDouble("HZRNSVA_REINTEGRO"));
-                sva.setHZRNSVA_DEUDA(rs.getDouble("HZRNSVA_DEUDA"));                
-                sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
-                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(sva));
-            }
-    
-        } 
-        //TOT
-        {
-            stmt = HZRNTOT_QUERY;
-            PreparedStatement pstmt = conn.prepareStatement(stmt);
-            ResultSet rs = pstmt.executeQuery();
-
-            TOT tot = new TOT();
-            
-            while (rs.next()) {
-                               
-                tot.setHZRNTOT_CUNE_INTERNO(rs.getString("HZRNTOT_CUNE_INTERNO"));
-                tot.setHZRNTOT_REDONDEO(rs.getDouble("HZRNTOT_REDONDEO"));
-                tot.setHZRNTOT_DEVENGADOS_TOTAL(rs.getDouble("HZRNTOT_DEVENGADOS_TOTAL"));
-                tot.setHZRNTOT_DEDUCCIONES_TOTAL(rs.getDouble("HZRNTOT_DEDUCCIONES_TOTAL"));
-                tot.setHZRNTOT_COMPROBANTE_TOTAL(rs.getDouble("HZRNTOT_COMPROBANTE_TOTAL"));
-                                
-                Xml xml = new Xml();
-                System.out.println(xml.ObjectToXML(tot));
-            }
-    
-        }         
-
-        
+                 
+      
         //----------------------------------------------------------------------------------------------------------------------------------------   
     }
 
