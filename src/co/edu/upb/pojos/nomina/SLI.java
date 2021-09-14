@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SLI")
+//@XmlRootElement(name = "SLI")
 @XmlType (propOrder={"HZRNSLI_DESCRIPCION",
     "HZRNSLI_DEDUCCION"})
 

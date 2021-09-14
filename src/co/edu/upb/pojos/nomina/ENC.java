@@ -2,6 +2,7 @@ package co.edu.upb.pojos.nomina;
 
 import co.edu.upb.nominae.Comprobante;
 import static co.edu.upb.nominae.Queries.HZRNENC_QUERY;
+import co.edu.upb.utilities.Data;
 import java.sql.PreparedStatement;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  * Segmento Obligatorio. Puede repetirse  una sola (1) vez en el archivo.
  */
 
-@XmlRootElement(name = "ENC")
+//@XmlRootElement(name = "ENC")
 @XmlType (propOrder={"HZRNENC_TIPO_DOC",
     "HZRNENC_FECHA_ING",
     "HZRNENC_FECHA_RET",
@@ -117,24 +118,47 @@ public class ENC {
         return HZRNENC_TIPO_DOC;
     }
 
-    public void setHZRNENC_TIPO_DOC(String HZRNENC_TIPO_DOC) {
-        this.HZRNENC_TIPO_DOC = HZRNENC_TIPO_DOC;
+    public void setHZRNENC_TIPO_DOC(String HZRNENC_TIPO_DOC) throws Exception {
+        Data data = new Data();        
+        
+        if(data.checklength(HZRNENC_TIPO_DOC,35)){
+            this.HZRNENC_TIPO_DOC = HZRNENC_TIPO_DOC;
+            data = null;
+        }else{
+            throw new Exception("ENC:" + HZRNENC_CUNE_INTERNO + ":HZRNENC_TIPO_DOC:El campo es nulo o excede la longitud definida por la DIAN");
+        }  
     }
     @XmlTransient
     public Date getHZRNENC_FECHA_ING() {
         return HZRNENC_FECHA_ING;
     }
 
-    public void setHZRNENC_FECHA_ING(Date HZRNENC_FECHA_ING) {
-        this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
+    public void setHZRNENC_FECHA_ING(Date HZRNENC_FECHA_ING) throws Exception {
+        Data data = new Data();        
+        
+        if(data.checkNull(HZRNENC_FECHA_ING)){
+            this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
+            data = null;
+        }else{
+            throw new Exception("ENC:" + HZRNENC_CUNE_INTERNO + ":HZRNENC_FECHA_ING:El campo es nulo");
+        }
+        
     }
     @XmlTransient
     public Date getHZRNENC_FECHA_RET() {
         return HZRNENC_FECHA_RET;
     }
 
-    public void setHZRNENC_FECHA_RET(Date HZRNENC_FECHA_RET) {
-        this.HZRNENC_FECHA_RET = HZRNENC_FECHA_RET;
+    public void setHZRNENC_FECHA_RET(Date HZRNENC_FECHA_RET) throws Exception {
+        Data data = new Data();        
+        
+        if(data.checkNull(HZRNENC_FECHA_ING)){
+            this.HZRNENC_FECHA_RET = HZRNENC_FECHA_RET;
+            data = null;
+        }else{
+            throw new Exception("ENC:" + HZRNENC_CUNE_INTERNO + ":HZRNENC_FECHA_RET:El campo es nulo");
+        }
+        
     }
     @XmlTransient
     public Date getHZRNENC_FECHA_LIQ_INI() {
@@ -157,8 +181,16 @@ public class ENC {
         return HZRNENC_TIEMPO_LAB;
     }
 
-    public void setHZRNENC_TIEMPO_LAB(Double HZRNENC_TIEMPO_LAB) {
-        this.HZRNENC_TIEMPO_LAB = HZRNENC_TIEMPO_LAB;
+    public void setHZRNENC_TIEMPO_LAB(Double HZRNENC_TIEMPO_LAB) throws Exception {
+        Data data = new Data();        
+        
+        if(data.checklength(HZRNENC_TIEMPO_LAB,6,2)){
+            this.HZRNENC_TIEMPO_LAB = HZRNENC_TIEMPO_LAB;
+            data = null;
+        }else{
+            throw new Exception("ENC:" + HZRNENC_CUNE_INTERNO + ":HZRNENC_TIEMPO_LAB:El campo es nulo o excede la longitud definida por la DIAN");
+        }  
+        
     }
     @XmlTransient
     public Date getHZRNENC_FECHA_EMISION() {

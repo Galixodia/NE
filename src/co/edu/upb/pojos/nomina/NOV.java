@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "NOV")
+//@XmlRootElement(name = "NOV")
 @XmlType (propOrder={"HZRNNOV_NOVEDAD",
     "HZRNNOV_CUNE_NOV"})
 public class NOV {

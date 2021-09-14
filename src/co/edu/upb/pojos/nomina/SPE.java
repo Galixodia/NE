@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SPE")
+//@XmlRootElement(name = "SPE")
 @XmlType (propOrder={"HZRNSPE_PORCENTAJE",
     "HZRNSPE_DEDUCCION"})
 

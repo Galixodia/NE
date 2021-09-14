@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "EHL")
+//@XmlRootElement(name = "EHL")
 @XmlType (propOrder={"HZRNEHL_FECHA_INICIO",
     "HZRNEHL_FECHA_FIN",
     "HZRNEHL_CANTIDAD"})

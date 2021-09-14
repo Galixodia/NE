@@ -5,11 +5,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SAN")
+//@XmlRootElement(name = "SAN")
 @XmlType (propOrder={"HZRNSAN_SANCION_PUBLICA",
     "HZRNSAN_SANCION_PRIVADA"})
-
-
 public class SAN {
     
     @XmlElement(name = "SAN_1")

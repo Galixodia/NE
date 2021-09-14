@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  * Utilizado para Todos los Elementos de Fechas de Pagos del Documento. Este Segemento es dependiente Ver Nota 3
  */
 
-@XmlRootElement(name = "FEP")
+//@XmlRootElement(name = "FEP")
 @XmlType (propOrder={"HZRNFEP_FECHA_PAGO"})
 
 public class FEP {

@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "EPR")
+//@XmlRootElement(name = "EPR")
 @XmlType (propOrder={"HZRNEPR_CANTIDAD",
     "HZRNEPR_PAGO",
     "HZRNEPR_PAGONS"})

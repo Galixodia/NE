@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SSP")
+//@XmlRootElement(name = "SSP")
 @XmlType (propOrder={"HZRNSSP_PORCENTAJE",
     "HZRNSSP_DEDUC_SEG_PENSIONAL",
     "HZRNSSP_PORCENTAJE_SUBSISTEN",

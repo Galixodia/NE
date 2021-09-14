@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "EOT")
+//@XmlRootElement(name = "EOT")
 @XmlType (propOrder={"HZRNEOT_DESC_CONCEPTO",
     "HZRNEOT_CONCEP_SALARIAL",
     "HZRNEOT_CONCEP_NO_SALARIAL"})

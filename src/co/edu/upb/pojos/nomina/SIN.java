@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SIN")
+//@XmlRootElement(name = "SIN")
 @XmlType (propOrder={"HZRNSIN_PORCENTAJE",
     "HZRNSIN_DEDUCCION"})
 

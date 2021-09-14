@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SVA")
+//@XmlRootElement(name = "SVA")
 @XmlType (propOrder={"HZRNSVA_PENSION_VOLUNTARIA",
     "HZRNSVA_RENTENCION_FTE",
     "HZRNSVA_AFC",

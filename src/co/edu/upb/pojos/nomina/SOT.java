@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "SOT")
+//@XmlRootElement(name = "SOT")
 @XmlType (propOrder={"HZRNSOT_PAGO_TERCERO",
     "HZRNSOT_ANTICIPO",
     "HZRNSOT_OTRA_DEDUCCION"})

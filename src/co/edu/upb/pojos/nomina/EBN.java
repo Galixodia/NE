@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "EBN")
+//@XmlRootElement(name = "EBN")
 @XmlType (propOrder={"HZRNEBN_BONI_SALARIAL",
     "HZRNEBN_BONI_NO_SALARIAL"})
 

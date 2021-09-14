@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  * Campo de libre uso para Observaciones en el documento
  */
 
-@XmlRootElement(name = "NOT")
+//@XmlRootElement(name = "NOT")
 @XmlType (propOrder={"HZRNNOT_NOTAS"})
 public class NOT {
     

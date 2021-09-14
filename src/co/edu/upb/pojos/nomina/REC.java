@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * Utilizado para Atributos del Trabajador o Receptor del Documento. Este Segemento es dependiente Ver Nota 3
  */
 
-@XmlRootElement(name = "REC")
+//@XmlRootElement(name = "REC")
 @XmlType (propOrder={"HZRNREC_TIPO_TRABAJADOR",
     "HZRNREC_SUB_TIPO_TRABAJ",
     "HZRNREC_ALTO_RIESGO_PENS",

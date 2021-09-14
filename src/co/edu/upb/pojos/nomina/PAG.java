@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * Utilizado para Atributos del Pago del Documento. Este Segemento es dependiente Ver Nota 3
  */
 
-@XmlRootElement(name = "PAG")
+//@XmlRootElement(name = "PAG")
 @XmlType (propOrder={"HZRNPAG_FORMA_PAGO",
     "HZRNPAG_METODO_PAGO",
     "HZRNPAG_BANCO",

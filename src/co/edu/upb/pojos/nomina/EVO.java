@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "EVO")
+//@XmlRootElement(name = "EVO")
 @XmlType (propOrder={"HZRNEVO_DOTACION",
     "HZRNEVO_APOYO_SOSTENIMIENT",
     "HZRNEVO_TELETRABAJO",

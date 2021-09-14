@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "ECM")
+//@XmlRootElement(name = "ECM")
 @XmlType (propOrder={"HZRNECM_COMPENS_ORDINARIA",
     "HZRNECM_COMPENS_EXTRAORDINARIA"})
 

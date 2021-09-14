@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * Puede repetirse hasta 50 veces por cada registro de Devengado  Basico(ITE). Ver nota 4
  */
 
-@XmlRootElement(name = "ETR")
+//@XmlRootElement(name = "ETR")
 @XmlType (propOrder={"HZRNETR_AUX_TRANSPORTE",
     "HZRNETR_VIAT_MANUT_SALARIAL",
     "HZRNETR_VIAT_MANUT_NO_SALARIAL"})

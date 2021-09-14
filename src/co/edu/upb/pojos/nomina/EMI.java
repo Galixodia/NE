@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * Utilizado para Atributos del Empleador o Emisor del Documento 
  */
 
-@XmlRootElement(name = "EMI")
+//@XmlRootElement(name = "EMI")
 @XmlType (propOrder={"HZRNEMI_RAZON_SOCIAL",
     "HZRNEMI_PRIMER_APELLIDO",
     "HZRNEMI_SEGUNDO_APELLIDO",
