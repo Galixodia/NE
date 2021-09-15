@@ -1005,12 +1005,124 @@ public class Comprobante {
         //----------------------------------------------------------------------------------------------------------------------------------------   
     }
 
-    private void getDeletementExtracted() {
+    private void getDeletementExtracted() throws SQLException, JAXBException, Exception {
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------   
-        
-            //AUN NO
-        
+        if (!(conn == null)) {
+            
+            //NOMINA
+            {
+                stmt = NOMINA_QUERY;
+                pstmt = conn.prepareStatement(stmt);
+                ResultSet rs_nom = pstmt.executeQuery();
+
+                NOMINA nom = new NOMINA();
+
+                while (rs_nom.next()) {
+
+                    nom.setHZRNNOM_ESTADO(rs_nom.getString("HZRNNOM_ESTADO"));
+                    nom.setHZRNNOM_CUNE_INTERNO(rs_nom.getString("HZRNNOM_CUNE_INTERNO"));
+
+                }
+                
+                //TIP  OJOOOOO TERMINAR
+                TIP tip = new TIP(1);
+                
+                //ENC
+                {
+                    stmt = HZRNENC_QUERY;
+                    pstmt = conn.prepareStatement(stmt);
+                    rs = pstmt.executeQuery();
+
+                    ENC enc = new ENC();
+
+                    while (rs.next()) {
+
+                        enc.setHZRNENC_CUNE_INTERNO(rs.getString("HZRNENC_CUNE_INTERNO"));
+                        enc.setHZRNENC_TIPO_DOC(rs.getString("HZRNENC_TIPO_DOC"));
+                        enc.setHZRNENC_FECHA_EMISION(rs.getDate("HZRNENC_FECHA_EMISION"));
+                        enc.setHZRNENC_PREFIJO(rs.getString("HZRNENC_PREFIJO"));
+                        enc.setHZRNENC_CONSECUTIVO(rs.getLong("HZRNENC_CONSECUTIVO"));
+                        enc.setHZRNENC_NUMERO(rs.getString("HZRNENC_NUMERO"));
+                        enc.setHZRNENC_PAIS(rs.getString("HZRNENC_PAIS"));
+                        enc.setHZRNENC_DEPART_ESTADO(rs.getInt("HZRNENC_DEPART_ESTADO"));
+                        enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getInt("HZRNENC_MUNICIPIO_CIUDAD"));
+                        enc.setHZRNENC_IDIOMA(rs.getString("HZRNENC_IDIOMA"));
+                        enc.setHZRNENC_VERSION(rs.getString("HZRNENC_VERSION"));
+                        enc.setHZRNENC_AMBIENTE(rs.getInt("HZRNENC_AMBIENTE"));
+                        enc.setHZRNENC_TIPO_XML(rs.getInt("HZRNENC_TIPO_XML"));
+                        enc.setHZRNENC_CUNE(rs.getString("HZRNENC_CUNE"));
+                        enc.setHZRNENC_FECHA_GENERA(rs.getDate("HZRNENC_FECHA_GENERA"));
+                        enc.setHZRNENC_HORA_GENERA(rs.getString("HZRNENC_HORA_GENERA"));
+                        enc.setHZRNENC_NUM_PRED(rs.getString("HZRNENC_NUM_PRED"));
+                        enc.setHZRNENC_CUNE_PRED(rs.getString("HZRNENC_CUNE_PRED"));
+                        enc.setHZRNENC_FECHA_GEN_PRED(rs.getDate("HZRNENC_FECHA_GEN_PRED"));
+
+                        nom.setEncabezado(enc);
+                        enc = null;
+                    }
+
+                }
+                
+                //NOT
+                {
+                    stmt = HZRNNOT_QUERY;
+                    pstmt = conn.prepareStatement(stmt);
+                    rs = pstmt.executeQuery();
+                    
+                    i= 0;
+                    while (rs.next()) {
+                        NOT not = new NOT();
+                        not.setHZRNNOT_CUNE_INTERNO(rs.getString("HZRNNOT_CUNE_INTERNO"));
+                        not.setHZRNNOT_NOTAS(rs.getString("HZRNNOT_NOTAS"));                     
+                        
+                        nom.notas.set(i, not);
+                        
+//                        for (int j = 0; j < nom.notas.size(); j++) {
+//                            System.out.println("for:" + j + ":" + nom.notas.get(j));
+//                        }
+                        not = null;
+                        if (i < nom.notas.size()){i++;}
+                    }
+                    
+
+                }
+                
+                //EMI
+                {
+                    stmt = HZRNEMI_QUERY;
+                    pstmt = conn.prepareStatement(stmt);
+                    rs = pstmt.executeQuery();
+
+                    EMI emi = new EMI();
+
+                    while (rs.next()) {
+
+                        emi.setHZRNEMI_CUNE_INTERNO(rs.getString("HZRNEMI_CUNE_INTERNO"));
+                        emi.setHZRNEMI_RAZON_SOCIAL(rs.getString("HZRNEMI_RAZON_SOCIAL"));
+                        emi.setHZRNEMI_PRIMER_APELLIDO(rs.getString("HZRNEMI_PRIMER_APELLIDO"));
+                        emi.setHZRNEMI_SEGUNDO_APELLIDO(rs.getString("HZRNEMI_SEGUNDO_APELLIDO"));
+                        emi.setHZRNEMI_PRIMER_NOMBRE(rs.getString("HZRNEMI_PRIMER_NOMBRE"));
+                        emi.setHZRNEMI_OTROS_NOMBRES(rs.getString("HZRNEMI_OTROS_NOMBRES"));
+                        emi.setHZRNEMI_NIT(rs.getLong("HZRNEMI_NIT"));
+                        emi.setHZRNEMI_DV(rs.getInt("HZRNEMI_DV"));
+                        emi.setHZRNEMI_PAIS(rs.getString("HZRNEMI_PAIS"));
+                        emi.setHZRNEMI_DEPART_ESTADO(rs.getInt("HZRNEMI_DEPART_ESTADO"));
+                        emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getInt("HZRNEMI_MUNICIPIO_CIUDAD"));
+                        emi.setHZRNEMI_DIRECCION(rs.getString("HZRNEMI_DIRECCION"));
+
+                        nom.setEmisor(emi);
+                        emi = null;
+                    }
+
+                }
+             Xml xml = new Xml();
+             System.out.println(xml.ObjectToXML(nom));
+             nom = null;
+            }
+
+        }else{
+            //con es nulo
+        }
         //----------------------------------------------------------------------------------------------------------------------------------------   
     }
-    
 }
