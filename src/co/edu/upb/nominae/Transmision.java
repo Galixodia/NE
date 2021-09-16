@@ -1,8 +1,7 @@
 package co.edu.upb.nominae;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
 
 /**
@@ -16,7 +15,7 @@ import javax.xml.bind.JAXBException;
  */
 public class Transmision {
        
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DataFormatException {
 
         String loop= "30000"; //eliminar valor quemado
         Comprobante C;
@@ -35,6 +34,8 @@ public class Transmision {
             //System.out.println("getContructionLive: " + C.getContructionLive());
             //System.out.println("getComprobanteExist: " + C.getComprobanteExist());
 
+            //throws DataFormatException, SQLException, JAXBException, ArrayIndexOutOfBoundsException
+            
             while(true){    
                 C = new Comprobante();
                 if(C.getContructionLive() == 0){
@@ -49,14 +50,14 @@ public class Transmision {
         }catch (InterruptedException e) {
             e.printStackTrace();
         } catch (SQLException ex) {
-            Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("1###############################################################################");
         } catch (JAXBException ex) {
-            Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+            //Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        } catch(DataFormatException ex){
+            System.out.println("3&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        } finally{
             C = null;
         }
         

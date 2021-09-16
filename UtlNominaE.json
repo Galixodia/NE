@@ -10,6 +10,7 @@
   "LocalDir":"null",
   "LogFileName":"NominaElectronicaUPB",
   "loop-milis":"60000",
+  "Environment":"TRN",
   "Queries":[
   	{
   		"Query":"prueba",

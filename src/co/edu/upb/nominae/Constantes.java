@@ -8,8 +8,7 @@ package co.edu.upb.nominae;
  */
 public class Constantes {
     
-    public static final String AMBIENTE = "";
-    public static final String TIPO_DOCUMENTO = "Eliminacion"; // Comprobante //Ajuste //Eliminacion
+    public static final String TIPO_DOCUMENTO = "Comprobante"; // Comprobante //Ajuste //Eliminacion
     
     
 }

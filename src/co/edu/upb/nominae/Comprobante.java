@@ -45,6 +45,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import co.edu.upb.utilities.*;
 import java.util.Calendar;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
 
 
@@ -68,7 +69,8 @@ public class Comprobante {
     private Calendar calendario;
     private final UtilitiesFile utilities_file;
     private int i;
-
+    public static String AMBIENTE;
+    
     public Comprobante() throws SQLException {
         
         log = new Log();
@@ -89,7 +91,10 @@ public class Comprobante {
         calendario =Calendar.getInstance();
         log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> (2/2) conection to data base successfully.");
         
+        AMBIENTE = utilities_file.getEnvironment();
+        
         i = 0; // Iterador para listas
+        
         
     }
 
@@ -122,7 +127,7 @@ public class Comprobante {
         return comprobante_exist;
     }
 
-    public void getFileExtracted() throws SQLException, JAXBException, Exception {
+    public void getFileExtracted() throws SQLException, JAXBException, DataFormatException {
      
         file_contruction_live = 1;
 
@@ -178,7 +183,7 @@ public class Comprobante {
         file_contruction_live = 0;    
     }
 
-    private void getComprobanteExtracted() throws SQLException, JAXBException, ArrayIndexOutOfBoundsException, Exception {
+    private void getComprobanteExtracted() throws SQLException, DataFormatException, JAXBException  {
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------   
         
         if (!(conn == null)) {
@@ -1097,7 +1102,7 @@ public class Comprobante {
         //----------------------------------------------------------------------------------------------------------------------------------------   
     }
 
-    private void getDeletementExtracted() throws SQLException, JAXBException, Exception {
+    private void getDeletementExtracted() throws SQLException, JAXBException, DataFormatException {
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------   
         if (!(conn == null)) {
             
