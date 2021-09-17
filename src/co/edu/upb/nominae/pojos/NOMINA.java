@@ -71,8 +71,9 @@ import javax.xml.bind.annotation.XmlType;
 public class NOMINA {
     
     private String HZRNNOM_PREFIJO;
-    private String HZRNNOM_NUM_DOC;
+    private Integer HZRNNOM_NUM_DOC;
     private String HZRNNOM_CUNE_INTERNO;
+    private String HZRNNOM_TIPO_DOC;
     private Integer HZRNNOM_ANO;
     private Integer HZRNNOM_MES;
     private Date HZRNNOM_FECHA_EXT;
@@ -152,11 +153,11 @@ public class NOMINA {
         this.HZRNNOM_PREFIJO = HZRNNOM_PREFIJO;
     }
     @XmlTransient
-    public String getHZRNNOM_NUM_DOC() {
+    public Integer getHZRNNOM_NUM_DOC() {
         return HZRNNOM_NUM_DOC;
     }
 
-    public void setHZRNNOM_NUM_DOC(String HZRNNOM_NUM_DOC) {
+    public void setHZRNNOM_NUM_DOC(Integer HZRNNOM_NUM_DOC) {
         this.HZRNNOM_NUM_DOC = HZRNNOM_NUM_DOC;
     }
 
@@ -314,7 +315,18 @@ public class NOMINA {
     public void setHZRNNOM_PDF(String HZRNNOM_PDF) {
         this.HZRNNOM_PDF = HZRNNOM_PDF;
     }
+    @XmlTransient
+    public String getHZRNNOM_TIPO_DOC() {
+        return HZRNNOM_TIPO_DOC;
+    }
 
+    public void setHZRNNOM_TIPO_DOC(String HZRNNOM_TIPO_DOC) {
+        this.HZRNNOM_TIPO_DOC = HZRNNOM_TIPO_DOC;
+    }
+
+    
+    
+    
     @Override
     public String toString() {
         return "NOMINA{" + "HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_NUM_DOC=" + HZRNNOM_NUM_DOC + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_ANO=" + HZRNNOM_ANO + ", HZRNNOM_MES=" + HZRNNOM_MES + ", HZRNNOM_FECHA_EXT=" + HZRNNOM_FECHA_EXT + ", HZRNNOM_HORA_EXT=" + HZRNNOM_HORA_EXT + ", HZRNNOM_FECHA_TRANS=" + HZRNNOM_FECHA_TRANS + ", HZRNNOM_HORA_TRANS=" + HZRNNOM_HORA_TRANS + ", HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_RTA_CARVAJAL=" + HZRNNOM_RTA_CARVAJAL + ", HZRNNOM_RTA_DIAN=" + HZRNNOM_RTA_DIAN + ", HZRNNOM_BASE64_PDF=" + HZRNNOM_BASE64_PDF + ", HZRNNOM_PDF=" + HZRNNOM_PDF + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';

@@ -28,8 +28,8 @@ public class Transmision {
             while(true){    
                 C = new Comprobante();
                 
-                if(C.getContructionLive() == 0){
-                    if(!C.getComprobanteExist().isEmpty()){
+                if(!C.isAlive()){//C.getContructionLive() == 0
+                    if(C.getComprobanteExist() != null){
                         C.start();
                     }else{
                         Thread.sleep(Integer.parseInt(loop));
@@ -40,9 +40,11 @@ public class Transmision {
         }catch (SQLException ex) {
             //Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("1###############################################################################");
+            System.out.println(ex.getMessage());
         }catch (InterruptedException ex) {
             //Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+            System.out.println(ex.getMessage());
         }finally{
             C = null;
         }

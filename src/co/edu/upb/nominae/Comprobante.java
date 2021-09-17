@@ -72,7 +72,11 @@ public class Comprobante extends Thread {
     private final UtilitiesFile utilities_file;
     private int i;
     public static String AMBIENTE;
+    public String prefijo;
+    public String num_doc; 
     public String cune_interno;
+    public String tipo_doc;
+    
 
     @Override
     public void run() {
@@ -130,18 +134,26 @@ public class Comprobante extends Thread {
         pstmt = conn.prepareStatement(stmt);
         pstmt.execute();
 
-        stmt = "SELECT 11 RESPUESTA FROM DUAL"; //WHERE ROWNUM <=1 AND tzrfefs_estado IS NULL AND TZRFEFS_TIPO_DOCUMENTO = 'FE' ";
+        stmt = "SELECT HZRNNOM_PREFIJO, HZRNNOM_NUM_DOC, HZRNNOM_CUNE_INTERNO,HZRNNOM_TIPO_DOC FROM UPB_NOMINAE.HZRNNOM WHERE HZRNNOM_ESTADO IS NULL OR HZRNNOM_ESTADO IN ('RETRAN')";
+      
         pstmt = conn.prepareStatement(stmt);
         rs = pstmt.executeQuery();
 
         while (rs.next()) {
 
-            if (!rs.getNString("RESPUESTA").isEmpty()) {
-                cune_interno = rs.getString("RESPUESTA");
+            if (!rs.getNString("HZRNNOM_CUNE_INTERNO").isEmpty()) {
+                prefijo = rs.getString("HZRNNOM_PREFIJO");
+                num_doc = rs.getString("HZRNNOM_NUM_DOC");
+                cune_interno = rs.getString("HZRNNOM_CUNE_INTERNO");
+                tipo_doc = rs.getString("HZRNNOM_TIPO_DOC");
             } else {
-                comprobante_exist = 0;
+                cune_interno = null;
             }
         }
+        System.out.println("cune_prefijo: " + prefijo);
+        System.out.println("cune_num_doc: " + num_doc);
+        System.out.println("cune_interno: " + cune_interno);
+        System.out.println("tipo_doc: " + tipo_doc);
         return cune_interno;
     }
 
@@ -203,25 +215,31 @@ public class Comprobante extends Thread {
 
     private void getComprobanteExtracted() throws SQLException, DataFormatException, JAXBException  {
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------   
-        
         if (!(conn == null)) {
             
             //NOMINA
             {
                 stmt = NOMINA_QUERY;
                 pstmt = conn.prepareStatement(stmt);
+                pstmt.setString(1, cune_interno);
                 ResultSet rs_nom = pstmt.executeQuery();
-
+                
                 NOMINA nom = new NOMINA();
                 if(rs_nom != null){
                     while (rs_nom.next()) {
-                        nom.setHZRNNOM_ESTADO(rs_nom.getString("HZRNNOM_ESTADO"));
+                        nom.setHZRNNOM_PREFIJO(rs_nom.getString("HZRNNOM_PREFIJO"));
+                        nom.setHZRNNOM_NUM_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
                         nom.setHZRNNOM_CUNE_INTERNO(rs_nom.getString("HZRNNOM_CUNE_INTERNO"));
+                        nom.setHZRNNOM_TIPO_DOC(rs_nom.getString("HZRNNOM_TIPO_DOC"));
+                        nom.setHZRNNOM_ANO(rs_nom.getInt("HZRNNOM_ANO"));
+                        nom.setHZRNNOM_MES(rs_nom.getInt("HZRNNOM_MES"));
+                        nom.setHZRNNOM_ESTADO(rs_nom.getString("HZRNNOM_ESTADO"));
+                        nom.setHZRNNOM_FECHA_EXT(rs_nom.getDate("HZRNNOM_FECHA_EXT"));
+                        
                     }   
                 }else{
-                
+                    throw new DataFormatException("Comprobante:getComprobanteExtracted:NOMINA No existen registros");
                 }
-                
                 
                 //ENC
                 {
@@ -265,7 +283,7 @@ public class Comprobante extends Thread {
                             enc = null;
                         }
                     }else{
-                        
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ENC No existen registros");
                     }
                 }
                 
@@ -286,7 +304,7 @@ public class Comprobante extends Thread {
                             nov = null;
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:NOV No existen registros");
                     }
                 }
                 
@@ -312,11 +330,11 @@ public class Comprobante extends Thread {
                             if (i < nom.notas.size()){i++;}
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:NOT No existen registros");
                     }
                 }
                 
-                //EMI
+                //c
                 {
                     stmt = HZRNEMI_QUERY;
                     pstmt = conn.prepareStatement(stmt);
@@ -343,7 +361,7 @@ public class Comprobante extends Thread {
                             emi = null;
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:REC No existen registros");
                     }
                 }
                 
@@ -379,11 +397,11 @@ public class Comprobante extends Thread {
                             rec = null;
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:REC No existen registros");
                     }
                 }
                 
-                //PAG
+                //c
                 {
                     stmt = HZRNPAG_QUERY;
                     pstmt = conn.prepareStatement(stmt);
@@ -403,7 +421,7 @@ public class Comprobante extends Thread {
                             pag = null;
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:FEP No existen registros");
                     }
                 }
                 
@@ -425,7 +443,7 @@ public class Comprobante extends Thread {
                         if (i < nom.fecha_pagos.size()){i++;}
                     } 
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:FEP No existen registros");
                     }                  
                 }
                 
@@ -433,23 +451,27 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNITE_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);
                     ResultSet rs_ite = pstmt.executeQuery();
-                    
+
                     ITE ite = new ITE();
                     if(rs != null){
                         while (rs_ite.next()) {
+                            ite.setHZRNITE_CUNE_INTERNO(rs_ite.getString("HZRNITE_CUNE_INTERNO"));
                             ite.setHZRNITE_DIAS_TRAB(rs_ite.getString("HZRNITE_DIAS_TRAB"));
                             ite.setHZRNITE_SUELDO_TRAB(rs_ite.getDouble("HZRNITE_SUELDO_TRAB"));
+                            ite.setHZRNITE_ID(rs_ite.getInt("HZRNITE_ID"));
                             nom.setBasico_trab(ite);
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ITE No existen registros");
                     }
                     
                     //ETR
                     {
                         stmt = HZRNETR_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -466,7 +488,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.transporte_pagado_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ETR No existen registros");
                         }
                     }
                     
@@ -493,7 +515,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.horas_extras_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EHE No existen registros");
                         }
                     }
                     
@@ -518,7 +540,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.vacaciones_trabajador.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVC No existen registros");
                         }    
                     }
                     
@@ -541,7 +563,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.vacaciones_comp_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVA No existen registros");
                         }    
                     }
                     
@@ -563,7 +585,7 @@ public class Comprobante extends Thread {
                                 epr = null;
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EPR No existen registros");
                         }
                     }
                     
@@ -585,7 +607,7 @@ public class Comprobante extends Thread {
                                 ece = null;
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECE No existen registros");
                         }
                     }
                     
@@ -611,7 +633,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.incapacidades_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EIN No existen registros");
                         }
                     }
                     
@@ -637,7 +659,7 @@ public class Comprobante extends Thread {
 
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELI No existen registros");
                         }
                     }
                     
@@ -662,7 +684,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.licencia_remunerada.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELR No existen registros");
                         }
                     }
                     
@@ -686,7 +708,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.licencia_no_remunerada.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELN No existen registros");
                         }
                     }
                     
@@ -709,7 +731,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.bonificacion_para_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EBN No existen registros");
                         }
                     }
                     
@@ -732,7 +754,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.auxilio_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EAX No existen registros");
                         }
                     }
                     
@@ -756,7 +778,7 @@ public class Comprobante extends Thread {
 //                            if (i < ite.huelgas_legales.size()){i++;}
 //                        }
 //                    }else{
-//
+//                          throw new DataFormatException("Comprobante:getComprobanteExtracted:EHL No existen registros");
 //                    }
 //                } 
                     
@@ -780,7 +802,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.otros_conceptos_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EOT No existen registros");
                         }
                     }  
                     
@@ -803,7 +825,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.compensaciones_dev_trab.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECM No existen registros");
                         }
                     }   
                     
@@ -828,7 +850,7 @@ public class Comprobante extends Thread {
 //                                if (i < ite.bonos_pagados_electro.size()){i++;}
 //                            }
 //                        }else{
-//
+//                              throw new DataFormatException("Comprobante:getComprobanteExtracted:EBO No existen registros");
 //                        }
 //                    }
                     
@@ -852,7 +874,7 @@ public class Comprobante extends Thread {
                                 if (i < ite.pago_terceros_anticipos_nom.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECO No existen registros");
                         }
                     } 
                     
@@ -877,7 +899,7 @@ public class Comprobante extends Thread {
                                 evo = null;
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVO No existen registros");
                         }
                     }
                                 
@@ -900,7 +922,7 @@ public class Comprobante extends Thread {
                             nom.setDeducciones_salud(its);
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ITS No existen registros");
                     }
                     
                     //SPE
@@ -920,7 +942,7 @@ public class Comprobante extends Thread {
                                 spe = null;
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
                         }
                     }
                     
@@ -943,7 +965,7 @@ public class Comprobante extends Thread {
                                 ssp = null;
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
                         }
                     }  
                     
@@ -966,7 +988,7 @@ public class Comprobante extends Thread {
                                 if (i < its.deduc_sindicatos.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SIN No existen registros");
                         }
                     } 
                     
@@ -989,7 +1011,7 @@ public class Comprobante extends Thread {
 //                            if (i < its.deduc_varias.size()){i++;}
 //                        }
 //                    }else{
-//
+//                          throw new DataFormatException("Comprobante:getComprobanteExtracted:SAN No existen registros");
 //                    }
 //                }  
                     
@@ -1012,7 +1034,7 @@ public class Comprobante extends Thread {
                                 if (i < its.deduc_libranza.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SLI No existen registros");
                         }
                     }   
                     
@@ -1036,7 +1058,7 @@ public class Comprobante extends Thread {
                                 if (i < its.otras_deduc.size()){i++;}
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SOT No existen registros");
                         }
                     }
                     
@@ -1064,7 +1086,7 @@ public class Comprobante extends Thread {
                                 sva = null;
                             }
                         }else{
-
+                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SVA No existen registros");
                         }
                     } 
                     
@@ -1095,7 +1117,7 @@ public class Comprobante extends Thread {
                             nom = null;
                         }
                     }else{
-
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:TOT No existen registros");
                     }
                 }  
             }
