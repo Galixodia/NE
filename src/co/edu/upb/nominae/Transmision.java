@@ -1,6 +1,10 @@
 package co.edu.upb.nominae;
 
+import co.edu.upb.pojos.utilities.UtilitiesFile;
+import co.edu.upb.utilities.Log;
+import co.edu.upb.utilities.Utilities;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 
 /**
@@ -18,12 +22,12 @@ public class Transmision {
 
         String loop= "30000"; //eliminar valor quemado
         Comprobante C;
+        Log log = new Log();
+        UtilitiesFile utilities_file = new Utilities().getUtilities("UtlNominaE.json");
+        Calendar calendario =Calendar.getInstance();
 
         //THE MF MAGIC
         try {
-             
-            //System.out.println("getContructionLive: " + C.getContructionLive());
-            //System.out.println("getComprobanteExist: " + C.getComprobanteExist());
 
             while(true){    
                 C = new Comprobante();
@@ -38,15 +42,17 @@ public class Transmision {
                 C = null;
             }
         }catch (SQLException ex) {
-            //Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("1###############################################################################");
-            System.out.println(ex.getMessage());
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Transmision:main>  (DB) Exception in connection with the database: " + ex.getMessage());
         }catch (InterruptedException ex) {
-            //Logger.getLogger(Transmision.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-            System.out.println(ex.getMessage());
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Transmision:main>  (THREAD) Exception in thead: " + ex.getMessage());
         }finally{
+            loop = null;
             C = null;
+            log = null;
+            utilities_file = null;
+            calendario = null;
         }
         
         

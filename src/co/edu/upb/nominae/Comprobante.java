@@ -74,9 +74,9 @@ public class Comprobante extends Thread {
     private String stmt;
     private PreparedStatement pstmt;
     private ResultSet rs;
-    private final Log log;
+    private Log log;
     private Calendar calendario;
-    private final UtilitiesFile utilities_file;
+    private UtilitiesFile utilities_file;
     private int i;
     public static String AMBIENTE;
     public String prefijo;
@@ -94,6 +94,7 @@ public class Comprobante extends Thread {
         try {
             getFileExtracted();
             getLocalFile();
+            getNullAll();
         } catch (SQLException ex) {
             calendario =Calendar.getInstance();
             log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (DB) Exception in connection with the database: " + ex.getMessage());
@@ -109,7 +110,7 @@ public class Comprobante extends Thread {
         } catch (IOException ex) {
             calendario =Calendar.getInstance();
             log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FILE) Exception in file creation: " + ex.getMessage());
-        }
+        } finally{getNullAll();}
     }
     
     public Comprobante() throws SQLException {
@@ -236,6 +237,7 @@ public class Comprobante extends Thread {
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------   
         if (!(conn == null)) {
             
+            
             //NOMINA
             {
                 stmt = NOMINA_QUERY;
@@ -356,7 +358,7 @@ public class Comprobante extends Thread {
                     }
                 }
                 
-                //c
+                //EMI
                 {
                     stmt = HZRNEMI_QUERY;
                     pstmt = conn.prepareStatement(stmt);
@@ -392,10 +394,11 @@ public class Comprobante extends Thread {
                     stmt = HZRNREC_QUERY;
                     pstmt = conn.prepareStatement(stmt);
                     rs = pstmt.executeQuery();
-
+                    
                     if(rs != null){
                         while (rs.next()) {
                             REC rec = new REC();
+                            
                             rec.setHZRNREC_CUNE_INTERNO(rs.getString("HZRNREC_CUNE_INTERNO"));
                             rec.setHZRNREC_TIPO_TRABAJADOR(rs.getInt("HZRNREC_TIPO_TRABAJADOR"));
                             rec.setHZRNREC_SUB_TIPO_TRABAJ(rs.getInt("HZRNREC_SUB_TIPO_TRABAJ"));
@@ -419,6 +422,7 @@ public class Comprobante extends Thread {
                             rec = null;
                         }
                     }else{
+                        
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:REC No existen registros");
                     }
                 }
@@ -1306,5 +1310,28 @@ public class Comprobante extends Thread {
         }
         
         out.close();
+    }
+
+    private void getNullAll() {
+        
+        stmt = null;
+        pstmt = null;
+        rs = null;
+        log = null;
+        calendario = null;
+        utilities_file = null;
+        AMBIENTE = null;
+        prefijo = null;
+        num_doc = null;
+        cune_interno = null;
+        tipo_doc = null;
+        xml_string = null;
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getNullAll> [" + cune_interno + "] Bad connection close.");
+        
+        }
     }
 }
