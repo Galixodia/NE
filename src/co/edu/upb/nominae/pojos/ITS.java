@@ -1,7 +1,9 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Arrays;
 import java.util.List;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -51,16 +53,30 @@ public class ITS {
         return HZRNITS_PORCENTAJE;
     }
 
-    public void setHZRNITS_PORCENTAJE(Double HZRNITS_PORCENTAJE) {
-        this.HZRNITS_PORCENTAJE = HZRNITS_PORCENTAJE;
+    public void setHZRNITS_PORCENTAJE(Double HZRNITS_PORCENTAJE) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNITS_PORCENTAJE,3,2)){
+            this.HZRNITS_PORCENTAJE = HZRNITS_PORCENTAJE;
+            data = null;            
+        }else{
+            throw new DataFormatException("ITS:HZRNITS_PORCENTAJE:El campo es nulo");
+        }             
     }
     @XmlTransient
     public Double getHZRNITS_DEDUCCION() {
         return HZRNITS_DEDUCCION;
     }
 
-    public void setHZRNITS_DEDUCCION(Double HZRNITS_DEDUCCION) {
-        this.HZRNITS_DEDUCCION = HZRNITS_DEDUCCION;
+    public void setHZRNITS_DEDUCCION(Double HZRNITS_DEDUCCION) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNITS_DEDUCCION,15,6)){
+            this.HZRNITS_DEDUCCION = HZRNITS_DEDUCCION;
+            data = null;            
+        }else{
+            throw new DataFormatException("ITS:HZRNITS_DEDUCCION:El campo es nulo");
+        }           
     }
     @XmlTransient
     public Double getHZRNITS_CUNE_INTERNO() {

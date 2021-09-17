@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -32,16 +34,30 @@ public class EVA {
         return HZRNEVA_CANTIDAD;
     }
 
-    public void setHZRNEVA_CANTIDAD(Long HZRNEVA_CANTIDAD) {
-        this.HZRNEVA_CANTIDAD = HZRNEVA_CANTIDAD;
+    public void setHZRNEVA_CANTIDAD(Long HZRNEVA_CANTIDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEVA_CANTIDAD,10)){
+            this.HZRNEVA_CANTIDAD = HZRNEVA_CANTIDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("EVA:HZRNEVA_CANTIDAD:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNEVA_PAGO() {
         return HZRNEVA_PAGO;
     }
 
-    public void setHZRNEVA_PAGO(Double HZRNEVA_PAGO) {
-        this.HZRNEVA_PAGO = HZRNEVA_PAGO;
+    public void setHZRNEVA_PAGO(Double HZRNEVA_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEVA_PAGO,15,6)){
+            this.HZRNEVA_PAGO = HZRNEVA_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EVA:HZRNEVA_PAGO:El campo es nulo");
+        }         
     }
     @XmlTransient
     public Integer getHZRNEVA_ITE_ID() {

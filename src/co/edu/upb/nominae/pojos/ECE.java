@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -25,24 +27,45 @@ public class ECE {
         return HZRNECE_PAGO;
     }
 
-    public void setHZRNECE_PAGO(Double HZRNECE_PAGO) {
+    public void setHZRNECE_PAGO(Double HZRNECE_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNECE_PAGO,15,6)){
         this.HZRNECE_PAGO = HZRNECE_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("ECE:HZRNENC_NUM_PRED:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNECE_PORCENTAJE() {
         return HZRNECE_PORCENTAJE;
     }
 
-    public void setHZRNECE_PORCENTAJE(Double HZRNECE_PORCENTAJE) {
+    public void setHZRNECE_PORCENTAJE(Double HZRNECE_PORCENTAJE) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNECE_PORCENTAJE,3,2)){
         this.HZRNECE_PORCENTAJE = HZRNECE_PORCENTAJE;
+            data = null;            
+        }else{
+            throw new DataFormatException("ECE:HZRNECE_PORCENTAJE:El campo es nulo");
+        }         
     }
     @XmlTransient
     public Double getHZRNECE_PAGO_INTERESES() {
         return HZRNECE_PAGO_INTERESES;
     }
 
-    public void setHZRNECE_PAGO_INTERESES(Double HZRNECE_PAGO_INTERESES) {
+    public void setHZRNECE_PAGO_INTERESES(Double HZRNECE_PAGO_INTERESES) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNECE_PAGO_INTERESES,15,6)){
         this.HZRNECE_PAGO_INTERESES = HZRNECE_PAGO_INTERESES;
+            data = null;            
+        }else{
+            throw new DataFormatException("ECE:HZRNECE_PAGO_INTERESES:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Integer getHZRNECE_ITE_ID() {

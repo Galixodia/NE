@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -44,8 +46,15 @@ public class EHE {
         return HZRNEHE_HORAS_EXTRA;
     }
 
-    public void setHZRNEHE_HORAS_EXTRA(String HZRNEHE_HORAS_EXTRA) {
-        this.HZRNEHE_HORAS_EXTRA = HZRNEHE_HORAS_EXTRA;
+    public void setHZRNEHE_HORAS_EXTRA(String HZRNEHE_HORAS_EXTRA) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEHE_HORAS_EXTRA,100)){
+            this.HZRNEHE_HORAS_EXTRA = HZRNEHE_HORAS_EXTRA;
+            data = null;            
+        }else{
+            throw new DataFormatException("EHE:HZRNEHE_HORAS_EXTRA:El campo es nulo");
+        }          
     }
     @XmlTransient
     public String getHZRNEHE_HORA_INICIO() {
@@ -68,24 +77,46 @@ public class EHE {
         return HZRNEHE_CANTIDAD;
     }
 
-    public void setHZRNEHE_CANTIDAD(Double HZRNEHE_CANTIDAD) {
-        this.HZRNEHE_CANTIDAD = HZRNEHE_CANTIDAD;
+    public void setHZRNEHE_CANTIDAD(Double HZRNEHE_CANTIDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEHE_CANTIDAD,10,6)){
+            this.HZRNEHE_CANTIDAD = HZRNEHE_CANTIDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("EHE:HZRNEHE_CANTIDAD:El campo es nulo");
+        }         
     }
     @XmlTransient
     public Double getHZRNEHE_PORCENTAJE() {
         return HZRNEHE_PORCENTAJE;
     }
 
-    public void setHZRNEHE_PORCENTAJE(Double HZRNEHE_PORCENTAJE) {
-        this.HZRNEHE_PORCENTAJE = HZRNEHE_PORCENTAJE;
+    public void setHZRNEHE_PORCENTAJE(Double HZRNEHE_PORCENTAJE) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEHE_PORCENTAJE,4,2)){
+            this.HZRNEHE_PORCENTAJE = HZRNEHE_PORCENTAJE;
+            data = null;            
+        }else{
+            throw new DataFormatException("EHE:HZRNEHE_PORCENTAJE:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNEHE_PAGO() {
         return HZRNEHE_PAGO;
     }
 
-    public void setHZRNEHE_PAGO(Double HZRNEHE_PAGO) {
-        this.HZRNEHE_PAGO = HZRNEHE_PAGO;
+    public void setHZRNEHE_PAGO(Double HZRNEHE_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEHE_PAGO,15,6)){
+            this.HZRNEHE_PAGO = HZRNEHE_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EHE:HZRNEHE_PAGO:El campo es nulo");
+        }         
+        
     }
     @XmlTransient
     public Integer getHZRNEHE_ITE_ID() {

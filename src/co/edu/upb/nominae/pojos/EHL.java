@@ -1,6 +1,8 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,8 +44,15 @@ public class EHL {
         return HZRNEHL_CANTIDAD;
     }
 
-    public void setHZRNEHL_CANTIDAD(Long HZRNEHL_CANTIDAD) {
-        this.HZRNEHL_CANTIDAD = HZRNEHL_CANTIDAD;
+    public void setHZRNEHL_CANTIDAD(Long HZRNEHL_CANTIDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEHL_CANTIDAD,10)){
+            this.HZRNEHL_CANTIDAD = HZRNEHL_CANTIDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("EHL:HZRNEHL_CANTIDAD:El campo es nulo");
+        }            
     }
     @XmlTransient
     public Integer getHZRNEHL_ITE_ID() {

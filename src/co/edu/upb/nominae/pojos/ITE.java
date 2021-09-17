@@ -1,7 +1,9 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Arrays;
 import java.util.List;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -80,16 +82,30 @@ public class ITE {
         return HZRNITE_DIAS_TRAB;
     }
 
-    public void setHZRNITE_DIAS_TRAB(String HZRNITE_DIAS_TRAB) {
-        this.HZRNITE_DIAS_TRAB = HZRNITE_DIAS_TRAB;
+    public void setHZRNITE_DIAS_TRAB(String HZRNITE_DIAS_TRAB) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNITE_DIAS_TRAB,2)){
+            this.HZRNITE_DIAS_TRAB = HZRNITE_DIAS_TRAB;
+            data = null;            
+        }else{
+            throw new DataFormatException("ITE:HZRNITE_DIAS_TRAB:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNITE_SUELDO_TRAB() {
         return HZRNITE_SUELDO_TRAB;
     }
 
-    public void setHZRNITE_SUELDO_TRAB(Double HZRNITE_SUELDO_TRAB) {
-        this.HZRNITE_SUELDO_TRAB = HZRNITE_SUELDO_TRAB;
+    public void setHZRNITE_SUELDO_TRAB(Double HZRNITE_SUELDO_TRAB) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNITE_SUELDO_TRAB,15,6)){
+            this.HZRNITE_SUELDO_TRAB = HZRNITE_SUELDO_TRAB;
+            data = null;            
+        }else{
+            throw new DataFormatException("ITE:HZRNITE_SUELDO_TRAB:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNITE_CUNE_INTERNO() {

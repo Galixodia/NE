@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -48,16 +50,31 @@ public class PAG {
         return HZRNPAG_FORMA_PAGO;
     }
 
-    public void setHZRNPAG_FORMA_PAGO(Integer HZRNPAG_FORMA_PAGO) {
-        this.HZRNPAG_FORMA_PAGO = HZRNPAG_FORMA_PAGO;
+    public void setHZRNPAG_FORMA_PAGO(Integer HZRNPAG_FORMA_PAGO) throws DataFormatException {
+        Data data = new Data();        
+        
+        if(data.checklength(HZRNPAG_FORMA_PAGO,1)){        
+            this.HZRNPAG_FORMA_PAGO = HZRNPAG_FORMA_PAGO;
+            data = null;
+        }else{
+            throw new DataFormatException("PAG:HZRNPAG_FORMA_PAGO:El campo es nulo");
+        }            
     }
     @XmlTransient
     public String getHZRNPAG_METODO_PAGO() {
         return HZRNPAG_METODO_PAGO;
     }
 
-    public void setHZRNPAG_METODO_PAGO(String HZRNPAG_METODO_PAGO) {
-        this.HZRNPAG_METODO_PAGO = HZRNPAG_METODO_PAGO;
+    public void setHZRNPAG_METODO_PAGO(String HZRNPAG_METODO_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNPAG_METODO_PAGO,3)){
+            this.HZRNPAG_METODO_PAGO = HZRNPAG_METODO_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("PAG:HZRNPAG_METODO_PAGO:El campo es nulo");
+        } 
+        
     }
     @XmlTransient
     public String getHZRNPAG_BANCO() {

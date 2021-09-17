@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,16 +25,30 @@ public class SIN {
         return HZRNSIN_PORCENTAJE;
     }
 
-    public void setHZRNSIN_PORCENTAJE(Double HZRNSIN_PORCENTAJE) {
-        this.HZRNSIN_PORCENTAJE = HZRNSIN_PORCENTAJE;
+    public void setHZRNSIN_PORCENTAJE(Double HZRNSIN_PORCENTAJE) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNSIN_PORCENTAJE,3,2)){
+            this.HZRNSIN_PORCENTAJE = HZRNSIN_PORCENTAJE;
+            data = null;            
+        }else{
+            throw new DataFormatException("SIN:HZRNSIN_PORCENTAJE:El campo es nulo");
+        }           
     }
     @XmlTransient
     public Double getHZRNSIN_DEDUCCION() {
         return HZRNSIN_DEDUCCION;
     }
 
-    public void setHZRNSIN_DEDUCCION(Double HZRNSIN_DEDUCCION) {
-        this.HZRNSIN_DEDUCCION = HZRNSIN_DEDUCCION;
+    public void setHZRNSIN_DEDUCCION(Double HZRNSIN_DEDUCCION) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNSIN_DEDUCCION,15,6)){
+            this.HZRNSIN_DEDUCCION = HZRNSIN_DEDUCCION;
+            data = null;            
+        }else{
+            throw new DataFormatException("SIN:HZRNSIN_DEDUCCION:El campo es nulo");
+        }         
     }
     @XmlTransient
     public Integer getHZRNSIN_ITS_ID() {

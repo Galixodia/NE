@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -21,8 +23,15 @@ public class NOV {
         return HZRNNOV_CUNE_INTERNO;
     }
 
-    public void setHZRNNOV_CUNE_INTERNO(String HZRNNOV_CUNE_INTERNO) {
-        this.HZRNNOV_CUNE_INTERNO = HZRNNOV_CUNE_INTERNO;
+    public void setHZRNNOV_CUNE_INTERNO(String HZRNNOV_CUNE_INTERNO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNNOV_CUNE_INTERNO,14)){
+            this.HZRNNOV_CUNE_INTERNO = HZRNNOV_CUNE_INTERNO;
+            data = null;            
+        }else{
+            throw new DataFormatException("ENC:" + HZRNNOV_CUNE_INTERNO + ":HZRNNOV_CUNE_INTERNO:El campo es nulo");
+        }         
     }
     @XmlTransient
     public String getHZRNNOV_NOVEDAD() {

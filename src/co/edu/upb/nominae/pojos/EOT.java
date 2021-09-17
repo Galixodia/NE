@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -25,8 +27,15 @@ public class EOT {
         return HZRNEOT_DESC_CONCEPTO;
     }
 
-    public void setHZRNEOT_DESC_CONCEPTO(String HZRNEOT_DESC_CONCEPTO) {
-        this.HZRNEOT_DESC_CONCEPTO = HZRNEOT_DESC_CONCEPTO;
+    public void setHZRNEOT_DESC_CONCEPTO(String HZRNEOT_DESC_CONCEPTO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEOT_DESC_CONCEPTO,250)){
+            this.HZRNEOT_DESC_CONCEPTO = HZRNEOT_DESC_CONCEPTO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EOT:HZRNEOT_DESC_CONCEPTO:El campo es nulo");
+        }           
     }
     @XmlTransient
     public Double getHZRNEOT_CONCEP_SALARIAL() {
