@@ -89,7 +89,7 @@ public class ITE {
             this.HZRNITE_DIAS_TRAB = HZRNITE_DIAS_TRAB;
             data = null;            
         }else{
-            throw new DataFormatException("ITE:HZRNITE_DIAS_TRAB:El campo es nulo");
+            throw new DataFormatException("ITE:HZRNITE_DIAS_TRAB:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -104,7 +104,7 @@ public class ITE {
             this.HZRNITE_SUELDO_TRAB = HZRNITE_SUELDO_TRAB;
             data = null;            
         }else{
-            throw new DataFormatException("ITE:HZRNITE_SUELDO_TRAB:El campo es nulo");
+            throw new DataFormatException("ITE:HZRNITE_SUELDO_TRAB:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient

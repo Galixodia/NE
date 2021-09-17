@@ -57,7 +57,7 @@ public class PAG {
             this.HZRNPAG_FORMA_PAGO = HZRNPAG_FORMA_PAGO;
             data = null;
         }else{
-            throw new DataFormatException("PAG:HZRNPAG_FORMA_PAGO:El campo es nulo");
+            throw new DataFormatException("PAG:HZRNPAG_FORMA_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }            
     }
     @XmlTransient
@@ -72,7 +72,7 @@ public class PAG {
             this.HZRNPAG_METODO_PAGO = HZRNPAG_METODO_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("PAG:HZRNPAG_METODO_PAGO:El campo es nulo");
+            throw new DataFormatException("PAG:HZRNPAG_METODO_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 
         
     }

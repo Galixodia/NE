@@ -74,7 +74,7 @@ public class EMI {
             this.HZRNEMI_RAZON_SOCIAL = HZRNEMI_RAZON_SOCIAL;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_RAZON_SOCIAL:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_RAZON_SOCIAL:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -121,7 +121,7 @@ public class EMI {
             this.HZRNEMI_NIT = HZRNEMI_NIT;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_NIT:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_NIT:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -136,7 +136,7 @@ public class EMI {
             this.HZRNEMI_DV = HZRNEMI_DV;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_DV:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_DV:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -151,7 +151,7 @@ public class EMI {
             this.HZRNEMI_PAIS = HZRNEMI_PAIS;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_PAIS:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_PAIS:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -166,7 +166,7 @@ public class EMI {
             this.HZRNEMI_DEPART_ESTADO = HZRNEMI_DEPART_ESTADO;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_DEPART_ESTADO:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_DEPART_ESTADO:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient
@@ -181,7 +181,7 @@ public class EMI {
             this.HZRNEMI_MUNICIPIO_CIUDAD = HZRNEMI_MUNICIPIO_CIUDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_MUNICIPIO_CIUDAD:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_MUNICIPIO_CIUDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -196,7 +196,7 @@ public class EMI {
             this.HZRNEMI_DIRECCION = HZRNEMI_DIRECCION;
             data = null;            
         }else{
-            throw new DataFormatException("EMI:HZRNEMI_DIRECCION:El campo es nulo");
+            throw new DataFormatException("EMI:HZRNEMI_DIRECCION:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
 

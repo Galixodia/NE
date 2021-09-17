@@ -51,7 +51,7 @@ public class EHL {
             this.HZRNEHL_CANTIDAD = HZRNEHL_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EHL:HZRNEHL_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("EHL:HZRNEHL_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }            
     }
     @XmlTransient

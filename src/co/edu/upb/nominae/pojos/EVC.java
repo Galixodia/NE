@@ -62,7 +62,7 @@ public class EVC {
             this.HZRNEVC_CANTIDAD = HZRNEVC_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EVC:HZRNEVC_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("EVC:HZRNEVC_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -77,7 +77,7 @@ public class EVC {
             this.HZRNEVC_PAGO = HZRNEVC_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("EVC:HZRNEVC_PAGO:El campo es nulo");
+            throw new DataFormatException("EVC:HZRNEVC_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
         
     }

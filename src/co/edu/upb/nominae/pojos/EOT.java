@@ -34,7 +34,7 @@ public class EOT {
             this.HZRNEOT_DESC_CONCEPTO = HZRNEOT_DESC_CONCEPTO;
             data = null;            
         }else{
-            throw new DataFormatException("EOT:HZRNEOT_DESC_CONCEPTO:El campo es nulo");
+            throw new DataFormatException("EOT:HZRNEOT_DESC_CONCEPTO:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient

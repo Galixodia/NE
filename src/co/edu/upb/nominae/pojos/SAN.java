@@ -30,7 +30,7 @@ public class SAN {
             this.HZRNSAN_SANCION_PUBLICA = HZRNSAN_SANCION_PUBLICA;
             data = null;            
         }else{
-            throw new DataFormatException("SAN:HZRNSAN_SANCION_PUBLICA:El campo es nulo");
+            throw new DataFormatException("SAN:HZRNSAN_SANCION_PUBLICA:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -45,7 +45,7 @@ public class SAN {
             this.HZRNSAN_SANCION_PRIVADA = HZRNSAN_SANCION_PRIVADA;
             data = null;            
         }else{
-            throw new DataFormatException("SAN:HZRNSAN_SANCION_PRIVADA:El campo es nulo");
+            throw new DataFormatException("SAN:HZRNSAN_SANCION_PRIVADA:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient

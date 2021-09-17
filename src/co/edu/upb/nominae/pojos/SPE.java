@@ -31,7 +31,7 @@ public class SPE {
             this.HZRNSPE_PORCENTAJE = HZRNSPE_PORCENTAJE;
             data = null;            
         }else{
-            throw new DataFormatException("SPE:HZRNSPE_PORCENTAJE:El campo es nulo");
+            throw new DataFormatException("SPE:HZRNSPE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -46,7 +46,7 @@ public class SPE {
             this.HZRNSPE_DEDUCCION = HZRNSPE_DEDUCCION;
             data = null;            
         }else{
-            throw new DataFormatException("SPE:HZRNSPE_DEDUCCION:El campo es nulo");
+            throw new DataFormatException("SPE:HZRNSPE_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
