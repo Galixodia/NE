@@ -598,7 +598,7 @@ public class Comprobante extends Thread {
                         if(rs != null){  
                             while (rs.next()) {
                                 EPR epr = new EPR();
-                                epr.setHZRNEPR_CANTIDAD(rs.getInt("HZRNEPR_CANTIDAD"));
+                                epr.setHZRNEPR_CANTIDAD(rs.getLong("HZRNEPR_CANTIDAD"));
                                 epr.setHZRNEPR_PAGO(rs.getDouble("HZRNEPR_PAGO"));
                                 epr.setHZRNEPR_PAGONS(rs.getDouble("HZRNEPR_PAGONS"));
                                 epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
