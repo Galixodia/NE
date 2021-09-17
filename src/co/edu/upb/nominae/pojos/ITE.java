@@ -36,8 +36,8 @@ public class ITE {
     @XmlElement(name = "ITE_2")
     private Double HZRNITE_SUELDO_TRAB;    
     
-    private Double HZRNITE_CUNE_INTERNO;    
-    private Double HZRNITE_ID;    
+    private String HZRNITE_CUNE_INTERNO;    
+    private Integer HZRNITE_ID;    
 
     @XmlElement(name = "ETR")
     public List<ETR> transporte_pagado_trab = Arrays.asList(new ETR[50]);
@@ -108,19 +108,19 @@ public class ITE {
         }          
     }
     @XmlTransient
-    public Double getHZRNITE_CUNE_INTERNO() {
+    public String getHZRNITE_CUNE_INTERNO() {
         return HZRNITE_CUNE_INTERNO;
     }
 
-    public void setHZRNITE_CUNE_INTERNO(Double HZRNITE_CUNE_INTERNO) {
+    public void setHZRNITE_CUNE_INTERNO(String HZRNITE_CUNE_INTERNO) {
         this.HZRNITE_CUNE_INTERNO = HZRNITE_CUNE_INTERNO;
     }
     @XmlTransient
-    public Double getHZRNITE_ID() {
+    public Integer getHZRNITE_ID() {
         return HZRNITE_ID;
     }
 
-    public void setHZRNITE_ID(Double HZRNITE_ID) {
+    public void setHZRNITE_ID(Integer HZRNITE_ID) {
         this.HZRNITE_ID = HZRNITE_ID;
     }
     @XmlTransient

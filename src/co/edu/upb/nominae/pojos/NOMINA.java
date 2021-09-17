@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -69,11 +70,22 @@ import javax.xml.bind.annotation.XmlType;
     "totales_nomina"})
 public class NOMINA {
     
-    private String HZRNNOM_ESTADO;
-    private String HZRNNOM_CUNE_INTERNO;
     private String HZRNNOM_PREFIJO;
-    private String HZRNNOM_NUM_DOC;
+    private Integer HZRNNOM_NUM_DOC;
+    private String HZRNNOM_CUNE_INTERNO;
+    private String HZRNNOM_TIPO_DOC;
+    private Integer HZRNNOM_ANO;
+    private Integer HZRNNOM_MES;
+    private Date HZRNNOM_FECHA_EXT;
+    private String HZRNNOM_HORA_EXT;
+    private Date HZRNNOM_FECHA_TRANS;
+    private String HZRNNOM_HORA_TRANS;    
+    private String HZRNNOM_ESTADO;
+    private String HZRNNOM_RTA_CARVAJAL;
+    private String HZRNNOM_RTA_DIAN;
     private String HZRNNOM_BASE64_PDF;
+    private String HZRNNOM_PDF;
+  
     
     
     @XmlElement(name = "ENC")
@@ -141,11 +153,11 @@ public class NOMINA {
         this.HZRNNOM_PREFIJO = HZRNNOM_PREFIJO;
     }
     @XmlTransient
-    public String getHZRNNOM_NUM_DOC() {
+    public Integer getHZRNNOM_NUM_DOC() {
         return HZRNNOM_NUM_DOC;
     }
 
-    public void setHZRNNOM_NUM_DOC(String HZRNNOM_NUM_DOC) {
+    public void setHZRNNOM_NUM_DOC(Integer HZRNNOM_NUM_DOC) {
         this.HZRNNOM_NUM_DOC = HZRNNOM_NUM_DOC;
     }
 
@@ -231,12 +243,93 @@ public class NOMINA {
     public void setTotales_nomina(TOT totales_nomina) {
         this.totales_nomina = totales_nomina;
     }
-
-    @Override
-    public String toString() {
-        return "NOMINA{" + "HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_NUM_DOC=" + HZRNNOM_NUM_DOC + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';
+    @XmlTransient
+    public Integer getHZRNNOM_ANO() {
+        return HZRNNOM_ANO;
     }
 
-            
+    public void setHZRNNOM_ANO(Integer HZRNNOM_ANO) {
+        this.HZRNNOM_ANO = HZRNNOM_ANO;
+    }
+    @XmlTransient
+    public Integer getHZRNNOM_MES() {
+        return HZRNNOM_MES;
+    }
+
+    public void setHZRNNOM_MES(Integer HZRNNOM_MES) {
+        this.HZRNNOM_MES = HZRNNOM_MES;
+    }
+    @XmlTransient
+    public Date getHZRNNOM_FECHA_EXT() {
+        return HZRNNOM_FECHA_EXT;
+    }
+
+    public void setHZRNNOM_FECHA_EXT(Date HZRNNOM_FECHA_EXT) {
+        this.HZRNNOM_FECHA_EXT = HZRNNOM_FECHA_EXT;
+    }
+    @XmlTransient
+    public String getHZRNNOM_HORA_EXT() {
+        return HZRNNOM_HORA_EXT;
+    }
+
+    public void setHZRNNOM_HORA_EXT(String HZRNNOM_HORA_EXT) {
+        this.HZRNNOM_HORA_EXT = HZRNNOM_HORA_EXT;
+    }
+    @XmlTransient
+    public Date getHZRNNOM_FECHA_TRANS() {
+        return HZRNNOM_FECHA_TRANS;
+    }
+
+    public void setHZRNNOM_FECHA_TRANS(Date HZRNNOM_FECHA_TRANS) {
+        this.HZRNNOM_FECHA_TRANS = HZRNNOM_FECHA_TRANS;
+    }
+    @XmlTransient
+    public String getHZRNNOM_HORA_TRANS() {
+        return HZRNNOM_HORA_TRANS;
+    }
+
+    public void setHZRNNOM_HORA_TRANS(String HZRNNOM_HORA_TRANS) {
+        this.HZRNNOM_HORA_TRANS = HZRNNOM_HORA_TRANS;
+    }
+    @XmlTransient
+    public String getHZRNNOM_RTA_CARVAJAL() {
+        return HZRNNOM_RTA_CARVAJAL;
+    }
+
+    public void setHZRNNOM_RTA_CARVAJAL(String HZRNNOM_RTA_CARVAJAL) {
+        this.HZRNNOM_RTA_CARVAJAL = HZRNNOM_RTA_CARVAJAL;
+    }
+    @XmlTransient
+    public String getHZRNNOM_RTA_DIAN() {
+        return HZRNNOM_RTA_DIAN;
+    }
+
+    public void setHZRNNOM_RTA_DIAN(String HZRNNOM_RTA_DIAN) {
+        this.HZRNNOM_RTA_DIAN = HZRNNOM_RTA_DIAN;
+    }
+    @XmlTransient
+    public String getHZRNNOM_PDF() {
+        return HZRNNOM_PDF;
+    }
+
+    public void setHZRNNOM_PDF(String HZRNNOM_PDF) {
+        this.HZRNNOM_PDF = HZRNNOM_PDF;
+    }
+    @XmlTransient
+    public String getHZRNNOM_TIPO_DOC() {
+        return HZRNNOM_TIPO_DOC;
+    }
+
+    public void setHZRNNOM_TIPO_DOC(String HZRNNOM_TIPO_DOC) {
+        this.HZRNNOM_TIPO_DOC = HZRNNOM_TIPO_DOC;
+    }
+
     
+    
+    
+    @Override
+    public String toString() {
+        return "NOMINA{" + "HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_NUM_DOC=" + HZRNNOM_NUM_DOC + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_ANO=" + HZRNNOM_ANO + ", HZRNNOM_MES=" + HZRNNOM_MES + ", HZRNNOM_FECHA_EXT=" + HZRNNOM_FECHA_EXT + ", HZRNNOM_HORA_EXT=" + HZRNNOM_HORA_EXT + ", HZRNNOM_FECHA_TRANS=" + HZRNNOM_FECHA_TRANS + ", HZRNNOM_HORA_TRANS=" + HZRNNOM_HORA_TRANS + ", HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_RTA_CARVAJAL=" + HZRNNOM_RTA_CARVAJAL + ", HZRNNOM_RTA_DIAN=" + HZRNNOM_RTA_DIAN + ", HZRNNOM_BASE64_PDF=" + HZRNNOM_BASE64_PDF + ", HZRNNOM_PDF=" + HZRNNOM_PDF + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';
+    }
+
 }
