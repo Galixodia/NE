@@ -31,7 +31,7 @@ public class SLI {
             this.HZRNSLI_DESCRIPCION = HZRNSLI_DESCRIPCION;
             data = null;            
         }else{
-            throw new DataFormatException("SLI:HZRNSLI_DESCRIPCION:El campo es nulo");
+            throw new DataFormatException("SLI:HZRNSLI_DESCRIPCION:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -46,7 +46,7 @@ public class SLI {
             this.HZRNSLI_DEDUCCION = HZRNSLI_DEDUCCION;
             data = null;            
         }else{
-            throw new DataFormatException("SLI:HZRNSLI_DEDUCCION:El campo es nulo");
+            throw new DataFormatException("SLI:HZRNSLI_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient

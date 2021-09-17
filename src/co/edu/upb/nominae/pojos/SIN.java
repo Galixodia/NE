@@ -32,7 +32,7 @@ public class SIN {
             this.HZRNSIN_PORCENTAJE = HZRNSIN_PORCENTAJE;
             data = null;            
         }else{
-            throw new DataFormatException("SIN:HZRNSIN_PORCENTAJE:El campo es nulo");
+            throw new DataFormatException("SIN:HZRNSIN_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient
@@ -47,7 +47,7 @@ public class SIN {
             this.HZRNSIN_DEDUCCION = HZRNSIN_DEDUCCION;
             data = null;            
         }else{
-            throw new DataFormatException("SIN:HZRNSIN_DEDUCCION:El campo es nulo");
+            throw new DataFormatException("SIN:HZRNSIN_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient

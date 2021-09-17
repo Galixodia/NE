@@ -34,7 +34,7 @@ public class EPR {
             this.HZRNEPR_CANTIDAD = HZRNEPR_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EPR:HZRNEPR_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("EPR:HZRNEPR_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -50,7 +50,7 @@ public class EPR {
             this.HZRNEPR_PAGO = HZRNEPR_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("EPR:HZRNEPR_PAGO:El campo es nulo");
+            throw new DataFormatException("EPR:HZRNEPR_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient

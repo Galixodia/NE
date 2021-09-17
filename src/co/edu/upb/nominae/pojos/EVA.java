@@ -41,7 +41,7 @@ public class EVA {
             this.HZRNEVA_CANTIDAD = HZRNEVA_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EVA:HZRNEVA_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("EVA:HZRNEVA_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -56,7 +56,7 @@ public class EVA {
             this.HZRNEVA_PAGO = HZRNEVA_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("EVA:HZRNEVA_PAGO:El campo es nulo");
+            throw new DataFormatException("EVA:HZRNEVA_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient

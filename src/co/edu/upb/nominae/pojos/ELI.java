@@ -55,7 +55,7 @@ public class ELI {
             this.HZRNELI_CANTIDAD = HZRNELI_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("ELI:HZRNELI_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("ELI:HZRNELI_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -70,7 +70,7 @@ public class ELI {
             this.HZRNELI_PAGO = HZRNELI_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("ELI:HZRNELI_PAGO:El campo es nulo");
+            throw new DataFormatException("ELI:HZRNELI_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient

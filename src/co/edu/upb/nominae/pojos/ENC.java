@@ -239,7 +239,7 @@ public class ENC {
             this.HZRNENC_CONSECUTIVO = HZRNENC_CONSECUTIVO;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_CONSECUTIVO:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_CONSECUTIVO:El campo es nulo o excede la longitud definida por la DIAN");
         }             
           
     }
@@ -286,7 +286,7 @@ public class ENC {
             this.HZRNENC_DEPART_ESTADO = HZRNENC_DEPART_ESTADO;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_DEPART_ESTADO:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_DEPART_ESTADO:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient
@@ -301,7 +301,7 @@ public class ENC {
             this.HZRNENC_MUNICIPIO_CIUDAD = HZRNENC_MUNICIPIO_CIUDAD;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_MUNICIPIO_CIUDAD:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_MUNICIPIO_CIUDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }        
      }
     @XmlTransient
@@ -346,7 +346,7 @@ public class ENC {
             this.HZRNENC_AMBIENTE = HZRNENC_AMBIENTE;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_AMBIENTE:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_AMBIENTE:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -361,7 +361,7 @@ public class ENC {
             this.HZRNENC_TIPO_XML = HZRNENC_TIPO_XML;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_TIPO_XML:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_TIPO_XML:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -399,7 +399,7 @@ public class ENC {
             this.HZRNENC_HORA_GENERA = HZRNENC_HORA_GENERA;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_HORA_GENERA:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_HORA_GENERA:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -414,7 +414,7 @@ public class ENC {
             this.HZRNENC_PERIODO_NOM = HZRNENC_PERIODO_NOM;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_PERIODO_NOM:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_PERIODO_NOM:El campo es nulo o excede la longitud definida por la DIAN");
         }            
     }
     @XmlTransient
@@ -429,7 +429,7 @@ public class ENC {
             this.HZRNENC_TIPO_MONEDA = HZRNENC_TIPO_MONEDA;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_TIPO_MONEDA:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_TIPO_MONEDA:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -452,7 +452,7 @@ public class ENC {
             this.HZRNENC_NUM_PRED = HZRNENC_NUM_PRED;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:HZRNENC_NUM_PRED:El campo es nulo");
+            throw new DataFormatException("ENC:HZRNENC_NUM_PRED:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient

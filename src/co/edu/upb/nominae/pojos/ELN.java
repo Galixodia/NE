@@ -52,7 +52,7 @@ public class ELN {
             this.HZRNELN_CANTIDAD = HZRNELN_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("ELN:HZRNELN_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("ELN:HZRNELN_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }            
     }
     @XmlTransient

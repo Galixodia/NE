@@ -53,7 +53,7 @@ public class TOT {
             this.HZRNTOT_DEVENGADOS_TOTAL = HZRNTOT_DEVENGADOS_TOTAL;
             data = null;            
         }else{
-            throw new DataFormatException("TOT:HZRNTOT_DEVENGADOS_TOTAL:El campo es nulo");
+            throw new DataFormatException("TOT:HZRNTOT_DEVENGADOS_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -68,7 +68,7 @@ public class TOT {
             this.HZRNTOT_DEDUCCIONES_TOTAL = HZRNTOT_DEDUCCIONES_TOTAL;
             data = null;            
         }else{
-            throw new DataFormatException("TOT:HZRNTOT_DEDUCCIONES_TOTAL:El campo es nulo");
+            throw new DataFormatException("TOT:HZRNTOT_DEDUCCIONES_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         }             
     }
     @XmlTransient
@@ -83,7 +83,7 @@ public class TOT {
             this.HZRNTOT_COMPROBANTE_TOTAL = HZRNTOT_COMPROBANTE_TOTAL;
             data = null;            
         }else{
-            throw new DataFormatException("TOT:HZRNTOT_COMPROBANTE_TOTAL:El campo es nulo");
+            throw new DataFormatException("TOT:HZRNTOT_COMPROBANTE_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
 

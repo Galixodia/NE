@@ -57,7 +57,7 @@ public class EIN {
             this.HZRNEIN_CANTIDAD = HZRNEIN_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EIN:HZRNEIN_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("EIN:HZRNEIN_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -72,7 +72,7 @@ public class EIN {
             this.HZRNEIN_TIPO = HZRNEIN_TIPO;
             data = null;            
         }else{
-            throw new DataFormatException("EIN:HZRNEIN_TIPO:El campo es nulo");
+            throw new DataFormatException("EIN:HZRNEIN_TIPO:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -87,7 +87,7 @@ public class EIN {
            this.HZRNEIN_PAGO = HZRNEIN_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("EIN:HZRNEIN_PAGO:El campo es nulo");
+            throw new DataFormatException("EIN:HZRNEIN_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }            
     }
     @XmlTransient

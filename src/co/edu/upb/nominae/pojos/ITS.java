@@ -60,7 +60,7 @@ public class ITS {
             this.HZRNITS_PORCENTAJE = HZRNITS_PORCENTAJE;
             data = null;            
         }else{
-            throw new DataFormatException("ITS:HZRNITS_PORCENTAJE:El campo es nulo");
+            throw new DataFormatException("ITS:HZRNITS_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }             
     }
     @XmlTransient
@@ -75,7 +75,7 @@ public class ITS {
             this.HZRNITS_DEDUCCION = HZRNITS_DEDUCCION;
             data = null;            
         }else{
-            throw new DataFormatException("ITS:HZRNITS_DEDUCCION:El campo es nulo");
+            throw new DataFormatException("ITS:HZRNITS_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient

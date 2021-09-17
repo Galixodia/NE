@@ -30,7 +30,7 @@ public class NOV {
             this.HZRNNOV_CUNE_INTERNO = HZRNNOV_CUNE_INTERNO;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:" + HZRNNOV_CUNE_INTERNO + ":HZRNNOV_CUNE_INTERNO:El campo es nulo");
+            throw new DataFormatException("ENC:" + HZRNNOV_CUNE_INTERNO + ":HZRNNOV_CUNE_INTERNO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient

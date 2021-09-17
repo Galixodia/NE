@@ -34,7 +34,7 @@ public class ECE {
         this.HZRNECE_PAGO = HZRNECE_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("ECE:HZRNENC_NUM_PRED:El campo es nulo");
+            throw new DataFormatException("ECE:HZRNENC_NUM_PRED:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -49,7 +49,7 @@ public class ECE {
         this.HZRNECE_PORCENTAJE = HZRNECE_PORCENTAJE;
             data = null;            
         }else{
-            throw new DataFormatException("ECE:HZRNECE_PORCENTAJE:El campo es nulo");
+            throw new DataFormatException("ECE:HZRNECE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -64,7 +64,7 @@ public class ECE {
         this.HZRNECE_PAGO_INTERESES = HZRNECE_PAGO_INTERESES;
             data = null;            
         }else{
-            throw new DataFormatException("ECE:HZRNECE_PAGO_INTERESES:El campo es nulo");
+            throw new DataFormatException("ECE:HZRNECE_PAGO_INTERESES:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient

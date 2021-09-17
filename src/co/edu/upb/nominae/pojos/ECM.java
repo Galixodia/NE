@@ -31,7 +31,7 @@ public class ECM {
             this.HZRNECM_COMPENS_ORDINARIA = HZRNECM_COMPENS_ORDINARIA;
             data = null;            
         }else{
-            throw new DataFormatException("ECM:HZRNECM_COMPENS_ORDINARIA:El campo es nulo");
+            throw new DataFormatException("ECM:HZRNECM_COMPENS_ORDINARIA:El campo es nulo o excede la longitud definida por la DIAN");
         }             
     }
     @XmlTransient
@@ -46,7 +46,7 @@ public class ECM {
             this.HZRNECM_COMPENS_EXTRAORDINARIA = HZRNECM_COMPENS_EXTRAORDINARIA;
             data = null;            
         }else{
-            throw new DataFormatException("ECM:HZRNECM_COMPENS_EXTRAORDINARIA:El campo es nulo");
+            throw new DataFormatException("ECM:HZRNECM_COMPENS_EXTRAORDINARIA:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient

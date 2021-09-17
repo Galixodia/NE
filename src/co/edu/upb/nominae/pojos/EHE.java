@@ -53,7 +53,7 @@ public class EHE {
             this.HZRNEHE_HORAS_EXTRA = HZRNEHE_HORAS_EXTRA;
             data = null;            
         }else{
-            throw new DataFormatException("EHE:HZRNEHE_HORAS_EXTRA:El campo es nulo");
+            throw new DataFormatException("EHE:HZRNEHE_HORAS_EXTRA:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -84,7 +84,7 @@ public class EHE {
             this.HZRNEHE_CANTIDAD = HZRNEHE_CANTIDAD;
             data = null;            
         }else{
-            throw new DataFormatException("EHE:HZRNEHE_CANTIDAD:El campo es nulo");
+            throw new DataFormatException("EHE:HZRNEHE_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -99,7 +99,7 @@ public class EHE {
             this.HZRNEHE_PORCENTAJE = HZRNEHE_PORCENTAJE;
             data = null;            
         }else{
-            throw new DataFormatException("EHE:HZRNEHE_PORCENTAJE:El campo es nulo");
+            throw new DataFormatException("EHE:HZRNEHE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -114,7 +114,7 @@ public class EHE {
             this.HZRNEHE_PAGO = HZRNEHE_PAGO;
             data = null;            
         }else{
-            throw new DataFormatException("EHE:HZRNEHE_PAGO:El campo es nulo");
+            throw new DataFormatException("EHE:HZRNEHE_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
         
     }

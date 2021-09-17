@@ -92,7 +92,7 @@ public class REC {
             this.HZRNREC_TIPO_TRABAJADOR = HZRNREC_TIPO_TRABAJADOR;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_TIPO_TRABAJADOR:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_TIPO_TRABAJADOR:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -107,7 +107,7 @@ public class REC {
             this.HZRNREC_SUB_TIPO_TRABAJ = HZRNREC_SUB_TIPO_TRABAJ;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_SUB_TIPO_TRABAJ:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_SUB_TIPO_TRABAJ:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -122,7 +122,7 @@ public class REC {
             this.HZRNREC_ALTO_RIESGO_PENS = HZRNREC_ALTO_RIESGO_PENS;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_ALTO_RIESGO_PENS:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_ALTO_RIESGO_PENS:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient
@@ -137,7 +137,7 @@ public class REC {
             this.HZRNREC_TIPO_DOC = HZRNREC_TIPO_DOC;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_TIPO_DOC:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_TIPO_DOC:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -152,7 +152,7 @@ public class REC {
             this.HZRNREC_NUM_DOC = HZRNREC_NUM_DOC;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_NUM_DOC:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_NUM_DOC:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient
@@ -167,7 +167,7 @@ public class REC {
             this.HZRNREC_PRIMER_APELLIDO = HZRNREC_PRIMER_APELLIDO;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_PRIMER_APELLIDO:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_PRIMER_APELLIDO:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
     @XmlTransient
@@ -182,7 +182,7 @@ public class REC {
             this.HZRNREC_SEGUNDO_APELLIDO = HZRNREC_SEGUNDO_APELLIDO;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_SEGUNDO_APELLIDO:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_SEGUNDO_APELLIDO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -197,7 +197,7 @@ public class REC {
             this.HZRNREC_PRIMER_NOMBRE = HZRNREC_PRIMER_NOMBRE;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_PRIMER_NOMBRE:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_PRIMER_NOMBRE:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -220,7 +220,7 @@ public class REC {
             this.HZRNREC_LUGAR_TRAB_PAIS = HZRNREC_LUGAR_TRAB_PAIS;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_PAIS:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_PAIS:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -235,7 +235,7 @@ public class REC {
             this.HZRNREC_LUGAR_TRAB_DEPT_EST = HZRNREC_LUGAR_TRAB_DEPT_EST;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_DEPT_EST:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_DEPT_EST:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -250,7 +250,7 @@ public class REC {
             this.HZRNREC_LUGAR_TRAB_MUN_CIUD = HZRNREC_LUGAR_TRAB_MUN_CIUD;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_MUN_CIUD:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_MUN_CIUD:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -265,7 +265,7 @@ public class REC {
             this.HZRNREC_LUGAR_TRAB_DIREC = HZRNREC_LUGAR_TRAB_DIREC;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_DIREC:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_LUGAR_TRAB_DIREC:El campo es nulo o excede la longitud definida por la DIAN");
         }            
     }
     @XmlTransient
@@ -280,7 +280,7 @@ public class REC {
             this.HZRNREC_SALARIO_INTEGRAL = HZRNREC_SALARIO_INTEGRAL;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_SALARIO_INTEGRAL:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_SALARIO_INTEGRAL:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -295,7 +295,7 @@ public class REC {
             this.HZRNREC_TIPO_CONTRATO = HZRNREC_TIPO_CONTRATO;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_TIPO_CONTRATO:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_TIPO_CONTRATO:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
@@ -310,7 +310,7 @@ public class REC {
             this.HZRNREC_SUELDO = HZRNREC_SUELDO;
             data = null;            
         }else{
-            throw new DataFormatException("REC:HZRNREC_SUELDO:El campo es nulo");
+            throw new DataFormatException("REC:HZRNREC_SUELDO:El campo es nulo o excede la longitud definida por la DIAN");
         }          
     }
     @XmlTransient
