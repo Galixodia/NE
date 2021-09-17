@@ -35,7 +35,6 @@ import co.edu.upb.nominae.pojos.ETR;
 import co.edu.upb.nominae.pojos.FEP;
 import co.edu.upb.nominae.pojos.SOT;
 import co.edu.upb.mapp.Xml;
-import static co.edu.upb.nominae.Constantes.TIPO_DOCUMENTO;
 import static co.edu.upb.nominae.Queries.*;
 import co.edu.upb.pojos.utilities.UtilitiesFile;
 import java.sql.Connection;
@@ -45,8 +44,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import co.edu.upb.utilities.*;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
 
@@ -171,36 +168,36 @@ public class Comprobante extends Thread {
         
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------    
 
-        if(TIPO_DOCUMENTO.equalsIgnoreCase("Comprobante")){
+        if(tipo_doc.equalsIgnoreCase("NominaIndividual")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (2/) Starting extracting voucher.");          
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (2/) Starting extracting voucher.");          
             
             getComprobanteExtracted();
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Extracting voucher successfully.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (/) Extracting voucher successfully.");
             
             
-        }else if(TIPO_DOCUMENTO.equalsIgnoreCase("Ajuste")){
+        }else if(tipo_doc.equalsIgnoreCase("NominaIndividualDeAjusteReemplazar")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Starting extracting Adjustment.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteReemplazar)> [" + cune_interno + "] (/) Starting extracting Adjustment.");
 
             getAdjustmentExtracted();
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Extracting Adjustment successfully.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteReemplazar)> [" + cune_interno + "] (/) Extracting Adjustment successfully.");
             
-        }else{
+        }else if(tipo_doc.equalsIgnoreCase("NominaIndividualDeAjusteEliminar")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (1/) Starting extracting Delete.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteEliminar)> [" + cune_interno + "] (1/) Starting extracting Delete.");
 
             getDeletementExtracted();
 
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Extracting Delete successfully.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteEliminar)> [" + cune_interno + "] (/) Extracting Delete successfully.");
             
         }
         
