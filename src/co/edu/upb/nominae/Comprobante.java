@@ -52,8 +52,6 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
 
@@ -97,19 +95,19 @@ public class Comprobante extends Thread {
             getNullAll();
         } catch (SQLException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (DB) Exception in connection with the database: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (DB) Exception in connection with the database: " + ex.getMessage());
         } catch (JAXBException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (XML) Exception in XML file construction: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (XML) Exception in XML file construction: " + ex.getMessage());
         } catch (DataFormatException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FIELD) Exception in field setting: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FIELD) Exception in field setting: " + ex.getMessage());
         } catch (UnsupportedEncodingException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (UTF8) Exception in encoding: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (UTF8) Exception in encoding: " + ex.getMessage());
         } catch (IOException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FILE) Exception in file creation: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FILE) Exception in file creation: " + ex.getMessage());
         } finally{getNullAll();}
     }
     
@@ -125,12 +123,12 @@ public class Comprobante extends Thread {
         utilities_file = new Utilities().getUtilities("UtlNominaE.json");   
         
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + cune_interno + "] (1/2) Starting conection to data base.");
+        log.logInFile(utilities_file.getLog_file_name(),null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> (DB) Starting conection to data base.");
         
         conn = DriverManager.getConnection(utilities_file.getUrl(), utilities_file.getUsername(), utilities_file.getPassword());
         
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + cune_interno + "] (2/2) conection to data base successfully.");
+        log.logInFile(utilities_file.getLog_file_name(),null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> (DB) conection to data base successfully.");
         
         AMBIENTE = utilities_file.getEnvironment();
         
@@ -150,9 +148,8 @@ public class Comprobante extends Thread {
     
     public String getComprobanteExist() throws SQLException {
                 
-        stmt = "alter session set nls_date_format = 'DD/MM/YYYY HH:MI:SS AM'";
-        pstmt = conn.prepareStatement(stmt);
-        pstmt.execute();
+        calendario =Calendar.getInstance();
+        log.logInFile(utilities_file.getLog_file_name(),null, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExist> (DOC) Getting document for xml.");
 
         stmt = "SELECT HZRNNOM_PREFIJO, HZRNNOM_NUM_DOC, HZRNNOM_CUNE_INTERNO,HZRNNOM_TIPO_DOC FROM UPB_NOMINAE.HZRNNOM WHERE HZRNNOM_ESTADO IS NULL OR HZRNNOM_ESTADO IN ('RETRAN')";
       
@@ -170,63 +167,68 @@ public class Comprobante extends Thread {
                 cune_interno = null;
             }
         }
-        System.out.println("cune_prefijo: " + prefijo);
-        System.out.println("cune_num_doc: " + num_doc);
-        System.out.println("cune_interno: " + cune_interno);
-        System.out.println("tipo_doc: " + tipo_doc);
+        
+        
+        if(cune_interno != null){
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExist> (DOC) Document obtained [" + cune_interno + "]");
+        }else{
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExist> (NO DOC) Document does not exist or not reachable");
+        }
+
+//        System.out.println("cune_prefijo: " + prefijo);
+//        System.out.println("cune_num_doc: " + num_doc);
+//        System.out.println("cune_interno: " + cune_interno);
+//        System.out.println("tipo_doc: " + tipo_doc);
         return cune_interno;
     }
 
     public void getFileExtracted() throws SQLException, JAXBException, DataFormatException {
      
         file_contruction_live = 1;
-
-        calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (1/) Starting getFileExtracted process.");
         
-
-        stmt = "alter session set nls_date_format = 'DD/MM/YYYY HH:MI:SS AM'";
-        pstmt = conn.prepareStatement(stmt);
-        pstmt.execute();
+        calendario =Calendar.getInstance();
+        log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] Starting getFileExtracted process.");
         
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------    
 
         if(tipo_doc.equalsIgnoreCase("NominaIndividual")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (2/) Starting extracting voucher.");          
-            
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (NominaIndividual) Starting extracting process.");          
+            System.out.println("____________________________1________________________");
             getComprobanteExtracted();
-            
+            System.out.println("____________________________2________________________");
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (/) Extracting voucher successfully.");
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (NominaIndividual) Extracting process successfully.");
             
             
         }else if(tipo_doc.equalsIgnoreCase("NominaIndividualDeAjusteReemplazar")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteReemplazar)> [" + cune_interno + "] (/) Starting extracting Adjustment.");
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteReemplazar)> [" + cune_interno + "] (AjusteReemplazar) Starting extracting process.");
 
             getAdjustmentExtracted();
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteReemplazar)> [" + cune_interno + "] (/) Extracting Adjustment successfully.");
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteReemplazar)> [" + cune_interno + "] (AjusteReemplazar) Extracting process successfully.");
             
         }else if(tipo_doc.equalsIgnoreCase("NominaIndividualDeAjusteEliminar")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteEliminar)> [" + cune_interno + "] (1/) Starting extracting Delete.");
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteEliminar)> [" + cune_interno + "] (AjusteEliminar) Starting extracting process.");
 
             getDeletementExtracted();
 
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteEliminar)> [" + cune_interno + "] (/) Extracting Delete successfully.");
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividualDeAjusteEliminar)> [" + cune_interno + "] (AjusteEliminar) Extracting process successfully.");
             
         }
         
         
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) getFileExtracted process successfully.");
+        log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] getFileExtracted process successfully.");
         
         
         //----------------------------------------------------------------------------------------------------------------------------------------
@@ -236,7 +238,6 @@ public class Comprobante extends Thread {
     private void getComprobanteExtracted() throws SQLException, DataFormatException, JAXBException  {
         //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------   
         if (!(conn == null)) {
-            
             
             //NOMINA
             {
@@ -492,7 +493,7 @@ public class Comprobante extends Thread {
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ITE No existen registros");
                     }
-                    
+
                     //ETR
                     {
                         stmt = HZRNETR_QUERY;
@@ -1153,12 +1154,14 @@ public class Comprobante extends Thread {
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:TOT No existen registros");
                     }
-                }  
+                }
+                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
             }
  
         
         }else{
             //con es nulo
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");    
         }
                  
       
@@ -1330,7 +1333,7 @@ public class Comprobante extends Thread {
             conn.close();
         } catch (SQLException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getNullAll> [" + cune_interno + "] Bad connection close.");
+            log.logInFile(utilities_file.getLog_file_name() + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getNullAll> [" + cune_interno + "] Bad connection close.");
         
         }
     }

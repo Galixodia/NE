@@ -28,25 +28,28 @@ public class Transmision {
 
         //THE MF MAGIC
         try {
-
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(),null, "(" + calendario.getTime() + "): <Transmision:main>  (DB) Exception in connection with the database: ");
             while(true){    
                 C = new Comprobante();
                 
-                if(!C.isAlive()){//C.getContructionLive() == 0
+                if(C.getContructionLive() == 0){//C.getContructionLive() == 0
                     if(C.getComprobanteExist() != null){
                         C.start();
                     }else{
                         Thread.sleep(Integer.parseInt(loop));
                     }
+                }else{
+                    Thread.sleep(Integer.parseInt(loop));
                 }
                 C = null;
             }
         }catch (SQLException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Transmision:main>  (DB) Exception in connection with the database: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name(),null, "(" + calendario.getTime() + "): <Transmision:main>  (DB) Exception in connection with the database: " + ex.getMessage());
         }catch (InterruptedException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Transmision:main>  (THREAD) Exception in thead: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name(),null, "(" + calendario.getTime() + "): <Transmision:main>  (THREAD) Exception in thead: " + ex.getMessage());
         }finally{
             loop = null;
             C = null;
