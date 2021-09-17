@@ -45,6 +45,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import co.edu.upb.utilities.*;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
 
@@ -57,7 +59,7 @@ import javax.xml.bind.JAXBException;
  * 
  * Clase que permite la extraccion, creacion y transmicion de el comprobante de nomina a carvajal.
  */
-public class Comprobante {
+public class Comprobante extends Thread {
     
     private int file_contruction_live;
     private int comprobante_exist;
@@ -70,12 +72,28 @@ public class Comprobante {
     private final UtilitiesFile utilities_file;
     private int i;
     public static String AMBIENTE;
+    public String cune_interno;
+
+    @Override
+    public void run() {
+        try {
+            getFileExtracted();
+        } catch (SQLException ex) {
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (1/2) Exception in connection with the database: " + ex.getMessage());
+        } catch (JAXBException ex) {
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (1/2) Exception in XML file construction: " + ex.getMessage());
+        } catch (DataFormatException ex) {
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (1/2) Exception in field setting: " + ex.getMessage());
+        }
+    }
     
     public Comprobante() throws SQLException {
         
         log = new Log();
         file_contruction_live = 0;
-        comprobante_exist = 0;
         
         stmt = null;
         pstmt = null;
@@ -84,12 +102,12 @@ public class Comprobante {
         utilities_file = new Utilities().getUtilities("UtlNominaE.json");   
         
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> (1/2) Starting conection to data base.");
+        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + cune_interno + "] (1/2) Starting conection to data base.");
         
         conn = DriverManager.getConnection(utilities_file.getUrl(), utilities_file.getUsername(), utilities_file.getPassword());
         
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> (2/2) conection to data base successfully.");
+        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + cune_interno + "] (2/2) conection to data base successfully.");
         
         AMBIENTE = utilities_file.getEnvironment();
         
@@ -106,25 +124,25 @@ public class Comprobante {
         return file_contruction_live;
     }
     
-    public int getComprobanteExist() throws SQLException {
+    public String getComprobanteExist() throws SQLException {
                 
         stmt = "alter session set nls_date_format = 'DD/MM/YYYY HH:MI:SS AM'";
         pstmt = conn.prepareStatement(stmt);
         pstmt.execute();
 
-        stmt = "SELECT 1 RESPUESTA FROM DUAL"; //WHERE ROWNUM <=1 AND tzrfefs_estado IS NULL AND TZRFEFS_TIPO_DOCUMENTO = 'FE' ";
+        stmt = "SELECT 11 RESPUESTA FROM DUAL"; //WHERE ROWNUM <=1 AND tzrfefs_estado IS NULL AND TZRFEFS_TIPO_DOCUMENTO = 'FE' ";
         pstmt = conn.prepareStatement(stmt);
         rs = pstmt.executeQuery();
 
         while (rs.next()) {
 
             if (!rs.getNString("RESPUESTA").isEmpty()) {
-                comprobante_exist = rs.getInt("RESPUESTA");
+                cune_interno = rs.getString("RESPUESTA");
             } else {
                 comprobante_exist = 0;
             }
         }
-        return comprobante_exist;
+        return cune_interno;
     }
 
     public void getFileExtracted() throws SQLException, JAXBException, DataFormatException {
@@ -132,7 +150,7 @@ public class Comprobante {
         file_contruction_live = 1;
 
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (1/) Starting getFileExtracted process.");
+        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (1/) Starting getFileExtracted process.");
         
 
         stmt = "alter session set nls_date_format = 'DD/MM/YYYY HH:MI:SS AM'";
@@ -144,39 +162,39 @@ public class Comprobante {
         if(TIPO_DOCUMENTO.equalsIgnoreCase("Comprobante")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (2/) Starting extracting voucher.");          
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (2/) Starting extracting voucher.");          
             
             getComprobanteExtracted();
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (/) Extracting voucher successfully.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Extracting voucher successfully.");
             
             
         }else if(TIPO_DOCUMENTO.equalsIgnoreCase("Ajuste")){
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (/) Starting extracting Adjustment.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Starting extracting Adjustment.");
 
             getAdjustmentExtracted();
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (/) Extracting Adjustment successfully.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Extracting Adjustment successfully.");
             
         }else{
             
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (1/) Starting extracting Delete.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (1/) Starting extracting Delete.");
 
             getDeletementExtracted();
 
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (/) Extracting Delete successfully.");
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) Extracting Delete successfully.");
             
         }
         
         
         calendario =Calendar.getInstance();
-        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> (/) getFileExtracted process successfully.");
+        log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] (/) getFileExtracted process successfully.");
         
         
         //----------------------------------------------------------------------------------------------------------------------------------------
