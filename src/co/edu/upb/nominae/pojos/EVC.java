@@ -1,6 +1,8 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -53,16 +55,31 @@ public class EVC {
         return HZRNEVC_CANTIDAD;
     }
 
-    public void setHZRNEVC_CANTIDAD(Long HZRNEVC_CANTIDAD) {
-        this.HZRNEVC_CANTIDAD = HZRNEVC_CANTIDAD;
+    public void setHZRNEVC_CANTIDAD(Long HZRNEVC_CANTIDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEVC_CANTIDAD,10)){
+            this.HZRNEVC_CANTIDAD = HZRNEVC_CANTIDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("EVC:HZRNEVC_CANTIDAD:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNEVC_PAGO() {
         return HZRNEVC_PAGO;
     }
 
-    public void setHZRNEVC_PAGO(Double HZRNEVC_PAGO) {
-        this.HZRNEVC_PAGO = HZRNEVC_PAGO;
+    public void setHZRNEVC_PAGO(Double HZRNEVC_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEVC_PAGO,15,6)){
+            this.HZRNEVC_PAGO = HZRNEVC_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EVC:HZRNEVC_PAGO:El campo es nulo");
+        }         
+        
     }
     @XmlTransient
     public Integer getHZRNEVC_ITE_ID() {

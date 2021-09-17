@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -44,24 +46,45 @@ public class TOT {
         return HZRNTOT_DEVENGADOS_TOTAL;
     }
 
-    public void setHZRNTOT_DEVENGADOS_TOTAL(Double HZRNTOT_DEVENGADOS_TOTAL) {
-        this.HZRNTOT_DEVENGADOS_TOTAL = HZRNTOT_DEVENGADOS_TOTAL;
+    public void setHZRNTOT_DEVENGADOS_TOTAL(Double HZRNTOT_DEVENGADOS_TOTAL) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNTOT_DEVENGADOS_TOTAL,15,6)){
+            this.HZRNTOT_DEVENGADOS_TOTAL = HZRNTOT_DEVENGADOS_TOTAL;
+            data = null;            
+        }else{
+            throw new DataFormatException("TOT:HZRNTOT_DEVENGADOS_TOTAL:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNTOT_DEDUCCIONES_TOTAL() {
         return HZRNTOT_DEDUCCIONES_TOTAL;
     }
 
-    public void setHZRNTOT_DEDUCCIONES_TOTAL(Double HZRNTOT_DEDUCCIONES_TOTAL) {
-        this.HZRNTOT_DEDUCCIONES_TOTAL = HZRNTOT_DEDUCCIONES_TOTAL;
+    public void setHZRNTOT_DEDUCCIONES_TOTAL(Double HZRNTOT_DEDUCCIONES_TOTAL) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNTOT_DEDUCCIONES_TOTAL,15,6)){
+            this.HZRNTOT_DEDUCCIONES_TOTAL = HZRNTOT_DEDUCCIONES_TOTAL;
+            data = null;            
+        }else{
+            throw new DataFormatException("TOT:HZRNTOT_DEDUCCIONES_TOTAL:El campo es nulo");
+        }             
     }
     @XmlTransient
     public Double getHZRNTOT_COMPROBANTE_TOTAL() {
         return HZRNTOT_COMPROBANTE_TOTAL;
     }
 
-    public void setHZRNTOT_COMPROBANTE_TOTAL(Double HZRNTOT_COMPROBANTE_TOTAL) {
-        this.HZRNTOT_COMPROBANTE_TOTAL = HZRNTOT_COMPROBANTE_TOTAL;
+    public void setHZRNTOT_COMPROBANTE_TOTAL(Double HZRNTOT_COMPROBANTE_TOTAL) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNTOT_COMPROBANTE_TOTAL,15,6)){
+            this.HZRNTOT_COMPROBANTE_TOTAL = HZRNTOT_COMPROBANTE_TOTAL;
+            data = null;            
+        }else{
+            throw new DataFormatException("TOT:HZRNTOT_COMPROBANTE_TOTAL:El campo es nulo");
+        }         
     }
 
     @Override

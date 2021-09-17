@@ -1,5 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -65,8 +67,15 @@ public class EMI {
         return HZRNEMI_RAZON_SOCIAL;
     }
 
-    public void setHZRNEMI_RAZON_SOCIAL(String HZRNEMI_RAZON_SOCIAL) {
-        this.HZRNEMI_RAZON_SOCIAL = HZRNEMI_RAZON_SOCIAL;
+    public void setHZRNEMI_RAZON_SOCIAL(String HZRNEMI_RAZON_SOCIAL) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_RAZON_SOCIAL,450)){
+            this.HZRNEMI_RAZON_SOCIAL = HZRNEMI_RAZON_SOCIAL;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_RAZON_SOCIAL:El campo es nulo");
+        }         
     }
     @XmlTransient
     public String getHZRNEMI_PRIMER_APELLIDO() {
@@ -105,48 +114,90 @@ public class EMI {
         return HZRNEMI_NIT;
     }
 
-    public void setHZRNEMI_NIT(Long HZRNEMI_NIT) {
-        this.HZRNEMI_NIT = HZRNEMI_NIT;
+    public void setHZRNEMI_NIT(Long HZRNEMI_NIT) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_NIT,13)){
+            this.HZRNEMI_NIT = HZRNEMI_NIT;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_NIT:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Integer getHZRNEMI_DV() {
         return HZRNEMI_DV;
     }
 
-    public void setHZRNEMI_DV(Integer HZRNEMI_DV) {
-        this.HZRNEMI_DV = HZRNEMI_DV;
+    public void setHZRNEMI_DV(Integer HZRNEMI_DV) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_DV,2)){
+            this.HZRNEMI_DV = HZRNEMI_DV;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_DV:El campo es nulo");
+        }          
     }
     @XmlTransient
     public String getHZRNEMI_PAIS() {
         return HZRNEMI_PAIS;
     }
 
-    public void setHZRNEMI_PAIS(String HZRNEMI_PAIS) {
-        this.HZRNEMI_PAIS = HZRNEMI_PAIS;
+    public void setHZRNEMI_PAIS(String HZRNEMI_PAIS) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_PAIS,2)){
+            this.HZRNEMI_PAIS = HZRNEMI_PAIS;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_PAIS:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Integer getHZRNEMI_DEPART_ESTADO() {
         return HZRNEMI_DEPART_ESTADO;
     }
 
-    public void setHZRNEMI_DEPART_ESTADO(Integer HZRNEMI_DEPART_ESTADO) {
-        this.HZRNEMI_DEPART_ESTADO = HZRNEMI_DEPART_ESTADO;
+    public void setHZRNEMI_DEPART_ESTADO(Integer HZRNEMI_DEPART_ESTADO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_DEPART_ESTADO,2)){
+            this.HZRNEMI_DEPART_ESTADO = HZRNEMI_DEPART_ESTADO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_DEPART_ESTADO:El campo es nulo");
+        }           
     }
     @XmlTransient
     public Integer getHZRNEMI_MUNICIPIO_CIUDAD() {
         return HZRNEMI_MUNICIPIO_CIUDAD;
     }
 
-    public void setHZRNEMI_MUNICIPIO_CIUDAD(Integer HZRNEMI_MUNICIPIO_CIUDAD) {
-        this.HZRNEMI_MUNICIPIO_CIUDAD = HZRNEMI_MUNICIPIO_CIUDAD;
+    public void setHZRNEMI_MUNICIPIO_CIUDAD(Integer HZRNEMI_MUNICIPIO_CIUDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_MUNICIPIO_CIUDAD,5)){
+            this.HZRNEMI_MUNICIPIO_CIUDAD = HZRNEMI_MUNICIPIO_CIUDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_MUNICIPIO_CIUDAD:El campo es nulo");
+        }         
     }
     @XmlTransient
     public String getHZRNEMI_DIRECCION() {
         return HZRNEMI_DIRECCION;
     }
 
-    public void setHZRNEMI_DIRECCION(String HZRNEMI_DIRECCION) {
-        this.HZRNEMI_DIRECCION = HZRNEMI_DIRECCION;
+    public void setHZRNEMI_DIRECCION(String HZRNEMI_DIRECCION) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEMI_DIRECCION,300)){
+            this.HZRNEMI_DIRECCION = HZRNEMI_DIRECCION;
+            data = null;            
+        }else{
+            throw new DataFormatException("EMI:HZRNEMI_DIRECCION:El campo es nulo");
+        }           
     }
 
     @Override

@@ -1,6 +1,8 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -46,16 +48,30 @@ public class ELI {
         return HZRNELI_CANTIDAD;
     }
 
-    public void setHZRNELI_CANTIDAD(Long HZRNELI_CANTIDAD) {
-        this.HZRNELI_CANTIDAD = HZRNELI_CANTIDAD;
+    public void setHZRNELI_CANTIDAD(Long HZRNELI_CANTIDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNELI_CANTIDAD,10)){
+            this.HZRNELI_CANTIDAD = HZRNELI_CANTIDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("ELI:HZRNELI_CANTIDAD:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNELI_PAGO() {
         return HZRNELI_PAGO;
     }
 
-    public void setHZRNELI_PAGO(Double HZRNELI_PAGO) {
-        this.HZRNELI_PAGO = HZRNELI_PAGO;
+    public void setHZRNELI_PAGO(Double HZRNELI_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNELI_PAGO,15,6)){
+            this.HZRNELI_PAGO = HZRNELI_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("ELI:HZRNELI_PAGO:El campo es nulo");
+        }         
     }
     @XmlTransient
     public Integer getHZRNELI_ITE_ID() {

@@ -1,6 +1,8 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,8 +39,15 @@ public class FEP {
         return HZRNFEP_FECHA_PAGO;
     }
 
-    public void setHZRNFEP_FECHA_PAGO(Date HZRNFEP_FECHA_PAGO) {
-        this.HZRNFEP_FECHA_PAGO = HZRNFEP_FECHA_PAGO;
+    public void setHZRNFEP_FECHA_PAGO(Date HZRNFEP_FECHA_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checkNull(HZRNFEP_FECHA_PAGO)){
+            this.HZRNFEP_FECHA_PAGO = HZRNFEP_FECHA_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("FEP:HZRNFEP_FECHA_PAGO:El campo es nulo");
+        }              
     }
 
     @Override

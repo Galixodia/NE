@@ -1,6 +1,8 @@
 package co.edu.upb.nominae.pojos;
 
+import co.edu.upb.utilities.Data;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -48,24 +50,45 @@ public class EIN {
         return HZRNEIN_CANTIDAD;
     }
 
-    public void setHZRNEIN_CANTIDAD(Long HZRNEIN_CANTIDAD) {
-        this.HZRNEIN_CANTIDAD = HZRNEIN_CANTIDAD;
+    public void setHZRNEIN_CANTIDAD(Long HZRNEIN_CANTIDAD) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEIN_CANTIDAD,10)){
+            this.HZRNEIN_CANTIDAD = HZRNEIN_CANTIDAD;
+            data = null;            
+        }else{
+            throw new DataFormatException("EIN:HZRNEIN_CANTIDAD:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Integer getHZRNEIN_TIPO() {
         return HZRNEIN_TIPO;
     }
 
-    public void setHZRNEIN_TIPO(Integer HZRNEIN_TIPO) {
-        this.HZRNEIN_TIPO = HZRNEIN_TIPO;
+    public void setHZRNEIN_TIPO(Integer HZRNEIN_TIPO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEIN_TIPO,1)){
+            this.HZRNEIN_TIPO = HZRNEIN_TIPO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EIN:HZRNEIN_TIPO:El campo es nulo");
+        }          
     }
     @XmlTransient
     public Double getHZRNEIN_PAGO() {
         return HZRNEIN_PAGO;
     }
 
-    public void setHZRNEIN_PAGO(Double HZRNEIN_PAGO) {
-        this.HZRNEIN_PAGO = HZRNEIN_PAGO;
+    public void setHZRNEIN_PAGO(Double HZRNEIN_PAGO) throws DataFormatException {
+        Data data = new Data();    
+
+        if(data.checklength(HZRNEIN_PAGO,15,6)){
+           this.HZRNEIN_PAGO = HZRNEIN_PAGO;
+            data = null;            
+        }else{
+            throw new DataFormatException("EIN:HZRNEIN_PAGO:El campo es nulo");
+        }            
     }
     @XmlTransient
     public Integer getHZRNEIN_ITE_ID() {
