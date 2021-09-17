@@ -43,7 +43,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import co.edu.upb.utilities.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
 
@@ -73,21 +83,32 @@ public class Comprobante extends Thread {
     public String num_doc; 
     public String cune_interno;
     public String tipo_doc;
+    public int ano;
+    public int mes;
+    public String xml_string;
+    
     
 
     @Override
     public void run() {
         try {
             getFileExtracted();
+            getLocalFile();
         } catch (SQLException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (1/2) Exception in connection with the database: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (DB) Exception in connection with the database: " + ex.getMessage());
         } catch (JAXBException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (1/2) Exception in XML file construction: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (XML) Exception in XML file construction: " + ex.getMessage());
         } catch (DataFormatException ex) {
             calendario =Calendar.getInstance();
-            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (1/2) Exception in field setting: " + ex.getMessage());
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FIELD) Exception in field setting: " + ex.getMessage());
+        } catch (UnsupportedEncodingException ex) {
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (UTF8) Exception in encoding: " + ex.getMessage());
+        } catch (IOException ex) {
+            calendario =Calendar.getInstance();
+            log.logInFile(utilities_file.getLog_file_name(), "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FILE) Exception in file creation: " + ex.getMessage());
         }
     }
     
@@ -113,7 +134,8 @@ public class Comprobante extends Thread {
         AMBIENTE = utilities_file.getEnvironment();
         
         i = 0; // Iterador para listas
-        
+        ano = 0;
+        mes = 0;
         
     }
 
@@ -232,6 +254,9 @@ public class Comprobante extends Thread {
                         nom.setHZRNNOM_MES(rs_nom.getInt("HZRNNOM_MES"));
                         nom.setHZRNNOM_ESTADO(rs_nom.getString("HZRNNOM_ESTADO"));
                         nom.setHZRNNOM_FECHA_EXT(rs_nom.getDate("HZRNNOM_FECHA_EXT"));
+                        
+                        ano = rs_nom.getInt("HZRNNOM_ANO");
+                        mes = rs_nom.getInt("HZRNNOM_MES");
                         
                     }   
                 }else{
@@ -1110,7 +1135,15 @@ public class Comprobante extends Thread {
                             tot = null;
 
                             Xml xml = new Xml();
-                            System.out.println(xml.ObjectToXML(nom));
+                            
+                            if(nom != null){
+                                xml_string = xml.ObjectToXML(nom);
+                                System.out.println(xml_string);
+                                
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:TOT No existen registros");
+                            }
+                            
                             nom = null;
                         }
                     }else{
@@ -1258,5 +1291,20 @@ public class Comprobante extends Thread {
             //con es nulo
         }
         //----------------------------------------------------------------------------------------------------------------------------------------   
+    }
+
+    private void getLocalFile() throws FileNotFoundException, UnsupportedEncodingException, IOException {
+
+        File local_dir = new File("LocalXMLS/" + String.valueOf(ano) + "/" + String.valueOf(mes) + "/" + tipo_doc);
+        File local_file = new File(cune_interno + ".xml");
+        if (!local_dir.exists()){local_dir.mkdirs();}
+        
+        Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local_dir + "/" + local_file), "UTF8"));
+        
+        if(xml_string != null){
+            out.append(xml_string);
+        }
+        
+        out.close();
     }
 }
