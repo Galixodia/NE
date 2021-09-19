@@ -28,7 +28,7 @@ public class ITS {
     private Double HZRNITS_DEDUCCION;
     
     private Double HZRNITS_CUNE_INTERNO;
-    private Double HZRNITS_ID;
+    private Integer HZRNITS_ID;
     
     @XmlElement(name = "SPE")
     private SPE deducciones_pension;
@@ -87,13 +87,14 @@ public class ITS {
         this.HZRNITS_CUNE_INTERNO = HZRNITS_CUNE_INTERNO;
     }
     @XmlTransient
-    public Double getHZRNITS_ID() {
+    public Integer getHZRNITS_ID() {
         return HZRNITS_ID;
     }
 
-    public void setHZRNITS_ID(Double HZRNITS_ID) {
+    public void setHZRNITS_ID(Integer HZRNITS_ID) {
         this.HZRNITS_ID = HZRNITS_ID;
     }
+  
     @XmlTransient
     public SPE getDeducciones_pension() {
         return deducciones_pension;

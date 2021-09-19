@@ -1,65 +1,92 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <NOMINA>
+    <ENC>
+        <ENC_1>1</ENC_1>
+        <ENC_2>2021-01-01T00:00:00-05:00</ENC_2>
+        <ENC_3>2021-12-31T00:00:00-05:00</ENC_3>
+        <ENC_4>2021-09-01T00:00:00-05:00</ENC_4>
+        <ENC_5>2021-09-30T00:00:00-05:00</ENC_5>
+        <ENC_6>20.5</ENC_6>
+        <ENC_7>2021-09-01T00:00:00-05:00</ENC_7>
+        <ENC_8>9999</ENC_8>
+        <ENC_9>MED</ENC_9>
+        <ENC_10>1</ENC_10>
+        <ENC_11>1</ENC_11>
+        <ENC_12>17</ENC_12>
+        <ENC_13>5</ENC_13>
+        <ENC_14>4</ENC_14>
+        <ENC_15>ES</ENC_15>
+        <ENC_16>1</ENC_16>
+        <ENC_17>1</ENC_17>
+        <ENC_18>1</ENC_18>
+        <ENC_19>1</ENC_19>
+        <ENC_20>2021-09-01T00:00:00-05:00</ENC_20>
+        <ENC_21>3:15</ENC_21>
+        <ENC_22>1</ENC_22>
+        <ENC_23>1</ENC_23>
+        <ENC_24>3000.0</ENC_24>
+        <ENC_25>1</ENC_25>
+        <ENC_26>1</ENC_26>
+        <ENC_27>2021-09-01T00:00:00-05:00</ENC_27>
+    </ENC>
     <NOV>
-        <NOV_1>2</NOV_1>
-        <NOV_2>3</NOV_2>
+        <NOV_1>1</NOV_1>
+        <NOV_2>1</NOV_2>
     </NOV>
     <NOT>
-        <NOT_1>2</NOT_1>
+        <NOT_1>Prueba HZRNNOV</NOT_1>
     </NOT>
     <NOT>
-        <NOT_1>12</NOT_1>
+        <NOT_1>Prueba 2</NOT_1>
     </NOT>
     <NOT>
-        <NOT_1>22</NOT_1>
-    </NOT>
-    <NOT>
-        <NOT_1>32</NOT_1>
-    </NOT>
-    <NOT>
-        <NOT_1>42</NOT_1>
+        <NOT_1>Prueba 3</NOT_1>
     </NOT>
     <EMI>
-        <EMI_1>2</EMI_1>
-        <EMI_2>3</EMI_2>
-        <EMI_3>4</EMI_3>
-        <EMI_4>5</EMI_4>
-        <EMI_5>6</EMI_5>
-        <EMI_6>7</EMI_6>
+        <EMI_1>UPB</EMI_1>
+        <EMI_2>U</EMI_2>
+        <EMI_3>P</EMI_3>
+        <EMI_4>B</EMI_4>
+        <EMI_6>890900890</EMI_6>
         <EMI_7>8</EMI_7>
-        <EMI_8>9</EMI_8>
-        <EMI_9>10</EMI_9>
-        <EMI_10>11</EMI_10>
-        <EMI_11>12</EMI_11>
+        <EMI_8>CO</EMI_8>
+        <EMI_9>5</EMI_9>
+        <EMI_10>2</EMI_10>
+        <EMI_11>CRA 70 # 71 - 01</EMI_11>
     </EMI>
     <REC>
-        <REC_1>2</REC_1>
-        <REC_2>3</REC_2>
-        <REC_3>4</REC_3>
-        <REC_4>5</REC_4>
-        <REC_5>6</REC_5>
-        <REC_6>7</REC_6>
-        <REC_7>8</REC_7>
-        <REC_8>9</REC_8>
-        <REC_9>10</REC_9>
-        <REC_10>11</REC_10>
-        <REC_11>12</REC_11>
-        <REC_12>13</REC_12>
-        <REC_13>14</REC_13>
-        <REC_14>15</REC_14>
+        <REC_1>1</REC_1>
+        <REC_2>1</REC_2>
+        <REC_3>5</REC_3>
+        <REC_4>1</REC_4>
+        <REC_5>1245789</REC_5>
+        <REC_6>Perez</REC_6>
+        <REC_7>Perez</REC_7>
+        <REC_8>Juan</REC_8>
+        <REC_10>5</REC_10>
+        <REC_11>7</REC_11>
+        <REC_12>4</REC_12>
+        <REC_13>2</REC_13>
+        <REC_14>124</REC_14>
         <REC_15>1</REC_15>
-        <REC_16>17.0</REC_16>
-        <REC_17>18</REC_17>
+        <REC_16>9876543.0</REC_16>
+        <REC_17>1</REC_17>
     </REC>
     <PAG>
-        <PAG_1>2</PAG_1>
-        <PAG_2>3</PAG_2>
-        <PAG_3>4</PAG_3>
-        <PAG_4>5</PAG_4>
-        <PAG_5>6</PAG_5>
+        <PAG_1>1</PAG_1>
+        <PAG_2>EFE</PAG_2>
+        <PAG_3>BANCOLOMBIA</PAG_3>
+        <PAG_4>AHORROS</PAG_4>
+        <PAG_5>99998777455</PAG_5>
     </PAG>
     <FEP>
-        <FEP_1>2021-12-12T00:00:00-05:00</FEP_1>
+        <FEP_1>2021-09-15T00:00:00-05:00</FEP_1>
+    </FEP>
+    <FEP>
+        <FEP_1>2021-09-30T00:00:00-05:00</FEP_1>
+    </FEP>
+    <FEP>
+        <FEP_1>2021-10-15T00:00:00-05:00</FEP_1>
     </FEP>
     <ITE>
         <ITE_1>30</ITE_1>
@@ -69,131 +96,269 @@
             <ETR_2>100000.0</ETR_2>
             <ETR_3>40000.0</ETR_3>
         </ETR>
+        <ETR>
+            <ETR_1>35.5</ETR_1>
+            <ETR_2>120000.0</ETR_2>
+            <ETR_3>0.0</ETR_3>
+        </ETR>
+        <ETR>
+            <ETR_1>7.5</ETR_1>
+            <ETR_2>8.5</ETR_2>
+            <ETR_3>10.5</ETR_3>
+        </ETR>
         <EHE>
-            <EHE_1>1</EHE_1>
-            <EHE_2>2</EHE_2>
-            <EHE_3>3</EHE_3>
+            <EHE_1>10</EHE_1>
+            <EHE_2>22:00</EHE_2>
+            <EHE_3>4:00</EHE_3>
+            <EHE_4>5.5</EHE_4>
+            <EHE_5>3.5</EHE_5>
+            <EHE_6>300000.0</EHE_6>
+        </EHE>
+        <EHE>
+            <EHE_1>5</EHE_1>
+            <EHE_2>1:00</EHE_2>
+            <EHE_3>5:00</EHE_3>
             <EHE_4>4.0</EHE_4>
-            <EHE_5>5.0</EHE_5>
-            <EHE_6>6.0</EHE_6>
+            <EHE_5>1.5</EHE_5>
+            <EHE_6>250000.0</EHE_6>
+        </EHE>
+        <EHE>
+            <EHE_1>2</EHE_1>
+            <EHE_2>22:00</EHE_2>
+            <EHE_3>24:00</EHE_3>
+            <EHE_4>2.0</EHE_4>
+            <EHE_5>1.0</EHE_5>
+            <EHE_6>89000.0</EHE_6>
         </EHE>
         <EVC>
-            <EVC_1>2021-12-12T00:00:00-05:00</EVC_1>
+            <EVC_1>2021-09-01T00:00:00-05:00</EVC_1>
+            <EVC_2>2021-11-15T00:00:00-05:00</EVC_2>
+            <EVC_3>6</EVC_3>
+            <EVC_4>350405.0</EVC_4>
+        </EVC>
+        <EVC>
+            <EVC_1>2021-08-08T00:00:00-05:00</EVC_1>
+            <EVC_2>2021-10-31T00:00:00-05:00</EVC_2>
+            <EVC_3>5</EVC_3>
+            <EVC_4>400000.0</EVC_4>
+        </EVC>
+        <EVC>
+            <EVC_1>2021-11-11T00:00:00-05:00</EVC_1>
             <EVC_2>2021-12-12T00:00:00-05:00</EVC_2>
-            <EVC_3>3</EVC_3>
-            <EVC_4>4.0</EVC_4>
+            <EVC_3>10</EVC_3>
+            <EVC_4>900000.0</EVC_4>
         </EVC>
         <EVA>
-            <EVA_1>1</EVA_1>
-            <EVA_2>2.0</EVA_2>
+            <EVA_1>10</EVA_1>
+            <EVA_2>150000.0</EVA_2>
+        </EVA>
+        <EVA>
+            <EVA_1>50</EVA_1>
+            <EVA_2>854000.0</EVA_2>
+        </EVA>
+        <EVA>
+            <EVA_1>20</EVA_1>
+            <EVA_2>798500.2</EVA_2>
         </EVA>
         <EPR>
-            <EPR_1>1</EPR_1>
-            <EPR_2>2.0</EPR_2>
-            <EPR_3>3.0</EPR_3>
+            <EPR_1>50</EPR_1>
+            <EPR_2>540000.0</EPR_2>
+            <EPR_3>20000.0</EPR_3>
         </EPR>
         <ECE>
-            <ECE_1>1.0</ECE_1>
-            <ECE_2>2.0</ECE_2>
-            <ECE_3>3.0</ECE_3>
+            <ECE_1>85000.0</ECE_1>
+            <ECE_2>3.1</ECE_2>
+            <ECE_3>15000.0</ECE_3>
         </ECE>
         <EIN>
-            <EIN_1>2021-12-12T00:00:00-05:00</EIN_1>
-            <EIN_2>2021-12-12T00:00:00-05:00</EIN_2>
-            <EIN_3>3</EIN_3>
-            <EIN_4>4</EIN_4>
-            <EIN_5>5.0</EIN_5>
+            <EIN_1>2021-09-01T00:00:00-05:00</EIN_1>
+            <EIN_2>2021-09-30T00:00:00-05:00</EIN_2>
+            <EIN_3>5</EIN_3>
+            <EIN_4>1</EIN_4>
+            <EIN_5>350000.0</EIN_5>
+        </EIN>
+        <EIN>
+            <EIN_1>2021-10-01T00:00:00-05:00</EIN_1>
+            <EIN_2>2021-10-31T00:00:00-05:00</EIN_2>
+            <EIN_3>10</EIN_3>
+            <EIN_4>1</EIN_4>
+            <EIN_5>540000.0</EIN_5>
+        </EIN>
+        <EIN>
+            <EIN_1>2021-11-01T00:00:00-05:00</EIN_1>
+            <EIN_2>2021-11-30T00:00:00-05:00</EIN_2>
+            <EIN_3>20</EIN_3>
+            <EIN_4>1</EIN_4>
+            <EIN_5>870000.0</EIN_5>
         </EIN>
         <ELI>
-            <ELI_1>2021-12-12T00:00:00-05:00</ELI_1>
-            <ELI_2>2021-12-12T00:00:00-05:00</ELI_2>
-            <ELI_3>1</ELI_3>
-            <ELI_4>2.0</ELI_4>
+            <ELI_1>2021-05-05T00:00:00-05:00</ELI_1>
+            <ELI_2>2021-05-31T00:00:00-05:00</ELI_2>
+            <ELI_3>3</ELI_3>
+            <ELI_4>6540000.0</ELI_4>
+        </ELI>
+        <ELI>
+            <ELI_1>2021-06-06T00:00:00-05:00</ELI_1>
+            <ELI_2>2021-07-31T00:00:00-05:00</ELI_2>
+            <ELI_3>15</ELI_3>
+            <ELI_4>750000.0</ELI_4>
+        </ELI>
+        <ELI>
+            <ELI_1>2021-07-07T00:00:00-05:00</ELI_1>
+            <ELI_2>2021-08-31T00:00:00-05:00</ELI_2>
+            <ELI_3>20</ELI_3>
+            <ELI_4>350000.0</ELI_4>
         </ELI>
         <ELR>
-            <ELR_1>2021-12-12T00:00:00-05:00</ELR_1>
-            <ELR_2>2021-12-12T00:00:00-05:00</ELR_2>
-            <ELR_3>3</ELR_3>
-            <ELR_4>4.0</ELR_4>
+            <ELR_1>2021-09-25T00:00:00-05:00</ELR_1>
+            <ELR_2>2021-10-31T00:00:00-05:00</ELR_2>
+            <ELR_3>8</ELR_3>
+            <ELR_4>548000.0</ELR_4>
+        </ELR>
+        <ELR>
+            <ELR_1>2021-01-01T00:00:00-05:00</ELR_1>
+            <ELR_2>2021-10-15T00:00:00-05:00</ELR_2>
+            <ELR_3>25</ELR_3>
+            <ELR_4>1500000.0</ELR_4>
+        </ELR>
+        <ELR>
+            <ELR_1>2021-09-01T00:00:00-05:00</ELR_1>
+            <ELR_2>2021-09-30T00:00:00-05:00</ELR_2>
+            <ELR_3>15</ELR_3>
+            <ELR_4>356000.0</ELR_4>
         </ELR>
         <ELN>
-            <ELN_1>2021-12-12T00:00:00-05:00</ELN_1>
-            <ELN_2>2021-12-12T00:00:00-05:00</ELN_2>
-            <ELN_3>3</ELN_3>
+            <ELN_1>2021-09-23T00:00:00-05:00</ELN_1>
+            <ELN_2>2021-10-18T00:00:00-05:00</ELN_2>
+            <ELN_3>5</ELN_3>
+        </ELN>
+        <ELN>
+            <ELN_1>2021-10-17T00:00:00-05:00</ELN_1>
+            <ELN_2>2021-11-23T00:00:00-05:00</ELN_2>
+            <ELN_3>9</ELN_3>
+        </ELN>
+        <ELN>
+            <ELN_1>2021-11-20T00:00:00-05:00</ELN_1>
+            <ELN_2>2021-12-15T00:00:00-05:00</ELN_2>
+            <ELN_3>7</ELN_3>
         </ELN>
         <EBN>
-            <EBN_1>1.0</EBN_1>
-            <EBN_2>2.0</EBN_2>
+            <EBN_1>354000.98</EBN_1>
+            <EBN_2>150000.78</EBN_2>
+        </EBN>
+        <EBN>
+            <EBN_1>2500000.0</EBN_1>
+            <EBN_2>100000.0</EBN_2>
         </EBN>
         <EAX>
-            <EAX_1>1.0</EAX_1>
-            <EAX_2>2.0</EAX_2>
+            <EAX_1>750000.98</EAX_1>
+            <EAX_2>215000.15</EAX_2>
+        </EAX>
+        <EAX>
+            <EAX_1>1500000.0</EAX_1>
+            <EAX_2>254000.0</EAX_2>
         </EAX>
         <EOT>
-            <EOT_1>1</EOT_1>
-            <EOT_2>2.0</EOT_2>
-            <EOT_3>3.0</EOT_3>
+            <EOT_1>PRUEBA HZRNEOT 1</EOT_1>
+            <EOT_2>15.5</EOT_2>
+            <EOT_3>1.1</EOT_3>
+        </EOT>
+        <EOT>
+            <EOT_1>PRUEBA HZRNEOT 2</EOT_1>
+            <EOT_2>7.9</EOT_2>
+            <EOT_3>2.5</EOT_3>
         </EOT>
         <ECM>
-            <ECM_1>1.0</ECM_1>
-            <ECM_2>2.0</ECM_2>
+            <ECM_1>15.2</ECM_1>
+            <ECM_2>1.5</ECM_2>
+        </ECM>
+        <ECM>
+            <ECM_1>2154.25</ECM_1>
+            <ECM_2>8.9</ECM_2>
         </ECM>
         <ECO>
-            <ECO_1>1.0</ECO_1>
-            <ECO_2>2.0</ECO_2>
-            <ECO_3>3.0</ECO_3>
+            <ECO_1>16.9</ECO_1>
+            <ECO_2>2.3</ECO_2>
+            <ECO_3>1.1</ECO_3>
+        </ECO>
+        <ECO>
+            <ECO_1>2540000.98</ECO_1>
+            <ECO_2>125000.98</ECO_2>
+            <ECO_3>23.9</ECO_3>
         </ECO>
         <EVO>
-            <EVO_1>1.0</EVO_1>
-            <EVO_2>2.0</EVO_2>
-            <EVO_3>3.0</EVO_3>
-            <EVO_4>4.0</EVO_4>
-            <EVO_5>5.0</EVO_5>
-            <EVO_6>6.0</EVO_6>
+            <EVO_1>1500000.98</EVO_1>
+            <EVO_2>1541000.98</EVO_2>
+            <EVO_3>1054122.98</EVO_3>
+            <EVO_4>102544.98</EVO_4>
+            <EVO_5>125441.98</EVO_5>
+            <EVO_6>120000.98</EVO_6>
         </EVO>
     </ITE>
     <ITS>
-        <ITS_1>2.0</ITS_1>
-        <ITS_2>3.0</ITS_2>
+        <ITS_1>3.1</ITS_1>
+        <ITS_2>15.1</ITS_2>
         <SPE>
-            <SPE_1>1.0</SPE_1>
-            <SPE_2>2.0</SPE_2>
+            <SPE_1>3.1</SPE_1>
+            <SPE_2>15.1</SPE_2>
         </SPE>
         <SSP>
-            <SSP_1>1.0</SSP_1>
-            <SSP_2>2.0</SSP_2>
-            <SSP_3>3.0</SSP_3>
-            <SSP_4>4.0</SSP_4>
+            <SSP_1>3.1</SSP_1>
+            <SSP_2>15.1</SSP_2>
+            <SSP_3>3.1</SSP_3>
+            <SSP_4>15.1</SSP_4>
         </SSP>
         <SIN>
-            <SIN_1>1.0</SIN_1>
-            <SIN_2>2.0</SIN_2>
+            <SIN_1>3.1</SIN_1>
+            <SIN_2>15.1</SIN_2>
+        </SIN>
+        <SIN>
+            <SIN_1>2.1</SIN_1>
+            <SIN_2>14.1</SIN_2>
+        </SIN>
+        <SIN>
+            <SIN_1>1.1</SIN_1>
+            <SIN_2>13.1</SIN_2>
         </SIN>
         <V>
-            <SLI_1>1</SLI_1>
-            <SLI_2>2.0</SLI_2>
+            <SLI_1>DESC 1</SLI_1>
+            <SLI_2>15.1</SLI_2>
+        </V>
+        <V>
+            <SLI_1>DESC 2</SLI_1>
+            <SLI_2>10.3</SLI_2>
         </V>
         <SOT>
-            <SOT_1>1.0</SOT_1>
-            <SOT_2>2.0</SOT_2>
-            <SOT_3>3.0</SOT_3>
+            <SOT_1>15.1</SOT_1>
+            <SOT_2>15.5</SOT_2>
+            <SOT_3>1.5</SOT_3>
+        </SOT>
+        <SOT>
+            <SOT_1>13.2</SOT_1>
+            <SOT_2>10.2</SOT_2>
+            <SOT_3>9.8</SOT_3>
+        </SOT>
+        <SOT>
+            <SOT_1>9.8</SOT_1>
+            <SOT_2>6.8</SOT_2>
+            <SOT_3>0.25</SOT_3>
         </SOT>
         <SVA>
-            <SVA_1>1.0</SVA_1>
-            <SVA_2>2.0</SVA_2>
-            <SVA_3>3.0</SVA_3>
-            <SVA_4>4.0</SVA_4>
-            <SVA_5>5.0</SVA_5>
-            <SVA_6>6.0</SVA_6>
-            <SVA_7>7.0</SVA_7>
-            <SVA_8>8.0</SVA_8>
-            <SVA_9>9.0</SVA_9>
+            <SVA_1>15.1</SVA_1>
+            <SVA_2>15.1</SVA_2>
+            <SVA_3>15.1</SVA_3>
+            <SVA_4>15.1</SVA_4>
+            <SVA_5>15.1</SVA_5>
+            <SVA_6>15.1</SVA_6>
+            <SVA_7>15.1</SVA_7>
+            <SVA_8>15.1</SVA_8>
+            <SVA_9>15.1</SVA_9>
         </SVA>
     </ITS>
     <TOT>
-        <TOT_1>2.0</TOT_1>
-        <TOT_2>3.0</TOT_2>
-        <TOT_3>4.0</TOT_3>
-        <TOT_4>5.0</TOT_4>
+        <TOT_1>15.1</TOT_1>
+        <TOT_2>15.1</TOT_2>
+        <TOT_3>15.5</TOT_3>
+        <TOT_4>84.0</TOT_4>
     </TOT>
 </NOMINA>

@@ -269,9 +269,10 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNENC_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                    
                     rs = pstmt.executeQuery();
 
-                    if(rs != null){                        
+                    if(rs != null){            
                         while (rs.next()) {
                             ENC enc = new ENC();
                             enc.setHZRNENC_CUNE_INTERNO(rs.getString("HZRNENC_CUNE_INTERNO"));
@@ -315,6 +316,7 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNNOV_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                       
                     rs = pstmt.executeQuery();
 
                     if(rs != null){
@@ -336,6 +338,7 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNNOT_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                      
                     rs = pstmt.executeQuery();
                     
                     i= 0;
@@ -362,6 +365,7 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNEMI_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                      
                     rs = pstmt.executeQuery();
 
                     if(rs != null){
@@ -393,12 +397,13 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNREC_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                          
                     rs = pstmt.executeQuery();
                     
                     if(rs != null){
                         while (rs.next()) {
                             REC rec = new REC();
-                            
+
                             rec.setHZRNREC_CUNE_INTERNO(rs.getString("HZRNREC_CUNE_INTERNO"));
                             rec.setHZRNREC_TIPO_TRABAJADOR(rs.getInt("HZRNREC_TIPO_TRABAJADOR"));
                             rec.setHZRNREC_SUB_TIPO_TRABAJ(rs.getInt("HZRNREC_SUB_TIPO_TRABAJ"));
@@ -427,10 +432,11 @@ public class Comprobante extends Thread {
                     }
                 }
                 
-                //c
+                //PAG
                 {
                     stmt = HZRNPAG_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                      
                     rs = pstmt.executeQuery();
 
                     if(rs != null){
@@ -455,6 +461,7 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNFEP_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                      
                     rs = pstmt.executeQuery();
 
                     i = 0;
@@ -522,6 +529,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEHE_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                        
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -549,6 +557,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEVC_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -574,6 +583,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEVA_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -597,6 +607,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEPR_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
                         rs = pstmt.executeQuery();
 
                         if(rs != null){  
@@ -619,6 +630,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNECE_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
                         rs = pstmt.executeQuery();
                         
                         if(rs != null){
@@ -641,6 +653,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEIN_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -667,6 +680,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNELI_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -693,6 +707,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNELR_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                           
                         rs = pstmt.executeQuery();
                         
                         i = 0;
@@ -718,6 +733,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNELN_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                                  
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -742,6 +758,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEBN_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                                  
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -765,6 +782,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEAX_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -788,6 +806,7 @@ public class Comprobante extends Thread {
 //                {
 //                    stmt = HZRNEHL_QUERY;
 //                    pstmt = conn.prepareStatement(stmt);
+//                    pstmt.setInt(1, ite.getHZRNITE_ID());                                
 //                    rs = pstmt.executeQuery();
 //        
 //                    i = 0;
@@ -812,6 +831,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEOT_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                            
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -836,6 +856,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNECM_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -859,6 +880,7 @@ public class Comprobante extends Thread {
 //                    {
 //                        stmt = HZRNEBO_QUERY;
 //                        pstmt = conn.prepareStatement(stmt);
+//                        pstmt.setInt(1, ite.getHZRNITE_ID());                     
 //                        rs = pstmt.executeQuery();
 //
 //                        i = 0;
@@ -884,6 +906,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNECO_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -908,6 +931,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNEVO_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, ite.getHZRNITE_ID());                            
                         rs = pstmt.executeQuery();
                         
                         if(rs != null){
@@ -937,13 +961,16 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNITS_QUERY;
                     pstmt = conn.prepareStatement(stmt);
-                    ResultSet rs_ite = pstmt.executeQuery();
+                    pstmt.setString(1, cune_interno);                    
+                    ResultSet rs_its = pstmt.executeQuery();
+                    
 
                     ITS its = new ITS();
                     if(rs != null){
-                        while (rs_ite.next()) {
-                            its.setHZRNITS_PORCENTAJE(rs_ite.getDouble("HZRNITS_PORCENTAJE"));
-                            its.setHZRNITS_DEDUCCION(rs_ite.getDouble("HZRNITS_DEDUCCION"));
+                        while (rs_its.next()) {
+                            its.setHZRNITS_PORCENTAJE(rs_its.getDouble("HZRNITS_PORCENTAJE"));
+                            its.setHZRNITS_DEDUCCION(rs_its.getDouble("HZRNITS_DEDUCCION"));
+                            its.setHZRNITS_ID(rs_its.getInt("HZRNITS_ID"));
 
                             nom.setDeducciones_salud(its);
                         }
@@ -955,6 +982,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNSPE_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1,its.getHZRNITS_ID());
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -971,11 +999,12 @@ public class Comprobante extends Thread {
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
                         }
                     }
-                    
+
                     //SSP
                     {
                         stmt = HZRNSSP_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, its.getHZRNITS_ID());                        
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -994,11 +1023,12 @@ public class Comprobante extends Thread {
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
                         }
                     }  
-                    
+
                     //SIN
                     {
                         stmt = HZRNSIN_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, its.getHZRNITS_ID());                          
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -1022,6 +1052,7 @@ public class Comprobante extends Thread {
 //                {
 //                    stmt = HZRNSAN_QUERY;
 //                    pstmt = conn.prepareStatement(stmt);
+//                    pstmt.setInt(1, its.getHZRNITS_ID());                      
 //                    rs = pstmt.executeQuery();
 //        
 //                    i= 0;
@@ -1045,6 +1076,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNSLI_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, its.getHZRNITS_ID());                           
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -1068,6 +1100,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNSOT_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, its.getHZRNITS_ID());                           
                         rs = pstmt.executeQuery();
 
                         i = 0;
@@ -1092,6 +1125,7 @@ public class Comprobante extends Thread {
                     {
                         stmt = HZRNSVA_QUERY;
                         pstmt = conn.prepareStatement(stmt);
+                        pstmt.setInt(1, its.getHZRNITS_ID());                                 
                         rs = pstmt.executeQuery();
 
                         if(rs != null){
@@ -1124,6 +1158,7 @@ public class Comprobante extends Thread {
                 {
                     stmt = HZRNTOT_QUERY;
                     pstmt = conn.prepareStatement(stmt);
+                    pstmt.setString(1, cune_interno);                           
                     rs = pstmt.executeQuery();
 
                     if(rs != null){
