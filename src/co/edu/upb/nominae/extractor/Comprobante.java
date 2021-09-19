@@ -89,7 +89,7 @@ public class Comprobante{
         conn = DriverManager.getConnection(this.db_url, this.db_user, this.db_pwd);
         
         calendario =Calendar.getInstance();
-        log.logInFile(log_file_name,null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + this.cune_interno + "] (DB) conection to data base successfully.");
+        log.logInFile(log_file_name,null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + this.cune_interno + "] (DB) Conection to data base successfully.");
     }
 
     public void run() throws SQLException {
@@ -100,7 +100,6 @@ public class Comprobante{
             this.comp_alive = 1;
             getFileExtracted();
             getLocalFile();
-            updateStatus("EXTRACTED");
             getNullAll();
             
         } catch (SQLException ex) {
@@ -251,6 +250,7 @@ public class Comprobante{
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ENC No existen registros");
                     }
+                    
                 }
                 
                 //NOV
@@ -1097,7 +1097,6 @@ public class Comprobante{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:TOT No existen registros");
                     }
                 }
-                System.out.println("FIN");
             }
  
         
@@ -1258,6 +1257,7 @@ public class Comprobante{
             out.append(xml_string);
             out.close();
             
+            updateStatus("EXTRACTED");
             calendario =Calendar.getInstance();
             log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getLocalFile> [" + cune_interno + "] (FILE) Completes the xml file generation process successfully");
         }else{

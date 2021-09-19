@@ -3,6 +3,5 @@
 *.xml
 /dist/
 /LocalXMLS/
-/LocalXMLS
 /dist/
 /nbproject/private/
