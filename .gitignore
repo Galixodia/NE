@@ -1,10 +1,8 @@
 /build/
 *.log
 *.xml
-<<<<<<< HEAD
 /dist/
 /LocalXMLS/
-=======
 /LocalXMLS
 /dist/
->>>>>>> a11bf9d450fad62d250cec933c0710a374bc490b
+/nbproject/private/
