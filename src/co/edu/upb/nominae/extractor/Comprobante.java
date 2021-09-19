@@ -302,6 +302,8 @@ public class Comprobante{
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:NOT No existen registros");
                     }
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [NOT].");
                 }
                 
                 //EMI
@@ -334,6 +336,8 @@ public class Comprobante{
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:REC No existen registros");
                     }
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [EMI].");
                 }
                 
                 //REC
@@ -373,6 +377,8 @@ public class Comprobante{
                         
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:REC No existen registros");
                     }
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [REC].");
                 }
                 
                 //PAG
@@ -398,6 +404,8 @@ public class Comprobante{
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:FEP No existen registros");
                     }
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [PAG].");
                 }
                 
                 //FEP
@@ -420,7 +428,9 @@ public class Comprobante{
                     } 
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:FEP No existen registros");
-                    }                  
+                    }     
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [FEP].");
                 }
                 
                 //ITE
@@ -496,6 +506,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EHE No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EHE].");                        
                     }
                     
                     //EVC
@@ -522,6 +534,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EVC No existen registros");
                         }    
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVC].");                        
                     }
                     
                     //EVA
@@ -546,6 +560,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EVA No existen registros");
                         }    
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVA].");                        
                     }
                     
                     //EPR
@@ -569,6 +585,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EPR No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EPR].");                        
                     }
                     
                     //ECE
@@ -592,6 +610,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ECE No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECE].");                        
                     }
                     
                     //EIN
@@ -619,6 +639,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EIN No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EIN].");                        
                     }
                     
                     //ELI
@@ -646,6 +668,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ELI No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELI].");                        
                     }
                     
                     //ELR
@@ -672,6 +696,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ELR No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELR].");                        
                     }
                     
                     //ELN
@@ -697,6 +723,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ELN No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELN].");                        
                     }
                     
                     //EBN
@@ -721,6 +749,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EBN No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBN].");                        
                     }
                     
                     //EAX
@@ -745,6 +775,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EAX No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EAX].");                        
                     }
                     
                      //EHL //NO SE EMITIRA POR PARTE DE LA UPB
@@ -795,6 +827,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EOT No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EOT].");                        
                     }  
                     
                     //ECM
@@ -819,6 +853,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ECM No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECM].");                        
                     }   
                     
                     //EBO //NO SE EMITIRA POR PARTE DE LA UPB
@@ -845,6 +881,8 @@ public class Comprobante{
 //                        }else{
 //                              throw new DataFormatException("Comprobante:getComprobanteExtracted:EBO No existen registros");
 //                        }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBO].");                    
 //                    }
                     
                     //ECO
@@ -870,6 +908,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ECO No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECO].");                        
                     } 
                     
                     //EVO
@@ -896,10 +936,14 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:EVO No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVO].");                        
                     }
                                 
                 nom.setBasico_trab(ite);
                 ite  = null;
+                calendario =Calendar.getInstance();
+                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITE].");
                 }
                 
                 //ITS
@@ -943,6 +987,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SPE].");                        
                     }
 
                     //SSP
@@ -967,6 +1013,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SSP].");                        
                     }  
 
                     //SIN
@@ -991,6 +1039,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SIN No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SIN].");                                                
                     } 
                     
                   //SAN
@@ -1015,6 +1065,8 @@ public class Comprobante{
 //                    }else{
 //                          throw new DataFormatException("Comprobante:getComprobanteExtracted:SAN No existen registros");
 //                    }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SAN].");                                            
 //                }  
                     
                     //SLI
@@ -1039,6 +1091,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SLI No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SLI].");                                                
                     }   
                     
                     //SOT
@@ -1064,6 +1118,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SOT No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SOT].");                                                
                     }
                     
                     //SVA
@@ -1093,10 +1149,14 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:SVA No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SVA].");                                                
                     } 
                     
                 nom.setDeducciones_salud(its);
                 its = null;
+                calendario =Calendar.getInstance();
+                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITS].");
                 }
                 
                  //TOT
@@ -1135,6 +1195,8 @@ public class Comprobante{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:TOT No existen registros");
                     }
                 }
+                calendario =Calendar.getInstance();
+                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [NOM].");
             }
  
         
