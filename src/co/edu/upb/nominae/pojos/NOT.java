@@ -1,7 +1,6 @@
 package co.edu.upb.nominae.pojos;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
@@ -16,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * Campo de libre uso para Observaciones en el documento
  */
 
-//@XmlRootElement(name = "NOT")
+
 @XmlType (propOrder={"HZRNNOT_NOTAS"})
 public class NOT {
     

@@ -1,13 +1,13 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "EPR")
+
 @XmlType (propOrder={"HZRNEPR_CANTIDAD",
     "HZRNEPR_PAGO",
     "HZRNEPR_PAGONS"})
@@ -17,9 +17,9 @@ public class EPR {
     @XmlElement(name = "EPR_1")
     private Long HZRNEPR_CANTIDAD;
     @XmlElement(name = "EPR_2")
-    private Double HZRNEPR_PAGO;
+    private BigDecimal HZRNEPR_PAGO;
     @XmlElement(name = "EPR_3")
-    private Double HZRNEPR_PAGONS;
+    private BigDecimal HZRNEPR_PAGONS;
     private Integer HZRNEPR_ITE_ID;
 
     @XmlTransient
@@ -38,11 +38,11 @@ public class EPR {
         }          
     }
     @XmlTransient
-    public Double getHZRNEPR_PAGO() {
+    public BigDecimal getHZRNEPR_PAGO() {
         return HZRNEPR_PAGO;
     }
 
-    public void setHZRNEPR_PAGO(Double HZRNEPR_PAGO) throws DataFormatException {
+    public void setHZRNEPR_PAGO(BigDecimal HZRNEPR_PAGO) throws DataFormatException {
 
         Data data = new Data();    
 
@@ -54,11 +54,11 @@ public class EPR {
         }           
     }
     @XmlTransient
-    public Double getHZRNEPR_PAGONS() {
+    public BigDecimal getHZRNEPR_PAGONS() {
         return HZRNEPR_PAGONS;
     }
 
-    public void setHZRNEPR_PAGONS(Double HZRNEPR_PAGONS) {
+    public void setHZRNEPR_PAGONS(BigDecimal HZRNEPR_PAGONS) {
         this.HZRNEPR_PAGONS = HZRNEPR_PAGONS;
     }
     @XmlTransient

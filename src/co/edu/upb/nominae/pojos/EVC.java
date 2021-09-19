@@ -1,10 +1,10 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 /**
@@ -16,12 +16,10 @@ import javax.xml.bind.annotation.XmlType;
  * Puede repetirse hasta 50 veces por cada registro de Devengado  Basico(ITE). Ver nota 4
  */
 
-//@XmlRootElement(name = "EVC")
 @XmlType (propOrder={"HZRNEVC_FECHA_INICIO",
     "HZRNEVC_FECHA_FIN",
     "HZRNEVC_CANTIDAD",
     "HZRNEVC_PAGO"})
-
 public class EVC {
     
     @XmlElement(name = "EVC_1")
@@ -31,7 +29,7 @@ public class EVC {
     @XmlElement(name = "EVC_3")
     private Long HZRNEVC_CANTIDAD;
     @XmlElement(name = "EVC_4")
-    private Double HZRNEVC_PAGO;
+    private BigDecimal HZRNEVC_PAGO;
     private Integer HZRNEVC_ITE_ID;
 
     @XmlTransient
@@ -66,11 +64,11 @@ public class EVC {
         }          
     }
     @XmlTransient
-    public Double getHZRNEVC_PAGO() {
+    public BigDecimal getHZRNEVC_PAGO() {
         return HZRNEVC_PAGO;
     }
 
-    public void setHZRNEVC_PAGO(Double HZRNEVC_PAGO) throws DataFormatException {
+    public void setHZRNEVC_PAGO(BigDecimal HZRNEVC_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEVC_PAGO,15,6)){

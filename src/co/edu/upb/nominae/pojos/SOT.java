@@ -1,47 +1,46 @@
 package co.edu.upb.nominae.pojos;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "SOT")
+
 @XmlType (propOrder={"HZRNSOT_PAGO_TERCERO",
     "HZRNSOT_ANTICIPO",
     "HZRNSOT_OTRA_DEDUCCION"})
-
 public class SOT {
     
     @XmlElement(name = "SOT_1")
-    private Double HZRNSOT_PAGO_TERCERO;
+    private BigDecimal HZRNSOT_PAGO_TERCERO;
     @XmlElement(name = "SOT_2")
-    private Double HZRNSOT_ANTICIPO;
+    private BigDecimal HZRNSOT_ANTICIPO;
     @XmlElement(name = "SOT_3")
-    private Double HZRNSOT_OTRA_DEDUCCION;   
+    private BigDecimal HZRNSOT_OTRA_DEDUCCION;   
     private Integer HZRNSOT_ITS_ID;       
 
     @XmlTransient
-    public Double getHZRNSOT_PAGO_TERCERO() {
+    public BigDecimal getHZRNSOT_PAGO_TERCERO() {
         return HZRNSOT_PAGO_TERCERO;
     }
 
-    public void setHZRNSOT_PAGO_TERCERO(Double HZRNSOT_PAGO_TERCERO) {
+    public void setHZRNSOT_PAGO_TERCERO(BigDecimal HZRNSOT_PAGO_TERCERO) {
         this.HZRNSOT_PAGO_TERCERO = HZRNSOT_PAGO_TERCERO;
     }
     @XmlTransient
-    public Double getHZRNSOT_ANTICIPO() {
+    public BigDecimal getHZRNSOT_ANTICIPO() {
         return HZRNSOT_ANTICIPO;
     }
 
-    public void setHZRNSOT_ANTICIPO(Double HZRNSOT_ANTICIPO) {
+    public void setHZRNSOT_ANTICIPO(BigDecimal HZRNSOT_ANTICIPO) {
         this.HZRNSOT_ANTICIPO = HZRNSOT_ANTICIPO;
     }
     @XmlTransient
-    public Double getHZRNSOT_OTRA_DEDUCCION() {
+    public BigDecimal getHZRNSOT_OTRA_DEDUCCION() {
         return HZRNSOT_OTRA_DEDUCCION;
     }
 
-    public void setHZRNSOT_OTRA_DEDUCCION(Double HZRNSOT_OTRA_DEDUCCION) {
+    public void setHZRNSOT_OTRA_DEDUCCION(BigDecimal HZRNSOT_OTRA_DEDUCCION) {
         this.HZRNSOT_OTRA_DEDUCCION = HZRNSOT_OTRA_DEDUCCION;
     }
     @XmlTransient

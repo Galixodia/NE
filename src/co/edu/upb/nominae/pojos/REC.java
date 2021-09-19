@@ -1,9 +1,9 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  * Utilizado para Atributos del Trabajador o Receptor del Documento. Este Segemento es dependiente Ver Nota 3
  */
 
-//@XmlRootElement(name = "REC")
+
 @XmlType (propOrder={"HZRNREC_TIPO_TRABAJADOR",
     "HZRNREC_SUB_TIPO_TRABAJ",
     "HZRNREC_ALTO_RIESGO_PENS",
@@ -68,7 +68,7 @@ public class REC {
     @XmlElement(name = "REC_15")
     private Integer HZRNREC_TIPO_CONTRATO;
     @XmlElement(name = "REC_16")
-    private Double HZRNREC_SUELDO;
+    private BigDecimal HZRNREC_SUELDO;
     @XmlElement(name = "REC_17")
     private String HZRNREC_COD_TRABAJADOR;
     
@@ -299,11 +299,11 @@ public class REC {
         }          
     }
     @XmlTransient
-    public Double getHZRNREC_SUELDO() {
+    public BigDecimal getHZRNREC_SUELDO() {
         return HZRNREC_SUELDO;
     }
 
-    public void setHZRNREC_SUELDO(Double HZRNREC_SUELDO) throws DataFormatException {
+    public void setHZRNREC_SUELDO(BigDecimal HZRNREC_SUELDO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNREC_SUELDO,15,6)){

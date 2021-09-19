@@ -1,9 +1,9 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
@@ -17,14 +17,13 @@ import javax.xml.bind.annotation.XmlType;
  * Puede repetirse hasta 100 veces por cada registro de Devengado  Basico(ITE). Ver nota 4
  */
 
-//@XmlRootElement(name = "EHE")
+
 @XmlType (propOrder={"HZRNEHE_HORAS_EXTRA",
     "HZRNEHE_HORA_INICIO",
     "HZRNEHE_HORA_FIN",
     "HZRNEHE_CANTIDAD",
     "HZRNEHE_PORCENTAJE",    
     "HZRNEHE_PAGO"})
-
 public class EHE {
     
     @XmlElement(name = "EHE_1")
@@ -34,11 +33,11 @@ public class EHE {
     @XmlElement(name = "EHE_3")
     private String HZRNEHE_HORA_FIN;
     @XmlElement(name = "EHE_4")
-    private Double HZRNEHE_CANTIDAD;
+    private BigDecimal HZRNEHE_CANTIDAD;
     @XmlElement(name = "EHE_5")
-    private Double HZRNEHE_PORCENTAJE;
+    private BigDecimal HZRNEHE_PORCENTAJE;
     @XmlElement(name = "EHE_6")
-    private Double HZRNEHE_PAGO;
+    private BigDecimal HZRNEHE_PAGO;
     private Integer HZRNEHE_ITE_ID;       
 
     @XmlTransient
@@ -73,11 +72,11 @@ public class EHE {
         this.HZRNEHE_HORA_FIN = HZRNEHE_HORA_FIN;
     }
     @XmlTransient
-    public Double getHZRNEHE_CANTIDAD() {
+    public BigDecimal getHZRNEHE_CANTIDAD() {
         return HZRNEHE_CANTIDAD;
     }
 
-    public void setHZRNEHE_CANTIDAD(Double HZRNEHE_CANTIDAD) throws DataFormatException {
+    public void setHZRNEHE_CANTIDAD(BigDecimal HZRNEHE_CANTIDAD) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEHE_CANTIDAD,10,6)){
@@ -88,11 +87,11 @@ public class EHE {
         }         
     }
     @XmlTransient
-    public Double getHZRNEHE_PORCENTAJE() {
+    public BigDecimal getHZRNEHE_PORCENTAJE() {
         return HZRNEHE_PORCENTAJE;
     }
 
-    public void setHZRNEHE_PORCENTAJE(Double HZRNEHE_PORCENTAJE) throws DataFormatException {
+    public void setHZRNEHE_PORCENTAJE(BigDecimal HZRNEHE_PORCENTAJE) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEHE_PORCENTAJE,4,2)){
@@ -103,11 +102,11 @@ public class EHE {
         }          
     }
     @XmlTransient
-    public Double getHZRNEHE_PAGO() {
+    public BigDecimal getHZRNEHE_PAGO() {
         return HZRNEHE_PAGO;
     }
 
-    public void setHZRNEHE_PAGO(Double HZRNEHE_PAGO) throws DataFormatException {
+    public void setHZRNEHE_PAGO(BigDecimal HZRNEHE_PAGO) throws DataFormatException {
         Data data = new Data();    
         
         if(data.checklength(HZRNEHE_PAGO,15,6)){

@@ -3,7 +3,6 @@ package co.edu.upb.nominae.extractor;
 import co.edu.upb.nominae.pojos.*;
 import co.edu.upb.mapp.Xml;
 import static co.edu.upb.nominae.extractor.Queries.*;
-import co.edu.upb.pojos.utilities.UtilitiesFile;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -222,7 +221,7 @@ public class Comprobante{
                             enc.setHZRNENC_FECHA_RET(rs.getDate("HZRNENC_FECHA_RET"));
                             enc.setHZRNENC_FECHA_LIQ_INI(rs.getDate("HZRNENC_FECHA_LIQ_INI"));
                             enc.setHZRNENC_FECHA_LIQ_FIN(rs.getDate("HZRNENC_FECHA_LIQ_FIN"));
-                            enc.setHZRNENC_TIEMPO_LAB(rs.getDouble("HZRNENC_TIEMPO_LAB"));
+                            enc.setHZRNENC_TIEMPO_LAB(rs.getBigDecimal("HZRNENC_TIEMPO_LAB"));
                             enc.setHZRNENC_FECHA_EMISION(rs.getDate("HZRNENC_FECHA_EMISION"));
                             enc.setHZRNENC_CODIGO_TRAB(rs.getString("HZRNENC_CODIGO_TRAB"));
                             enc.setHZRNENC_PREFIJO(rs.getString("HZRNENC_PREFIJO"));
@@ -240,7 +239,7 @@ public class Comprobante{
                             enc.setHZRNENC_HORA_GENERA(rs.getString("HZRNENC_HORA_GENERA"));
                             enc.setHZRNENC_PERIODO_NOM(rs.getInt("HZRNENC_PERIODO_NOM"));
                             enc.setHZRNENC_TIPO_MONEDA(rs.getString("HZRNENC_TIPO_MONEDA"));
-                            enc.setHZRNENC_TRM(rs.getDouble("HZRNENC_TRM"));
+                            enc.setHZRNENC_TRM(rs.getBigDecimal("HZRNENC_TRM"));
                             enc.setHZRNENC_NUM_PRED(rs.getString("HZRNENC_NUM_PRED"));
                             enc.setHZRNENC_CUNE_PRED(rs.getString("HZRNENC_CUNE_PRED"));
                             enc.setHZRNENC_FECHA_GEN_PRED(rs.getDate("HZRNENC_FECHA_GEN_PRED"));
@@ -363,7 +362,7 @@ public class Comprobante{
                             rec.setHZRNREC_LUGAR_TRAB_DIREC(rs.getString("HZRNREC_LUGAR_TRAB_DIREC"));
                             rec.setHZRNREC_SALARIO_INTEGRAL(rs.getString("HZRNREC_SALARIO_INTEGRAL"));
                             rec.setHZRNREC_TIPO_CONTRATO(rs.getInt("HZRNREC_TIPO_CONTRATO"));
-                            rec.setHZRNREC_SUELDO(rs.getDouble("HZRNREC_SUELDO"));
+                            rec.setHZRNREC_SUELDO(rs.getBigDecimal("HZRNREC_SUELDO"));
                             rec.setHZRNREC_COD_TRABAJADOR(rs.getString("HZRNREC_COD_TRABAJADOR"));
 
                             nom.setReceptor(rec);
@@ -435,7 +434,7 @@ public class Comprobante{
                         while (rs_ite.next()) {
                             ite.setHZRNITE_CUNE_INTERNO(rs_ite.getString("HZRNITE_CUNE_INTERNO"));
                             ite.setHZRNITE_DIAS_TRAB(rs_ite.getString("HZRNITE_DIAS_TRAB"));
-                            ite.setHZRNITE_SUELDO_TRAB(rs_ite.getDouble("HZRNITE_SUELDO_TRAB"));
+                            ite.setHZRNITE_SUELDO_TRAB(rs_ite.getBigDecimal("HZRNITE_SUELDO_TRAB"));
                             ite.setHZRNITE_ID(rs_ite.getInt("HZRNITE_ID"));
                             nom.setBasico_trab(ite);
                         }
@@ -454,9 +453,9 @@ public class Comprobante{
                             i = 0;
                             while (rs.next()) {
                                 ETR etr = new ETR();
-                                etr.setHZRNETR_AUX_TRANSPORTE(rs.getDouble("HZRNETR_AUX_TRANSPORTE"));
-                                etr.setHZRNETR_VIAT_MANUT_SALARIAL(rs.getDouble("HZRNETR_VIAT_MANUT_SALARIAL"));
-                                etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getDouble("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
+                                etr.setHZRNETR_AUX_TRANSPORTE(rs.getBigDecimal("HZRNETR_AUX_TRANSPORTE"));
+                                etr.setHZRNETR_VIAT_MANUT_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_SALARIAL"));
+                                etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
                                 etr.setHZRNETR_ITE_ID(rs.getInt("HZRNETR_ITE_ID"));
 
                                 ite.transporte_pagado_trab.set(i,etr);
@@ -484,9 +483,9 @@ public class Comprobante{
                                 ehe.setHZRNEHE_HORAS_EXTRA(rs.getString("HZRNEHE_HORAS_EXTRA"));                
                                 ehe.setHZRNEHE_HORA_INICIO(rs.getString("HZRNEHE_HORA_INICIO"));                
                                 ehe.setHZRNEHE_HORA_FIN(rs.getString("HZRNEHE_HORA_FIN"));                                
-                                ehe.setHZRNEHE_CANTIDAD(rs.getDouble("HZRNEHE_CANTIDAD"));
-                                ehe.setHZRNEHE_PORCENTAJE(rs.getDouble("HZRNEHE_PORCENTAJE"));
-                                ehe.setHZRNEHE_PAGO(rs.getDouble("HZRNEHE_PAGO"));
+                                ehe.setHZRNEHE_CANTIDAD(rs.getBigDecimal("HZRNEHE_CANTIDAD"));
+                                ehe.setHZRNEHE_PORCENTAJE(rs.getBigDecimal("HZRNEHE_PORCENTAJE"));
+                                ehe.setHZRNEHE_PAGO(rs.getBigDecimal("HZRNEHE_PAGO"));
                                 ehe.setHZRNEHE_ITE_ID(rs.getInt("HZRNEHE_ITE_ID"));
 
                                 ite.horas_extras_trab.set(i,ehe);
@@ -512,7 +511,7 @@ public class Comprobante{
                                 evc.setHZRNEVC_FECHA_INICIO(rs.getDate("HZRNEVC_FECHA_INICIO"));                
                                 evc.setHZRNEVC_FECHA_FIN(rs.getDate("HZRNEVC_FECHA_FIN"));                
                                 evc.setHZRNEVC_CANTIDAD(rs.getLong("HZRNEVC_CANTIDAD"));                                
-                                evc.setHZRNEVC_PAGO(rs.getDouble("HZRNEVC_PAGO"));
+                                evc.setHZRNEVC_PAGO(rs.getBigDecimal("HZRNEVC_PAGO"));
                                 evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
 
                                 ite.vacaciones_trabajador.set(i,evc);
@@ -536,7 +535,7 @@ public class Comprobante{
                             while (rs.next()) {
                                 EVA eva = new EVA();
                                 eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
-                                eva.setHZRNEVA_PAGO(rs.getDouble("HZRNEVA_PAGO"));
+                                eva.setHZRNEVA_PAGO(rs.getBigDecimal("HZRNEVA_PAGO"));
                                 eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
 
                                 ite.vacaciones_comp_trab.set(i,eva);
@@ -559,8 +558,8 @@ public class Comprobante{
                             while (rs.next()) {
                                 EPR epr = new EPR();
                                 epr.setHZRNEPR_CANTIDAD(rs.getLong("HZRNEPR_CANTIDAD"));
-                                epr.setHZRNEPR_PAGO(rs.getDouble("HZRNEPR_PAGO"));
-                                epr.setHZRNEPR_PAGONS(rs.getDouble("HZRNEPR_PAGONS"));
+                                epr.setHZRNEPR_PAGO(rs.getBigDecimal("HZRNEPR_PAGO"));
+                                epr.setHZRNEPR_PAGONS(rs.getBigDecimal("HZRNEPR_PAGONS"));
                                 epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
 
                                 ite.setPrimas_trab(epr);
@@ -581,9 +580,9 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 ECE ece = new ECE();
-                                ece.setHZRNECE_PAGO(rs.getDouble("HZRNECE_PAGO"));
-                                ece.setHZRNECE_PORCENTAJE(rs.getDouble("HZRNECE_PORCENTAJE"));
-                                ece.setHZRNECE_PAGO_INTERESES(rs.getDouble("HZRNECE_PAGO_INTERESES"));
+                                ece.setHZRNECE_PAGO(rs.getBigDecimal("HZRNECE_PAGO"));
+                                ece.setHZRNECE_PORCENTAJE(rs.getBigDecimal("HZRNECE_PORCENTAJE"));
+                                ece.setHZRNECE_PAGO_INTERESES(rs.getBigDecimal("HZRNECE_PAGO_INTERESES"));
                                 ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
 
                                 ite.setCesantias_trab(ece);
@@ -609,7 +608,7 @@ public class Comprobante{
                                 ein.setHZRNEIN_FECHA_FIN(rs.getDate("HZRNEIN_FECHA_FIN"));
                                 ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
                                 ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
-                                ein.setHZRNEIN_PAGO(rs.getDouble("HZRNEIN_PAGO"));
+                                ein.setHZRNEIN_PAGO(rs.getBigDecimal("HZRNEIN_PAGO"));
                                 ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
 
                                 ite.incapacidades_trab.set(i,ein);
@@ -635,7 +634,7 @@ public class Comprobante{
                                 eli.setHZRNELI_FECHA_INICIO(rs.getDate("HZRNELI_FECHA_INICIO"));
                                 eli.setHZRNELI_FECHA_FIN(rs.getDate("HZRNELI_FECHA_FIN"));
                                 eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
-                                eli.setHZRNELI_PAGO(rs.getDouble("HZRNELI_PAGO"));
+                                eli.setHZRNELI_PAGO(rs.getBigDecimal("HZRNELI_PAGO"));
                                 eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
 
                                 ite.licencia_mat_pat.set(i,eli);
@@ -662,7 +661,7 @@ public class Comprobante{
                                 elr.setHZRNELR_FECHA_INICIO(rs.getDate("HZRNELR_FECHA_INICIO"));
                                 elr.setHZRNELR_FECHA_FIN(rs.getDate("HZRNELR_FECHA_FIN"));
                                 elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
-                                elr.setHZRNELR_PAGO(rs.getDouble("HZRNELR_PAGO"));
+                                elr.setHZRNELR_PAGO(rs.getBigDecimal("HZRNELR_PAGO"));
                                 elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
 
                                 ite.licencia_remunerada.set(i,elr);
@@ -710,8 +709,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 EBN ebn = new EBN();
-                                ebn.setHZRNEBN_BONI_SALARIAL(rs.getDouble("HZRNEBN_BONI_SALARIAL"));
-                                ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getDouble("HZRNEBN_BONI_NO_SALARIAL"));
+                                ebn.setHZRNEBN_BONI_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_SALARIAL"));
+                                ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_NO_SALARIAL"));
                                 ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
 
                                 ite.bonificacion_para_trab.set(i,ebn);
@@ -734,8 +733,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 EAX eax = new EAX();
-                                eax.setHZRNEAX_AUX_SALARIAL(rs.getDouble("HZRNEAX_AUX_SALARIAL"));
-                                eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getDouble("HZRNEAX_AUX_NO_SALARIAL"));
+                                eax.setHZRNEAX_AUX_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_SALARIAL"));
+                                eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_NO_SALARIAL"));
                                 eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
 
                                 ite.auxilio_trab.set(i,eax);
@@ -784,8 +783,8 @@ public class Comprobante{
                             while (rs.next()) {
                                 EOT eot = new EOT();
                                 eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
-                                eot.setHZRNEOT_CONCEP_SALARIAL(rs.getDouble("HZRNEOT_CONCEP_SALARIAL"));
-                                eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getDouble("HZRNEOT_CONCEP_NO_SALARIAL"));
+                                eot.setHZRNEOT_CONCEP_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_SALARIAL"));
+                                eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_NO_SALARIAL"));
                                 eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
 
                                 ite.otros_conceptos_trab.set(i,eot);
@@ -808,8 +807,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 ECM ecm = new ECM();
-                                ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getDouble("HZRNECM_COMPENS_ORDINARIA"));
-                                ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getDouble("HZRNECM_COMPENS_EXTRAORDINARIA"));
+                                ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_ORDINARIA"));
+                                ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_EXTRAORDINARIA"));
                                 ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
 
                                 ite.compensaciones_dev_trab.set(i,ecm);
@@ -832,10 +831,10 @@ public class Comprobante{
 //                        if(rs != null){
 //                            while (rs.next()) {
 //                                EBO ebo = new EBO();               
-//                                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getDouble("HZRNEBO_PAGO_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getDouble("HZRNEBO_PAGO_NO_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getDouble("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getDouble("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
+//                                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_SALARIAL"));
+//                                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_NO_SALARIAL"));
+//                                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
+//                                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
 //                                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
 //
 //                                ite.bonos_pagados_electro.set(i,ebo);
@@ -858,9 +857,9 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 ECO eco = new ECO();
-                                eco.setHZRNECO_COMISION(rs.getDouble("HZRNECO_COMISION"));
-                                eco.setHZRNECO_PAGO_TERCERO(rs.getDouble("HZRNECO_PAGO_TERCERO"));
-                                eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getDouble("HZRNECO_ANTICIPOS_NOMINA"));
+                                eco.setHZRNECO_COMISION(rs.getBigDecimal("HZRNECO_COMISION"));
+                                eco.setHZRNECO_PAGO_TERCERO(rs.getBigDecimal("HZRNECO_PAGO_TERCERO"));
+                                eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getBigDecimal("HZRNECO_ANTICIPOS_NOMINA"));
                                 eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
 
                                 ite.pago_terceros_anticipos_nom.set(i,eco);
@@ -882,12 +881,12 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 EVO evo = new EVO();
-                                evo.setHZRNEVO_DOTACION(rs.getDouble("HZRNEVO_DOTACION"));
-                                evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getDouble("HZRNEVO_APOYO_SOSTENIMIENT"));
-                                evo.setHZRNEVO_TELETRABAJO(rs.getDouble("HZRNEVO_TELETRABAJO"));
-                                evo.setHZRNEVO_BONIF_RETIRO(rs.getDouble("HZRNEVO_BONIF_RETIRO"));
-                                evo.setHZRNEVO_INDEMNIZACION(rs.getDouble("HZRNEVO_INDEMNIZACION"));
-                                evo.setHZRNEVO_REINTEGRO(rs.getDouble("HZRNEVO_REINTEGRO"));
+                                evo.setHZRNEVO_DOTACION(rs.getBigDecimal("HZRNEVO_DOTACION"));
+                                evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getBigDecimal("HZRNEVO_APOYO_SOSTENIMIENT"));
+                                evo.setHZRNEVO_TELETRABAJO(rs.getBigDecimal("HZRNEVO_TELETRABAJO"));
+                                evo.setHZRNEVO_BONIF_RETIRO(rs.getBigDecimal("HZRNEVO_BONIF_RETIRO"));
+                                evo.setHZRNEVO_INDEMNIZACION(rs.getBigDecimal("HZRNEVO_INDEMNIZACION"));
+                                evo.setHZRNEVO_REINTEGRO(rs.getBigDecimal("HZRNEVO_REINTEGRO"));
                                 evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
 
                                 ite.setOpciones_varias_devengados(evo);
@@ -913,8 +912,8 @@ public class Comprobante{
                     ITS its = new ITS();
                     if(rs != null){
                         while (rs_its.next()) {
-                            its.setHZRNITS_PORCENTAJE(rs_its.getDouble("HZRNITS_PORCENTAJE"));
-                            its.setHZRNITS_DEDUCCION(rs_its.getDouble("HZRNITS_DEDUCCION"));
+                            its.setHZRNITS_PORCENTAJE(rs_its.getBigDecimal("HZRNITS_PORCENTAJE"));
+                            its.setHZRNITS_DEDUCCION(rs_its.getBigDecimal("HZRNITS_DEDUCCION"));
                             its.setHZRNITS_ID(rs_its.getInt("HZRNITS_ID"));
 
                             nom.setDeducciones_salud(its);
@@ -933,8 +932,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 SPE spe = new SPE();
-                                spe.setHZRNSPE_PORCENTAJE(rs.getDouble("HZRNSPE_PORCENTAJE"));
-                                spe.setHZRNSPE_DEDUCCION(rs.getDouble("HZRNSPE_DEDUCCION"));
+                                spe.setHZRNSPE_PORCENTAJE(rs.getBigDecimal("HZRNSPE_PORCENTAJE"));
+                                spe.setHZRNSPE_DEDUCCION(rs.getBigDecimal("HZRNSPE_DEDUCCION"));
                                 spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
 
                                 its.setDeducciones_pension(spe);
@@ -955,10 +954,10 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 SSP ssp = new SSP();
-                                ssp.setHZRNSSP_PORCENTAJE(rs.getDouble("HZRNSSP_PORCENTAJE"));
-                                ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getDouble("HZRNSSP_DEDUC_SEG_PENSIONAL"));
-                                ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getDouble("HZRNSSP_PORCENTAJE_SUBSISTEN"));
-                                ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getDouble("HZRNSSP_DEDUC_SUBSISTEN"));
+                                ssp.setHZRNSSP_PORCENTAJE(rs.getBigDecimal("HZRNSSP_PORCENTAJE"));
+                                ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getBigDecimal("HZRNSSP_DEDUC_SEG_PENSIONAL"));
+                                ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getBigDecimal("HZRNSSP_PORCENTAJE_SUBSISTEN"));
+                                ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getBigDecimal("HZRNSSP_DEDUC_SUBSISTEN"));
                                 ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
 
                                 its.setDeduc_fondo_seguridad_p(ssp);
@@ -980,8 +979,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 SIN sin = new SIN();
-                                sin.setHZRNSIN_PORCENTAJE(rs.getDouble("HZRNSIN_PORCENTAJE"));
-                                sin.setHZRNSIN_DEDUCCION(rs.getDouble("HZRNSIN_DEDUCCION"));
+                                sin.setHZRNSIN_PORCENTAJE(rs.getBigDecimal("HZRNSIN_PORCENTAJE"));
+                                sin.setHZRNSIN_DEDUCCION(rs.getBigDecimal("HZRNSIN_DEDUCCION"));
                                 sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
 
                                 its.deduc_sindicatos.set(i,sin);
@@ -1004,8 +1003,8 @@ public class Comprobante{
 //                    if(rs != null){
 //                        while (rs.next()) {
 //                            SAN san = new SAN();                
-//                            san.setHZRNSAN_SANCION_PUBLICA(rs.getDouble("HZRNSAN_SANCION_PUBLICA"));
-//                            san.setHZRNSAN_SANCION_PRIVADA(rs.getDouble("HZRNSAN_SANCION_PRIVADA"));
+//                            san.setHZRNSAN_SANCION_PUBLICA(rs.getBigDecimal("HZRNSAN_SANCION_PUBLICA"));
+//                            san.setHZRNSAN_SANCION_PRIVADA(rs.getBigDecimal("HZRNSAN_SANCION_PRIVADA"));
 //                            san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
 //
 //                            its.deduc_varias.set(i,san);
@@ -1029,7 +1028,7 @@ public class Comprobante{
                             while (rs.next()) {
                                 SLI sli = new SLI();
                                 sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
-                                sli.setHZRNSLI_DEDUCCION(rs.getDouble("HZRNSLI_DEDUCCION"));
+                                sli.setHZRNSLI_DEDUCCION(rs.getBigDecimal("HZRNSLI_DEDUCCION"));
                                 sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
 
                                 its.deduc_libranza.set(i,sli);
@@ -1052,9 +1051,9 @@ public class Comprobante{
                         if(rs != null){
                              while (rs.next()) {
                                 SOT sot = new SOT();
-                                sot.setHZRNSOT_PAGO_TERCERO(rs.getDouble("HZRNSOT_PAGO_TERCERO"));
-                                sot.setHZRNSOT_ANTICIPO(rs.getDouble("HZRNSOT_ANTICIPO"));
-                                sot.setHZRNSOT_OTRA_DEDUCCION(rs.getDouble("HZRNSOT_OTRA_DEDUCCION"));
+                                sot.setHZRNSOT_PAGO_TERCERO(rs.getBigDecimal("HZRNSOT_PAGO_TERCERO"));
+                                sot.setHZRNSOT_ANTICIPO(rs.getBigDecimal("HZRNSOT_ANTICIPO"));
+                                sot.setHZRNSOT_OTRA_DEDUCCION(rs.getBigDecimal("HZRNSOT_OTRA_DEDUCCION"));
                                 sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
 
                                 its.otras_deduc.set(i,sot);
@@ -1076,15 +1075,15 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 SVA sva = new SVA();
-                                sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getDouble("HZRNSVA_PENSION_VOLUNTARIA"));
-                                sva.setHZRNSVA_RENTENCION_FTE(rs.getDouble("HZRNSVA_RENTENCION_FTE"));
-                                sva.setHZRNSVA_AFC(rs.getDouble("HZRNSVA_AFC"));
-                                sva.setHZRNSVA_COOPERATIVA(rs.getDouble("HZRNSVA_COOPERATIVA"));
-                                sva.setHZRNSVA_EMBARGO(rs.getDouble("HZRNSVA_EMBARGO"));
-                                sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getDouble("HZRNSVA_PLAN_COMPLEMENT"));
-                                sva.setHZRNSVA_EDUCACION(rs.getDouble("HZRNSVA_EDUCACION"));
-                                sva.setHZRNSVA_REINTEGRO(rs.getDouble("HZRNSVA_REINTEGRO"));
-                                sva.setHZRNSVA_DEUDA(rs.getDouble("HZRNSVA_DEUDA"));                
+                                sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getBigDecimal("HZRNSVA_PENSION_VOLUNTARIA"));
+                                sva.setHZRNSVA_RENTENCION_FTE(rs.getBigDecimal("HZRNSVA_RENTENCION_FTE"));
+                                sva.setHZRNSVA_AFC(rs.getBigDecimal("HZRNSVA_AFC"));
+                                sva.setHZRNSVA_COOPERATIVA(rs.getBigDecimal("HZRNSVA_COOPERATIVA"));
+                                sva.setHZRNSVA_EMBARGO(rs.getBigDecimal("HZRNSVA_EMBARGO"));
+                                sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getBigDecimal("HZRNSVA_PLAN_COMPLEMENT"));
+                                sva.setHZRNSVA_EDUCACION(rs.getBigDecimal("HZRNSVA_EDUCACION"));
+                                sva.setHZRNSVA_REINTEGRO(rs.getBigDecimal("HZRNSVA_REINTEGRO"));
+                                sva.setHZRNSVA_DEUDA(rs.getBigDecimal("HZRNSVA_DEUDA"));                
                                 sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
 
                                 its.setDeduc_varias(sva);
@@ -1110,10 +1109,10 @@ public class Comprobante{
                         while (rs.next()) {
                             TOT tot = new TOT();
                             tot.setHZRNTOT_CUNE_INTERNO(rs.getString("HZRNTOT_CUNE_INTERNO"));
-                            tot.setHZRNTOT_REDONDEO(rs.getDouble("HZRNTOT_REDONDEO"));
-                            tot.setHZRNTOT_DEVENGADOS_TOTAL(rs.getDouble("HZRNTOT_DEVENGADOS_TOTAL"));
-                            tot.setHZRNTOT_DEDUCCIONES_TOTAL(rs.getDouble("HZRNTOT_DEDUCCIONES_TOTAL"));
-                            tot.setHZRNTOT_COMPROBANTE_TOTAL(rs.getDouble("HZRNTOT_COMPROBANTE_TOTAL"));
+                            tot.setHZRNTOT_REDONDEO(rs.getBigDecimal("HZRNTOT_REDONDEO"));
+                            tot.setHZRNTOT_DEVENGADOS_TOTAL(rs.getBigDecimal("HZRNTOT_DEVENGADOS_TOTAL"));
+                            tot.setHZRNTOT_DEDUCCIONES_TOTAL(rs.getBigDecimal("HZRNTOT_DEDUCCIONES_TOTAL"));
+                            tot.setHZRNTOT_COMPROBANTE_TOTAL(rs.getBigDecimal("HZRNTOT_COMPROBANTE_TOTAL"));
 
                             nom.setTotales_nomina(tot);
                             tot = null;

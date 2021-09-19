@@ -1,36 +1,35 @@
 package co.edu.upb.nominae.pojos;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "EBN")
+
 @XmlType (propOrder={"HZRNEBN_BONI_SALARIAL",
     "HZRNEBN_BONI_NO_SALARIAL"})
-
 public class EBN {
     
     @XmlElement(name = "EBN_1")
-    private Double HZRNEBN_BONI_SALARIAL;
+    private BigDecimal HZRNEBN_BONI_SALARIAL;
     @XmlElement(name = "EBN_2")
-    private Double HZRNEBN_BONI_NO_SALARIAL;
+    private BigDecimal HZRNEBN_BONI_NO_SALARIAL;
     private Integer HZRNEBN_ITE_ID;   
 
     @XmlTransient
-    public Double getHZRNEBN_BONI_SALARIAL() {
+    public BigDecimal getHZRNEBN_BONI_SALARIAL() {
         return HZRNEBN_BONI_SALARIAL;
     }
 
-    public void setHZRNEBN_BONI_SALARIAL(Double HZRNEBN_BONI_SALARIAL) {
+    public void setHZRNEBN_BONI_SALARIAL(BigDecimal HZRNEBN_BONI_SALARIAL) {
         this.HZRNEBN_BONI_SALARIAL = HZRNEBN_BONI_SALARIAL;
     }
     @XmlTransient
-    public Double getHZRNEBN_BONI_NO_SALARIAL() {
+    public BigDecimal getHZRNEBN_BONI_NO_SALARIAL() {
         return HZRNEBN_BONI_NO_SALARIAL;
     }
 
-    public void setHZRNEBN_BONI_NO_SALARIAL(Double HZRNEBN_BONI_NO_SALARIAL) {
+    public void setHZRNEBN_BONI_NO_SALARIAL(BigDecimal HZRNEBN_BONI_NO_SALARIAL) {
         this.HZRNEBN_BONI_NO_SALARIAL = HZRNEBN_BONI_NO_SALARIAL;
     }
     @XmlTransient

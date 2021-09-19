@@ -1,13 +1,13 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "EOT")
+
 @XmlType (propOrder={"HZRNEOT_DESC_CONCEPTO",
     "HZRNEOT_CONCEP_SALARIAL",
     "HZRNEOT_CONCEP_NO_SALARIAL"})
@@ -17,9 +17,9 @@ public class EOT {
     @XmlElement(name = "EOT_1")
     private String HZRNEOT_DESC_CONCEPTO;
     @XmlElement(name = "EOT_2")
-    private Double HZRNEOT_CONCEP_SALARIAL;
+    private BigDecimal HZRNEOT_CONCEP_SALARIAL;
     @XmlElement(name = "EOT_3")
-    private Double HZRNEOT_CONCEP_NO_SALARIAL;
+    private BigDecimal HZRNEOT_CONCEP_NO_SALARIAL;
     private Integer HZRNEOT_ITE_ID;       
 
     @XmlTransient
@@ -38,19 +38,19 @@ public class EOT {
         }           
     }
     @XmlTransient
-    public Double getHZRNEOT_CONCEP_SALARIAL() {
+    public BigDecimal getHZRNEOT_CONCEP_SALARIAL() {
         return HZRNEOT_CONCEP_SALARIAL;
     }
 
-    public void setHZRNEOT_CONCEP_SALARIAL(Double HZRNEOT_CONCEP_SALARIAL) {
+    public void setHZRNEOT_CONCEP_SALARIAL(BigDecimal HZRNEOT_CONCEP_SALARIAL) {
         this.HZRNEOT_CONCEP_SALARIAL = HZRNEOT_CONCEP_SALARIAL;
     }
     @XmlTransient
-    public Double getHZRNEOT_CONCEP_NO_SALARIAL() {
+    public BigDecimal getHZRNEOT_CONCEP_NO_SALARIAL() {
         return HZRNEOT_CONCEP_NO_SALARIAL;
     }
 
-    public void setHZRNEOT_CONCEP_NO_SALARIAL(Double HZRNEOT_CONCEP_NO_SALARIAL) {
+    public void setHZRNEOT_CONCEP_NO_SALARIAL(BigDecimal HZRNEOT_CONCEP_NO_SALARIAL) {
         this.HZRNEOT_CONCEP_NO_SALARIAL = HZRNEOT_CONCEP_NO_SALARIAL;
     }
     @XmlTransient

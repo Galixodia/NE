@@ -1,22 +1,21 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "SLI")
+
 @XmlType (propOrder={"HZRNSLI_DESCRIPCION",
     "HZRNSLI_DEDUCCION"})
-
 public class SLI {
     
     @XmlElement(name = "SLI_1")
     private String HZRNSLI_DESCRIPCION;
     @XmlElement(name = "SLI_2")
-    private Double HZRNSLI_DEDUCCION;    
+    private BigDecimal HZRNSLI_DEDUCCION;    
     private Integer HZRNSLI_ITS_ID;     
 
     @XmlTransient
@@ -35,11 +34,11 @@ public class SLI {
         }          
     }
     @XmlTransient
-    public Double getHZRNSLI_DEDUCCION() {
+    public BigDecimal getHZRNSLI_DEDUCCION() {
         return HZRNSLI_DEDUCCION;
     }
 
-    public void setHZRNSLI_DEDUCCION(Double HZRNSLI_DEDUCCION) throws DataFormatException {
+    public void setHZRNSLI_DEDUCCION(BigDecimal HZRNSLI_DEDUCCION) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNSLI_DEDUCCION,15,6)){
