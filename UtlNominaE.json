@@ -9,7 +9,10 @@
   "FtpDir":"/archivos/entrada",
   "LocalDir":"null",
   "LogFileName":"NominaElectronicaUPB",
-  "loop-milis":"60000",
+  "loop-milis":"30000",
+  "IterationSleep-milis":"0",
+  "MaxThreads":"1",
+  "ThreadsCorrection":"2",
   "Environment":"TRN",
   "Queries":[
   	{

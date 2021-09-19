@@ -1,5 +1,5 @@
 
-package co.edu.upb.nominae;
+package co.edu.upb.nominae.extractor;
 
 /**
  *

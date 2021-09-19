@@ -3,7 +3,6 @@ package co.edu.upb.nominae.pojos;
 import co.edu.upb.utilities.Data;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 

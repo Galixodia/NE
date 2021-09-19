@@ -109,13 +109,13 @@ public class EHE {
 
     public void setHZRNEHE_PAGO(Double HZRNEHE_PAGO) throws DataFormatException {
         Data data = new Data();    
-
+        
         if(data.checklength(HZRNEHE_PAGO,15,6)){
             this.HZRNEHE_PAGO = HZRNEHE_PAGO;
             data = null;            
         }else{
             throw new DataFormatException("EHE:HZRNEHE_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
-        }         
+        } 
         
     }
     @XmlTransient
