@@ -89,7 +89,7 @@ public final class Extractor {
     }
     
     public void getCune() throws SQLException{
-        conn = DriverManager.getConnection(db_url, db_user, db_pwd);
+            //conn = DriverManager.getConnection(db_url, db_user, db_pwd);
             
             stmt = "SELECT HZRNNOM_CUNE_INTERNO, HZRNNOM_TIPO_DOC, HZRNNOM_ANO, HZRNNOM_MES FROM UPB_NOMINAE.HZRNNOM WHERE (HZRNNOM_ESTADO IS NULL OR HZRNNOM_ESTADO IN ('REEXTRACT')) AND rownum <= 1";
       
