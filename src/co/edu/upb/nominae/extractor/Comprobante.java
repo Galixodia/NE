@@ -251,7 +251,8 @@ public class Comprobante{
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ENC No existen registros");
                     }
-                    
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ENC].");
                 }
                 
                 //NOV
@@ -465,6 +466,8 @@ public class Comprobante{
                         }else{
                             throw new DataFormatException("Comprobante:getComprobanteExtracted:ETR No existen registros");
                         }
+                        calendario =Calendar.getInstance();
+                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ETR].");
                     }
                     
                     //EHE
