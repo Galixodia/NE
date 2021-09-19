@@ -4,15 +4,14 @@ import co.edu.upb.utilities.Data;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "ELN")
+
 @XmlType (propOrder={"HZRNELN_FECHA_INICIO",
     "HZRNELN_FECHA_FIN",
     "HZRNELN_CANTIDAD"})
-
 public class ELN {
     
     @XmlElement(name = "ELN_1")

@@ -1,19 +1,18 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "ELR")
+
 @XmlType (propOrder={"HZRNELR_FECHA_INICIO",
     "HZRNELR_FECHA_FIN",
     "HZRNELR_CANTIDAD",
     "HZRNELR_PAGO"})
-
 public class ELR {
     
     @XmlElement(name = "ELR_1")
@@ -23,7 +22,7 @@ public class ELR {
     @XmlElement(name = "ELR_3")
     private Long HZRNELR_CANTIDAD;
     @XmlElement(name = "ELR_4")
-    private Double HZRNELR_PAGO;
+    private BigDecimal HZRNELR_PAGO;
     private Integer HZRNELR_ITE_ID;   
 
     @XmlTransient
@@ -58,11 +57,11 @@ public class ELR {
         }          
     }
     @XmlTransient
-    public Double getHZRNELR_PAGO() {
+    public BigDecimal getHZRNELR_PAGO() {
         return HZRNELR_PAGO;
     }
 
-    public void setHZRNELR_PAGO(Double HZRNELR_PAGO) throws DataFormatException {
+    public void setHZRNELR_PAGO(BigDecimal HZRNELR_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNELR_PAGO,15,6)){

@@ -1,29 +1,28 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "TOT")
+
 @XmlType (propOrder={"HZRNTOT_REDONDEO",
     "HZRNTOT_DEVENGADOS_TOTAL",
     "HZRNTOT_DEDUCCIONES_TOTAL",
     "HZRNTOT_COMPROBANTE_TOTAL"})
-
 public class TOT {
     
     private String HZRNTOT_CUNE_INTERNO;      
     @XmlElement(name = "TOT_1")
-    private Double HZRNTOT_REDONDEO;
+    private BigDecimal HZRNTOT_REDONDEO;
     @XmlElement(name = "TOT_2")
-    private Double HZRNTOT_DEVENGADOS_TOTAL;
+    private BigDecimal HZRNTOT_DEVENGADOS_TOTAL;
     @XmlElement(name = "TOT_3")
-    private Double HZRNTOT_DEDUCCIONES_TOTAL;
+    private BigDecimal HZRNTOT_DEDUCCIONES_TOTAL;
     @XmlElement(name = "TOT_4")
-    private Double HZRNTOT_COMPROBANTE_TOTAL;
+    private BigDecimal HZRNTOT_COMPROBANTE_TOTAL;
 
     @XmlTransient
     public String getHZRNTOT_CUNE_INTERNO() {
@@ -34,19 +33,19 @@ public class TOT {
         this.HZRNTOT_CUNE_INTERNO = HZRNTOT_CUNE_INTERNO;
     }
     @XmlTransient
-    public Double getHZRNTOT_REDONDEO() {
+    public BigDecimal getHZRNTOT_REDONDEO() {
         return HZRNTOT_REDONDEO;
     }
 
-    public void setHZRNTOT_REDONDEO(Double HZRNTOT_REDONDEO) {
+    public void setHZRNTOT_REDONDEO(BigDecimal HZRNTOT_REDONDEO) {
         this.HZRNTOT_REDONDEO = HZRNTOT_REDONDEO;
     }
     @XmlTransient
-    public Double getHZRNTOT_DEVENGADOS_TOTAL() {
+    public BigDecimal getHZRNTOT_DEVENGADOS_TOTAL() {
         return HZRNTOT_DEVENGADOS_TOTAL;
     }
 
-    public void setHZRNTOT_DEVENGADOS_TOTAL(Double HZRNTOT_DEVENGADOS_TOTAL) throws DataFormatException {
+    public void setHZRNTOT_DEVENGADOS_TOTAL(BigDecimal HZRNTOT_DEVENGADOS_TOTAL) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNTOT_DEVENGADOS_TOTAL,15,6)){
@@ -57,11 +56,11 @@ public class TOT {
         }          
     }
     @XmlTransient
-    public Double getHZRNTOT_DEDUCCIONES_TOTAL() {
+    public BigDecimal getHZRNTOT_DEDUCCIONES_TOTAL() {
         return HZRNTOT_DEDUCCIONES_TOTAL;
     }
 
-    public void setHZRNTOT_DEDUCCIONES_TOTAL(Double HZRNTOT_DEDUCCIONES_TOTAL) throws DataFormatException {
+    public void setHZRNTOT_DEDUCCIONES_TOTAL(BigDecimal HZRNTOT_DEDUCCIONES_TOTAL) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNTOT_DEDUCCIONES_TOTAL,15,6)){
@@ -72,11 +71,11 @@ public class TOT {
         }             
     }
     @XmlTransient
-    public Double getHZRNTOT_COMPROBANTE_TOTAL() {
+    public BigDecimal getHZRNTOT_COMPROBANTE_TOTAL() {
         return HZRNTOT_COMPROBANTE_TOTAL;
     }
 
-    public void setHZRNTOT_COMPROBANTE_TOTAL(Double HZRNTOT_COMPROBANTE_TOTAL) throws DataFormatException {
+    public void setHZRNTOT_COMPROBANTE_TOTAL(BigDecimal HZRNTOT_COMPROBANTE_TOTAL) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNTOT_COMPROBANTE_TOTAL,15,6)){

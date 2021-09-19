@@ -1,15 +1,14 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
-//@XmlRootElement(name = "ELI")
 @XmlType (propOrder={"HZRNELI_FECHA_INICIO",
     "HZRNELI_FECHA_FIN",
     "HZRNELI_CANTIDAD",
@@ -24,7 +23,7 @@ public class ELI {
     @XmlElement(name = "ELI_3")
     private Long HZRNELI_CANTIDAD;
     @XmlElement(name = "ELI_4")
-    private Double HZRNELI_PAGO;  
+    private BigDecimal HZRNELI_PAGO;  
     private Integer HZRNELI_ITE_ID;   
 
     @XmlTransient
@@ -59,11 +58,11 @@ public class ELI {
         }          
     }
     @XmlTransient
-    public Double getHZRNELI_PAGO() {
+    public BigDecimal getHZRNELI_PAGO() {
         return HZRNELI_PAGO;
     }
 
-    public void setHZRNELI_PAGO(Double HZRNELI_PAGO) throws DataFormatException {
+    public void setHZRNELI_PAGO(BigDecimal HZRNELI_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNELI_PAGO,15,6)){

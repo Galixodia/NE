@@ -1,31 +1,29 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "SIN")
+
 @XmlType (propOrder={"HZRNSIN_PORCENTAJE",
     "HZRNSIN_DEDUCCION"})
-
-
 public class SIN {
     
     @XmlElement(name = "SIN_1")
-    private Double HZRNSIN_PORCENTAJE;
+    private BigDecimal HZRNSIN_PORCENTAJE;
     @XmlElement(name = "SIN_2")
-    private Double HZRNSIN_DEDUCCION;
+    private BigDecimal HZRNSIN_DEDUCCION;
     private Integer HZRNSIN_ITS_ID;       
 
     @XmlTransient
-    public Double getHZRNSIN_PORCENTAJE() {
+    public BigDecimal getHZRNSIN_PORCENTAJE() {
         return HZRNSIN_PORCENTAJE;
     }
 
-    public void setHZRNSIN_PORCENTAJE(Double HZRNSIN_PORCENTAJE) throws DataFormatException {
+    public void setHZRNSIN_PORCENTAJE(BigDecimal HZRNSIN_PORCENTAJE) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNSIN_PORCENTAJE,3,2)){
@@ -36,11 +34,11 @@ public class SIN {
         }           
     }
     @XmlTransient
-    public Double getHZRNSIN_DEDUCCION() {
+    public BigDecimal getHZRNSIN_DEDUCCION() {
         return HZRNSIN_DEDUCCION;
     }
 
-    public void setHZRNSIN_DEDUCCION(Double HZRNSIN_DEDUCCION) throws DataFormatException {
+    public void setHZRNSIN_DEDUCCION(BigDecimal HZRNSIN_DEDUCCION) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNSIN_DEDUCCION,15,6)){

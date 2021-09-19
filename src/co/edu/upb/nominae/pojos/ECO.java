@@ -1,47 +1,46 @@
 package co.edu.upb.nominae.pojos;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "ECO")
+
 @XmlType (propOrder={"HZRNECO_COMISION",
     "HZRNECO_PAGO_TERCERO",
     "HZRNECO_ANTICIPOS_NOMINA"})
-
 public class ECO {
     
     @XmlElement(name = "ECO_1")
-    private Double HZRNECO_COMISION;
+    private BigDecimal HZRNECO_COMISION;
     @XmlElement(name = "ECO_2")
-    private Double HZRNECO_PAGO_TERCERO;
+    private BigDecimal HZRNECO_PAGO_TERCERO;
     @XmlElement(name = "ECO_3")
-    private Double HZRNECO_ANTICIPOS_NOMINA;
+    private BigDecimal HZRNECO_ANTICIPOS_NOMINA;
     private Integer HZRNECO_ITE_ID;   
 
     @XmlTransient
-    public Double getHZRNECO_COMISION() {
+    public BigDecimal getHZRNECO_COMISION() {
         return HZRNECO_COMISION;
     }
 
-    public void setHZRNECO_COMISION(Double HZRNECO_COMISION) {
+    public void setHZRNECO_COMISION(BigDecimal HZRNECO_COMISION) {
         this.HZRNECO_COMISION = HZRNECO_COMISION;
     }
     @XmlTransient
-    public Double getHZRNECO_PAGO_TERCERO() {
+    public BigDecimal getHZRNECO_PAGO_TERCERO() {
         return HZRNECO_PAGO_TERCERO;
     }
 
-    public void setHZRNECO_PAGO_TERCERO(Double HZRNECO_PAGO_TERCERO) {
+    public void setHZRNECO_PAGO_TERCERO(BigDecimal HZRNECO_PAGO_TERCERO) {
         this.HZRNECO_PAGO_TERCERO = HZRNECO_PAGO_TERCERO;
     }
     @XmlTransient
-    public Double getHZRNECO_ANTICIPOS_NOMINA() {
+    public BigDecimal getHZRNECO_ANTICIPOS_NOMINA() {
         return HZRNECO_ANTICIPOS_NOMINA;
     }
 
-    public void setHZRNECO_ANTICIPOS_NOMINA(Double HZRNECO_ANTICIPOS_NOMINA) {
+    public void setHZRNECO_ANTICIPOS_NOMINA(BigDecimal HZRNECO_ANTICIPOS_NOMINA) {
         this.HZRNECO_ANTICIPOS_NOMINA = HZRNECO_ANTICIPOS_NOMINA;
     }
     @XmlTransient

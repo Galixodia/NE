@@ -1,16 +1,15 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
-//@XmlRootElement(name = "ITS")
 @XmlType (propOrder={"HZRNITS_PORCENTAJE",
     "HZRNITS_DEDUCCION",
     "deducciones_pension",
@@ -23,11 +22,11 @@ import javax.xml.bind.annotation.XmlType;
 public class ITS {
     
     @XmlElement(name = "ITS_1")
-    private Double HZRNITS_PORCENTAJE;
+    private BigDecimal HZRNITS_PORCENTAJE;
     @XmlElement(name = "ITS_2")
-    private Double HZRNITS_DEDUCCION;
+    private BigDecimal HZRNITS_DEDUCCION;
     
-    private Double HZRNITS_CUNE_INTERNO;
+    private BigDecimal HZRNITS_CUNE_INTERNO;
     private Integer HZRNITS_ID;
     
     @XmlElement(name = "SPE")
@@ -49,11 +48,11 @@ public class ITS {
 
     
     @XmlTransient
-    public Double getHZRNITS_PORCENTAJE() {
+    public BigDecimal getHZRNITS_PORCENTAJE() {
         return HZRNITS_PORCENTAJE;
     }
 
-    public void setHZRNITS_PORCENTAJE(Double HZRNITS_PORCENTAJE) throws DataFormatException {
+    public void setHZRNITS_PORCENTAJE(BigDecimal HZRNITS_PORCENTAJE) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNITS_PORCENTAJE,3,2)){
@@ -64,11 +63,11 @@ public class ITS {
         }             
     }
     @XmlTransient
-    public Double getHZRNITS_DEDUCCION() {
+    public BigDecimal getHZRNITS_DEDUCCION() {
         return HZRNITS_DEDUCCION;
     }
 
-    public void setHZRNITS_DEDUCCION(Double HZRNITS_DEDUCCION) throws DataFormatException {
+    public void setHZRNITS_DEDUCCION(BigDecimal HZRNITS_DEDUCCION) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNITS_DEDUCCION,15,6)){
@@ -79,11 +78,11 @@ public class ITS {
         }           
     }
     @XmlTransient
-    public Double getHZRNITS_CUNE_INTERNO() {
+    public BigDecimal getHZRNITS_CUNE_INTERNO() {
         return HZRNITS_CUNE_INTERNO;
     }
 
-    public void setHZRNITS_CUNE_INTERNO(Double HZRNITS_CUNE_INTERNO) {
+    public void setHZRNITS_CUNE_INTERNO(BigDecimal HZRNITS_CUNE_INTERNO) {
         this.HZRNITS_CUNE_INTERNO = HZRNITS_CUNE_INTERNO;
     }
     @XmlTransient

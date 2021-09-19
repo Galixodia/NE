@@ -1,16 +1,15 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
-//@XmlRootElement(name = "ITE")
 @XmlType (propOrder={"HZRNITE_DIAS_TRAB",
     "HZRNITE_SUELDO_TRAB",
     "transporte_pagado_trab",
@@ -34,7 +33,7 @@ public class ITE {
     @XmlElement(name = "ITE_1")
     private String HZRNITE_DIAS_TRAB;
     @XmlElement(name = "ITE_2")
-    private Double HZRNITE_SUELDO_TRAB;    
+    private BigDecimal HZRNITE_SUELDO_TRAB;    
     
     private String HZRNITE_CUNE_INTERNO;    
     private Integer HZRNITE_ID;    
@@ -93,11 +92,11 @@ public class ITE {
         }          
     }
     @XmlTransient
-    public Double getHZRNITE_SUELDO_TRAB() {
+    public BigDecimal getHZRNITE_SUELDO_TRAB() {
         return HZRNITE_SUELDO_TRAB;
     }
 
-    public void setHZRNITE_SUELDO_TRAB(Double HZRNITE_SUELDO_TRAB) throws DataFormatException {
+    public void setHZRNITE_SUELDO_TRAB(BigDecimal HZRNITE_SUELDO_TRAB) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNITE_SUELDO_TRAB,15,6)){

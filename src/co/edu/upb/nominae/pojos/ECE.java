@@ -1,33 +1,31 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "ECE")
 @XmlType (propOrder={"HZRNECE_PAGO",
     "HZRNECE_PORCENTAJE",
     "HZRNECE_PAGO_INTERESES"})
-
 public class ECE {
     
     @XmlElement(name = "ECE_1")
-    private Double HZRNECE_PAGO;
+    private BigDecimal HZRNECE_PAGO;
     @XmlElement(name = "ECE_2")
-    private Double HZRNECE_PORCENTAJE;
+    private BigDecimal HZRNECE_PORCENTAJE;
     @XmlElement(name = "ECE_3")
-    private Double HZRNECE_PAGO_INTERESES;   
+    private BigDecimal HZRNECE_PAGO_INTERESES;   
     private Integer HZRNECE_ITE_ID;    
 
     @XmlTransient
-    public Double getHZRNECE_PAGO() {
+    public BigDecimal getHZRNECE_PAGO() {
         return HZRNECE_PAGO;
     }
 
-    public void setHZRNECE_PAGO(Double HZRNECE_PAGO) throws DataFormatException {
+    public void setHZRNECE_PAGO(BigDecimal HZRNECE_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNECE_PAGO,15,6)){
@@ -38,11 +36,11 @@ public class ECE {
         }          
     }
     @XmlTransient
-    public Double getHZRNECE_PORCENTAJE() {
+    public BigDecimal getHZRNECE_PORCENTAJE() {
         return HZRNECE_PORCENTAJE;
     }
 
-    public void setHZRNECE_PORCENTAJE(Double HZRNECE_PORCENTAJE) throws DataFormatException {
+    public void setHZRNECE_PORCENTAJE(BigDecimal HZRNECE_PORCENTAJE) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNECE_PORCENTAJE,3,2)){
@@ -53,11 +51,11 @@ public class ECE {
         }         
     }
     @XmlTransient
-    public Double getHZRNECE_PAGO_INTERESES() {
+    public BigDecimal getHZRNECE_PAGO_INTERESES() {
         return HZRNECE_PAGO_INTERESES;
     }
 
-    public void setHZRNECE_PAGO_INTERESES(Double HZRNECE_PAGO_INTERESES) throws DataFormatException {
+    public void setHZRNECE_PAGO_INTERESES(BigDecimal HZRNECE_PAGO_INTERESES) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNECE_PAGO_INTERESES,15,6)){

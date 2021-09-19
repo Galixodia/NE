@@ -1,6 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -16,16 +17,15 @@ import javax.xml.bind.annotation.XmlType;
  * Puede repetirse hasta 50 veces por cada registro de Devengado  Basico(ITE). Ver nota 4
  */
 
-//@XmlRootElement(name = "EVA")
+
 @XmlType (propOrder={"HZRNEVA_CANTIDAD",
     "HZRNEVA_PAGO"})
-
 public class EVA {
     
     @XmlElement(name = "EVA_1")
     private Long HZRNEVA_CANTIDAD;
     @XmlElement(name = "EVA_2")
-    private Double HZRNEVA_PAGO;   
+    private BigDecimal HZRNEVA_PAGO;   
     private Integer HZRNEVA_ITE_ID;        
 
     @XmlTransient
@@ -44,11 +44,11 @@ public class EVA {
         }          
     }
     @XmlTransient
-    public Double getHZRNEVA_PAGO() {
+    public BigDecimal getHZRNEVA_PAGO() {
         return HZRNEVA_PAGO;
     }
 
-    public void setHZRNEVA_PAGO(Double HZRNEVA_PAGO) throws DataFormatException {
+    public void setHZRNEVA_PAGO(BigDecimal HZRNEVA_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEVA_PAGO,15,6)){

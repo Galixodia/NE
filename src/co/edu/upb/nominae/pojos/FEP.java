@@ -4,7 +4,6 @@ import co.edu.upb.utilities.Data;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
@@ -18,9 +17,8 @@ import javax.xml.bind.annotation.XmlType;
  * Utilizado para Todos los Elementos de Fechas de Pagos del Documento. Este Segemento es dependiente Ver Nota 3
  */
 
-//@XmlRootElement(name = "FEP")
-@XmlType (propOrder={"HZRNFEP_FECHA_PAGO"})
 
+@XmlType (propOrder={"HZRNFEP_FECHA_PAGO"})
 public class FEP {
     
     private String HZRNFEP_CUNE_INTERNO;    

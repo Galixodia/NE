@@ -1,20 +1,19 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "EIN")
+
 @XmlType (propOrder={"HZRNEIN_FECHA_INICIO",
     "HZRNEIN_FECHA_FIN",
     "HZRNEIN_CANTIDAD",
     "HZRNEIN_TIPO",    
     "HZRNEIN_PAGO"})
-
 public class EIN {
     
     @XmlElement(name = "EIN_1")
@@ -26,7 +25,7 @@ public class EIN {
     @XmlElement(name = "EIN_4")
     private Integer HZRNEIN_TIPO;
     @XmlElement(name = "EIN_5")
-    private Double HZRNEIN_PAGO;
+    private BigDecimal HZRNEIN_PAGO;
     private Integer HZRNEIN_ITE_ID;      
 
     @XmlTransient
@@ -76,11 +75,11 @@ public class EIN {
         }          
     }
     @XmlTransient
-    public Double getHZRNEIN_PAGO() {
+    public BigDecimal getHZRNEIN_PAGO() {
         return HZRNEIN_PAGO;
     }
 
-    public void setHZRNEIN_PAGO(Double HZRNEIN_PAGO) throws DataFormatException {
+    public void setHZRNEIN_PAGO(BigDecimal HZRNEIN_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEIN_PAGO,15,6)){

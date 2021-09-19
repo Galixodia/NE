@@ -1,6 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  * Segmento Obligatorio. Puede repetirse  una sola (1) vez en el archivo.
  */
 
-//@XmlRootElement(name = "ENC")
+
 @XmlType (propOrder={"HZRNENC_TIPO_DOC",
     "HZRNENC_FECHA_ING",
     "HZRNENC_FECHA_RET",
@@ -58,7 +59,7 @@ public class ENC {
     @XmlElement(name="ENC_5")
     private Date      HZRNENC_FECHA_LIQ_FIN;
     @XmlElement(name="ENC_6")
-    private Double      HZRNENC_TIEMPO_LAB;
+    private BigDecimal      HZRNENC_TIEMPO_LAB;
     @XmlElement(name="ENC_7")
     private Date      HZRNENC_FECHA_EMISION;
     @XmlElement(name="ENC_8")
@@ -94,7 +95,7 @@ public class ENC {
     @XmlElement(name="ENC_23")
     private String      HZRNENC_TIPO_MONEDA;
     @XmlElement(name="ENC_24")
-    private Double      HZRNENC_TRM;
+    private BigDecimal      HZRNENC_TRM;
     @XmlElement(name="ENC_25")
     private String      HZRNENC_NUM_PRED;
     @XmlElement(name="ENC_26")
@@ -180,11 +181,11 @@ public class ENC {
         }        
     }
     @XmlTransient
-    public Double getHZRNENC_TIEMPO_LAB() {
+    public BigDecimal getHZRNENC_TIEMPO_LAB() {
         return HZRNENC_TIEMPO_LAB;
     }
 
-    public void setHZRNENC_TIEMPO_LAB(Double HZRNENC_TIEMPO_LAB) throws DataFormatException {
+    public void setHZRNENC_TIEMPO_LAB(BigDecimal HZRNENC_TIEMPO_LAB) throws DataFormatException {
         Data data = new Data();        
         
         if(data.checklength(HZRNENC_TIEMPO_LAB,6,2)){
@@ -432,11 +433,11 @@ public class ENC {
         }          
     }
     @XmlTransient
-    public Double getHZRNENC_TRM() {
+    public BigDecimal getHZRNENC_TRM() {
         return HZRNENC_TRM;
     }
 
-    public void setHZRNENC_TRM(Double HZRNENC_TRM) {
+    public void setHZRNENC_TRM(BigDecimal HZRNENC_TRM) {
         this.HZRNENC_TRM = HZRNENC_TRM;
     }
     @XmlTransient

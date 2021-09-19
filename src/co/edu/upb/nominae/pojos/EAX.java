@@ -1,37 +1,35 @@
 package co.edu.upb.nominae.pojos;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "EAX")
+
 @XmlType (propOrder={"HZRNEAX_AUX_SALARIAL",
     "HZRNEAX_AUX_NO_SALARIAL"})
-
-
 public class EAX {
     
     @XmlElement(name = "EAX_1")
-    private Double HZRNEAX_AUX_SALARIAL;
+    private BigDecimal HZRNEAX_AUX_SALARIAL;
     @XmlElement(name = "EAX_2")
-    private Double HZRNEAX_AUX_NO_SALARIAL;
+    private BigDecimal HZRNEAX_AUX_NO_SALARIAL;
     private Integer HZRNEAX_ITE_ID;       
 
     @XmlTransient
-    public Double getHZRNEAX_AUX_SALARIAL() {
+    public BigDecimal getHZRNEAX_AUX_SALARIAL() {
         return HZRNEAX_AUX_SALARIAL;
     }
 
-    public void setHZRNEAX_AUX_SALARIAL(Double HZRNEAX_AUX_SALARIAL) {
+    public void setHZRNEAX_AUX_SALARIAL(BigDecimal HZRNEAX_AUX_SALARIAL) {
         this.HZRNEAX_AUX_SALARIAL = HZRNEAX_AUX_SALARIAL;
     }
     @XmlTransient
-    public Double getHZRNEAX_AUX_NO_SALARIAL() {
+    public BigDecimal getHZRNEAX_AUX_NO_SALARIAL() {
         return HZRNEAX_AUX_NO_SALARIAL;
     }
 
-    public void setHZRNEAX_AUX_NO_SALARIAL(Double HZRNEAX_AUX_NO_SALARIAL) {
+    public void setHZRNEAX_AUX_NO_SALARIAL(BigDecimal HZRNEAX_AUX_NO_SALARIAL) {
         this.HZRNEAX_AUX_NO_SALARIAL = HZRNEAX_AUX_NO_SALARIAL;
     }
     @XmlTransient

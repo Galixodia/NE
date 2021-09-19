@@ -1,7 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
@@ -15,43 +15,42 @@ import javax.xml.bind.annotation.XmlType;
  * Puede repetirse hasta 50 veces por cada registro de Devengado  Basico(ITE). Ver nota 4
  */
 
-//@XmlRootElement(name = "ETR")
+
 @XmlType (propOrder={"HZRNETR_AUX_TRANSPORTE",
     "HZRNETR_VIAT_MANUT_SALARIAL",
     "HZRNETR_VIAT_MANUT_NO_SALARIAL"})
-
 public class ETR {
     
     @XmlElement(name = "ETR_1")
-    private Double HZRNETR_AUX_TRANSPORTE;
+    private BigDecimal HZRNETR_AUX_TRANSPORTE;
     @XmlElement(name = "ETR_2")
-    private Double HZRNETR_VIAT_MANUT_SALARIAL;
+    private BigDecimal HZRNETR_VIAT_MANUT_SALARIAL;
     @XmlElement(name = "ETR_3")
-    private Double HZRNETR_VIAT_MANUT_NO_SALARIAL;
+    private BigDecimal HZRNETR_VIAT_MANUT_NO_SALARIAL;
     private Integer HZRNETR_ITE_ID;    
 
     @XmlTransient
-    public Double getHZRNETR_AUX_TRANSPORTE() {
+    public BigDecimal getHZRNETR_AUX_TRANSPORTE() {
         return HZRNETR_AUX_TRANSPORTE;
     }
 
-    public void setHZRNETR_AUX_TRANSPORTE(Double HZRNETR_AUX_TRANSPORTE) {
+    public void setHZRNETR_AUX_TRANSPORTE(BigDecimal HZRNETR_AUX_TRANSPORTE) {
         this.HZRNETR_AUX_TRANSPORTE = HZRNETR_AUX_TRANSPORTE;
     }
     @XmlTransient
-    public Double getHZRNETR_VIAT_MANUT_SALARIAL() {
+    public BigDecimal getHZRNETR_VIAT_MANUT_SALARIAL() {
         return HZRNETR_VIAT_MANUT_SALARIAL;
     }
 
-    public void setHZRNETR_VIAT_MANUT_SALARIAL(Double HZRNETR_VIAT_MANUT_SALARIAL) {
+    public void setHZRNETR_VIAT_MANUT_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_SALARIAL) {
         this.HZRNETR_VIAT_MANUT_SALARIAL = HZRNETR_VIAT_MANUT_SALARIAL;
     }
     @XmlTransient
-    public Double getHZRNETR_VIAT_MANUT_NO_SALARIAL() {
+    public BigDecimal getHZRNETR_VIAT_MANUT_NO_SALARIAL() {
         return HZRNETR_VIAT_MANUT_NO_SALARIAL;
     }
 
-    public void setHZRNETR_VIAT_MANUT_NO_SALARIAL(Double HZRNETR_VIAT_MANUT_NO_SALARIAL) {
+    public void setHZRNETR_VIAT_MANUT_NO_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_NO_SALARIAL) {
         this.HZRNETR_VIAT_MANUT_NO_SALARIAL = HZRNETR_VIAT_MANUT_NO_SALARIAL;
     }
     @XmlTransient

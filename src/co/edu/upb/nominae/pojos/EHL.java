@@ -4,15 +4,13 @@ import co.edu.upb.utilities.Data;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-//@XmlRootElement(name = "EHL")
+
 @XmlType (propOrder={"HZRNEHL_FECHA_INICIO",
     "HZRNEHL_FECHA_FIN",
     "HZRNEHL_CANTIDAD"})
-
 public class EHL {
     
     @XmlElement(name = "EHL_1")
