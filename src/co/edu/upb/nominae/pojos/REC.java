@@ -56,11 +56,11 @@ public class REC {
     @XmlElement(name = "REC_9")
     private String HZRNREC_OTROS_NOMBRES;
     @XmlElement(name = "REC_10")
-    private Integer HZRNREC_LUGAR_TRAB_PAIS;
+    private String HZRNREC_LUGAR_TRAB_PAIS;
     @XmlElement(name = "REC_11")
-    private Integer HZRNREC_LUGAR_TRAB_DEPT_EST;
+    private String HZRNREC_LUGAR_TRAB_DEPT_EST;
     @XmlElement(name = "REC_12")
-    private Integer HZRNREC_LUGAR_TRAB_MUN_CIUD;
+    private String HZRNREC_LUGAR_TRAB_MUN_CIUD;
     @XmlElement(name = "REC_13")
     private String HZRNREC_LUGAR_TRAB_DIREC;
     @XmlElement(name = "REC_14")
@@ -209,11 +209,11 @@ public class REC {
         this.HZRNREC_OTROS_NOMBRES = HZRNREC_OTROS_NOMBRES;
     }
     @XmlTransient
-    public Integer getHZRNREC_LUGAR_TRAB_PAIS() {
+    public String getHZRNREC_LUGAR_TRAB_PAIS() {
         return HZRNREC_LUGAR_TRAB_PAIS;
     }
 
-    public void setHZRNREC_LUGAR_TRAB_PAIS(Integer HZRNREC_LUGAR_TRAB_PAIS) throws DataFormatException {
+    public void setHZRNREC_LUGAR_TRAB_PAIS(String HZRNREC_LUGAR_TRAB_PAIS) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNREC_LUGAR_TRAB_PAIS,3)){
@@ -224,11 +224,11 @@ public class REC {
         }          
     }
     @XmlTransient
-    public Integer getHZRNREC_LUGAR_TRAB_DEPT_EST() {
+    public String getHZRNREC_LUGAR_TRAB_DEPT_EST() {
         return HZRNREC_LUGAR_TRAB_DEPT_EST;
     }
 
-    public void setHZRNREC_LUGAR_TRAB_DEPT_EST(Integer HZRNREC_LUGAR_TRAB_DEPT_EST) throws DataFormatException {
+    public void setHZRNREC_LUGAR_TRAB_DEPT_EST(String HZRNREC_LUGAR_TRAB_DEPT_EST) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNREC_LUGAR_TRAB_DEPT_EST,2)){
@@ -239,11 +239,11 @@ public class REC {
         }          
     }
     @XmlTransient
-    public Integer getHZRNREC_LUGAR_TRAB_MUN_CIUD() {
+    public String getHZRNREC_LUGAR_TRAB_MUN_CIUD() {
         return HZRNREC_LUGAR_TRAB_MUN_CIUD;
     }
 
-    public void setHZRNREC_LUGAR_TRAB_MUN_CIUD(Integer HZRNREC_LUGAR_TRAB_MUN_CIUD) throws DataFormatException {
+    public void setHZRNREC_LUGAR_TRAB_MUN_CIUD(String HZRNREC_LUGAR_TRAB_MUN_CIUD) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNREC_LUGAR_TRAB_MUN_CIUD,5)){

@@ -359,9 +359,9 @@ public class Comprobante{
                             rec.setHZRNREC_SEGUNDO_APELLIDO(rs.getString("HZRNREC_SEGUNDO_APELLIDO"));
                             rec.setHZRNREC_PRIMER_NOMBRE(rs.getString("HZRNREC_PRIMER_NOMBRE"));
                             rec.setHZRNREC_OTROS_NOMBRES(rs.getString("HZRNREC_OTROS_NOMBRES"));
-                            rec.setHZRNREC_LUGAR_TRAB_PAIS(rs.getInt("HZRNREC_LUGAR_TRAB_PAIS"));
-                            rec.setHZRNREC_LUGAR_TRAB_DEPT_EST(rs.getInt("HZRNREC_LUGAR_TRAB_DEPT_EST"));
-                            rec.setHZRNREC_LUGAR_TRAB_MUN_CIUD(rs.getInt("HZRNREC_LUGAR_TRAB_MUN_CIUD"));
+                            rec.setHZRNREC_LUGAR_TRAB_PAIS(rs.getString("HZRNREC_LUGAR_TRAB_PAIS"));
+                            rec.setHZRNREC_LUGAR_TRAB_DEPT_EST(rs.getString("HZRNREC_LUGAR_TRAB_DEPT_EST"));
+                            rec.setHZRNREC_LUGAR_TRAB_MUN_CIUD(rs.getString("HZRNREC_LUGAR_TRAB_MUN_CIUD"));
                             rec.setHZRNREC_LUGAR_TRAB_DIREC(rs.getString("HZRNREC_LUGAR_TRAB_DIREC"));
                             rec.setHZRNREC_SALARIO_INTEGRAL(rs.getString("HZRNREC_SALARIO_INTEGRAL"));
                             rec.setHZRNREC_TIPO_CONTRATO(rs.getInt("HZRNREC_TIPO_CONTRATO"));
@@ -1372,9 +1372,9 @@ public class Comprobante{
                             rec.setHZRNREC_SEGUNDO_APELLIDO(rs.getString("HZRNREC_SEGUNDO_APELLIDO"));
                             rec.setHZRNREC_PRIMER_NOMBRE(rs.getString("HZRNREC_PRIMER_NOMBRE"));
                             rec.setHZRNREC_OTROS_NOMBRES(rs.getString("HZRNREC_OTROS_NOMBRES"));
-                            rec.setHZRNREC_LUGAR_TRAB_PAIS(rs.getInt("HZRNREC_LUGAR_TRAB_PAIS"));
-                            rec.setHZRNREC_LUGAR_TRAB_DEPT_EST(rs.getInt("HZRNREC_LUGAR_TRAB_DEPT_EST"));
-                            rec.setHZRNREC_LUGAR_TRAB_MUN_CIUD(rs.getInt("HZRNREC_LUGAR_TRAB_MUN_CIUD"));
+                            rec.setHZRNREC_LUGAR_TRAB_PAIS(rs.getString("HZRNREC_LUGAR_TRAB_PAIS"));
+                            rec.setHZRNREC_LUGAR_TRAB_DEPT_EST(rs.getString("HZRNREC_LUGAR_TRAB_DEPT_EST"));
+                            rec.setHZRNREC_LUGAR_TRAB_MUN_CIUD(rs.getString("HZRNREC_LUGAR_TRAB_MUN_CIUD"));
                             rec.setHZRNREC_LUGAR_TRAB_DIREC(rs.getString("HZRNREC_LUGAR_TRAB_DIREC"));
                             rec.setHZRNREC_SALARIO_INTEGRAL(rs.getString("HZRNREC_SALARIO_INTEGRAL"));
                             rec.setHZRNREC_TIPO_CONTRATO(rs.getInt("HZRNREC_TIPO_CONTRATO"));
