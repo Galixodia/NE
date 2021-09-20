@@ -48,9 +48,9 @@ public class EMI {
     @XmlElement(name = "EMI_8")
     private String HZRNEMI_PAIS; 
     @XmlElement(name = "EMI_9")
-    private Integer HZRNEMI_DEPART_ESTADO; 
+    private String HZRNEMI_DEPART_ESTADO; 
     @XmlElement(name = "EMI_10")
-    private Integer HZRNEMI_MUNICIPIO_CIUDAD; 
+    private String HZRNEMI_MUNICIPIO_CIUDAD; 
     @XmlElement(name = "EMI_11")
     private String HZRNEMI_DIRECCION; 
     @XmlTransient
@@ -154,11 +154,11 @@ public class EMI {
         }          
     }
     @XmlTransient
-    public Integer getHZRNEMI_DEPART_ESTADO() {
+    public String getHZRNEMI_DEPART_ESTADO() {
         return HZRNEMI_DEPART_ESTADO;
     }
 
-    public void setHZRNEMI_DEPART_ESTADO(Integer HZRNEMI_DEPART_ESTADO) throws DataFormatException {
+    public void setHZRNEMI_DEPART_ESTADO(String HZRNEMI_DEPART_ESTADO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEMI_DEPART_ESTADO,2)){
@@ -169,11 +169,11 @@ public class EMI {
         }           
     }
     @XmlTransient
-    public Integer getHZRNEMI_MUNICIPIO_CIUDAD() {
+    public String getHZRNEMI_MUNICIPIO_CIUDAD() {
         return HZRNEMI_MUNICIPIO_CIUDAD;
     }
 
-    public void setHZRNEMI_MUNICIPIO_CIUDAD(Integer HZRNEMI_MUNICIPIO_CIUDAD) throws DataFormatException {
+    public void setHZRNEMI_MUNICIPIO_CIUDAD(String HZRNEMI_MUNICIPIO_CIUDAD) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNEMI_MUNICIPIO_CIUDAD,5)){

@@ -72,9 +72,9 @@ public class ENC {
     @XmlElement(name="ENC_12")
     private String      HZRNENC_PAIS;
     @XmlElement(name="ENC_13")
-    private Integer     HZRNENC_DEPART_ESTADO;
+    private String     HZRNENC_DEPART_ESTADO;
     @XmlElement(name="ENC_14")
-    private Integer     HZRNENC_MUNICIPIO_CIUDAD;
+    private String     HZRNENC_MUNICIPIO_CIUDAD;
     @XmlElement(name="ENC_15")
     private String      HZRNENC_IDIOMA;
     @XmlElement(name="ENC_16")
@@ -268,11 +268,11 @@ public class ENC {
         
     }
     @XmlTransient
-    public Integer getHZRNENC_DEPART_ESTADO() {
+    public String getHZRNENC_DEPART_ESTADO() {
         return HZRNENC_DEPART_ESTADO;
     }
 
-    public void setHZRNENC_DEPART_ESTADO(Integer HZRNENC_DEPART_ESTADO) throws DataFormatException {
+    public void setHZRNENC_DEPART_ESTADO(String HZRNENC_DEPART_ESTADO) throws DataFormatException {
         Data data = new Data();    
         
         if(data.checklength(HZRNENC_DEPART_ESTADO,2)){
@@ -283,11 +283,11 @@ public class ENC {
         }
     }
     @XmlTransient
-    public Integer getHZRNENC_MUNICIPIO_CIUDAD() {
+    public String getHZRNENC_MUNICIPIO_CIUDAD() {
         return HZRNENC_MUNICIPIO_CIUDAD;
     }
 
-    public void setHZRNENC_MUNICIPIO_CIUDAD(Integer HZRNENC_MUNICIPIO_CIUDAD) throws DataFormatException {
+    public void setHZRNENC_MUNICIPIO_CIUDAD(String HZRNENC_MUNICIPIO_CIUDAD) throws DataFormatException {
         Data data = new Data();    
         
         if(data.checklength(HZRNENC_MUNICIPIO_CIUDAD,5)){

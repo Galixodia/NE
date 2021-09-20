@@ -227,8 +227,8 @@ public class Comprobante{
                             enc.setHZRNENC_CONSECUTIVO(rs.getLong("HZRNENC_CONSECUTIVO"));
                             enc.setHZRNENC_NUMERO(rs.getString("HZRNENC_NUMERO"));
                             enc.setHZRNENC_PAIS(rs.getString("HZRNENC_PAIS"));
-                            enc.setHZRNENC_DEPART_ESTADO(rs.getInt("HZRNENC_DEPART_ESTADO"));
-                            enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getInt("HZRNENC_MUNICIPIO_CIUDAD"));
+                            enc.setHZRNENC_DEPART_ESTADO(rs.getString("HZRNENC_DEPART_ESTADO"));
+                            enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getString("HZRNENC_MUNICIPIO_CIUDAD"));
                             enc.setHZRNENC_IDIOMA(rs.getString("HZRNENC_IDIOMA"));
                             enc.setHZRNENC_VERSION(rs.getString("HZRNENC_VERSION"));
                             enc.setHZRNENC_AMBIENTE(rs.getInt("HZRNENC_AMBIENTE"));
@@ -324,8 +324,8 @@ public class Comprobante{
                             emi.setHZRNEMI_NIT(rs.getLong("HZRNEMI_NIT"));
                             emi.setHZRNEMI_DV(rs.getInt("HZRNEMI_DV"));
                             emi.setHZRNEMI_PAIS(rs.getString("HZRNEMI_PAIS"));
-                            emi.setHZRNEMI_DEPART_ESTADO(rs.getInt("HZRNEMI_DEPART_ESTADO"));
-                            emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getInt("HZRNEMI_MUNICIPIO_CIUDAD"));
+                            emi.setHZRNEMI_DEPART_ESTADO(rs.getString("HZRNEMI_DEPART_ESTADO"));
+                            emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getString("HZRNEMI_MUNICIPIO_CIUDAD"));
                             emi.setHZRNEMI_DIRECCION(rs.getString("HZRNEMI_DIRECCION"));
 
                             nom.setEmisor(emi);
@@ -1262,8 +1262,8 @@ public class Comprobante{
                             enc.setHZRNENC_CONSECUTIVO(rs.getLong("HZRNENC_CONSECUTIVO"));
                             enc.setHZRNENC_NUMERO(rs.getString("HZRNENC_NUMERO"));
                             enc.setHZRNENC_PAIS(rs.getString("HZRNENC_PAIS"));
-                            enc.setHZRNENC_DEPART_ESTADO(rs.getInt("HZRNENC_DEPART_ESTADO"));
-                            enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getInt("HZRNENC_MUNICIPIO_CIUDAD"));
+                            enc.setHZRNENC_DEPART_ESTADO(rs.getString("HZRNENC_DEPART_ESTADO"));
+                            enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getString("HZRNENC_MUNICIPIO_CIUDAD"));
                             enc.setHZRNENC_IDIOMA(rs.getString("HZRNENC_IDIOMA"));
                             enc.setHZRNENC_VERSION(rs.getString("HZRNENC_VERSION"));
                             enc.setHZRNENC_AMBIENTE(rs.getInt("HZRNENC_AMBIENTE"));
@@ -1337,8 +1337,8 @@ public class Comprobante{
                             emi.setHZRNEMI_NIT(rs.getLong("HZRNEMI_NIT"));
                             emi.setHZRNEMI_DV(rs.getInt("HZRNEMI_DV"));
                             emi.setHZRNEMI_PAIS(rs.getString("HZRNEMI_PAIS"));
-                            emi.setHZRNEMI_DEPART_ESTADO(rs.getInt("HZRNEMI_DEPART_ESTADO"));
-                            emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getInt("HZRNEMI_MUNICIPIO_CIUDAD"));
+                            emi.setHZRNEMI_DEPART_ESTADO(rs.getString("HZRNEMI_DEPART_ESTADO"));
+                            emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getString("HZRNEMI_MUNICIPIO_CIUDAD"));
                             emi.setHZRNEMI_DIRECCION(rs.getString("HZRNEMI_DIRECCION"));
 
                             nom.setEmisor(emi);
@@ -2275,8 +2275,8 @@ public class Comprobante{
                             enc.setHZRNENC_CONSECUTIVO(rs.getLong("HZRNENC_CONSECUTIVO"));
                             enc.setHZRNENC_NUMERO(rs.getString("HZRNENC_NUMERO"));
                             enc.setHZRNENC_PAIS(rs.getString("HZRNENC_PAIS"));
-                            enc.setHZRNENC_DEPART_ESTADO(rs.getInt("HZRNENC_DEPART_ESTADO"));
-                            enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getInt("HZRNENC_MUNICIPIO_CIUDAD"));
+                            enc.setHZRNENC_DEPART_ESTADO(rs.getString("HZRNENC_DEPART_ESTADO"));
+                            enc.setHZRNENC_MUNICIPIO_CIUDAD(rs.getString("HZRNENC_MUNICIPIO_CIUDAD"));
                             enc.setHZRNENC_IDIOMA(rs.getString("HZRNENC_IDIOMA"));
                             enc.setHZRNENC_VERSION(rs.getString("HZRNENC_VERSION"));
                             enc.setHZRNENC_AMBIENTE(rs.getInt("HZRNENC_AMBIENTE"));
@@ -2346,8 +2346,8 @@ public class Comprobante{
                             emi.setHZRNEMI_NIT(rs.getLong("HZRNEMI_NIT"));
                             emi.setHZRNEMI_DV(rs.getInt("HZRNEMI_DV"));
                             emi.setHZRNEMI_PAIS(rs.getString("HZRNEMI_PAIS"));
-                            emi.setHZRNEMI_DEPART_ESTADO(rs.getInt("HZRNEMI_DEPART_ESTADO"));
-                            emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getInt("HZRNEMI_MUNICIPIO_CIUDAD"));
+                            emi.setHZRNEMI_DEPART_ESTADO(rs.getString("HZRNEMI_DEPART_ESTADO"));
+                            emi.setHZRNEMI_MUNICIPIO_CIUDAD(rs.getString("HZRNEMI_MUNICIPIO_CIUDAD"));
                             emi.setHZRNEMI_DIRECCION(rs.getString("HZRNEMI_DIRECCION"));
 
                             nom.setEmisor(emi);
