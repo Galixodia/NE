@@ -116,7 +116,15 @@ public class ENC {
     }
 
     public void setHZRNENC_TIPO_DOC(String HZRNENC_TIPO_DOC) throws DataFormatException {     
-        this.HZRNENC_TIPO_DOC = HZRNENC_TIPO_DOC;
+        Data data = new Data();        
+        
+        if(data.checkNull(HZRNENC_TIPO_DOC)){         
+            this.HZRNENC_TIPO_DOC = HZRNENC_TIPO_DOC;
+            data = null;
+        }else{
+            throw new DataFormatException("ENC:HZRNENC_TIPO_DOC:El campo es nulo");
+        }         
+        
     }
     @XmlTransient
     public String getHZRNENC_FECHA_ING() {
@@ -124,15 +132,7 @@ public class ENC {
     }
 
     public void setHZRNENC_FECHA_ING(String HZRNENC_FECHA_ING) throws DataFormatException {
-        Data data = new Data();        
-        
-        if(data.checkNull(HZRNENC_FECHA_ING)){
-            this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
-            data = null;
-        }else{
-            throw new DataFormatException("ENC:HZRNENC_FECHA_ING:El campo es nulo");
-        }
-        
+        this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
     }
     @XmlTransient
     public String getHZRNENC_FECHA_RET() {
@@ -210,6 +210,7 @@ public class ENC {
 
     public void setHZRNENC_CODIGO_TRAB(String HZRNENC_CODIGO_TRAB) {
         this.HZRNENC_CODIGO_TRAB = HZRNENC_CODIGO_TRAB;
+       
     }
     @XmlTransient
     public String getHZRNENC_PREFIJO() {
