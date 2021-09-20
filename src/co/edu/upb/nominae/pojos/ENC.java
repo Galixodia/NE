@@ -116,15 +116,16 @@ public class ENC {
         return HZRNENC_TIPO_DOC;
     }
 
-    public void setHZRNENC_TIPO_DOC(String HZRNENC_TIPO_DOC) throws DataFormatException {
+    public void setHZRNENC_TIPO_DOC(String HZRNENC_TIPO_DOC) throws DataFormatException {     
         Data data = new Data();        
         
-        if(data.checklength(HZRNENC_TIPO_DOC,35)){
+        if(data.checkNull(HZRNENC_TIPO_DOC)){         
             this.HZRNENC_TIPO_DOC = HZRNENC_TIPO_DOC;
             data = null;
         }else{
-            throw new DataFormatException("ENC:HZRNENC_TIPO_DOC:El campo es nulo o excede la longitud definida por la DIAN");
-        }  
+            throw new DataFormatException("ENC:HZRNENC_TIPO_DOC:El campo es nulo");
+        }         
+        
     }
     @XmlTransient
     public String getHZRNENC_FECHA_ING() {
