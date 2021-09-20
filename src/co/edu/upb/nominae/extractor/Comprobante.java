@@ -350,8 +350,8 @@ public class Comprobante{
                             REC rec = new REC();
 
                             rec.setHZRNREC_CUNE_INTERNO(rs.getString("HZRNREC_CUNE_INTERNO"));
-                            rec.setHZRNREC_TIPO_TRABAJADOR(rs.getInt("HZRNREC_TIPO_TRABAJADOR"));
-                            rec.setHZRNREC_SUB_TIPO_TRABAJ(rs.getInt("HZRNREC_SUB_TIPO_TRABAJ"));
+                            rec.setHZRNREC_TIPO_TRABAJADOR(rs.getString("HZRNREC_TIPO_TRABAJADOR"));
+                            rec.setHZRNREC_SUB_TIPO_TRABAJ(rs.getString("HZRNREC_SUB_TIPO_TRABAJ"));
                             rec.setHZRNREC_ALTO_RIESGO_PENS(rs.getString("HZRNREC_ALTO_RIESGO_PENS"));
                             rec.setHZRNREC_TIPO_DOC(rs.getInt("HZRNREC_TIPO_DOC"));
                             rec.setHZRNREC_NUM_DOC(rs.getLong("HZRNREC_NUM_DOC"));
@@ -1363,8 +1363,8 @@ public class Comprobante{
                             REC rec = new REC();
 
                             rec.setHZRNREC_CUNE_INTERNO(rs.getString("HZRNREC_CUNE_INTERNO"));
-                            rec.setHZRNREC_TIPO_TRABAJADOR(rs.getInt("HZRNREC_TIPO_TRABAJADOR"));
-                            rec.setHZRNREC_SUB_TIPO_TRABAJ(rs.getInt("HZRNREC_SUB_TIPO_TRABAJ"));
+                            rec.setHZRNREC_TIPO_TRABAJADOR(rs.getString("HZRNREC_TIPO_TRABAJADOR"));
+                            rec.setHZRNREC_SUB_TIPO_TRABAJ(rs.getString("HZRNREC_SUB_TIPO_TRABAJ"));
                             rec.setHZRNREC_ALTO_RIESGO_PENS(rs.getString("HZRNREC_ALTO_RIESGO_PENS"));
                             rec.setHZRNREC_TIPO_DOC(rs.getInt("HZRNREC_TIPO_DOC"));
                             rec.setHZRNREC_NUM_DOC(rs.getLong("HZRNREC_NUM_DOC"));

@@ -38,9 +38,9 @@ public class REC {
     
     private String HZRNREC_CUNE_INTERNO;
     @XmlElement(name = "REC_1")
-    private Integer HZRNREC_TIPO_TRABAJADOR;
+    private String HZRNREC_TIPO_TRABAJADOR;
     @XmlElement(name = "REC_2")
-    private Integer HZRNREC_SUB_TIPO_TRABAJ;
+    private String HZRNREC_SUB_TIPO_TRABAJ;
     @XmlElement(name = "REC_3")
     private String HZRNREC_ALTO_RIESGO_PENS;
     @XmlElement(name = "REC_4")
@@ -81,11 +81,11 @@ public class REC {
         this.HZRNREC_CUNE_INTERNO = HZRNREC_CUNE_INTERNO;
     }
     @XmlTransient
-    public Integer getHZRNREC_TIPO_TRABAJADOR() {
+    public String getHZRNREC_TIPO_TRABAJADOR() {
         return HZRNREC_TIPO_TRABAJADOR;
     }
 
-    public void setHZRNREC_TIPO_TRABAJADOR(Integer HZRNREC_TIPO_TRABAJADOR) throws DataFormatException {
+    public void setHZRNREC_TIPO_TRABAJADOR(String HZRNREC_TIPO_TRABAJADOR) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNREC_TIPO_TRABAJADOR,2)){
@@ -96,11 +96,11 @@ public class REC {
         }          
     }
     @XmlTransient
-    public Integer getHZRNREC_SUB_TIPO_TRABAJ() {
+    public String getHZRNREC_SUB_TIPO_TRABAJ() {
         return HZRNREC_SUB_TIPO_TRABAJ;
     }
 
-    public void setHZRNREC_SUB_TIPO_TRABAJ(Integer HZRNREC_SUB_TIPO_TRABAJ) throws DataFormatException {
+    public void setHZRNREC_SUB_TIPO_TRABAJ(String HZRNREC_SUB_TIPO_TRABAJ) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checklength(HZRNREC_SUB_TIPO_TRABAJ,2)){
