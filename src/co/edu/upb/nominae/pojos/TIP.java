@@ -2,8 +2,8 @@
 package co.edu.upb.nominae.pojos;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -13,26 +13,21 @@ import javax.xml.bind.annotation.XmlTransient;
  * 
  * CLASE QUE DEFINE EL TIPO DE AJUSTE EN CASO DE SERLO.
  */
-@XmlRootElement(name = "TIP")
+
+@XmlType (propOrder={"TIP_1"})
 public class TIP {
     
     @XmlElement(name = "TIP_1")
     private Integer TIP_1;
 
-
-    public TIP() {
-    }
-
     public TIP(Integer TIP_1) {
         this.TIP_1 = TIP_1;
     }
-
     
     @XmlTransient
     public Integer getTIP_1() {
         return TIP_1;
     }
-
     public void setTIP_1(Integer TIP_1) {
         this.TIP_1 = TIP_1;
     }
@@ -41,7 +36,5 @@ public class TIP {
     public String toString() {
         return "TIP{" + "TIP_1=" + TIP_1 + '}';
     }
-    
-    
     
 }

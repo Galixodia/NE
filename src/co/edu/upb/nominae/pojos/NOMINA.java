@@ -58,7 +58,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 
 @XmlRootElement(name = "NOMINA")
-@XmlType (propOrder={"encabezado",
+@XmlType (propOrder={"tipo_nota",
+    "encabezado",
     "novedad",
     "notas",
     "emisor",
@@ -87,7 +88,8 @@ public class NOMINA {
     private String HZRNNOM_PDF;
   
     
-    
+    @XmlElement(name = "TIP")
+    private TIP tipo_nota;
     @XmlElement(name = "ENC")
     private ENC encabezado;
     @XmlElement(name = "NOV")
@@ -178,7 +180,14 @@ public class NOMINA {
     public void setHZRNNOM_ESTADO(String HZRNNOM_ESTADO) {
         this.HZRNNOM_ESTADO = HZRNNOM_ESTADO;
     }
-    
+    @XmlTransient
+    public TIP getTipo_nota() {
+        return tipo_nota;
+    }
+
+    public void setTipo_nota(TIP tipo_nota) {
+        this.tipo_nota = tipo_nota;
+    }
     @XmlTransient
     public ENC getEncabezado() {
         return encabezado;
@@ -324,12 +333,10 @@ public class NOMINA {
         this.HZRNNOM_TIPO_DOC = HZRNNOM_TIPO_DOC;
     }
 
-    
-    
-    
     @Override
     public String toString() {
-        return "NOMINA{" + "HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_NUM_DOC=" + HZRNNOM_NUM_DOC + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_ANO=" + HZRNNOM_ANO + ", HZRNNOM_MES=" + HZRNNOM_MES + ", HZRNNOM_FECHA_EXT=" + HZRNNOM_FECHA_EXT + ", HZRNNOM_HORA_EXT=" + HZRNNOM_HORA_EXT + ", HZRNNOM_FECHA_TRANS=" + HZRNNOM_FECHA_TRANS + ", HZRNNOM_HORA_TRANS=" + HZRNNOM_HORA_TRANS + ", HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_RTA_CARVAJAL=" + HZRNNOM_RTA_CARVAJAL + ", HZRNNOM_RTA_DIAN=" + HZRNNOM_RTA_DIAN + ", HZRNNOM_BASE64_PDF=" + HZRNNOM_BASE64_PDF + ", HZRNNOM_PDF=" + HZRNNOM_PDF + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';
+        return "NOMINA{" + "HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_NUM_DOC=" + HZRNNOM_NUM_DOC + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_TIPO_DOC=" + HZRNNOM_TIPO_DOC + ", HZRNNOM_ANO=" + HZRNNOM_ANO + ", HZRNNOM_MES=" + HZRNNOM_MES + ", HZRNNOM_FECHA_EXT=" + HZRNNOM_FECHA_EXT + ", HZRNNOM_HORA_EXT=" + HZRNNOM_HORA_EXT + ", HZRNNOM_FECHA_TRANS=" + HZRNNOM_FECHA_TRANS + ", HZRNNOM_HORA_TRANS=" + HZRNNOM_HORA_TRANS + ", HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_RTA_CARVAJAL=" + HZRNNOM_RTA_CARVAJAL + ", HZRNNOM_RTA_DIAN=" + HZRNNOM_RTA_DIAN + ", HZRNNOM_BASE64_PDF=" + HZRNNOM_BASE64_PDF + ", HZRNNOM_PDF=" + HZRNNOM_PDF + ", tipo_nota=" + tipo_nota + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';
     }
+
 
 }
