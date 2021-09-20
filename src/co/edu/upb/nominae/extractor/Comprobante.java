@@ -198,7 +198,7 @@ public class Comprobante{
                         nom.setHZRNNOM_ANO(rs_nom.getInt("HZRNNOM_ANO"));
                         nom.setHZRNNOM_MES(rs_nom.getInt("HZRNNOM_MES"));
                         nom.setHZRNNOM_ESTADO(rs_nom.getString("HZRNNOM_ESTADO"));
-                        nom.setHZRNNOM_FECHA_EXT(rs_nom.getDate("HZRNNOM_FECHA_EXT"));
+                        nom.setHZRNNOM_FECHA_EXT(rs_nom.getString("HZRNNOM_FECHA_EXT"));
                         
                     }   
                 }else{
@@ -217,12 +217,12 @@ public class Comprobante{
                             ENC enc = new ENC();
                             enc.setHZRNENC_CUNE_INTERNO(rs.getString("HZRNENC_CUNE_INTERNO"));
                             enc.setHZRNENC_TIPO_DOC(rs.getString("HZRNENC_TIPO_DOC"));
-                            enc.setHZRNENC_FECHA_ING(rs.getDate("HZRNENC_FECHA_ING"));
-                            enc.setHZRNENC_FECHA_RET(rs.getDate("HZRNENC_FECHA_RET"));
-                            enc.setHZRNENC_FECHA_LIQ_INI(rs.getDate("HZRNENC_FECHA_LIQ_INI"));
-                            enc.setHZRNENC_FECHA_LIQ_FIN(rs.getDate("HZRNENC_FECHA_LIQ_FIN"));
+                            enc.setHZRNENC_FECHA_ING(rs.getString("HZRNENC_FECHA_ING"));
+                            enc.setHZRNENC_FECHA_RET(rs.getString("HZRNENC_FECHA_RET"));
+                            enc.setHZRNENC_FECHA_LIQ_INI(rs.getString("HZRNENC_FECHA_LIQ_INI"));
+                            enc.setHZRNENC_FECHA_LIQ_FIN(rs.getString("HZRNENC_FECHA_LIQ_FIN"));
                             enc.setHZRNENC_TIEMPO_LAB(rs.getBigDecimal("HZRNENC_TIEMPO_LAB"));
-                            enc.setHZRNENC_FECHA_EMISION(rs.getDate("HZRNENC_FECHA_EMISION"));
+                            enc.setHZRNENC_FECHA_EMISION(rs.getString("HZRNENC_FECHA_EMISION"));
                             enc.setHZRNENC_CODIGO_TRAB(rs.getString("HZRNENC_CODIGO_TRAB"));
                             enc.setHZRNENC_PREFIJO(rs.getString("HZRNENC_PREFIJO"));
                             enc.setHZRNENC_CONSECUTIVO(rs.getLong("HZRNENC_CONSECUTIVO"));
@@ -235,14 +235,14 @@ public class Comprobante{
                             enc.setHZRNENC_AMBIENTE(rs.getInt("HZRNENC_AMBIENTE"));
                             enc.setHZRNENC_TIPO_XML(rs.getInt("HZRNENC_TIPO_XML"));
                             enc.setHZRNENC_CUNE(rs.getString("HZRNENC_CUNE"));
-                            enc.setHZRNENC_FECHA_GENERA(rs.getDate("HZRNENC_FECHA_GENERA"));
+                            enc.setHZRNENC_FECHA_GENERA(rs.getString("HZRNENC_FECHA_GENERA"));
                             enc.setHZRNENC_HORA_GENERA(rs.getString("HZRNENC_HORA_GENERA"));
                             enc.setHZRNENC_PERIODO_NOM(rs.getInt("HZRNENC_PERIODO_NOM"));
                             enc.setHZRNENC_TIPO_MONEDA(rs.getString("HZRNENC_TIPO_MONEDA"));
                             enc.setHZRNENC_TRM(rs.getBigDecimal("HZRNENC_TRM"));
                             enc.setHZRNENC_NUM_PRED(rs.getString("HZRNENC_NUM_PRED"));
                             enc.setHZRNENC_CUNE_PRED(rs.getString("HZRNENC_CUNE_PRED"));
-                            enc.setHZRNENC_FECHA_GEN_PRED(rs.getDate("HZRNENC_FECHA_GEN_PRED"));
+                            enc.setHZRNENC_FECHA_GEN_PRED(rs.getString("HZRNENC_FECHA_GEN_PRED"));
 
                             nom.setEncabezado(enc);
                             enc = null;
@@ -419,7 +419,7 @@ public class Comprobante{
                         while (rs.next()) {
                         FEP fep = new FEP();
                         fep.setHZRNFEP_CUNE_INTERNO(rs.getString("HZRNFEP_CUNE_INTERNO"));
-                        fep.setHZRNFEP_FECHA_PAGO(rs.getDate("HZRNFEP_FECHA_PAGO"));
+                        fep.setHZRNFEP_FECHA_PAGO(rs.getString("HZRNFEP_FECHA_PAGO"));
 
                         nom.fecha_pagos.set(i, fep);
                         fep = null;
@@ -520,8 +520,8 @@ public class Comprobante{
                             i = 0;
                             while (rs.next()) {
                                 EVC evc = new EVC();
-                                evc.setHZRNEVC_FECHA_INICIO(rs.getDate("HZRNEVC_FECHA_INICIO"));                
-                                evc.setHZRNEVC_FECHA_FIN(rs.getDate("HZRNEVC_FECHA_FIN"));                
+                                evc.setHZRNEVC_FECHA_INICIO(rs.getString("HZRNEVC_FECHA_INICIO"));                
+                                evc.setHZRNEVC_FECHA_FIN(rs.getString("HZRNEVC_FECHA_FIN"));                
                                 evc.setHZRNEVC_CANTIDAD(rs.getLong("HZRNEVC_CANTIDAD"));                                
                                 evc.setHZRNEVC_PAGO(rs.getBigDecimal("HZRNEVC_PAGO"));
                                 evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
@@ -624,8 +624,8 @@ public class Comprobante{
                         if(rs != null){   
                             while (rs.next()) {
                                 EIN ein = new EIN();
-                                ein.setHZRNEIN_FECHA_INICIO(rs.getDate("HZRNEIN_FECHA_INICIO"));
-                                ein.setHZRNEIN_FECHA_FIN(rs.getDate("HZRNEIN_FECHA_FIN"));
+                                ein.setHZRNEIN_FECHA_INICIO(rs.getString("HZRNEIN_FECHA_INICIO"));
+                                ein.setHZRNEIN_FECHA_FIN(rs.getString("HZRNEIN_FECHA_FIN"));
                                 ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
                                 ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
                                 ein.setHZRNEIN_PAGO(rs.getBigDecimal("HZRNEIN_PAGO"));
@@ -653,8 +653,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 ELI eli = new ELI();
-                                eli.setHZRNELI_FECHA_INICIO(rs.getDate("HZRNELI_FECHA_INICIO"));
-                                eli.setHZRNELI_FECHA_FIN(rs.getDate("HZRNELI_FECHA_FIN"));
+                                eli.setHZRNELI_FECHA_INICIO(rs.getString("HZRNELI_FECHA_INICIO"));
+                                eli.setHZRNELI_FECHA_FIN(rs.getString("HZRNELI_FECHA_FIN"));
                                 eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
                                 eli.setHZRNELI_PAGO(rs.getBigDecimal("HZRNELI_PAGO"));
                                 eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
@@ -682,8 +682,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 ELR elr = new ELR();
-                                elr.setHZRNELR_FECHA_INICIO(rs.getDate("HZRNELR_FECHA_INICIO"));
-                                elr.setHZRNELR_FECHA_FIN(rs.getDate("HZRNELR_FECHA_FIN"));
+                                elr.setHZRNELR_FECHA_INICIO(rs.getString("HZRNELR_FECHA_INICIO"));
+                                elr.setHZRNELR_FECHA_FIN(rs.getString("HZRNELR_FECHA_FIN"));
                                 elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
                                 elr.setHZRNELR_PAGO(rs.getBigDecimal("HZRNELR_PAGO"));
                                 elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
@@ -710,8 +710,8 @@ public class Comprobante{
                         if(rs != null){
                             while (rs.next()) {
                                 ELN eln = new ELN();
-                                eln.setHZRNELN_FECHA_INICIO(rs.getDate("HZRNELN_FECHA_INICIO"));
-                                eln.setHZRNELN_FECHA_FIN(rs.getDate("HZRNELN_FECHA_FIN"));
+                                eln.setHZRNELN_FECHA_INICIO(rs.getString("HZRNELN_FECHA_INICIO"));
+                                eln.setHZRNELN_FECHA_FIN(rs.getString("HZRNELN_FECHA_FIN"));
                                 eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
                                 eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
 
@@ -789,8 +789,8 @@ public class Comprobante{
 //                    if(rs != null){
 //                        while (rs.next()) {
 //                            EHL ehl = new EHL();                  
-//                            ehl.setHZRNEHL_FECHA_INICIO(rs.getDate("HZRNEHL_FECHA_INICIO"));
-//                            ehl.setHZRNEHL_FECHA_FIN(rs.getDate("HZRNEHL_FECHA_FIN"));
+//                            ehl.setHZRNEHL_FECHA_INICIO(rs.getString("HZRNEHL_FECHA_INICIO"));
+//                            ehl.setHZRNEHL_FECHA_FIN(rs.getString("HZRNEHL_FECHA_FIN"));
 //                            ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
 //                            ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
 //
@@ -1253,7 +1253,7 @@ public class Comprobante{
 
                         enc.setHZRNENC_CUNE_INTERNO(rs.getString("HZRNENC_CUNE_INTERNO"));
                         enc.setHZRNENC_TIPO_DOC(rs.getString("HZRNENC_TIPO_DOC"));
-                        enc.setHZRNENC_FECHA_EMISION(rs.getDate("HZRNENC_FECHA_EMISION"));
+                        enc.setHZRNENC_FECHA_EMISION(rs.getString("HZRNENC_FECHA_EMISION"));
                         enc.setHZRNENC_PREFIJO(rs.getString("HZRNENC_PREFIJO"));
                         enc.setHZRNENC_CONSECUTIVO(rs.getLong("HZRNENC_CONSECUTIVO"));
                         enc.setHZRNENC_NUMERO(rs.getString("HZRNENC_NUMERO"));
@@ -1265,11 +1265,11 @@ public class Comprobante{
                         enc.setHZRNENC_AMBIENTE(rs.getInt("HZRNENC_AMBIENTE"));
                         enc.setHZRNENC_TIPO_XML(rs.getInt("HZRNENC_TIPO_XML"));
                         enc.setHZRNENC_CUNE(rs.getString("HZRNENC_CUNE"));
-                        enc.setHZRNENC_FECHA_GENERA(rs.getDate("HZRNENC_FECHA_GENERA"));
+                        enc.setHZRNENC_FECHA_GENERA(rs.getString("HZRNENC_FECHA_GENERA"));
                         enc.setHZRNENC_HORA_GENERA(rs.getString("HZRNENC_HORA_GENERA"));
                         enc.setHZRNENC_NUM_PRED(rs.getString("HZRNENC_NUM_PRED"));
                         enc.setHZRNENC_CUNE_PRED(rs.getString("HZRNENC_CUNE_PRED"));
-                        enc.setHZRNENC_FECHA_GEN_PRED(rs.getDate("HZRNENC_FECHA_GEN_PRED"));
+                        enc.setHZRNENC_FECHA_GEN_PRED(rs.getString("HZRNENC_FECHA_GEN_PRED"));
 
                         nom.setEncabezado(enc);
                         enc = null;

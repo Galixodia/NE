@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 public class EIN {
     
     @XmlElement(name = "EIN_1")
-    private Date HZRNEIN_FECHA_INICIO;
+    private String HZRNEIN_FECHA_INICIO;
     @XmlElement(name = "EIN_2")
-    private Date HZRNEIN_FECHA_FIN;
+    private String HZRNEIN_FECHA_FIN;
     @XmlElement(name = "EIN_3")
     private Long HZRNEIN_CANTIDAD;
     @XmlElement(name = "EIN_4")
@@ -29,19 +29,19 @@ public class EIN {
     private Integer HZRNEIN_ITE_ID;      
 
     @XmlTransient
-    public Date getHZRNEIN_FECHA_INICIO() {
+    public String getHZRNEIN_FECHA_INICIO() {
         return HZRNEIN_FECHA_INICIO;
     }
 
-    public void setHZRNEIN_FECHA_INICIO(Date HZRNEIN_FECHA_INICIO) {
+    public void setHZRNEIN_FECHA_INICIO(String HZRNEIN_FECHA_INICIO) {
         this.HZRNEIN_FECHA_INICIO = HZRNEIN_FECHA_INICIO;
     }
     @XmlTransient
-    public Date getHZRNEIN_FECHA_FIN() {
+    public String getHZRNEIN_FECHA_FIN() {
         return HZRNEIN_FECHA_FIN;
     }
 
-    public void setHZRNEIN_FECHA_FIN(Date HZRNEIN_FECHA_FIN) {
+    public void setHZRNEIN_FECHA_FIN(String HZRNEIN_FECHA_FIN) {
         this.HZRNEIN_FECHA_FIN = HZRNEIN_FECHA_FIN;
     }
     @XmlTransient

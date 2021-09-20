@@ -23,9 +23,9 @@ import javax.xml.bind.annotation.XmlType;
 public class EVC {
     
     @XmlElement(name = "EVC_1")
-    private Date HZRNEVC_FECHA_INICIO;
+    private String HZRNEVC_FECHA_INICIO;
     @XmlElement(name = "EVC_2")
-    private Date HZRNEVC_FECHA_FIN;
+    private String HZRNEVC_FECHA_FIN;
     @XmlElement(name = "EVC_3")
     private Long HZRNEVC_CANTIDAD;
     @XmlElement(name = "EVC_4")
@@ -33,19 +33,19 @@ public class EVC {
     private Integer HZRNEVC_ITE_ID;
 
     @XmlTransient
-    public Date getHZRNEVC_FECHA_INICIO() {
+    public String getHZRNEVC_FECHA_INICIO() {
         return HZRNEVC_FECHA_INICIO;
     }
 
-    public void setHZRNEVC_FECHA_INICIO(Date HZRNEVC_FECHA_INICIO) {
+    public void setHZRNEVC_FECHA_INICIO(String HZRNEVC_FECHA_INICIO) {
         this.HZRNEVC_FECHA_INICIO = HZRNEVC_FECHA_INICIO;
     }
     @XmlTransient
-    public Date getHZRNEVC_FECHA_FIN() {
+    public String getHZRNEVC_FECHA_FIN() {
         return HZRNEVC_FECHA_FIN;
     }
 
-    public void setHZRNEVC_FECHA_FIN(Date HZRNEVC_FECHA_FIN) {
+    public void setHZRNEVC_FECHA_FIN(String HZRNEVC_FECHA_FIN) {
         this.HZRNEVC_FECHA_FIN = HZRNEVC_FECHA_FIN;
     }
     @XmlTransient

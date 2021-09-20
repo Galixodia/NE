@@ -23,7 +23,7 @@ public class FEP {
     
     private String HZRNFEP_CUNE_INTERNO;    
     @XmlElement(name = "FEP_1")
-    private Date HZRNFEP_FECHA_PAGO;
+    private String HZRNFEP_FECHA_PAGO;
     @XmlTransient
     public String getHZRNFEP_CUNE_INTERNO() {
         return HZRNFEP_CUNE_INTERNO;
@@ -33,11 +33,11 @@ public class FEP {
         this.HZRNFEP_CUNE_INTERNO = HZRNFEP_CUNE_INTERNO;
     }
     @XmlTransient
-    public Date getHZRNFEP_FECHA_PAGO() {
+    public String getHZRNFEP_FECHA_PAGO() {
         return HZRNFEP_FECHA_PAGO;
     }
 
-    public void setHZRNFEP_FECHA_PAGO(Date HZRNFEP_FECHA_PAGO) throws DataFormatException {
+    public void setHZRNFEP_FECHA_PAGO(String HZRNFEP_FECHA_PAGO) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checkNull(HZRNFEP_FECHA_PAGO)){

@@ -51,17 +51,17 @@ public class ENC {
     @XmlElement(name="ENC_1")
     private String      HZRNENC_TIPO_DOC;
     @XmlElement(name="ENC_2")
-    private Date      HZRNENC_FECHA_ING;
+    private String      HZRNENC_FECHA_ING;
     @XmlElement(name="ENC_3")
-    private Date      HZRNENC_FECHA_RET;
+    private String      HZRNENC_FECHA_RET;
     @XmlElement(name="ENC_4")
-    private Date      HZRNENC_FECHA_LIQ_INI;
+    private String      HZRNENC_FECHA_LIQ_INI;
     @XmlElement(name="ENC_5")
-    private Date      HZRNENC_FECHA_LIQ_FIN;
+    private String      HZRNENC_FECHA_LIQ_FIN;
     @XmlElement(name="ENC_6")
     private BigDecimal      HZRNENC_TIEMPO_LAB;
     @XmlElement(name="ENC_7")
-    private Date      HZRNENC_FECHA_EMISION;
+    private String      HZRNENC_FECHA_EMISION;
     @XmlElement(name="ENC_8")
     private String      HZRNENC_CODIGO_TRAB;
     @XmlElement(name="ENC_9")
@@ -87,7 +87,7 @@ public class ENC {
     @XmlElement(name="ENC_19")
     private String      HZRNENC_CUNE;
     @XmlElement(name="ENC_20")
-    private Date      HZRNENC_FECHA_GENERA;
+    private String      HZRNENC_FECHA_GENERA;
     @XmlElement(name="ENC_21")
     private String      HZRNENC_HORA_GENERA;
     @XmlElement(name="ENC_22")
@@ -101,7 +101,7 @@ public class ENC {
     @XmlElement(name="ENC_26")
     private String      HZRNENC_CUNE_PRED;
     @XmlElement(name="ENC_27")
-    private Date      HZRNENC_FECHA_GEN_PRED;
+    private String      HZRNENC_FECHA_GEN_PRED;
 
     @XmlTransient
     public String getHZRNENC_CUNE_INTERNO() {
@@ -127,35 +127,27 @@ public class ENC {
         }  
     }
     @XmlTransient
-    public Date getHZRNENC_FECHA_ING() {
+    public String getHZRNENC_FECHA_ING() {
         return HZRNENC_FECHA_ING;
     }
 
-    public void setHZRNENC_FECHA_ING(Date HZRNENC_FECHA_ING) throws DataFormatException {
-        Data data = new Data();        
-        
-        if(data.checkNull(HZRNENC_FECHA_ING)){
-            this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
-            data = null;
-        }else{
-            throw new DataFormatException("ENC:HZRNENC_FECHA_ING:El campo es nulo");
-        }
-        
+    public void setHZRNENC_FECHA_ING(String HZRNENC_FECHA_ING) throws DataFormatException {
+        this.HZRNENC_FECHA_ING = HZRNENC_FECHA_ING;
     }
     @XmlTransient
-    public Date getHZRNENC_FECHA_RET() {
+    public String getHZRNENC_FECHA_RET() {
         return HZRNENC_FECHA_RET;
     }
 
-    public void setHZRNENC_FECHA_RET(Date HZRNENC_FECHA_RET) {
+    public void setHZRNENC_FECHA_RET(String HZRNENC_FECHA_RET) {
             this.HZRNENC_FECHA_RET = HZRNENC_FECHA_RET;
    }
     @XmlTransient
-    public Date getHZRNENC_FECHA_LIQ_INI() {
+    public String getHZRNENC_FECHA_LIQ_INI() {
         return HZRNENC_FECHA_LIQ_INI;
     }
 
-    public void setHZRNENC_FECHA_LIQ_INI(Date HZRNENC_FECHA_LIQ_INI) throws DataFormatException {
+    public void setHZRNENC_FECHA_LIQ_INI(String HZRNENC_FECHA_LIQ_INI) throws DataFormatException {
         Data data = new Data();        
         
         if(data.checkNull(HZRNENC_FECHA_LIQ_INI)){
@@ -166,11 +158,11 @@ public class ENC {
         }
     }
     @XmlTransient
-    public Date getHZRNENC_FECHA_LIQ_FIN() {
+    public String getHZRNENC_FECHA_LIQ_FIN() {
         return HZRNENC_FECHA_LIQ_FIN;
     }
 
-    public void setHZRNENC_FECHA_LIQ_FIN(Date HZRNENC_FECHA_LIQ_FIN) throws DataFormatException {
+    public void setHZRNENC_FECHA_LIQ_FIN(String HZRNENC_FECHA_LIQ_FIN) throws DataFormatException {
         Data data = new Data();        
         
         if(data.checkNull(HZRNENC_FECHA_LIQ_FIN)){        
@@ -197,11 +189,11 @@ public class ENC {
         
     }
     @XmlTransient
-    public Date getHZRNENC_FECHA_EMISION() {
+    public String getHZRNENC_FECHA_EMISION() {
         return HZRNENC_FECHA_EMISION;
     }
 
-    public void setHZRNENC_FECHA_EMISION(Date HZRNENC_FECHA_EMISION) throws DataFormatException {
+    public void setHZRNENC_FECHA_EMISION(String HZRNENC_FECHA_EMISION) throws DataFormatException {
         Data data = new Data();        
         
         if(data.checkNull(HZRNENC_FECHA_EMISION)){         
@@ -218,6 +210,7 @@ public class ENC {
 
     public void setHZRNENC_CODIGO_TRAB(String HZRNENC_CODIGO_TRAB) {
         this.HZRNENC_CODIGO_TRAB = HZRNENC_CODIGO_TRAB;
+       
     }
     @XmlTransient
     public String getHZRNENC_PREFIJO() {
@@ -373,11 +366,11 @@ public class ENC {
         this.HZRNENC_CUNE = HZRNENC_CUNE;
     }
     @XmlTransient
-    public Date getHZRNENC_FECHA_GENERA() {
+    public String getHZRNENC_FECHA_GENERA() {
         return HZRNENC_FECHA_GENERA;
     }
 
-    public void setHZRNENC_FECHA_GENERA(Date HZRNENC_FECHA_GENERA) throws DataFormatException {
+    public void setHZRNENC_FECHA_GENERA(String HZRNENC_FECHA_GENERA) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checkNull(HZRNENC_FECHA_GENERA)){
@@ -464,11 +457,11 @@ public class ENC {
         this.HZRNENC_CUNE_PRED = HZRNENC_CUNE_PRED;
     }
     @XmlTransient
-    public Date getHZRNENC_FECHA_GEN_PRED() {
+    public String getHZRNENC_FECHA_GEN_PRED() {
         return HZRNENC_FECHA_GEN_PRED;
     }
 
-    public void setHZRNENC_FECHA_GEN_PRED(Date HZRNENC_FECHA_GEN_PRED) throws DataFormatException {
+    public void setHZRNENC_FECHA_GEN_PRED(String HZRNENC_FECHA_GEN_PRED) throws DataFormatException {
         Data data = new Data();    
 
         if(data.checkNull(HZRNENC_FECHA_GEN_PRED)){

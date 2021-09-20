@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 public class ELR {
     
     @XmlElement(name = "ELR_1")
-    private Date HZRNELR_FECHA_INICIO;
+    private String HZRNELR_FECHA_INICIO;
     @XmlElement(name = "ELR_2")
-    private Date HZRNELR_FECHA_FIN;
+    private String HZRNELR_FECHA_FIN;
     @XmlElement(name = "ELR_3")
     private Long HZRNELR_CANTIDAD;
     @XmlElement(name = "ELR_4")
@@ -26,19 +26,19 @@ public class ELR {
     private Integer HZRNELR_ITE_ID;   
 
     @XmlTransient
-    public Date getHZRNELR_FECHA_INICIO() {
+    public String getHZRNELR_FECHA_INICIO() {
         return HZRNELR_FECHA_INICIO;
     }
 
-    public void setHZRNELR_FECHA_INICIO(Date HZRNELR_FECHA_INICIO) {
+    public void setHZRNELR_FECHA_INICIO(String HZRNELR_FECHA_INICIO) {
         this.HZRNELR_FECHA_INICIO = HZRNELR_FECHA_INICIO;
     }
     @XmlTransient
-    public Date getHZRNELR_FECHA_FIN() {
+    public String getHZRNELR_FECHA_FIN() {
         return HZRNELR_FECHA_FIN;
     }
 
-    public void setHZRNELR_FECHA_FIN(Date HZRNELR_FECHA_FIN) {
+    public void setHZRNELR_FECHA_FIN(String HZRNELR_FECHA_FIN) {
         this.HZRNELR_FECHA_FIN = HZRNELR_FECHA_FIN;
     }
     @XmlTransient
