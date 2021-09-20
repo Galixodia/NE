@@ -77,9 +77,9 @@ public class NOMINA {
     private String HZRNNOM_TIPO_DOC;
     private Integer HZRNNOM_ANO;
     private Integer HZRNNOM_MES;
-    private Date HZRNNOM_FECHA_EXT;
+    private String HZRNNOM_FECHA_EXT;
     private String HZRNNOM_HORA_EXT;
-    private Date HZRNNOM_FECHA_TRANS;
+    private String HZRNNOM_FECHA_TRANS;
     private String HZRNNOM_HORA_TRANS;    
     private String HZRNNOM_ESTADO;
     private String HZRNNOM_RTA_CARVAJAL;
@@ -269,11 +269,11 @@ public class NOMINA {
         this.HZRNNOM_MES = HZRNNOM_MES;
     }
     @XmlTransient
-    public Date getHZRNNOM_FECHA_EXT() {
+    public String getHZRNNOM_FECHA_EXT() {
         return HZRNNOM_FECHA_EXT;
     }
 
-    public void setHZRNNOM_FECHA_EXT(Date HZRNNOM_FECHA_EXT) {
+    public void setHZRNNOM_FECHA_EXT(String HZRNNOM_FECHA_EXT) {
         this.HZRNNOM_FECHA_EXT = HZRNNOM_FECHA_EXT;
     }
     @XmlTransient
@@ -285,11 +285,11 @@ public class NOMINA {
         this.HZRNNOM_HORA_EXT = HZRNNOM_HORA_EXT;
     }
     @XmlTransient
-    public Date getHZRNNOM_FECHA_TRANS() {
+    public String getHZRNNOM_FECHA_TRANS() {
         return HZRNNOM_FECHA_TRANS;
     }
 
-    public void setHZRNNOM_FECHA_TRANS(Date HZRNNOM_FECHA_TRANS) {
+    public void setHZRNNOM_FECHA_TRANS(String HZRNNOM_FECHA_TRANS) {
         this.HZRNNOM_FECHA_TRANS = HZRNNOM_FECHA_TRANS;
     }
     @XmlTransient

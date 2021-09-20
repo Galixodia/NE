@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 public class ELI {
     
     @XmlElement(name = "ELI_1")
-    private Date HZRNELI_FECHA_INICIO;
+    private String HZRNELI_FECHA_INICIO;
     @XmlElement(name = "ELI_2")
-    private Date HZRNELI_FECHA_FIN;
+    private String HZRNELI_FECHA_FIN;
     @XmlElement(name = "ELI_3")
     private Long HZRNELI_CANTIDAD;
     @XmlElement(name = "ELI_4")
@@ -27,19 +27,19 @@ public class ELI {
     private Integer HZRNELI_ITE_ID;   
 
     @XmlTransient
-    public Date getHZRNELI_FECHA_INICIO() {
+    public String getHZRNELI_FECHA_INICIO() {
         return HZRNELI_FECHA_INICIO;
     }
 
-    public void setHZRNELI_FECHA_INICIO(Date HZRNELI_FECHA_INICIO) {
+    public void setHZRNELI_FECHA_INICIO(String HZRNELI_FECHA_INICIO) {
         this.HZRNELI_FECHA_INICIO = HZRNELI_FECHA_INICIO;
     }
     @XmlTransient
-    public Date getHZRNELI_FECHA_FIN() {
+    public String getHZRNELI_FECHA_FIN() {
         return HZRNELI_FECHA_FIN;
     }
 
-    public void setHZRNELI_FECHA_FIN(Date HZRNELI_FECHA_FIN) {
+    public void setHZRNELI_FECHA_FIN(String HZRNELI_FECHA_FIN) {
         this.HZRNELI_FECHA_FIN = HZRNELI_FECHA_FIN;
     }
     @XmlTransient

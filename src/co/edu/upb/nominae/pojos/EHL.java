@@ -14,27 +14,27 @@ import javax.xml.bind.annotation.XmlType;
 public class EHL {
     
     @XmlElement(name = "EHL_1")
-    private Date HZRNEHL_FECHA_INICIO;
+    private String HZRNEHL_FECHA_INICIO;
     @XmlElement(name = "EHL_2")
-    private Date HZRNEHL_FECHA_FIN;
+    private String HZRNEHL_FECHA_FIN;
     @XmlElement(name = "EHL_3")
     private Long HZRNEHL_CANTIDAD;
     private Integer HZRNEHL_ITE_ID;       
 
     @XmlTransient
-    public Date getHZRNEHL_FECHA_INICIO() {
+    public String getHZRNEHL_FECHA_INICIO() {
         return HZRNEHL_FECHA_INICIO;
     }
 
-    public void setHZRNEHL_FECHA_INICIO(Date HZRNEHL_FECHA_INICIO) {
+    public void setHZRNEHL_FECHA_INICIO(String HZRNEHL_FECHA_INICIO) {
         this.HZRNEHL_FECHA_INICIO = HZRNEHL_FECHA_INICIO;
     }
     @XmlTransient
-    public Date getHZRNEHL_FECHA_FIN() {
+    public String getHZRNEHL_FECHA_FIN() {
         return HZRNEHL_FECHA_FIN;
     }
 
-    public void setHZRNEHL_FECHA_FIN(Date HZRNEHL_FECHA_FIN) {
+    public void setHZRNEHL_FECHA_FIN(String HZRNEHL_FECHA_FIN) {
         this.HZRNEHL_FECHA_FIN = HZRNEHL_FECHA_FIN;
     }
     @XmlTransient
