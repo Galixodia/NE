@@ -53,7 +53,7 @@ public class NOV {
 
     public void setHZRNNOV_CUNE_NOV(String HZRNNOV_CUNE_NOV) throws DataFormatException {
         Data data = new Data();   
-        if(data.checklength(HZRNNOV_CUNE_NOV,14)){
+        if(data.checklength(HZRNNOV_CUNE_NOV,96)){
             this.HZRNNOV_CUNE_NOV = HZRNNOV_CUNE_NOV;
             data = null;            
         }else{

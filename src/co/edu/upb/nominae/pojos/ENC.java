@@ -441,7 +441,7 @@ public class ENC {
     public void setHZRNENC_NUM_PRED(String HZRNENC_NUM_PRED) throws DataFormatException {
         Data data = new Data();    
 
-        if(data.checklength(HZRNENC_TIPO_MONEDA,14)){
+        if(data.checklength(HZRNENC_NUM_PRED,16)){
             this.HZRNENC_NUM_PRED = HZRNENC_NUM_PRED;
             data = null;            
         }else{
