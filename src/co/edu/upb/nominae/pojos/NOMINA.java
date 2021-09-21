@@ -71,7 +71,7 @@ import javax.xml.bind.annotation.XmlType;
 public class NOMINA {
     
     private String HZRNNOM_PREFIJO;
-    private Integer HZRNNOM_CONCECUTIVO_DOC;
+    private Integer HZRNNOM_CONSECUTIVO_DOC;
     private String HZRNNOM_CUNE_INTERNO;
     private String HZRNNOM_TIPO_DOC;
     private Integer HZRNNOM_ANO;
@@ -154,12 +154,12 @@ public class NOMINA {
         this.HZRNNOM_PREFIJO = HZRNNOM_PREFIJO;
     }
     @XmlTransient
-    public Integer getHZRNNOM_CONCECUTIVO_DOC() {
-        return HZRNNOM_CONCECUTIVO_DOC;
+    public Integer getHZRNNOM_CONSECUTIVO_DOC() {
+        return HZRNNOM_CONSECUTIVO_DOC;
     }
 
-    public void setHZRNNOM_CONCECUTIVO_DOC(Integer HZRNNOM_CONCECUTIVO_DOC) {
-        this.HZRNNOM_CONCECUTIVO_DOC = HZRNNOM_CONCECUTIVO_DOC;
+    public void setHZRNNOM_CONSECUTIVO_DOC(Integer HZRNNOM_CONSECUTIVO_DOC) {
+        this.HZRNNOM_CONSECUTIVO_DOC = HZRNNOM_CONSECUTIVO_DOC;
     }
 
     @XmlTransient
@@ -334,7 +334,7 @@ public class NOMINA {
 
     @Override
     public String toString() {
-        return "NOMINA{" + "HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_CONCECUTIVO_DOC=" + HZRNNOM_CONCECUTIVO_DOC + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_TIPO_DOC=" + HZRNNOM_TIPO_DOC + ", HZRNNOM_ANO=" + HZRNNOM_ANO + ", HZRNNOM_MES=" + HZRNNOM_MES + ", HZRNNOM_FECHA_EXT=" + HZRNNOM_FECHA_EXT + ", HZRNNOM_HORA_EXT=" + HZRNNOM_HORA_EXT + ", HZRNNOM_FECHA_TRANS=" + HZRNNOM_FECHA_TRANS + ", HZRNNOM_HORA_TRANS=" + HZRNNOM_HORA_TRANS + ", HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_RTA_CARVAJAL=" + HZRNNOM_RTA_CARVAJAL + ", HZRNNOM_RTA_DIAN=" + HZRNNOM_RTA_DIAN + ", HZRNNOM_BASE64_PDF=" + HZRNNOM_BASE64_PDF + ", HZRNNOM_PDF=" + HZRNNOM_PDF + ", tipo_nota=" + tipo_nota + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';
+        return "NOMINA{" + "HZRNNOM_PREFIJO=" + HZRNNOM_PREFIJO + ", HZRNNOM_CONCECUTIVO_DOC=" + HZRNNOM_CONSECUTIVO_DOC + ", HZRNNOM_CUNE_INTERNO=" + HZRNNOM_CUNE_INTERNO + ", HZRNNOM_TIPO_DOC=" + HZRNNOM_TIPO_DOC + ", HZRNNOM_ANO=" + HZRNNOM_ANO + ", HZRNNOM_MES=" + HZRNNOM_MES + ", HZRNNOM_FECHA_EXT=" + HZRNNOM_FECHA_EXT + ", HZRNNOM_HORA_EXT=" + HZRNNOM_HORA_EXT + ", HZRNNOM_FECHA_TRANS=" + HZRNNOM_FECHA_TRANS + ", HZRNNOM_HORA_TRANS=" + HZRNNOM_HORA_TRANS + ", HZRNNOM_ESTADO=" + HZRNNOM_ESTADO + ", HZRNNOM_RTA_CARVAJAL=" + HZRNNOM_RTA_CARVAJAL + ", HZRNNOM_RTA_DIAN=" + HZRNNOM_RTA_DIAN + ", HZRNNOM_BASE64_PDF=" + HZRNNOM_BASE64_PDF + ", HZRNNOM_PDF=" + HZRNNOM_PDF + ", tipo_nota=" + tipo_nota + ", encabezado=" + encabezado + ", novedad=" + novedad + ", notas=" + notas + ", emisor=" + emisor + ", receptor=" + receptor + ", pago=" + pago + ", fecha_pagos=" + fecha_pagos + ", basico_trab=" + basico_trab + ", deducciones_salud=" + deducciones_salud + ", totales_nomina=" + totales_nomina + '}';
     }
 
 
