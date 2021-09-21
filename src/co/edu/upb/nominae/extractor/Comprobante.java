@@ -191,7 +191,7 @@ public class Comprobante{
                 if(rs_nom != null){
                     while (rs_nom.next()) {
                         nom.setHZRNNOM_PREFIJO(rs_nom.getString("HZRNNOM_PREFIJO"));
-                        nom.setHZRNNOM_NUM_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
+                        nom.setHZRNNOM_CONCECUTIVO_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
                         nom.setHZRNNOM_CUNE_INTERNO(rs_nom.getString("HZRNNOM_CUNE_INTERNO"));
                         nom.setHZRNNOM_TIPO_DOC(rs_nom.getString("HZRNNOM_TIPO_DOC"));
                         nom.setHZRNNOM_ANO(rs_nom.getInt("HZRNNOM_ANO"));
@@ -1219,7 +1219,7 @@ public class Comprobante{
                 if(rs_nom != null){
                     while (rs_nom.next()) {
                         nom.setHZRNNOM_PREFIJO(rs_nom.getString("HZRNNOM_PREFIJO"));
-                        nom.setHZRNNOM_NUM_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
+                        nom.setHZRNNOM_CONCECUTIVO_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
                         nom.setHZRNNOM_CUNE_INTERNO(rs_nom.getString("HZRNNOM_CUNE_INTERNO"));
                         nom.setHZRNNOM_TIPO_DOC(rs_nom.getString("HZRNNOM_TIPO_DOC"));
                         nom.setHZRNNOM_ANO(rs_nom.getInt("HZRNNOM_ANO"));
@@ -2232,7 +2232,7 @@ public class Comprobante{
                 if(rs_nom != null){
                     while (rs_nom.next()) {
                         nom.setHZRNNOM_PREFIJO(rs_nom.getString("HZRNNOM_PREFIJO"));
-                        nom.setHZRNNOM_NUM_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
+                        nom.setHZRNNOM_CONCECUTIVO_DOC(rs_nom.getInt("HZRNNOM_NUM_DOC"));
                         nom.setHZRNNOM_CUNE_INTERNO(rs_nom.getString("HZRNNOM_CUNE_INTERNO"));
                         nom.setHZRNNOM_TIPO_DOC(rs_nom.getString("HZRNNOM_TIPO_DOC"));
                         nom.setHZRNNOM_ANO(rs_nom.getInt("HZRNNOM_ANO"));

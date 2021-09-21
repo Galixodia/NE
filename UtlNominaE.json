@@ -14,6 +14,8 @@
   "MaxThreads":"1",
   "ThreadsCorrection":"2",
   "Environment":"TRN",
+  "Ftp-data-block":"1000",
+  "Ftp-delay-shipp-secs":"30",
   "Queries":[
   	{
   		"Query":"prueba",
