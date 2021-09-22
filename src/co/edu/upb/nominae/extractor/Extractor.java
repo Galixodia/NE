@@ -38,11 +38,6 @@ public final class Extractor {
     private int ano;
     private int mes;
     
-    private String host;
-    private String port;
-    private String ftp_user;
-    private String ftp_pwd;
-    private String ftp_dir;
     private String local_dir;
     private String db_url;
     private String db_user;
@@ -56,11 +51,6 @@ public final class Extractor {
             log = new Log();
             utilities_file = new Utilities().getUtilities("UtlNominaE.json");
             
-            host = utilities_file.getServer();
-            port = utilities_file.getPort();
-            ftp_user = utilities_file.getFtpusername();
-            ftp_pwd = utilities_file.getFtppassword();
-            ftp_dir = utilities_file.getFtp_dir();
             local_dir = utilities_file.getLocal_dir();
             db_url = utilities_file.getUrl();
             db_user = utilities_file.getUsername();
@@ -89,7 +79,6 @@ public final class Extractor {
     }
     
     public void getCune() throws SQLException{
-            //conn = DriverManager.getConnection(db_url, db_user, db_pwd);
             
             stmt = "SELECT HZRNNOM_CUNE_INTERNO, HZRNNOM_TIPO_DOC, HZRNNOM_ANO, HZRNNOM_MES FROM UPB_NOMINAE.HZRNNOM WHERE (HZRNNOM_ESTADO IS NULL OR HZRNNOM_ESTADO IN ('REEXTRACT')) AND rownum <= 1";
       
