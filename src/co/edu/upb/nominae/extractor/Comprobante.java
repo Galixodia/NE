@@ -254,26 +254,27 @@ public class Comprobante{
                 }
                 
                 //NOV
-                {
-                    stmt = HZRNNOV_QUERY;
-                    pstmt = conn.prepareStatement(stmt);
-                    pstmt.setString(1, cune_interno);                       
-                    rs = pstmt.executeQuery();
-
-                    if(rs != null){
-                        while (rs.next()) {
-                            NOV nov = new NOV();
-                            nov.setHZRNNOV_CUNE_INTERNO(rs.getString("HZRNNOV_CUNE_INTERNO"));
-                            nov.setHZRNNOV_NOVEDAD(rs.getString("HZRNNOV_NOVEDAD"));
-                            nov.setHZRNNOV_CUNE_NOV(rs.getString("HZRNNOV_CUNE_NOV"));
-
-                            nom.setNovedad(nov);
-                            nov = null;
-                        }
-                    }else{
-                        throw new DataFormatException("Comprobante:getComprobanteExtracted:NOV No existen registros");
-                    }
-                }
+                //CARVAJAL QUEDA PENDIENTE DE RVISAR ESTE APARTADO PROQUE SE REFIERE A UN CUNE SOBRE EL DOCUMENTO INDIVIDUAL
+//                {
+//                    stmt = HZRNNOV_QUERY;
+//                    pstmt = conn.prepareStatement(stmt);
+//                    pstmt.setString(1, cune_interno);                       
+//                    rs = pstmt.executeQuery();
+//
+//                    if(rs != null){
+//                        while (rs.next()) {
+//                            NOV nov = new NOV();
+//                            nov.setHZRNNOV_CUNE_INTERNO(rs.getString("HZRNNOV_CUNE_INTERNO"));
+//                            nov.setHZRNNOV_NOVEDAD(rs.getString("HZRNNOV_NOVEDAD"));
+//                            nov.setHZRNNOV_CUNE_NOV(rs.getString("HZRNNOV_CUNE_NOV"));
+//
+//                            nom.setNovedad(nov);
+//                            nov = null;
+//                        }
+//                    }else{
+//                        throw new DataFormatException("Comprobante:getComprobanteExtracted:NOV No existen registros");
+//                    }
+//                }
                 
                 //NOT
                 {
