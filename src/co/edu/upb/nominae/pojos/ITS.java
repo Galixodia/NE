@@ -1,6 +1,5 @@
 package co.edu.upb.nominae.pojos;
 
-import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -40,7 +39,7 @@ public class ITS {
     public List<SIN> deduc_sindicatos = Arrays.asList(new SIN[50]);
     //@XmlElement(name = "SAN")
     //public List<SAN> deduc_sanciones = null;
-    @XmlElement(name = "V")
+    @XmlElement(name = "SLI")
     public List<SLI> deduc_libranza = Arrays.asList(new SLI[50]);
     @XmlElement(name = "SOT")
     public List<SOT> otras_deduc = Arrays.asList(new SOT[50]);

@@ -9,12 +9,13 @@
   "FtpDir":"/archivos/entrada",
   "LocalDir":"null",
   "LogFileName":"NominaElectronicaUPB",
-  "loop-milis":"30000",
+  "loop-milis":"60000",
   "IterationSleep-milis":"0",
   "MaxThreads":"1",
   "ThreadsCorrection":"2",
   "Environment":"TRN",
   "Ftp-data-block":"1000",
+  "ftp-max-errors":"5",
   "Ftp-delay-shipp-secs":"30",
   "Queries":[
   	{
