@@ -27,7 +27,7 @@ public class SIN {
         if(HZRNSIN_PORCENTAJE != null){
             this.HZRNSIN_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSIN_PORCENTAJE).replace(",",".");
         }else{
-            this.HZRNSIN_PORCENTAJE = String.valueOf(HZRNSIN_PORCENTAJE);
+            throw new DataFormatException("SIN:HZRNSIN_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient
@@ -39,7 +39,7 @@ public class SIN {
         if(HZRNSIN_DEDUCCION != null){
             this.HZRNSIN_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSIN_DEDUCCION).replace(",",".");
         }else{
-            this.HZRNSIN_DEDUCCION = String.valueOf(HZRNSIN_DEDUCCION);
+            throw new DataFormatException("SIN:HZRNSIN_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }
      
     }

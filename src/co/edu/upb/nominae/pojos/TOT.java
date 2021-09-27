@@ -40,9 +40,7 @@ public class TOT {
     public void setHZRNTOT_REDONDEO(BigDecimal HZRNTOT_REDONDEO) {
         if(HZRNTOT_REDONDEO != null){
             this.HZRNTOT_REDONDEO = new DecimalFormat("#.000000").format(HZRNTOT_REDONDEO).replace(",",".");
-        }else{
-            this.HZRNTOT_REDONDEO = String.valueOf(HZRNTOT_REDONDEO);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNTOT_DEVENGADOS_TOTAL() {
@@ -53,7 +51,7 @@ public class TOT {
         if(HZRNTOT_DEVENGADOS_TOTAL != null){
             this.HZRNTOT_DEVENGADOS_TOTAL = new DecimalFormat("#.000000").format(HZRNTOT_DEVENGADOS_TOTAL).replace(",","."); 
         }else{
-            this.HZRNTOT_DEVENGADOS_TOTAL = String.valueOf(HZRNTOT_DEVENGADOS_TOTAL);
+            throw new DataFormatException("TOT:HZRNTOT_DEVENGADOS_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -65,7 +63,7 @@ public class TOT {
         if(HZRNTOT_DEDUCCIONES_TOTAL != null){
             this.HZRNTOT_DEDUCCIONES_TOTAL = new DecimalFormat("#.000000").format(HZRNTOT_DEDUCCIONES_TOTAL).replace(",",".");  
         }else{
-            this.HZRNTOT_DEDUCCIONES_TOTAL = String.valueOf(HZRNTOT_DEDUCCIONES_TOTAL);
+            throw new DataFormatException("TOT:HZRNTOT_DEDUCCIONES_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -77,7 +75,7 @@ public class TOT {
         if(HZRNTOT_COMPROBANTE_TOTAL != null){
             this.HZRNTOT_COMPROBANTE_TOTAL =  new DecimalFormat("#.000000").format(HZRNTOT_COMPROBANTE_TOTAL).replace(",","."); 
         }else{
-            this.HZRNTOT_COMPROBANTE_TOTAL = String.valueOf(HZRNTOT_COMPROBANTE_TOTAL);
+            throw new DataFormatException("TOT:HZRNTOT_COMPROBANTE_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
 

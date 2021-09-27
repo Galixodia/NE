@@ -30,7 +30,7 @@ public class ECE {
         if(HZRNECE_PAGO != null){
             this.HZRNECE_PAGO = new DecimalFormat("#.000000").format(HZRNECE_PAGO).replace(",",".");
         }else{
-            this.HZRNECE_PAGO = String.valueOf(HZRNECE_PAGO);
+            throw new DataFormatException("ECE:HZRNECE_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -42,7 +42,7 @@ public class ECE {
         if(HZRNECE_PORCENTAJE != null){
             this.HZRNECE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNECE_PORCENTAJE).replace(",","."); 
         }else{
-            this.HZRNECE_PORCENTAJE = String.valueOf(HZRNECE_PORCENTAJE);
+            throw new DataFormatException("ECE:HZRNECE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -54,7 +54,7 @@ public class ECE {
         if(HZRNECE_PAGO_INTERESES != null){
             this.HZRNECE_PAGO_INTERESES = new DecimalFormat("#.000000").format(HZRNECE_PAGO_INTERESES).replace(",",".");
         }else{
-            this.HZRNECE_PAGO_INTERESES = String.valueOf(HZRNECE_PAGO_INTERESES);
+            throw new DataFormatException("ECE:HZRNECE_PAGO_INTERESES:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient

@@ -56,7 +56,7 @@ public class ITS {
         if(HZRNITS_PORCENTAJE != null){
             this.HZRNITS_PORCENTAJE = new DecimalFormat("#.00").format(HZRNITS_PORCENTAJE).replace(",",".");  
         }else{
-            this.HZRNITS_PORCENTAJE = String.valueOf(HZRNITS_PORCENTAJE);
+            throw new DataFormatException("ITS:HZRNITS_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient
@@ -68,7 +68,7 @@ public class ITS {
         if(HZRNITS_DEDUCCION != null){
             this.HZRNITS_DEDUCCION = new DecimalFormat("#.000000").format(HZRNITS_DEDUCCION).replace(",","."); 
         }else{
-            this.HZRNITS_DEDUCCION = String.valueOf(HZRNITS_DEDUCCION);
+            throw new DataFormatException("ITS:HZRNITS_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient

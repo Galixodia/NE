@@ -47,9 +47,7 @@ public class SVA {
     public void setHZRNSVA_PENSION_VOLUNTARIA(BigDecimal HZRNSVA_PENSION_VOLUNTARIA) {
         if(HZRNSVA_PENSION_VOLUNTARIA != null){
             this.HZRNSVA_PENSION_VOLUNTARIA = new DecimalFormat("#.000000").format(HZRNSVA_PENSION_VOLUNTARIA).replace(",","."); 
-        }else{
-            this.HZRNSVA_PENSION_VOLUNTARIA = String.valueOf(HZRNSVA_PENSION_VOLUNTARIA);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_RENTENCION_FTE() {
@@ -59,9 +57,7 @@ public class SVA {
     public void setHZRNSVA_RENTENCION_FTE(BigDecimal HZRNSVA_RENTENCION_FTE) {
         if(HZRNSVA_RENTENCION_FTE != null){
             this.HZRNSVA_RENTENCION_FTE = new DecimalFormat("#.000000").format(HZRNSVA_RENTENCION_FTE).replace(",",".");  
-        }else{
-            this.HZRNSVA_RENTENCION_FTE = String.valueOf(HZRNSVA_RENTENCION_FTE);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_AFC() {
@@ -71,9 +67,7 @@ public class SVA {
     public void setHZRNSVA_AFC(BigDecimal HZRNSVA_AFC) {
         if(HZRNSVA_AFC != null){
             this.HZRNSVA_AFC = new DecimalFormat("#.000000").format(HZRNSVA_AFC).replace(",",".");   
-        }else{
-            this.HZRNSVA_AFC = String.valueOf(HZRNSVA_AFC);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_COOPERATIVA() {
@@ -83,9 +77,7 @@ public class SVA {
     public void setHZRNSVA_COOPERATIVA(BigDecimal HZRNSVA_COOPERATIVA) {
         if(HZRNSVA_COOPERATIVA != null){
             this.HZRNSVA_COOPERATIVA = new DecimalFormat("#.000000").format(HZRNSVA_COOPERATIVA).replace(",",".");  
-        }else{
-            this.HZRNSVA_COOPERATIVA = String.valueOf(HZRNSVA_COOPERATIVA);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_EMBARGO() {
@@ -95,9 +87,7 @@ public class SVA {
     public void setHZRNSVA_EMBARGO(BigDecimal HZRNSVA_EMBARGO) {
         if(HZRNSVA_EMBARGO != null){
             this.HZRNSVA_EMBARGO = new DecimalFormat("#.000000").format(HZRNSVA_EMBARGO).replace(",",".");  
-        }else{
-            this.HZRNSVA_EMBARGO = String.valueOf(HZRNSVA_EMBARGO);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_PLAN_COMPLEMENT() {
@@ -107,9 +97,7 @@ public class SVA {
     public void setHZRNSVA_PLAN_COMPLEMENT(BigDecimal HZRNSVA_PLAN_COMPLEMENT) {
         if(HZRNSVA_PLAN_COMPLEMENT != null){
             this.HZRNSVA_PLAN_COMPLEMENT = new DecimalFormat("#.000000").format(HZRNSVA_PLAN_COMPLEMENT).replace(",","."); 
-        }else{
-            this.HZRNSVA_PLAN_COMPLEMENT = String.valueOf(HZRNSVA_PLAN_COMPLEMENT);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_EDUCACION() {
@@ -119,9 +107,7 @@ public class SVA {
     public void setHZRNSVA_EDUCACION(BigDecimal HZRNSVA_EDUCACION) { 
         if(HZRNSVA_EDUCACION != null){
             this.HZRNSVA_EDUCACION = new DecimalFormat("#.000000").format(HZRNSVA_EDUCACION).replace(",",".");
-        }else{
-            this.HZRNSVA_EDUCACION = String.valueOf(HZRNSVA_EDUCACION);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_REINTEGRO() {
@@ -131,9 +117,7 @@ public class SVA {
     public void setHZRNSVA_REINTEGRO(BigDecimal HZRNSVA_REINTEGRO) {
         if(HZRNSVA_REINTEGRO != null){
             this.HZRNSVA_REINTEGRO = new DecimalFormat("#.000000").format(HZRNSVA_REINTEGRO).replace(",",".");  
-        }else{
-            this.HZRNSVA_REINTEGRO = String.valueOf(HZRNSVA_REINTEGRO);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSVA_DEUDA() {
@@ -143,9 +127,7 @@ public class SVA {
     public void setHZRNSVA_DEUDA(BigDecimal HZRNSVA_DEUDA) {
         if(HZRNSVA_DEUDA != null){
             this.HZRNSVA_DEUDA = new DecimalFormat("#.000000").format(HZRNSVA_DEUDA).replace(",","."); 
-        }else{
-            this.HZRNSVA_DEUDA = String.valueOf(HZRNSVA_DEUDA);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNSVA_ITS_ID() {

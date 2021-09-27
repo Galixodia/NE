@@ -81,7 +81,7 @@ public class EHE {
         if(HZRNEHE_CANTIDAD != null){
             this.HZRNEHE_CANTIDAD = new DecimalFormat("#.000000").format(HZRNEHE_CANTIDAD).replace(",",".");     
         }else{
-            this.HZRNEHE_CANTIDAD = String.valueOf(HZRNEHE_CANTIDAD);
+            throw new DataFormatException("EHE:HZRNEHE_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -93,7 +93,7 @@ public class EHE {
         if(HZRNEHE_PORCENTAJE != null){
             this.HZRNEHE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNEHE_PORCENTAJE).replace(",",".");
         }else{
-            this.HZRNEHE_PORCENTAJE = String.valueOf(HZRNEHE_PORCENTAJE);
+            throw new DataFormatException("EHE:HZRNEHE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -105,7 +105,7 @@ public class EHE {
         if(HZRNEHE_PAGO != null){
             this.HZRNEHE_PAGO = new DecimalFormat("#.000000").format(HZRNEHE_PAGO).replace(",",".");   
         }else{
-            this.HZRNEHE_PAGO = String.valueOf(HZRNEHE_PAGO);
+            throw new DataFormatException("EHE:HZRNEHE_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient

@@ -438,9 +438,7 @@ public class ENC {
     public void setHZRNENC_TRM(BigDecimal HZRNENC_TRM) {
         if(HZRNENC_TRM != null){
             this.HZRNENC_TRM = new DecimalFormat("#.000000").format(HZRNENC_TRM).replace(",",".");
-        }else{
-            this.HZRNENC_TRM = String.valueOf(HZRNENC_TRM);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNENC_NUM_PRED() {

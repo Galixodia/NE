@@ -31,9 +31,7 @@ public class SSP {
     public void setHZRNSSP_PORCENTAJE(BigDecimal HZRNSSP_PORCENTAJE) {
         if(HZRNSSP_PORCENTAJE != null){
             this.HZRNSSP_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSSP_PORCENTAJE).replace(",",".");  
-        }else{
-            this.HZRNSSP_PORCENTAJE = String.valueOf(HZRNSSP_PORCENTAJE);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSSP_DEDUC_SEG_PENSIONAL() {
@@ -43,9 +41,7 @@ public class SSP {
     public void setHZRNSSP_DEDUC_SEG_PENSIONAL(BigDecimal HZRNSSP_DEDUC_SEG_PENSIONAL) {
         if(HZRNSSP_DEDUC_SEG_PENSIONAL != null){
             this.HZRNSSP_DEDUC_SEG_PENSIONAL = new DecimalFormat("#.000000").format(HZRNSSP_DEDUC_SEG_PENSIONAL).replace(",",".");  
-        }else{
-            this.HZRNSSP_DEDUC_SEG_PENSIONAL = String.valueOf(HZRNSSP_DEDUC_SEG_PENSIONAL);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSSP_PORCENTAJE_SUBSISTEN() {
@@ -55,9 +51,7 @@ public class SSP {
     public void setHZRNSSP_PORCENTAJE_SUBSISTEN(BigDecimal HZRNSSP_PORCENTAJE_SUBSISTEN) {
         if(HZRNSSP_PORCENTAJE_SUBSISTEN != null){
             this.HZRNSSP_PORCENTAJE_SUBSISTEN = new DecimalFormat("#.00").format(HZRNSSP_PORCENTAJE_SUBSISTEN).replace(",",".");
-        }else{
-            this.HZRNSSP_PORCENTAJE_SUBSISTEN = String.valueOf(HZRNSSP_PORCENTAJE_SUBSISTEN);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSSP_DEDUC_SUBSISTEN() {
@@ -67,9 +61,7 @@ public class SSP {
     public void setHZRNSSP_DEDUC_SUBSISTEN(BigDecimal HZRNSSP_DEDUC_SUBSISTEN) {
         if(HZRNSSP_DEDUC_SUBSISTEN != null){
             this.HZRNSSP_DEDUC_SUBSISTEN = new DecimalFormat("#.000000").format(HZRNSSP_DEDUC_SUBSISTEN).replace(",","."); 
-        }else{
-            this.HZRNSSP_DEDUC_SUBSISTEN = String.valueOf(HZRNSSP_DEDUC_SUBSISTEN);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNSSP_ITS_ID() {

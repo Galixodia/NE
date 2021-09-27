@@ -46,9 +46,7 @@ public class EOT {
     public void setHZRNEOT_CONCEP_SALARIAL(BigDecimal HZRNEOT_CONCEP_SALARIAL) {
         if(HZRNEOT_CONCEP_SALARIAL != null){
             this.HZRNEOT_CONCEP_SALARIAL = new DecimalFormat("#.000000").format(HZRNEOT_CONCEP_SALARIAL).replace(",",".");  
-        }else{
-            this.HZRNEOT_CONCEP_SALARIAL = String.valueOf(HZRNEOT_CONCEP_SALARIAL);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNEOT_CONCEP_NO_SALARIAL() {
@@ -58,9 +56,7 @@ public class EOT {
     public void setHZRNEOT_CONCEP_NO_SALARIAL(BigDecimal HZRNEOT_CONCEP_NO_SALARIAL) {
         if(HZRNEOT_CONCEP_NO_SALARIAL != null){
             this.HZRNEOT_CONCEP_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEOT_CONCEP_NO_SALARIAL).replace(",",".");   
-        }else{
-            this.HZRNEOT_CONCEP_NO_SALARIAL = String.valueOf(HZRNEOT_CONCEP_NO_SALARIAL);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNEOT_ITE_ID() {

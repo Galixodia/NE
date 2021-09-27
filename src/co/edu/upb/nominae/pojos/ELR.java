@@ -65,7 +65,7 @@ public class ELR {
         if(HZRNELR_PAGO != null){
             this.HZRNELR_PAGO = new DecimalFormat("#.000000").format(HZRNELR_PAGO).replace(",","."); 
         }else{
-            this.HZRNELR_PAGO = String.valueOf(HZRNELR_PAGO);
+            throw new DataFormatException("ELR:HZRNELR_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient

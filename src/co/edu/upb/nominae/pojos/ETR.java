@@ -38,9 +38,7 @@ public class ETR {
     public void setHZRNETR_AUX_TRANSPORTE(BigDecimal HZRNETR_AUX_TRANSPORTE) {
         if(HZRNETR_AUX_TRANSPORTE != null){
             this.HZRNETR_AUX_TRANSPORTE = new DecimalFormat("#.000000").format(HZRNETR_AUX_TRANSPORTE).replace(",",".");
-        }else{
-            this.HZRNETR_AUX_TRANSPORTE = String.valueOf(HZRNETR_AUX_TRANSPORTE);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNETR_VIAT_MANUT_SALARIAL() {
@@ -50,9 +48,7 @@ public class ETR {
     public void setHZRNETR_VIAT_MANUT_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_SALARIAL) {
         if(HZRNETR_VIAT_MANUT_SALARIAL != null){
             this.HZRNETR_VIAT_MANUT_SALARIAL = new DecimalFormat("#.000000").format(HZRNETR_VIAT_MANUT_SALARIAL).replace(",","."); 
-        }else{
-            this.HZRNETR_VIAT_MANUT_SALARIAL = String.valueOf(HZRNETR_VIAT_MANUT_SALARIAL);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNETR_VIAT_MANUT_NO_SALARIAL() {
@@ -62,9 +58,7 @@ public class ETR {
     public void setHZRNETR_VIAT_MANUT_NO_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_NO_SALARIAL) {       
         if(HZRNETR_VIAT_MANUT_NO_SALARIAL != null){
             this.HZRNETR_VIAT_MANUT_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNETR_VIAT_MANUT_NO_SALARIAL).replace(",","."); 
-        }else{
-            this.HZRNETR_VIAT_MANUT_NO_SALARIAL = String.valueOf(HZRNETR_VIAT_MANUT_NO_SALARIAL);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNETR_ITE_ID() {

@@ -43,7 +43,7 @@ public class SLI {
         if(HZRNSLI_DEDUCCION != null){
             this.HZRNSLI_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSLI_DEDUCCION).replace(",",".");  
         }else{
-            this.HZRNSLI_DEDUCCION = String.valueOf(HZRNSLI_DEDUCCION);
+            throw new DataFormatException("SLI:HZRNSLI_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient

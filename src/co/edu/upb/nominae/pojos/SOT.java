@@ -28,9 +28,7 @@ public class SOT {
     public void setHZRNSOT_PAGO_TERCERO(BigDecimal HZRNSOT_PAGO_TERCERO) {
         if(HZRNSOT_PAGO_TERCERO != null){
             this.HZRNSOT_PAGO_TERCERO = new DecimalFormat("#.000000").format(HZRNSOT_PAGO_TERCERO).replace(",",".");  
-        }else{
-            this.HZRNSOT_PAGO_TERCERO = String.valueOf(HZRNSOT_PAGO_TERCERO);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSOT_ANTICIPO() {
@@ -40,9 +38,7 @@ public class SOT {
     public void setHZRNSOT_ANTICIPO(BigDecimal HZRNSOT_ANTICIPO) {
         if(HZRNSOT_ANTICIPO != null){
             this.HZRNSOT_ANTICIPO = new DecimalFormat("#.000000").format(HZRNSOT_ANTICIPO).replace(",",".");  
-        }else{
-            this.HZRNSOT_ANTICIPO = String.valueOf(HZRNSOT_ANTICIPO);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNSOT_OTRA_DEDUCCION() {
@@ -52,9 +48,7 @@ public class SOT {
     public void setHZRNSOT_OTRA_DEDUCCION(BigDecimal HZRNSOT_OTRA_DEDUCCION) {
         if(HZRNSOT_OTRA_DEDUCCION != null){
             this.HZRNSOT_OTRA_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSOT_OTRA_DEDUCCION).replace(",","."); 
-        }else{
-            this.HZRNSOT_OTRA_DEDUCCION = String.valueOf(HZRNSOT_OTRA_DEDUCCION);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNSOT_ITS_ID() {

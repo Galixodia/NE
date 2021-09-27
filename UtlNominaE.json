@@ -15,7 +15,6 @@
   "ThreadsCorrection":"2",
   "Environment":"TRN",
   "Ftp-data-block":"1000",
-  "ftp-max-errors":"5",
   "Ftp-delay-shipp-secs":"30",
   "Queries":[
   	{

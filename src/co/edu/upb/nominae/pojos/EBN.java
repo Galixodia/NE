@@ -25,9 +25,7 @@ public class EBN {
     public void setHZRNEBN_BONI_SALARIAL(BigDecimal HZRNEBN_BONI_SALARIAL) {
         if(HZRNEBN_BONI_SALARIAL != null){
             this.HZRNEBN_BONI_SALARIAL = new DecimalFormat("#.000000").format(HZRNEBN_BONI_SALARIAL).replace(",",".");
-        }else{
-            this.HZRNEBN_BONI_SALARIAL = String.valueOf(HZRNEBN_BONI_SALARIAL);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNEBN_BONI_NO_SALARIAL() {
@@ -37,9 +35,7 @@ public class EBN {
     public void setHZRNEBN_BONI_NO_SALARIAL(BigDecimal HZRNEBN_BONI_NO_SALARIAL) { 
         if(HZRNEBN_BONI_NO_SALARIAL != null){
             this.HZRNEBN_BONI_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEBN_BONI_NO_SALARIAL).replace(",","."); 
-        }else{
-            this.HZRNEBN_BONI_NO_SALARIAL = String.valueOf(HZRNEBN_BONI_SALARIAL);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNEBN_ITE_ID() {

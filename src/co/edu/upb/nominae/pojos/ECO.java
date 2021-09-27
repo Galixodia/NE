@@ -28,9 +28,7 @@ public class ECO {
     public void setHZRNECO_COMISION(BigDecimal HZRNECO_COMISION) {
         if(HZRNECO_COMISION != null){
             this.HZRNECO_COMISION = new DecimalFormat("#.000000").format(HZRNECO_COMISION).replace(",",".");  
-        }else{
-            this.HZRNECO_COMISION = String.valueOf(HZRNECO_COMISION);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNECO_PAGO_TERCERO() {
@@ -40,9 +38,7 @@ public class ECO {
     public void setHZRNECO_PAGO_TERCERO(BigDecimal HZRNECO_PAGO_TERCERO) {       
         if(HZRNECO_PAGO_TERCERO != null){
             this.HZRNECO_PAGO_TERCERO = new DecimalFormat("#.000000").format(HZRNECO_PAGO_TERCERO).replace(",","."); 
-        }else{
-            this.HZRNECO_PAGO_TERCERO = String.valueOf(HZRNECO_PAGO_TERCERO);
-        } 
+        }
     }
     @XmlTransient
     public String getHZRNECO_ANTICIPOS_NOMINA() {
@@ -52,9 +48,7 @@ public class ECO {
     public void setHZRNECO_ANTICIPOS_NOMINA(BigDecimal HZRNECO_ANTICIPOS_NOMINA) {
         if(HZRNECO_ANTICIPOS_NOMINA != null){
             this.HZRNECO_ANTICIPOS_NOMINA = new DecimalFormat("#.000000").format(HZRNECO_ANTICIPOS_NOMINA).replace(",",".");  
-        }else{
-            this.HZRNECO_ANTICIPOS_NOMINA = String.valueOf(HZRNECO_ANTICIPOS_NOMINA);
-        } 
+        }
     }
     @XmlTransient
     public Integer getHZRNECO_ITE_ID() {

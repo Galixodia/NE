@@ -29,7 +29,7 @@ public class NOV {
             this.HZRNNOV_CUNE_INTERNO = HZRNNOV_CUNE_INTERNO;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:" + HZRNNOV_CUNE_INTERNO + ":HZRNNOV_CUNE_INTERNO:El campo es nulo o excede la longitud definida por la DIAN");
+            throw new DataFormatException("NOV:" + HZRNNOV_CUNE_INTERNO + ":HZRNNOV_CUNE_INTERNO:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient
@@ -38,13 +38,7 @@ public class NOV {
     }
 
     public void setHZRNNOV_NOVEDAD(String HZRNNOV_NOVEDAD) throws DataFormatException {
-        Data data = new Data();   
-        if(data.checklength(HZRNNOV_NOVEDAD,14)){
-            this.HZRNNOV_NOVEDAD = HZRNNOV_NOVEDAD;
-            data = null;            
-        }else{
-            throw new DataFormatException("ENC:" + HZRNNOV_NOVEDAD + ":HZRNNOV_NOVEDAD:El campo es nulo o excede la longitud definida por la DIAN");
-        }         
+        this.HZRNNOV_NOVEDAD = HZRNNOV_NOVEDAD;      
     }
     @XmlTransient
     public String getHZRNNOV_CUNE_NOV() {
@@ -57,7 +51,7 @@ public class NOV {
             this.HZRNNOV_CUNE_NOV = HZRNNOV_CUNE_NOV;
             data = null;            
         }else{
-            throw new DataFormatException("ENC:" + HZRNNOV_CUNE_NOV + ":HZRNNOV_CUNE_NOV:El campo es nulo o excede la longitud definida por la DIAN");
+            throw new DataFormatException("NOV:" + HZRNNOV_CUNE_NOV + ":HZRNNOV_CUNE_NOV:El campo es nulo o excede la longitud definida por la DIAN");
         }           
     }
 

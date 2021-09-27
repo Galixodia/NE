@@ -38,8 +38,6 @@ public class EVO {
     public void setHZRNEVO_DOTACION(BigDecimal HZRNEVO_DOTACION) {
         if(HZRNEVO_DOTACION != null){
             this.HZRNEVO_DOTACION = new DecimalFormat("#.000000").format(HZRNEVO_DOTACION).replace(",",".");  
-        }else{
-            this.HZRNEVO_DOTACION = String.valueOf(HZRNEVO_DOTACION);
         }
     }
     @XmlTransient
@@ -50,8 +48,6 @@ public class EVO {
     public void setHZRNEVO_APOYO_SOSTENIMIENT(BigDecimal HZRNEVO_APOYO_SOSTENIMIENT) {   
         if(HZRNEVO_APOYO_SOSTENIMIENT != null){
             this.HZRNEVO_APOYO_SOSTENIMIENT = new DecimalFormat("#.000000").format(HZRNEVO_APOYO_SOSTENIMIENT).replace(",","."); 
-        }else{
-            this.HZRNEVO_APOYO_SOSTENIMIENT = String.valueOf(HZRNEVO_APOYO_SOSTENIMIENT);
         }
     }
     @XmlTransient
@@ -62,8 +58,6 @@ public class EVO {
     public void setHZRNEVO_TELETRABAJO(BigDecimal HZRNEVO_TELETRABAJO) {
         if(HZRNEVO_TELETRABAJO != null){
             this.HZRNEVO_TELETRABAJO = new DecimalFormat("#.000000").format(HZRNEVO_TELETRABAJO).replace(",","."); 
-        }else{
-            this.HZRNEVO_TELETRABAJO = String.valueOf(HZRNEVO_TELETRABAJO);
         }
     }
     @XmlTransient
@@ -74,8 +68,6 @@ public class EVO {
     public void setHZRNEVO_BONIF_RETIRO(BigDecimal HZRNEVO_BONIF_RETIRO) {
         if(HZRNEVO_BONIF_RETIRO != null){
             this.HZRNEVO_BONIF_RETIRO = new DecimalFormat("#.000000").format(HZRNEVO_BONIF_RETIRO).replace(",","."); 
-        }else{
-            this.HZRNEVO_BONIF_RETIRO = String.valueOf(HZRNEVO_BONIF_RETIRO);
         }
     }
     @XmlTransient
@@ -86,8 +78,6 @@ public class EVO {
     public void setHZRNEVO_INDEMNIZACION(BigDecimal HZRNEVO_INDEMNIZACION) {
         if(HZRNEVO_INDEMNIZACION != null){
             this.HZRNEVO_INDEMNIZACION = new DecimalFormat("#.000000").format(HZRNEVO_INDEMNIZACION).replace(",",".");  
-        }else{
-            this.HZRNEVO_INDEMNIZACION = String.valueOf(HZRNEVO_INDEMNIZACION);
         }
     }
     @XmlTransient
@@ -98,8 +88,6 @@ public class EVO {
     public void setHZRNEVO_REINTEGRO(BigDecimal HZRNEVO_REINTEGRO) {
         if(HZRNEVO_REINTEGRO != null){
             this.HZRNEVO_REINTEGRO = new DecimalFormat("#.000000").format(HZRNEVO_REINTEGRO).replace(",","."); 
-        }else{
-            this.HZRNEVO_REINTEGRO = String.valueOf(HZRNEVO_REINTEGRO);
         }
     }
     @XmlTransient

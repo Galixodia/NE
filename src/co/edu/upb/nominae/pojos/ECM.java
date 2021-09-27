@@ -27,7 +27,7 @@ public class ECM {
         if(HZRNECM_COMPENS_ORDINARIA != null){
             this.HZRNECM_COMPENS_ORDINARIA = new DecimalFormat("#.000000").format(HZRNECM_COMPENS_ORDINARIA).replace(",","."); 
         }else{
-            this.HZRNECM_COMPENS_ORDINARIA = String.valueOf(HZRNECM_COMPENS_ORDINARIA);
+            throw new DataFormatException("ECM:HZRNECM_COMPENS_ORDINARIA:El campo es nulo o excede la longitud definida por la DIAN");
         } 
     }
     @XmlTransient
@@ -39,7 +39,7 @@ public class ECM {
         if(HZRNECM_COMPENS_EXTRAORDINARIA != null){
             this.HZRNECM_COMPENS_EXTRAORDINARIA = new DecimalFormat("#.000000").format(HZRNECM_COMPENS_EXTRAORDINARIA).replace(",",".");   
         }else{
-            this.HZRNECM_COMPENS_EXTRAORDINARIA = String.valueOf(HZRNECM_COMPENS_EXTRAORDINARIA);
+            throw new DataFormatException("ECM:HZRNECM_COMPENS_EXTRAORDINARIA:El campo es nulo o excede la longitud definida por la DIAN");
         }         
     }
     @XmlTransient

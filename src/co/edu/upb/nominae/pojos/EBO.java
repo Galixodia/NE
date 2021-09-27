@@ -31,8 +31,6 @@ public class EBO {
     public void setHZRNEBO_PAGO_SALARIAL(BigDecimal HZRNEBO_PAGO_SALARIAL) {
         if(HZRNEBO_PAGO_SALARIAL != null){
             this.HZRNEBO_PAGO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEBO_PAGO_SALARIAL).replace(",",".");  
-        }else{
-            this.HZRNEBO_PAGO_SALARIAL = String.valueOf(HZRNEBO_PAGO_SALARIAL);
         }
     }
     @XmlTransient
@@ -43,8 +41,6 @@ public class EBO {
     public void setHZRNEBO_PAGO_NO_SALARIAL(BigDecimal HZRNEBO_PAGO_NO_SALARIAL) {
         if(HZRNEBO_PAGO_NO_SALARIAL != null){
             this.HZRNEBO_PAGO_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEBO_PAGO_NO_SALARIAL).replace(",",".");  
-        }else{
-            this.HZRNEBO_PAGO_NO_SALARIAL = String.valueOf(HZRNEBO_PAGO_NO_SALARIAL);
         }
     }
     @XmlTransient
@@ -55,8 +51,6 @@ public class EBO {
     public void setHZRNEBO_PAGO_ALIMENT_SALARIAL(BigDecimal HZRNEBO_PAGO_ALIMENT_SALARIAL) {
         if(HZRNEBO_PAGO_ALIMENT_SALARIAL != null){
             this.HZRNEBO_PAGO_ALIMENT_SALARIAL = new DecimalFormat("#.000000").format(HZRNEBO_PAGO_ALIMENT_SALARIAL).replace(",",".");  
-        }else{
-            this.HZRNEBO_PAGO_ALIMENT_SALARIAL = String.valueOf(HZRNEBO_PAGO_ALIMENT_SALARIAL);
         }
     }
     @XmlTransient
@@ -67,8 +61,6 @@ public class EBO {
     public void setHZRNEBO_PAGO_ALIMENT_NO_SALARY(BigDecimal HZRNEBO_PAGO_ALIMENT_NO_SALARY) {
         if(HZRNEBO_PAGO_ALIMENT_NO_SALARY != null){
             this.HZRNEBO_PAGO_ALIMENT_NO_SALARY = new DecimalFormat("#.000000").format(HZRNEBO_PAGO_ALIMENT_NO_SALARY).replace(",",".");  
-        }else{
-            this.HZRNEBO_PAGO_ALIMENT_NO_SALARY = String.valueOf(HZRNEBO_PAGO_ALIMENT_NO_SALARY);
         }
     }
     @XmlTransient

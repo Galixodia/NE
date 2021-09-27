@@ -53,7 +53,7 @@ public class EVA {
         if(HZRNEVA_PAGO != null){
             this.HZRNEVA_PAGO = new DecimalFormat("#.000000").format(HZRNEVA_PAGO).replace(",","."); 
         }else{
-            this.HZRNEVA_PAGO = String.valueOf(HZRNEVA_PAGO);
+            throw new DataFormatException("EVA:HZRNEVA_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient

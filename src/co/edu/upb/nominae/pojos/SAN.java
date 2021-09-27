@@ -27,7 +27,7 @@ public class SAN {
         if(HZRNSAN_SANCION_PUBLICA != null){
             this.HZRNSAN_SANCION_PUBLICA = new DecimalFormat("#.000000").format(HZRNSAN_SANCION_PUBLICA).replace(",",".");  
         }else{
-            this.HZRNSAN_SANCION_PUBLICA = String.valueOf(HZRNSAN_SANCION_PUBLICA);
+            throw new DataFormatException("SAN:HZRNSAN_SANCION_PUBLICA:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient
@@ -39,7 +39,7 @@ public class SAN {
         if(HZRNSAN_SANCION_PRIVADA != null){
             this.HZRNSAN_SANCION_PRIVADA = new DecimalFormat("#.000000").format(HZRNSAN_SANCION_PRIVADA).replace(",",".");
         }else{
-            this.HZRNSAN_SANCION_PRIVADA = String.valueOf(HZRNSAN_SANCION_PRIVADA);
+            throw new DataFormatException("SAN:HZRNSAN_SANCION_PRIVADA:El campo es nulo o excede la longitud definida por la DIAN");
         }
     }
     @XmlTransient
