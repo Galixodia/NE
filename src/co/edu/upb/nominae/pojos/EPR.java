@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -17,9 +18,9 @@ public class EPR {
     @XmlElement(name = "EPR_1")
     private Long HZRNEPR_CANTIDAD;
     @XmlElement(name = "EPR_2")
-    private BigDecimal HZRNEPR_PAGO;
+    private String HZRNEPR_PAGO;
     @XmlElement(name = "EPR_3")
-    private BigDecimal HZRNEPR_PAGONS;
+    private String HZRNEPR_PAGONS;
     private Integer HZRNEPR_ITE_ID;
 
     @XmlTransient
@@ -38,28 +39,28 @@ public class EPR {
         }          
     }
     @XmlTransient
-    public BigDecimal getHZRNEPR_PAGO() {
+    public String getHZRNEPR_PAGO() {
         return HZRNEPR_PAGO;
     }
 
     public void setHZRNEPR_PAGO(BigDecimal HZRNEPR_PAGO) throws DataFormatException {
-
-        Data data = new Data();    
-
-        if(data.checklength(HZRNEPR_PAGO,15,6)){
-            this.HZRNEPR_PAGO = HZRNEPR_PAGO;
-            data = null;            
+        if(HZRNEPR_PAGO != null){
+            this.HZRNEPR_PAGO = this.HZRNEPR_PAGO = new DecimalFormat("#.000000").format(HZRNEPR_PAGO).replace(",",".");  
         }else{
-            throw new DataFormatException("EPR:HZRNEPR_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
-        }           
+            this.HZRNEPR_PAGO = String.valueOf(HZRNEPR_PAGO);
+        }       
     }
     @XmlTransient
-    public BigDecimal getHZRNEPR_PAGONS() {
+    public String getHZRNEPR_PAGONS() {
         return HZRNEPR_PAGONS;
     }
 
     public void setHZRNEPR_PAGONS(BigDecimal HZRNEPR_PAGONS) {
-        this.HZRNEPR_PAGONS = HZRNEPR_PAGONS;
+        if(HZRNEPR_PAGONS != null){
+            this.HZRNEPR_PAGONS = new DecimalFormat("#.000000").format(HZRNEPR_PAGONS).replace(",","."); 
+        }else{
+            this.HZRNEPR_PAGONS = String.valueOf(HZRNEPR_PAGO);
+        }    
     }
     @XmlTransient
     public Integer getHZRNEPR_ITE_ID() {

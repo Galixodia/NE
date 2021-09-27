@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -17,9 +18,9 @@ public class EOT {
     @XmlElement(name = "EOT_1")
     private String HZRNEOT_DESC_CONCEPTO;
     @XmlElement(name = "EOT_2")
-    private BigDecimal HZRNEOT_CONCEP_SALARIAL;
+    private String HZRNEOT_CONCEP_SALARIAL;
     @XmlElement(name = "EOT_3")
-    private BigDecimal HZRNEOT_CONCEP_NO_SALARIAL;
+    private String HZRNEOT_CONCEP_NO_SALARIAL;
     private Integer HZRNEOT_ITE_ID;       
 
     @XmlTransient
@@ -38,20 +39,28 @@ public class EOT {
         }           
     }
     @XmlTransient
-    public BigDecimal getHZRNEOT_CONCEP_SALARIAL() {
+    public String getHZRNEOT_CONCEP_SALARIAL() {
         return HZRNEOT_CONCEP_SALARIAL;
     }
 
     public void setHZRNEOT_CONCEP_SALARIAL(BigDecimal HZRNEOT_CONCEP_SALARIAL) {
-        this.HZRNEOT_CONCEP_SALARIAL = HZRNEOT_CONCEP_SALARIAL;
+        if(HZRNEOT_CONCEP_SALARIAL != null){
+            this.HZRNEOT_CONCEP_SALARIAL = new DecimalFormat("#.000000").format(HZRNEOT_CONCEP_SALARIAL).replace(",",".");  
+        }else{
+            this.HZRNEOT_CONCEP_SALARIAL = String.valueOf(HZRNEOT_CONCEP_SALARIAL);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNEOT_CONCEP_NO_SALARIAL() {
+    public String getHZRNEOT_CONCEP_NO_SALARIAL() {
         return HZRNEOT_CONCEP_NO_SALARIAL;
     }
 
     public void setHZRNEOT_CONCEP_NO_SALARIAL(BigDecimal HZRNEOT_CONCEP_NO_SALARIAL) {
-        this.HZRNEOT_CONCEP_NO_SALARIAL = HZRNEOT_CONCEP_NO_SALARIAL;
+        if(HZRNEOT_CONCEP_NO_SALARIAL != null){
+            this.HZRNEOT_CONCEP_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEOT_CONCEP_NO_SALARIAL).replace(",",".");   
+        }else{
+            this.HZRNEOT_CONCEP_NO_SALARIAL = String.valueOf(HZRNEOT_CONCEP_NO_SALARIAL);
+        } 
     }
     @XmlTransient
     public Integer getHZRNEOT_ITE_ID() {

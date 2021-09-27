@@ -1,6 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -16,66 +17,90 @@ import javax.xml.bind.annotation.XmlType;
 public class EVO {
     
     @XmlElement(name = "EVO_1")
-    private BigDecimal HZRNEVO_DOTACION;
+    private String HZRNEVO_DOTACION;
     @XmlElement(name = "EVO_2")
-    private BigDecimal HZRNEVO_APOYO_SOSTENIMIENT;
+    private String HZRNEVO_APOYO_SOSTENIMIENT;
     @XmlElement(name = "EVO_3")
-    private BigDecimal HZRNEVO_TELETRABAJO;
+    private String HZRNEVO_TELETRABAJO;
     @XmlElement(name = "EVO_4")
-    private BigDecimal HZRNEVO_BONIF_RETIRO;
+    private String HZRNEVO_BONIF_RETIRO;
     @XmlElement(name = "EVO_5")
-    private BigDecimal HZRNEVO_INDEMNIZACION;
+    private String HZRNEVO_INDEMNIZACION;
     @XmlElement(name = "EVO_6")
-    private BigDecimal HZRNEVO_REINTEGRO;    
+    private String HZRNEVO_REINTEGRO;    
     private Integer HZRNEVO_ITE_ID;
 
     @XmlTransient
-    public BigDecimal getHZRNEVO_DOTACION() {
+    public String getHZRNEVO_DOTACION() {
         return HZRNEVO_DOTACION;
     }
 
     public void setHZRNEVO_DOTACION(BigDecimal HZRNEVO_DOTACION) {
-        this.HZRNEVO_DOTACION = HZRNEVO_DOTACION;
+        if(HZRNEVO_DOTACION != null){
+            this.HZRNEVO_DOTACION = new DecimalFormat("#.000000").format(HZRNEVO_DOTACION).replace(",",".");  
+        }else{
+            this.HZRNEVO_DOTACION = String.valueOf(HZRNEVO_DOTACION);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNEVO_APOYO_SOSTENIMIENT() {
+    public String getHZRNEVO_APOYO_SOSTENIMIENT() {
         return HZRNEVO_APOYO_SOSTENIMIENT;
     }
 
-    public void setHZRNEVO_APOYO_SOSTENIMIENT(BigDecimal HZRNEVO_APOYO_SOSTENIMIENT) {
-        this.HZRNEVO_APOYO_SOSTENIMIENT = HZRNEVO_APOYO_SOSTENIMIENT;
+    public void setHZRNEVO_APOYO_SOSTENIMIENT(BigDecimal HZRNEVO_APOYO_SOSTENIMIENT) {   
+        if(HZRNEVO_APOYO_SOSTENIMIENT != null){
+            this.HZRNEVO_APOYO_SOSTENIMIENT = new DecimalFormat("#.000000").format(HZRNEVO_APOYO_SOSTENIMIENT).replace(",","."); 
+        }else{
+            this.HZRNEVO_APOYO_SOSTENIMIENT = String.valueOf(HZRNEVO_APOYO_SOSTENIMIENT);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNEVO_TELETRABAJO() {
+    public String getHZRNEVO_TELETRABAJO() {
         return HZRNEVO_TELETRABAJO;
     }
 
     public void setHZRNEVO_TELETRABAJO(BigDecimal HZRNEVO_TELETRABAJO) {
-        this.HZRNEVO_TELETRABAJO = HZRNEVO_TELETRABAJO;
+        if(HZRNEVO_TELETRABAJO != null){
+            this.HZRNEVO_TELETRABAJO = new DecimalFormat("#.000000").format(HZRNEVO_TELETRABAJO).replace(",","."); 
+        }else{
+            this.HZRNEVO_TELETRABAJO = String.valueOf(HZRNEVO_TELETRABAJO);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNEVO_BONIF_RETIRO() {
+    public String getHZRNEVO_BONIF_RETIRO() {
         return HZRNEVO_BONIF_RETIRO;
     }
 
     public void setHZRNEVO_BONIF_RETIRO(BigDecimal HZRNEVO_BONIF_RETIRO) {
-        this.HZRNEVO_BONIF_RETIRO = HZRNEVO_BONIF_RETIRO;
+        if(HZRNEVO_BONIF_RETIRO != null){
+            this.HZRNEVO_BONIF_RETIRO = new DecimalFormat("#.000000").format(HZRNEVO_BONIF_RETIRO).replace(",","."); 
+        }else{
+            this.HZRNEVO_BONIF_RETIRO = String.valueOf(HZRNEVO_BONIF_RETIRO);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNEVO_INDEMNIZACION() {
+    public String getHZRNEVO_INDEMNIZACION() {
         return HZRNEVO_INDEMNIZACION;
     }
 
     public void setHZRNEVO_INDEMNIZACION(BigDecimal HZRNEVO_INDEMNIZACION) {
-        this.HZRNEVO_INDEMNIZACION = HZRNEVO_INDEMNIZACION;
+        if(HZRNEVO_INDEMNIZACION != null){
+            this.HZRNEVO_INDEMNIZACION = new DecimalFormat("#.000000").format(HZRNEVO_INDEMNIZACION).replace(",",".");  
+        }else{
+            this.HZRNEVO_INDEMNIZACION = String.valueOf(HZRNEVO_INDEMNIZACION);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNEVO_REINTEGRO() {
+    public String getHZRNEVO_REINTEGRO() {
         return HZRNEVO_REINTEGRO;
     }
 
     public void setHZRNEVO_REINTEGRO(BigDecimal HZRNEVO_REINTEGRO) {
-        this.HZRNEVO_REINTEGRO = HZRNEVO_REINTEGRO;
+        if(HZRNEVO_REINTEGRO != null){
+            this.HZRNEVO_REINTEGRO = new DecimalFormat("#.000000").format(HZRNEVO_REINTEGRO).replace(",","."); 
+        }else{
+            this.HZRNEVO_REINTEGRO = String.valueOf(HZRNEVO_REINTEGRO);
+        }
     }
     @XmlTransient
     public Integer getHZRNEVO_ITE_ID() {

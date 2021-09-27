@@ -1,6 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -22,36 +23,48 @@ import javax.xml.bind.annotation.XmlType;
 public class ETR {
     
     @XmlElement(name = "ETR_1")
-    private BigDecimal HZRNETR_AUX_TRANSPORTE;
+    private String HZRNETR_AUX_TRANSPORTE;
     @XmlElement(name = "ETR_2")
-    private BigDecimal HZRNETR_VIAT_MANUT_SALARIAL;
+    private String HZRNETR_VIAT_MANUT_SALARIAL;
     @XmlElement(name = "ETR_3")
-    private BigDecimal HZRNETR_VIAT_MANUT_NO_SALARIAL;
+    private String HZRNETR_VIAT_MANUT_NO_SALARIAL;
     private Integer HZRNETR_ITE_ID;    
 
     @XmlTransient
-    public BigDecimal getHZRNETR_AUX_TRANSPORTE() {
+    public String getHZRNETR_AUX_TRANSPORTE() {
         return HZRNETR_AUX_TRANSPORTE;
     }
 
     public void setHZRNETR_AUX_TRANSPORTE(BigDecimal HZRNETR_AUX_TRANSPORTE) {
-        this.HZRNETR_AUX_TRANSPORTE = HZRNETR_AUX_TRANSPORTE;
+        if(HZRNETR_AUX_TRANSPORTE != null){
+            this.HZRNETR_AUX_TRANSPORTE = new DecimalFormat("#.000000").format(HZRNETR_AUX_TRANSPORTE).replace(",",".");
+        }else{
+            this.HZRNETR_AUX_TRANSPORTE = String.valueOf(HZRNETR_AUX_TRANSPORTE);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNETR_VIAT_MANUT_SALARIAL() {
+    public String getHZRNETR_VIAT_MANUT_SALARIAL() {
         return HZRNETR_VIAT_MANUT_SALARIAL;
     }
 
     public void setHZRNETR_VIAT_MANUT_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_SALARIAL) {
-        this.HZRNETR_VIAT_MANUT_SALARIAL = HZRNETR_VIAT_MANUT_SALARIAL;
+        if(HZRNETR_VIAT_MANUT_SALARIAL != null){
+            this.HZRNETR_VIAT_MANUT_SALARIAL = new DecimalFormat("#.000000").format(HZRNETR_VIAT_MANUT_SALARIAL).replace(",","."); 
+        }else{
+            this.HZRNETR_VIAT_MANUT_SALARIAL = String.valueOf(HZRNETR_VIAT_MANUT_SALARIAL);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNETR_VIAT_MANUT_NO_SALARIAL() {
+    public String getHZRNETR_VIAT_MANUT_NO_SALARIAL() {
         return HZRNETR_VIAT_MANUT_NO_SALARIAL;
     }
 
-    public void setHZRNETR_VIAT_MANUT_NO_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_NO_SALARIAL) {
-        this.HZRNETR_VIAT_MANUT_NO_SALARIAL = HZRNETR_VIAT_MANUT_NO_SALARIAL;
+    public void setHZRNETR_VIAT_MANUT_NO_SALARIAL(BigDecimal HZRNETR_VIAT_MANUT_NO_SALARIAL) {       
+        if(HZRNETR_VIAT_MANUT_NO_SALARIAL != null){
+            this.HZRNETR_VIAT_MANUT_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNETR_VIAT_MANUT_NO_SALARIAL).replace(",","."); 
+        }else{
+            this.HZRNETR_VIAT_MANUT_NO_SALARIAL = String.valueOf(HZRNETR_VIAT_MANUT_NO_SALARIAL);
+        } 
     }
     @XmlTransient
     public Integer getHZRNETR_ITE_ID() {

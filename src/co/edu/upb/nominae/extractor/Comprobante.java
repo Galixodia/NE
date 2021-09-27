@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.JAXBException;
@@ -56,6 +57,7 @@ public class Comprobante{
     private final String db_url;
     private final String db_user;
     private final String db_pwd;
+    private DecimalFormat df = null;
     
 
     public Comprobante(String cune_interno, String tipo_doc, int ano, int mes, String local_dir, String db_url, String db_user, String db_pwd, String log_file_name, String ambiente) throws SQLException {
@@ -956,6 +958,7 @@ public class Comprobante{
                     ITS its = new ITS();
                     if(rs != null){
                         while (rs_its.next()) {
+                            its.setHZRNITS_CUNE_INTERNO(rs_its.getString("HZRNITS_CUNE_INTERNO"));
                             its.setHZRNITS_PORCENTAJE(rs_its.getBigDecimal("HZRNITS_PORCENTAJE"));
                             its.setHZRNITS_DEDUCCION(rs_its.getBigDecimal("HZRNITS_DEDUCCION"));
                             its.setHZRNITS_ID(rs_its.getInt("HZRNITS_ID"));
@@ -2435,6 +2438,7 @@ public class Comprobante{
         tipo_doc = null;
         xml_string = null;
         conn = null;
+        df = null;
         comp_alive=0;
     }
     

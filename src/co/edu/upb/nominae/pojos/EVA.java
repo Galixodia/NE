@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -25,7 +26,7 @@ public class EVA {
     @XmlElement(name = "EVA_1")
     private Long HZRNEVA_CANTIDAD;
     @XmlElement(name = "EVA_2")
-    private BigDecimal HZRNEVA_PAGO;   
+    private String HZRNEVA_PAGO;   
     private Integer HZRNEVA_ITE_ID;        
 
     @XmlTransient
@@ -44,19 +45,16 @@ public class EVA {
         }          
     }
     @XmlTransient
-    public BigDecimal getHZRNEVA_PAGO() {
+    public String getHZRNEVA_PAGO() {
         return HZRNEVA_PAGO;
     }
 
-    public void setHZRNEVA_PAGO(BigDecimal HZRNEVA_PAGO) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNEVA_PAGO,15,6)){
-            this.HZRNEVA_PAGO = HZRNEVA_PAGO;
-            data = null;            
+    public void setHZRNEVA_PAGO(BigDecimal HZRNEVA_PAGO) throws DataFormatException {          
+        if(HZRNEVA_PAGO != null){
+            this.HZRNEVA_PAGO = new DecimalFormat("#.000000").format(HZRNEVA_PAGO).replace(",","."); 
         }else{
-            throw new DataFormatException("EVA:HZRNEVA_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
-        }         
+            this.HZRNEVA_PAGO = String.valueOf(HZRNEVA_PAGO);
+        }
     }
     @XmlTransient
     public Integer getHZRNEVA_ITE_ID() {

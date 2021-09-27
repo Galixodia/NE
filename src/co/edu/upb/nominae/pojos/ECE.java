@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -13,57 +14,48 @@ import javax.xml.bind.annotation.XmlType;
 public class ECE {
     
     @XmlElement(name = "ECE_1")
-    private BigDecimal HZRNECE_PAGO;
+    private String HZRNECE_PAGO;
     @XmlElement(name = "ECE_2")
-    private BigDecimal HZRNECE_PORCENTAJE;
+    private String HZRNECE_PORCENTAJE;
     @XmlElement(name = "ECE_3")
-    private BigDecimal HZRNECE_PAGO_INTERESES;   
+    private String HZRNECE_PAGO_INTERESES;   
     private Integer HZRNECE_ITE_ID;    
 
     @XmlTransient
-    public BigDecimal getHZRNECE_PAGO() {
+    public String getHZRNECE_PAGO() {
         return HZRNECE_PAGO;
     }
 
-    public void setHZRNECE_PAGO(BigDecimal HZRNECE_PAGO) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNECE_PAGO,15,6)){
-        this.HZRNECE_PAGO = HZRNECE_PAGO;
-            data = null;            
+    public void setHZRNECE_PAGO(BigDecimal HZRNECE_PAGO) throws DataFormatException {  
+        if(HZRNECE_PAGO != null){
+            this.HZRNECE_PAGO = new DecimalFormat("#.000000").format(HZRNECE_PAGO).replace(",",".");
         }else{
-            throw new DataFormatException("ECE:HZRNENC_NUM_PRED:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNECE_PAGO = String.valueOf(HZRNECE_PAGO);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNECE_PORCENTAJE() {
+    public String getHZRNECE_PORCENTAJE() {
         return HZRNECE_PORCENTAJE;
     }
 
     public void setHZRNECE_PORCENTAJE(BigDecimal HZRNECE_PORCENTAJE) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNECE_PORCENTAJE,3,2)){
-        this.HZRNECE_PORCENTAJE = HZRNECE_PORCENTAJE;
-            data = null;            
+        if(HZRNECE_PORCENTAJE != null){
+            this.HZRNECE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNECE_PORCENTAJE).replace(",","."); 
         }else{
-            throw new DataFormatException("ECE:HZRNECE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
-        }         
+            this.HZRNECE_PORCENTAJE = String.valueOf(HZRNECE_PORCENTAJE);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNECE_PAGO_INTERESES() {
+    public String getHZRNECE_PAGO_INTERESES() {
         return HZRNECE_PAGO_INTERESES;
     }
 
     public void setHZRNECE_PAGO_INTERESES(BigDecimal HZRNECE_PAGO_INTERESES) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNECE_PAGO_INTERESES,15,6)){
-        this.HZRNECE_PAGO_INTERESES = HZRNECE_PAGO_INTERESES;
-            data = null;            
+        if(HZRNECE_PAGO_INTERESES != null){
+            this.HZRNECE_PAGO_INTERESES = new DecimalFormat("#.000000").format(HZRNECE_PAGO_INTERESES).replace(",",".");
         }else{
-            throw new DataFormatException("ECE:HZRNECE_PAGO_INTERESES:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNECE_PAGO_INTERESES = String.valueOf(HZRNECE_PAGO_INTERESES);
+        } 
     }
     @XmlTransient
     public Integer getHZRNECE_ITE_ID() {

@@ -1,6 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -12,36 +13,48 @@ import javax.xml.bind.annotation.XmlType;
 public class ECO {
     
     @XmlElement(name = "ECO_1")
-    private BigDecimal HZRNECO_COMISION;
+    private String HZRNECO_COMISION;
     @XmlElement(name = "ECO_2")
-    private BigDecimal HZRNECO_PAGO_TERCERO;
+    private String HZRNECO_PAGO_TERCERO;
     @XmlElement(name = "ECO_3")
-    private BigDecimal HZRNECO_ANTICIPOS_NOMINA;
+    private String HZRNECO_ANTICIPOS_NOMINA;
     private Integer HZRNECO_ITE_ID;   
 
     @XmlTransient
-    public BigDecimal getHZRNECO_COMISION() {
+    public String getHZRNECO_COMISION() {
         return HZRNECO_COMISION;
     }
 
     public void setHZRNECO_COMISION(BigDecimal HZRNECO_COMISION) {
-        this.HZRNECO_COMISION = HZRNECO_COMISION;
+        if(HZRNECO_COMISION != null){
+            this.HZRNECO_COMISION = new DecimalFormat("#.000000").format(HZRNECO_COMISION).replace(",",".");  
+        }else{
+            this.HZRNECO_COMISION = String.valueOf(HZRNECO_COMISION);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNECO_PAGO_TERCERO() {
+    public String getHZRNECO_PAGO_TERCERO() {
         return HZRNECO_PAGO_TERCERO;
     }
 
-    public void setHZRNECO_PAGO_TERCERO(BigDecimal HZRNECO_PAGO_TERCERO) {
-        this.HZRNECO_PAGO_TERCERO = HZRNECO_PAGO_TERCERO;
+    public void setHZRNECO_PAGO_TERCERO(BigDecimal HZRNECO_PAGO_TERCERO) {       
+        if(HZRNECO_PAGO_TERCERO != null){
+            this.HZRNECO_PAGO_TERCERO = new DecimalFormat("#.000000").format(HZRNECO_PAGO_TERCERO).replace(",","."); 
+        }else{
+            this.HZRNECO_PAGO_TERCERO = String.valueOf(HZRNECO_PAGO_TERCERO);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNECO_ANTICIPOS_NOMINA() {
+    public String getHZRNECO_ANTICIPOS_NOMINA() {
         return HZRNECO_ANTICIPOS_NOMINA;
     }
 
     public void setHZRNECO_ANTICIPOS_NOMINA(BigDecimal HZRNECO_ANTICIPOS_NOMINA) {
-        this.HZRNECO_ANTICIPOS_NOMINA = HZRNECO_ANTICIPOS_NOMINA;
+        if(HZRNECO_ANTICIPOS_NOMINA != null){
+            this.HZRNECO_ANTICIPOS_NOMINA = new DecimalFormat("#.000000").format(HZRNECO_ANTICIPOS_NOMINA).replace(",",".");  
+        }else{
+            this.HZRNECO_ANTICIPOS_NOMINA = String.valueOf(HZRNECO_ANTICIPOS_NOMINA);
+        } 
     }
     @XmlTransient
     public Integer getHZRNECO_ITE_ID() {

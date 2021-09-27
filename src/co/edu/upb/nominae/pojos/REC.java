@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -68,7 +69,7 @@ public class REC {
     @XmlElement(name = "REC_15")
     private Integer HZRNREC_TIPO_CONTRATO;
     @XmlElement(name = "REC_16")
-    private BigDecimal HZRNREC_SUELDO;
+    private String HZRNREC_SUELDO;
     @XmlElement(name = "REC_17")
     private String HZRNREC_COD_TRABAJADOR;
     
@@ -299,19 +300,16 @@ public class REC {
         }          
     }
     @XmlTransient
-    public BigDecimal getHZRNREC_SUELDO() {
+    public String getHZRNREC_SUELDO() {
         return HZRNREC_SUELDO;
     }
 
     public void setHZRNREC_SUELDO(BigDecimal HZRNREC_SUELDO) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNREC_SUELDO,15,6)){
-            this.HZRNREC_SUELDO = HZRNREC_SUELDO;
-            data = null;            
+        if(HZRNREC_SUELDO != null){
+            this.HZRNREC_SUELDO = new DecimalFormat("#.000000").format(HZRNREC_SUELDO).replace(",",".");    
         }else{
-            throw new DataFormatException("REC:HZRNREC_SUELDO:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNREC_SUELDO = String.valueOf(HZRNREC_SUELDO);
+        }
     }
     @XmlTransient
     public String getHZRNREC_COD_TRABAJADOR() {

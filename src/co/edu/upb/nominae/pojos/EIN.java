@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -24,7 +25,7 @@ public class EIN {
     @XmlElement(name = "EIN_4")
     private Integer HZRNEIN_TIPO;
     @XmlElement(name = "EIN_5")
-    private BigDecimal HZRNEIN_PAGO;
+    private String HZRNEIN_PAGO;
     private Integer HZRNEIN_ITE_ID;      
 
     @XmlTransient
@@ -74,19 +75,16 @@ public class EIN {
         }          
     }
     @XmlTransient
-    public BigDecimal getHZRNEIN_PAGO() {
+    public String getHZRNEIN_PAGO() {
         return HZRNEIN_PAGO;
     }
 
     public void setHZRNEIN_PAGO(BigDecimal HZRNEIN_PAGO) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNEIN_PAGO,15,6)){
-           this.HZRNEIN_PAGO = HZRNEIN_PAGO;
-            data = null;            
+        if(HZRNEIN_PAGO != null){
+            this.HZRNEIN_PAGO = new DecimalFormat("#.000000").format(HZRNEIN_PAGO).replace(",",".");     
         }else{
-            throw new DataFormatException("EIN:HZRNEIN_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
-        }            
+            this.HZRNEIN_PAGO = String.valueOf(HZRNEIN_PAGO);
+        } 
     }
     @XmlTransient
     public Integer getHZRNEIN_ITE_ID() {

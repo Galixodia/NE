@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -58,7 +59,7 @@ public class ENC {
     @XmlElement(name="ENC_5")
     private String      HZRNENC_FECHA_LIQ_FIN;
     @XmlElement(name="ENC_6")
-    private BigDecimal      HZRNENC_TIEMPO_LAB;
+    private String      HZRNENC_TIEMPO_LAB;
     @XmlElement(name="ENC_7")
     private String      HZRNENC_FECHA_EMISION;
     @XmlElement(name="ENC_8")
@@ -94,7 +95,7 @@ public class ENC {
     @XmlElement(name="ENC_23")
     private String      HZRNENC_TIPO_MONEDA;
     @XmlElement(name="ENC_24")
-    private BigDecimal      HZRNENC_TRM;
+    private String      HZRNENC_TRM;
     @XmlElement(name="ENC_25")
     private String      HZRNENC_NUM_PRED;
     @XmlElement(name="ENC_26")
@@ -181,20 +182,16 @@ public class ENC {
         }        
     }
     @XmlTransient
-    public BigDecimal getHZRNENC_TIEMPO_LAB() {
+    public String getHZRNENC_TIEMPO_LAB() {
         return HZRNENC_TIEMPO_LAB;
     }
 
-    public void setHZRNENC_TIEMPO_LAB(BigDecimal HZRNENC_TIEMPO_LAB) throws DataFormatException {
-        Data data = new Data();        
-        
-        if(data.checklength(HZRNENC_TIEMPO_LAB,6,2)){
-            this.HZRNENC_TIEMPO_LAB = HZRNENC_TIEMPO_LAB;
-            data = null;
+    public void setHZRNENC_TIEMPO_LAB(BigDecimal HZRNENC_TIEMPO_LAB) throws DataFormatException {              
+        if(HZRNENC_TIEMPO_LAB != null){
+            this.HZRNENC_TIEMPO_LAB = new DecimalFormat("#.00").format(HZRNENC_TIEMPO_LAB).replace(",",".");
         }else{
-            throw new DataFormatException("ENC:HZRNENC_TIEMPO_LAB:El campo es nulo o excede la longitud definida por la DIAN");
-        }  
-        
+            this.HZRNENC_TIEMPO_LAB = String.valueOf(HZRNENC_TIEMPO_LAB);
+        } 
     }
     @XmlTransient
     public String getHZRNENC_FECHA_EMISION() {
@@ -434,12 +431,16 @@ public class ENC {
         }          
     }
     @XmlTransient
-    public BigDecimal getHZRNENC_TRM() {
+    public String getHZRNENC_TRM() {
         return HZRNENC_TRM;
     }
 
     public void setHZRNENC_TRM(BigDecimal HZRNENC_TRM) {
-        this.HZRNENC_TRM = HZRNENC_TRM;
+        if(HZRNENC_TRM != null){
+            this.HZRNENC_TRM = new DecimalFormat("#.000000").format(HZRNENC_TRM).replace(",",".");
+        }else{
+            this.HZRNENC_TRM = String.valueOf(HZRNENC_TRM);
+        } 
     }
     @XmlTransient
     public String getHZRNENC_NUM_PRED() {

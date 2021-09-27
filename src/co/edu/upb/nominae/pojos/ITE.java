@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.zip.DataFormatException;
@@ -33,7 +34,7 @@ public class ITE {
     @XmlElement(name = "ITE_1")
     private String HZRNITE_DIAS_TRAB;
     @XmlElement(name = "ITE_2")
-    private BigDecimal HZRNITE_SUELDO_TRAB;    
+    private String HZRNITE_SUELDO_TRAB;    
     
     private String HZRNITE_CUNE_INTERNO;    
     private Integer HZRNITE_ID;    
@@ -92,19 +93,16 @@ public class ITE {
         }          
     }
     @XmlTransient
-    public BigDecimal getHZRNITE_SUELDO_TRAB() {
+    public String getHZRNITE_SUELDO_TRAB() {
         return HZRNITE_SUELDO_TRAB;
     }
 
-    public void setHZRNITE_SUELDO_TRAB(BigDecimal HZRNITE_SUELDO_TRAB) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNITE_SUELDO_TRAB,15,6)){
-            this.HZRNITE_SUELDO_TRAB = HZRNITE_SUELDO_TRAB;
-            data = null;            
+    public void setHZRNITE_SUELDO_TRAB(BigDecimal HZRNITE_SUELDO_TRAB) throws DataFormatException {  
+        if(HZRNITE_SUELDO_TRAB != null){
+            this.HZRNITE_SUELDO_TRAB = new DecimalFormat("#.000000").format(HZRNITE_SUELDO_TRAB).replace(",",".");  
         }else{
-            throw new DataFormatException("ITE:HZRNITE_SUELDO_TRAB:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNITE_SUELDO_TRAB = String.valueOf(HZRNITE_SUELDO_TRAB);
+        }
     }
     @XmlTransient
     public String getHZRNITE_CUNE_INTERNO() {

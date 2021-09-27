@@ -1,6 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -13,46 +14,62 @@ import javax.xml.bind.annotation.XmlType;
 public class SSP {
     
     @XmlElement(name = "SSP_1")
-    private BigDecimal HZRNSSP_PORCENTAJE;
+    private String HZRNSSP_PORCENTAJE;
     @XmlElement(name = "SSP_2")
-    private BigDecimal HZRNSSP_DEDUC_SEG_PENSIONAL;
+    private String HZRNSSP_DEDUC_SEG_PENSIONAL;
     @XmlElement(name = "SSP_3")
-    private BigDecimal HZRNSSP_PORCENTAJE_SUBSISTEN;
+    private String HZRNSSP_PORCENTAJE_SUBSISTEN;
     @XmlElement(name = "SSP_4")
-    private BigDecimal HZRNSSP_DEDUC_SUBSISTEN;
+    private String HZRNSSP_DEDUC_SUBSISTEN;
     private Integer HZRNSSP_ITS_ID;   
 
     @XmlTransient
-    public BigDecimal getHZRNSSP_PORCENTAJE() {
+    public String getHZRNSSP_PORCENTAJE() {
         return HZRNSSP_PORCENTAJE;
     }
 
     public void setHZRNSSP_PORCENTAJE(BigDecimal HZRNSSP_PORCENTAJE) {
-        this.HZRNSSP_PORCENTAJE = HZRNSSP_PORCENTAJE;
+        if(HZRNSSP_PORCENTAJE != null){
+            this.HZRNSSP_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSSP_PORCENTAJE).replace(",",".");  
+        }else{
+            this.HZRNSSP_PORCENTAJE = String.valueOf(HZRNSSP_PORCENTAJE);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNSSP_DEDUC_SEG_PENSIONAL() {
+    public String getHZRNSSP_DEDUC_SEG_PENSIONAL() {
         return HZRNSSP_DEDUC_SEG_PENSIONAL;
     }
 
     public void setHZRNSSP_DEDUC_SEG_PENSIONAL(BigDecimal HZRNSSP_DEDUC_SEG_PENSIONAL) {
-        this.HZRNSSP_DEDUC_SEG_PENSIONAL = HZRNSSP_DEDUC_SEG_PENSIONAL;
+        if(HZRNSSP_DEDUC_SEG_PENSIONAL != null){
+            this.HZRNSSP_DEDUC_SEG_PENSIONAL = new DecimalFormat("#.000000").format(HZRNSSP_DEDUC_SEG_PENSIONAL).replace(",",".");  
+        }else{
+            this.HZRNSSP_DEDUC_SEG_PENSIONAL = String.valueOf(HZRNSSP_DEDUC_SEG_PENSIONAL);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNSSP_PORCENTAJE_SUBSISTEN() {
+    public String getHZRNSSP_PORCENTAJE_SUBSISTEN() {
         return HZRNSSP_PORCENTAJE_SUBSISTEN;
     }
 
     public void setHZRNSSP_PORCENTAJE_SUBSISTEN(BigDecimal HZRNSSP_PORCENTAJE_SUBSISTEN) {
-        this.HZRNSSP_PORCENTAJE_SUBSISTEN = HZRNSSP_PORCENTAJE_SUBSISTEN;
+        if(HZRNSSP_PORCENTAJE_SUBSISTEN != null){
+            this.HZRNSSP_PORCENTAJE_SUBSISTEN = new DecimalFormat("#.00").format(HZRNSSP_PORCENTAJE_SUBSISTEN).replace(",",".");
+        }else{
+            this.HZRNSSP_PORCENTAJE_SUBSISTEN = String.valueOf(HZRNSSP_PORCENTAJE_SUBSISTEN);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNSSP_DEDUC_SUBSISTEN() {
+    public String getHZRNSSP_DEDUC_SUBSISTEN() {
         return HZRNSSP_DEDUC_SUBSISTEN;
     }
 
     public void setHZRNSSP_DEDUC_SUBSISTEN(BigDecimal HZRNSSP_DEDUC_SUBSISTEN) {
-        this.HZRNSSP_DEDUC_SUBSISTEN = HZRNSSP_DEDUC_SUBSISTEN;
+        if(HZRNSSP_DEDUC_SUBSISTEN != null){
+            this.HZRNSSP_DEDUC_SUBSISTEN = new DecimalFormat("#.000000").format(HZRNSSP_DEDUC_SUBSISTEN).replace(",","."); 
+        }else{
+            this.HZRNSSP_DEDUC_SUBSISTEN = String.valueOf(HZRNSSP_DEDUC_SUBSISTEN);
+        } 
     }
     @XmlTransient
     public Integer getHZRNSSP_ITS_ID() {

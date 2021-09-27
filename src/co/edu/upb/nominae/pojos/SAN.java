@@ -1,7 +1,7 @@
 package co.edu.upb.nominae.pojos;
 
-import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -13,40 +13,34 @@ import javax.xml.bind.annotation.XmlType;
 public class SAN {
     
     @XmlElement(name = "SAN_1")
-    private BigDecimal HZRNSAN_SANCION_PUBLICA;
+    private String HZRNSAN_SANCION_PUBLICA;
     @XmlElement(name = "SAN_2")
-    private BigDecimal HZRNSAN_SANCION_PRIVADA;
+    private String HZRNSAN_SANCION_PRIVADA;
     private Integer HZRNSAN_ITS_ID;       
 
     @XmlTransient
-    public BigDecimal getHZRNSAN_SANCION_PUBLICA() {
+    public String getHZRNSAN_SANCION_PUBLICA() {
         return HZRNSAN_SANCION_PUBLICA;
     }
 
     public void setHZRNSAN_SANCION_PUBLICA(BigDecimal HZRNSAN_SANCION_PUBLICA) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNSAN_SANCION_PUBLICA,15,6)){
-            this.HZRNSAN_SANCION_PUBLICA = HZRNSAN_SANCION_PUBLICA;
-            data = null;            
+        if(HZRNSAN_SANCION_PUBLICA != null){
+            this.HZRNSAN_SANCION_PUBLICA = new DecimalFormat("#.000000").format(HZRNSAN_SANCION_PUBLICA).replace(",",".");  
         }else{
-            throw new DataFormatException("SAN:HZRNSAN_SANCION_PUBLICA:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNSAN_SANCION_PUBLICA = String.valueOf(HZRNSAN_SANCION_PUBLICA);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNSAN_SANCION_PRIVADA() {
+    public String getHZRNSAN_SANCION_PRIVADA() {
         return HZRNSAN_SANCION_PRIVADA;
     }
 
     public void setHZRNSAN_SANCION_PRIVADA(BigDecimal HZRNSAN_SANCION_PRIVADA) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNSAN_SANCION_PRIVADA,15,6)){
-            this.HZRNSAN_SANCION_PRIVADA = HZRNSAN_SANCION_PRIVADA;
-            data = null;            
+        if(HZRNSAN_SANCION_PRIVADA != null){
+            this.HZRNSAN_SANCION_PRIVADA = new DecimalFormat("#.000000").format(HZRNSAN_SANCION_PRIVADA).replace(",",".");
         }else{
-            throw new DataFormatException("SAN:HZRNSAN_SANCION_PRIVADA:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNSAN_SANCION_PRIVADA = String.valueOf(HZRNSAN_SANCION_PRIVADA);
+        }
     }
     @XmlTransient
     public Integer getHZRNSAN_ITS_ID() {

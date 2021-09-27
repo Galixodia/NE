@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.zip.DataFormatException;
@@ -22,11 +23,11 @@ import javax.xml.bind.annotation.XmlType;
 public class ITS {
     
     @XmlElement(name = "ITS_1")
-    private BigDecimal HZRNITS_PORCENTAJE;
+    private String HZRNITS_PORCENTAJE;
     @XmlElement(name = "ITS_2")
-    private BigDecimal HZRNITS_DEDUCCION;
+    private String HZRNITS_DEDUCCION;
     
-    private BigDecimal HZRNITS_CUNE_INTERNO;
+    private String HZRNITS_CUNE_INTERNO;
     private Integer HZRNITS_ID;
     
     @XmlElement(name = "SPE")
@@ -48,41 +49,35 @@ public class ITS {
 
     
     @XmlTransient
-    public BigDecimal getHZRNITS_PORCENTAJE() {
+    public String getHZRNITS_PORCENTAJE() {
         return HZRNITS_PORCENTAJE;
     }
 
-    public void setHZRNITS_PORCENTAJE(BigDecimal HZRNITS_PORCENTAJE) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNITS_PORCENTAJE,3,2)){
-            this.HZRNITS_PORCENTAJE = HZRNITS_PORCENTAJE;
-            data = null;            
+    public void setHZRNITS_PORCENTAJE(BigDecimal HZRNITS_PORCENTAJE) throws DataFormatException {   
+        if(HZRNITS_PORCENTAJE != null){
+            this.HZRNITS_PORCENTAJE = new DecimalFormat("#.00").format(HZRNITS_PORCENTAJE).replace(",",".");  
         }else{
-            throw new DataFormatException("ITS:HZRNITS_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
-        }             
+            this.HZRNITS_PORCENTAJE = String.valueOf(HZRNITS_PORCENTAJE);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNITS_DEDUCCION() {
+    public String getHZRNITS_DEDUCCION() {
         return HZRNITS_DEDUCCION;
     }
 
     public void setHZRNITS_DEDUCCION(BigDecimal HZRNITS_DEDUCCION) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNITS_DEDUCCION,15,6)){
-            this.HZRNITS_DEDUCCION = HZRNITS_DEDUCCION;
-            data = null;            
+        if(HZRNITS_DEDUCCION != null){
+            this.HZRNITS_DEDUCCION = new DecimalFormat("#.000000").format(HZRNITS_DEDUCCION).replace(",","."); 
         }else{
-            throw new DataFormatException("ITS:HZRNITS_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
-        }           
+            this.HZRNITS_DEDUCCION = String.valueOf(HZRNITS_DEDUCCION);
+        }
     }
     @XmlTransient
-    public BigDecimal getHZRNITS_CUNE_INTERNO() {
+    public String getHZRNITS_CUNE_INTERNO() {
         return HZRNITS_CUNE_INTERNO;
     }
 
-    public void setHZRNITS_CUNE_INTERNO(BigDecimal HZRNITS_CUNE_INTERNO) {
+    public void setHZRNITS_CUNE_INTERNO(String HZRNITS_CUNE_INTERNO) {
         this.HZRNITS_CUNE_INTERNO = HZRNITS_CUNE_INTERNO;
     }
     @XmlTransient

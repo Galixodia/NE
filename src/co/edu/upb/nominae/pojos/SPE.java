@@ -2,6 +2,7 @@ package co.edu.upb.nominae.pojos;
 
 import co.edu.upb.utilities.Data;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.zip.DataFormatException;
 import javax.xml.bind.annotation.XmlElement;
 
@@ -14,40 +15,34 @@ import javax.xml.bind.annotation.XmlType;
 public class SPE {
     
     @XmlElement(name = "SPE_1")
-    private BigDecimal HZRNSPE_PORCENTAJE;
+    private String HZRNSPE_PORCENTAJE;
     @XmlElement(name = "SPE_2")
-    private BigDecimal HZRNSPE_DEDUCCION;
+    private String HZRNSPE_DEDUCCION;
     private Integer HZRNSPE_ITS_ID;      
 
     @XmlTransient
-    public BigDecimal getHZRNSPE_PORCENTAJE() {
+    public String getHZRNSPE_PORCENTAJE() {
         return HZRNSPE_PORCENTAJE;
     }
 
     public void setHZRNSPE_PORCENTAJE(BigDecimal HZRNSPE_PORCENTAJE) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNSPE_PORCENTAJE,3,2)){
-            this.HZRNSPE_PORCENTAJE = HZRNSPE_PORCENTAJE;
-            data = null;            
+        if(HZRNSPE_PORCENTAJE != null){
+            this.HZRNSPE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSPE_PORCENTAJE).replace(",",".");  
         }else{
-            throw new DataFormatException("SPE:HZRNSPE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNSPE_PORCENTAJE = String.valueOf(HZRNSPE_PORCENTAJE);
+        } 
     }
     @XmlTransient
-    public BigDecimal getHZRNSPE_DEDUCCION() {
+    public String getHZRNSPE_DEDUCCION() {
         return HZRNSPE_DEDUCCION;
     }
 
-    public void setHZRNSPE_DEDUCCION(BigDecimal HZRNSPE_DEDUCCION) throws DataFormatException {
-        Data data = new Data();    
-
-        if(data.checklength(HZRNSPE_DEDUCCION,15,6)){
-            this.HZRNSPE_DEDUCCION = HZRNSPE_DEDUCCION;
-            data = null;            
+    public void setHZRNSPE_DEDUCCION(BigDecimal HZRNSPE_DEDUCCION) throws DataFormatException {   
+        if(HZRNSPE_DEDUCCION != null){
+            this.HZRNSPE_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSPE_DEDUCCION).replace(",",".");
         }else{
-            throw new DataFormatException("SPE:HZRNSPE_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
-        }          
+            this.HZRNSPE_DEDUCCION = String.valueOf(HZRNSPE_DEDUCCION);
+        } 
     }
     @XmlTransient
     public Integer getHZRNSPE_ITS_ID() {
