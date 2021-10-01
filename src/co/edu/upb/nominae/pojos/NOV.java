@@ -25,7 +25,7 @@ public class NOV {
     public void setHZRNNOV_CUNE_INTERNO(String HZRNNOV_CUNE_INTERNO) throws DataFormatException {
         Data data = new Data();    
 
-        if(data.checklength(HZRNNOV_CUNE_INTERNO,14)){
+        if(data.checklength(HZRNNOV_CUNE_INTERNO,16)){
             this.HZRNNOV_CUNE_INTERNO = HZRNNOV_CUNE_INTERNO;
             data = null;            
         }else{

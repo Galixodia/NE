@@ -58,6 +58,8 @@ public class Comprobante{
     private final String db_user;
     private final String db_pwd;
     private DecimalFormat df = null;
+    private int ite_id;
+    private int its_id;
     
 
     public Comprobante(String cune_interno, String tipo_doc, int ano, int mes, String local_dir, String db_url, String db_user, String db_pwd, String log_file_name, String ambiente) throws SQLException {
@@ -82,7 +84,8 @@ public class Comprobante{
         rs = null;
         
         i = 0; // Iterador para listas
-        
+        ite_id = 0;
+        its_id = 0;
 
         calendario =Calendar.getInstance();
         log.logInFile(log_file_name,null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + this.cune_interno + "] (DB) Starting conection to data base.");
@@ -449,502 +452,510 @@ public class Comprobante{
                             ite.setHZRNITE_SUELDO_TRAB(rs_ite.getBigDecimal("HZRNITE_SUELDO_TRAB"));
                             ite.setHZRNITE_ID(rs_ite.getInt("HZRNITE_ID"));
                             nom.setBasico_trab(ite);
+                            
+                            ite_id = rs_ite.getInt("HZRNITE_ID");
                         }
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ITE No existen registros");
                     }
+                    
+                    if(ite_id != 0){
+                      
+                        //ETR
+                        {
+                            stmt = HZRNETR_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);
+                            rs = pstmt.executeQuery();
 
-                    //ETR
-                    {
-                        stmt = HZRNETR_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());
-                        rs = pstmt.executeQuery();
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    ETR etr = new ETR();
+                                    etr.setHZRNETR_AUX_TRANSPORTE(rs.getBigDecimal("HZRNETR_AUX_TRANSPORTE"));
+                                    etr.setHZRNETR_VIAT_MANUT_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_SALARIAL"));
+                                    etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
+                                    etr.setHZRNETR_ITE_ID(rs.getInt("HZRNETR_ITE_ID"));
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                ETR etr = new ETR();
-                                etr.setHZRNETR_AUX_TRANSPORTE(rs.getBigDecimal("HZRNETR_AUX_TRANSPORTE"));
-                                etr.setHZRNETR_VIAT_MANUT_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_SALARIAL"));
-                                etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
-                                etr.setHZRNETR_ITE_ID(rs.getInt("HZRNETR_ITE_ID"));
-
-                                ite.transporte_pagado_trab.set(i,etr);
-                                etr = null;
-                                if (i < ite.transporte_pagado_trab.size()){i++;}
+                                    ite.transporte_pagado_trab.set(i,etr);
+                                    etr = null;
+                                    if (i < ite.transporte_pagado_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ETR No existen registros");
                             }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ETR No existen registros");
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ETR].");
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ETR].");
-                    }
-                    
-                    //EHE
-                    {
-                        stmt = HZRNEHE_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                        
-                        rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                EHE ehe = new EHE();
-                                ehe.setHZRNEHE_HORAS_EXTRA(rs.getString("HZRNEHE_HORAS_EXTRA"));                
-                                ehe.setHZRNEHE_HORA_INICIO(rs.getString("HZRNEHE_HORA_INICIO"));                
-                                ehe.setHZRNEHE_HORA_FIN(rs.getString("HZRNEHE_HORA_FIN"));                                
-                                ehe.setHZRNEHE_CANTIDAD(rs.getBigDecimal("HZRNEHE_CANTIDAD"));
-                                ehe.setHZRNEHE_PORCENTAJE(rs.getBigDecimal("HZRNEHE_PORCENTAJE"));
-                                ehe.setHZRNEHE_PAGO(rs.getBigDecimal("HZRNEHE_PAGO"));
-                                ehe.setHZRNEHE_ITE_ID(rs.getInt("HZRNEHE_ITE_ID"));
+                        //EHE
+                        {
+                            stmt = HZRNEHE_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                        
+                            rs = pstmt.executeQuery();
 
-                                ite.horas_extras_trab.set(i,ehe);
-                                ehe = null;
-                                if (i < ite.horas_extras_trab.size()){i++;}
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    EHE ehe = new EHE();
+                                    ehe.setHZRNEHE_HORAS_EXTRA(rs.getString("HZRNEHE_HORAS_EXTRA"));                
+                                    ehe.setHZRNEHE_HORA_INICIO(rs.getString("HZRNEHE_HORA_INICIO"));                
+                                    ehe.setHZRNEHE_HORA_FIN(rs.getString("HZRNEHE_HORA_FIN"));                                
+                                    ehe.setHZRNEHE_CANTIDAD(rs.getBigDecimal("HZRNEHE_CANTIDAD"));
+                                    ehe.setHZRNEHE_PORCENTAJE(rs.getBigDecimal("HZRNEHE_PORCENTAJE"));
+                                    ehe.setHZRNEHE_PAGO(rs.getBigDecimal("HZRNEHE_PAGO"));
+                                    ehe.setHZRNEHE_ITE_ID(rs.getInt("HZRNEHE_ITE_ID"));
+
+                                    ite.horas_extras_trab.set(i,ehe);
+                                    ehe = null;
+                                    if (i < ite.horas_extras_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EHE No existen registros");
                             }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EHE No existen registros");
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EHE].");                        
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EHE].");                        
-                    }
-                    
-                    //EVC
-                    {
-                        stmt = HZRNEVC_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                EVC evc = new EVC();
-                                evc.setHZRNEVC_FECHA_INICIO(rs.getString("HZRNEVC_FECHA_INICIO"));                
-                                evc.setHZRNEVC_FECHA_FIN(rs.getString("HZRNEVC_FECHA_FIN"));                
-                                evc.setHZRNEVC_CANTIDAD(rs.getLong("HZRNEVC_CANTIDAD"));                                
-                                evc.setHZRNEVC_PAGO(rs.getBigDecimal("HZRNEVC_PAGO"));
-                                evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
+                        //EVC
+                        {
+                            stmt = HZRNEVC_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
 
-                                ite.vacaciones_trabajador.set(i,evc);
-                                evc = null;
-                                if (i < ite.vacaciones_trabajador.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVC No existen registros");
-                        }    
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVC].");                        
-                    }
-                    
-                    //EVA
-                    {
-                        stmt = HZRNEVA_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    EVC evc = new EVC();
+                                    evc.setHZRNEVC_FECHA_INICIO(rs.getString("HZRNEVC_FECHA_INICIO"));                
+                                    evc.setHZRNEVC_FECHA_FIN(rs.getString("HZRNEVC_FECHA_FIN"));                
+                                    evc.setHZRNEVC_CANTIDAD(rs.getLong("HZRNEVC_CANTIDAD"));                                
+                                    evc.setHZRNEVC_PAGO(rs.getBigDecimal("HZRNEVC_PAGO"));
+                                    evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                EVA eva = new EVA();
-                                eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
-                                eva.setHZRNEVA_PAGO(rs.getBigDecimal("HZRNEVA_PAGO"));
-                                eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
-
-                                ite.vacaciones_comp_trab.set(i,eva);
-                                eva = null;
-                                if (i < ite.vacaciones_comp_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVA No existen registros");
-                        }    
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVA].");                        
-                    }
-                    
-                    //EPR
-                    {
-                        stmt = HZRNEPR_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        if(rs != null){  
-                            while (rs.next()) {
-                                EPR epr = new EPR();
-                                epr.setHZRNEPR_CANTIDAD(rs.getLong("HZRNEPR_CANTIDAD"));
-                                epr.setHZRNEPR_PAGO(rs.getBigDecimal("HZRNEPR_PAGO"));
-                                epr.setHZRNEPR_PAGONS(rs.getBigDecimal("HZRNEPR_PAGONS"));
-                                epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
-
-                                ite.setPrimas_trab(epr);
-                                epr = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EPR No existen registros");
+                                    ite.vacaciones_trabajador.set(i,evc);
+                                    evc = null;
+                                    if (i < ite.vacaciones_trabajador.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EVC No existen registros");
+                            }    
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVC].");                        
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EPR].");                        
-                    }
-                    
-                    //ECE
-                    {
-                        stmt = HZRNECE_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
+
+                        //EVA
+                        {
+                            stmt = HZRNEVA_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    EVA eva = new EVA();
+                                    eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
+                                    eva.setHZRNEVA_PAGO(rs.getBigDecimal("HZRNEVA_PAGO"));
+                                    eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
+
+                                    ite.vacaciones_comp_trab.set(i,eva);
+                                    eva = null;
+                                    if (i < ite.vacaciones_comp_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EVA No existen registros");
+                            }    
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVA].");                        
+                        }
+
+                        //EPR
+                        {
+                            stmt = HZRNEPR_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){  
+                                while (rs.next()) {
+                                    EPR epr = new EPR();
+                                    epr.setHZRNEPR_CANTIDAD(rs.getLong("HZRNEPR_CANTIDAD"));
+                                    epr.setHZRNEPR_PAGO(rs.getBigDecimal("HZRNEPR_PAGO"));
+                                    epr.setHZRNEPR_PAGONS(rs.getBigDecimal("HZRNEPR_PAGONS"));
+                                    epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
+
+                                    ite.setPrimas_trab(epr);
+                                    epr = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EPR No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EPR].");                        
+                        }
+
+                        //ECE
+                        {
+                            stmt = HZRNECE_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ECE ece = new ECE();
+                                    ece.setHZRNECE_PAGO(rs.getBigDecimal("HZRNECE_PAGO"));
+                                    ece.setHZRNECE_PORCENTAJE(rs.getBigDecimal("HZRNECE_PORCENTAJE"));
+                                    ece.setHZRNECE_PAGO_INTERESES(rs.getBigDecimal("HZRNECE_PAGO_INTERESES"));
+                                    ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
+
+                                    ite.setCesantias_trab(ece);
+                                    ece = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ECE No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECE].");                        
+                        }
+
+                        //EIN
+                        {
+                            stmt = HZRNEIN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){   
+                                while (rs.next()) {
+                                    EIN ein = new EIN();
+                                    ein.setHZRNEIN_FECHA_INICIO(rs.getString("HZRNEIN_FECHA_INICIO"));
+                                    ein.setHZRNEIN_FECHA_FIN(rs.getString("HZRNEIN_FECHA_FIN"));
+                                    ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
+                                    ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
+                                    ein.setHZRNEIN_PAGO(rs.getBigDecimal("HZRNEIN_PAGO"));
+                                    ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
+
+                                    ite.incapacidades_trab.set(i,ein);
+                                    ein = null;
+                                    if (i < ite.incapacidades_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EIN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EIN].");                        
+                        }
+
+                        //ELI
+                        {
+                            stmt = HZRNELI_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ELI eli = new ELI();
+                                    eli.setHZRNELI_FECHA_INICIO(rs.getString("HZRNELI_FECHA_INICIO"));
+                                    eli.setHZRNELI_FECHA_FIN(rs.getString("HZRNELI_FECHA_FIN"));
+                                    eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
+                                    eli.setHZRNELI_PAGO(rs.getBigDecimal("HZRNELI_PAGO"));
+                                    eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
+
+                                    ite.licencia_mat_pat.set(i,eli);
+                                    eli = null;
+                                    if (i < ite.licencia_mat_pat.size()){i++;}
+
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ELI No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELI].");                        
+                        }
+
+                        //ELR
+                        {
+                            stmt = HZRNELR_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                           
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ELR elr = new ELR();
+                                    elr.setHZRNELR_FECHA_INICIO(rs.getString("HZRNELR_FECHA_INICIO"));
+                                    elr.setHZRNELR_FECHA_FIN(rs.getString("HZRNELR_FECHA_FIN"));
+                                    elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
+                                    elr.setHZRNELR_PAGO(rs.getBigDecimal("HZRNELR_PAGO"));
+                                    elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
+
+                                    ite.licencia_remunerada.set(i,elr);
+                                    elr = null;       
+                                    if (i < ite.licencia_remunerada.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ELR No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELR].");                        
+                        }
+
+                        //ELN
+                        {
+                            stmt = HZRNELN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                                  
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ELN eln = new ELN();
+                                    eln.setHZRNELN_FECHA_INICIO(rs.getString("HZRNELN_FECHA_INICIO"));
+                                    eln.setHZRNELN_FECHA_FIN(rs.getString("HZRNELN_FECHA_FIN"));
+                                    eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
+                                    eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
+
+                                    ite.licencia_no_remunerada.set(i,eln);
+                                    eln = null;
+                                    if (i < ite.licencia_no_remunerada.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ELN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELN].");                        
+                        }
+
+                        //EBN
+                        {
+                            stmt = HZRNEBN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                                  
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EBN ebn = new EBN();
+                                    ebn.setHZRNEBN_BONI_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_SALARIAL"));
+                                    ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_NO_SALARIAL"));
+                                    ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
+
+                                    ite.bonificacion_para_trab.set(i,ebn);
+                                    ebn = null;
+                                    if (i < ite.bonificacion_para_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EBN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBN].");                        
+                        }
+
+                        //EAX
+                        {
+                            stmt = HZRNEAX_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EAX eax = new EAX();
+                                    eax.setHZRNEAX_AUX_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_SALARIAL"));
+                                    eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_NO_SALARIAL"));
+                                    eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
+
+                                    ite.auxilio_trab.set(i,eax);
+                                    eax = null;
+                                    if (i < ite.auxilio_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EAX No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EAX].");                        
+                        }
+
+                         //EHL //NO SE EMITIRA POR PARTE DE LA UPB
+    //                {
+    //                    stmt = HZRNEHL_QUERY;
+    //                    pstmt = conn.prepareStatement(stmt);
+    //                    pstmt.setInt(1, ite_id);                                
+    //                    rs = pstmt.executeQuery();
+    //        
+    //                    i = 0;
+    //                    if(rs != null){
+    //                        while (rs.next()) {
+    //                            EHL ehl = new EHL();                  
+    //                            ehl.setHZRNEHL_FECHA_INICIO(rs.getString("HZRNEHL_FECHA_INICIO"));
+    //                            ehl.setHZRNEHL_FECHA_FIN(rs.getString("HZRNEHL_FECHA_FIN"));
+    //                            ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
+    //                            ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
+    //
+    //                            ite.huelgas_legales.set(i,ehl);
+    //                            ehl = null;
+    //                            if (i < ite.huelgas_legales.size()){i++;}
+    //                        }
+    //                    }else{
+    //                          throw new DataFormatException("Comprobante:getComprobanteExtracted:EHL No existen registros");
+    //                    }
+    //                } 
+
+                        //EOT
+                        {
+                            stmt = HZRNEOT_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                            
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EOT eot = new EOT();
+                                    eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
+                                    eot.setHZRNEOT_CONCEP_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_SALARIAL"));
+                                    eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_NO_SALARIAL"));
+                                    eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
+
+                                    ite.otros_conceptos_trab.set(i,eot);
+                                    eot = null;
+                                    if (i < ite.otros_conceptos_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EOT No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EOT].");                        
+                        }  
+
+                        //ECM
+                        {
+                            stmt = HZRNECM_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ECM ecm = new ECM();
+                                    ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_ORDINARIA"));
+                                    ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_EXTRAORDINARIA"));
+                                    ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
+
+                                    ite.compensaciones_dev_trab.set(i,ecm);
+                                    ecm = null;
+                                    if (i < ite.compensaciones_dev_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ECM No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECM].");                        
+                        }   
+
+                        //EBO //NO SE EMITIRA POR PARTE DE LA UPB
+    //                    {
+    //                        stmt = HZRNEBO_QUERY;
+    //                        pstmt = conn.prepareStatement(stmt);
+    //                        pstmt.setInt(1, ite_id);                     
+    //                        rs = pstmt.executeQuery();
+    //
+    //                        i = 0;
+    //                        if(rs != null){
+    //                            while (rs.next()) {
+    //                                EBO ebo = new EBO();               
+    //                                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_SALARIAL"));
+    //                                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_NO_SALARIAL"));
+    //                                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
+    //                                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
+    //                                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
+    //
+    //                                ite.bonos_pagados_electro.set(i,ebo);
+    //                                ecm = ebo;
+    //                                if (i < ite.bonos_pagados_electro.size()){i++;}
+    //                            }
+    //                        }else{
+    //                              throw new DataFormatException("Comprobante:getComprobanteExtracted:EBO No existen registros");
+    //                        }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBO].");                    
+    //                    }
+
+                        //ECO
+                        {
+                            stmt = HZRNECO_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ECO eco = new ECO();
+                                    eco.setHZRNECO_COMISION(rs.getBigDecimal("HZRNECO_COMISION"));
+                                    eco.setHZRNECO_PAGO_TERCERO(rs.getBigDecimal("HZRNECO_PAGO_TERCERO"));
+                                    eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getBigDecimal("HZRNECO_ANTICIPOS_NOMINA"));
+                                    eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
+
+                                    ite.pago_terceros_anticipos_nom.set(i,eco);
+                                    eco = null;
+                                    if (i < ite.pago_terceros_anticipos_nom.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ECO No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECO].");                        
+                        } 
+
+                        //EVO
+                        {
+                            stmt = HZRNEVO_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                            
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EVO evo = new EVO();
+                                    evo.setHZRNEVO_DOTACION(rs.getBigDecimal("HZRNEVO_DOTACION"));
+                                    evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getBigDecimal("HZRNEVO_APOYO_SOSTENIMIENT"));
+                                    evo.setHZRNEVO_TELETRABAJO(rs.getBigDecimal("HZRNEVO_TELETRABAJO"));
+                                    evo.setHZRNEVO_BONIF_RETIRO(rs.getBigDecimal("HZRNEVO_BONIF_RETIRO"));
+                                    evo.setHZRNEVO_INDEMNIZACION(rs.getBigDecimal("HZRNEVO_INDEMNIZACION"));
+                                    evo.setHZRNEVO_REINTEGRO(rs.getBigDecimal("HZRNEVO_REINTEGRO"));
+                                    evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
+
+                                    ite.setOpciones_varias_devengados(evo);
+                                    evo = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EVO No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVO].");                        
+                        }
                         
-                        if(rs != null){
-                            while (rs.next()) {
-                                ECE ece = new ECE();
-                                ece.setHZRNECE_PAGO(rs.getBigDecimal("HZRNECE_PAGO"));
-                                ece.setHZRNECE_PORCENTAJE(rs.getBigDecimal("HZRNECE_PORCENTAJE"));
-                                ece.setHZRNECE_PAGO_INTERESES(rs.getBigDecimal("HZRNECE_PAGO_INTERESES"));
-                                ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
-
-                                ite.setCesantias_trab(ece);
-                                ece = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECE No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECE].");                        
+                    }else{
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ITE No existen registros");
                     }
-                    
-                    //EIN
-                    {
-                        stmt = HZRNEIN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){   
-                            while (rs.next()) {
-                                EIN ein = new EIN();
-                                ein.setHZRNEIN_FECHA_INICIO(rs.getString("HZRNEIN_FECHA_INICIO"));
-                                ein.setHZRNEIN_FECHA_FIN(rs.getString("HZRNEIN_FECHA_FIN"));
-                                ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
-                                ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
-                                ein.setHZRNEIN_PAGO(rs.getBigDecimal("HZRNEIN_PAGO"));
-                                ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
-
-                                ite.incapacidades_trab.set(i,ein);
-                                ein = null;
-                                if (i < ite.incapacidades_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EIN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EIN].");                        
-                    }
-                    
-                    //ELI
-                    {
-                        stmt = HZRNELI_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ELI eli = new ELI();
-                                eli.setHZRNELI_FECHA_INICIO(rs.getString("HZRNELI_FECHA_INICIO"));
-                                eli.setHZRNELI_FECHA_FIN(rs.getString("HZRNELI_FECHA_FIN"));
-                                eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
-                                eli.setHZRNELI_PAGO(rs.getBigDecimal("HZRNELI_PAGO"));
-                                eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
-
-                                ite.licencia_mat_pat.set(i,eli);
-                                eli = null;
-                                if (i < ite.licencia_mat_pat.size()){i++;}
-
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELI No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELI].");                        
-                    }
-                    
-                    //ELR
-                    {
-                        stmt = HZRNELR_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                           
-                        rs = pstmt.executeQuery();
-                        
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ELR elr = new ELR();
-                                elr.setHZRNELR_FECHA_INICIO(rs.getString("HZRNELR_FECHA_INICIO"));
-                                elr.setHZRNELR_FECHA_FIN(rs.getString("HZRNELR_FECHA_FIN"));
-                                elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
-                                elr.setHZRNELR_PAGO(rs.getBigDecimal("HZRNELR_PAGO"));
-                                elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
-
-                                ite.licencia_remunerada.set(i,elr);
-                                elr = null;       
-                                if (i < ite.licencia_remunerada.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELR No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELR].");                        
-                    }
-                    
-                    //ELN
-                    {
-                        stmt = HZRNELN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                                  
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ELN eln = new ELN();
-                                eln.setHZRNELN_FECHA_INICIO(rs.getString("HZRNELN_FECHA_INICIO"));
-                                eln.setHZRNELN_FECHA_FIN(rs.getString("HZRNELN_FECHA_FIN"));
-                                eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
-                                eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
-
-                                ite.licencia_no_remunerada.set(i,eln);
-                                eln = null;
-                                if (i < ite.licencia_no_remunerada.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELN].");                        
-                    }
-                    
-                    //EBN
-                    {
-                        stmt = HZRNEBN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                                  
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                EBN ebn = new EBN();
-                                ebn.setHZRNEBN_BONI_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_SALARIAL"));
-                                ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_NO_SALARIAL"));
-                                ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
-
-                                ite.bonificacion_para_trab.set(i,ebn);
-                                ebn = null;
-                                if (i < ite.bonificacion_para_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EBN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBN].");                        
-                    }
-                    
-                    //EAX
-                    {
-                        stmt = HZRNEAX_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                EAX eax = new EAX();
-                                eax.setHZRNEAX_AUX_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_SALARIAL"));
-                                eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_NO_SALARIAL"));
-                                eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
-
-                                ite.auxilio_trab.set(i,eax);
-                                eax = null;
-                                if (i < ite.auxilio_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EAX No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EAX].");                        
-                    }
-                    
-                     //EHL //NO SE EMITIRA POR PARTE DE LA UPB
-//                {
-//                    stmt = HZRNEHL_QUERY;
-//                    pstmt = conn.prepareStatement(stmt);
-//                    pstmt.setInt(1, ite.getHZRNITE_ID());                                
-//                    rs = pstmt.executeQuery();
-//        
-//                    i = 0;
-//                    if(rs != null){
-//                        while (rs.next()) {
-//                            EHL ehl = new EHL();                  
-//                            ehl.setHZRNEHL_FECHA_INICIO(rs.getString("HZRNEHL_FECHA_INICIO"));
-//                            ehl.setHZRNEHL_FECHA_FIN(rs.getString("HZRNEHL_FECHA_FIN"));
-//                            ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
-//                            ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
-//
-//                            ite.huelgas_legales.set(i,ehl);
-//                            ehl = null;
-//                            if (i < ite.huelgas_legales.size()){i++;}
-//                        }
-//                    }else{
-//                          throw new DataFormatException("Comprobante:getComprobanteExtracted:EHL No existen registros");
-//                    }
-//                } 
-                    
-                    //EOT
-                    {
-                        stmt = HZRNEOT_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                            
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                EOT eot = new EOT();
-                                eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
-                                eot.setHZRNEOT_CONCEP_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_SALARIAL"));
-                                eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_NO_SALARIAL"));
-                                eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
-
-                                ite.otros_conceptos_trab.set(i,eot);
-                                eot = null;
-                                if (i < ite.otros_conceptos_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EOT No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EOT].");                        
-                    }  
-                    
-                    //ECM
-                    {
-                        stmt = HZRNECM_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ECM ecm = new ECM();
-                                ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_ORDINARIA"));
-                                ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_EXTRAORDINARIA"));
-                                ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
-
-                                ite.compensaciones_dev_trab.set(i,ecm);
-                                ecm = null;
-                                if (i < ite.compensaciones_dev_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECM No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECM].");                        
-                    }   
-                    
-                    //EBO //NO SE EMITIRA POR PARTE DE LA UPB
-//                    {
-//                        stmt = HZRNEBO_QUERY;
-//                        pstmt = conn.prepareStatement(stmt);
-//                        pstmt.setInt(1, ite.getHZRNITE_ID());                     
-//                        rs = pstmt.executeQuery();
-//
-//                        i = 0;
-//                        if(rs != null){
-//                            while (rs.next()) {
-//                                EBO ebo = new EBO();               
-//                                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_NO_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
-//                                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
-//
-//                                ite.bonos_pagados_electro.set(i,ebo);
-//                                ecm = ebo;
-//                                if (i < ite.bonos_pagados_electro.size()){i++;}
-//                            }
-//                        }else{
-//                              throw new DataFormatException("Comprobante:getComprobanteExtracted:EBO No existen registros");
-//                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBO].");                    
-//                    }
-                    
-                    //ECO
-                    {
-                        stmt = HZRNECO_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ECO eco = new ECO();
-                                eco.setHZRNECO_COMISION(rs.getBigDecimal("HZRNECO_COMISION"));
-                                eco.setHZRNECO_PAGO_TERCERO(rs.getBigDecimal("HZRNECO_PAGO_TERCERO"));
-                                eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getBigDecimal("HZRNECO_ANTICIPOS_NOMINA"));
-                                eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
-
-                                ite.pago_terceros_anticipos_nom.set(i,eco);
-                                eco = null;
-                                if (i < ite.pago_terceros_anticipos_nom.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECO No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECO].");                        
-                    } 
-                    
-                    //EVO
-                    {
-                        stmt = HZRNEVO_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                            
-                        rs = pstmt.executeQuery();
-                        
-                        if(rs != null){
-                            while (rs.next()) {
-                                EVO evo = new EVO();
-                                evo.setHZRNEVO_DOTACION(rs.getBigDecimal("HZRNEVO_DOTACION"));
-                                evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getBigDecimal("HZRNEVO_APOYO_SOSTENIMIENT"));
-                                evo.setHZRNEVO_TELETRABAJO(rs.getBigDecimal("HZRNEVO_TELETRABAJO"));
-                                evo.setHZRNEVO_BONIF_RETIRO(rs.getBigDecimal("HZRNEVO_BONIF_RETIRO"));
-                                evo.setHZRNEVO_INDEMNIZACION(rs.getBigDecimal("HZRNEVO_INDEMNIZACION"));
-                                evo.setHZRNEVO_REINTEGRO(rs.getBigDecimal("HZRNEVO_REINTEGRO"));
-                                evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
-
-                                ite.setOpciones_varias_devengados(evo);
-                                evo = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVO No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVO].");                        
-                    }
-                                
-                nom.setBasico_trab(ite);
-                ite  = null;
-                calendario =Calendar.getInstance();
-                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITE].");
+                          
+                    nom.setBasico_trab(ite);
+                    ite  = null;
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITE].");
                 }
                 
                 //ITS
@@ -964,201 +975,210 @@ public class Comprobante{
                             its.setHZRNITS_ID(rs_its.getInt("HZRNITS_ID"));
 
                             nom.setDeducciones_salud(its);
+                            
+                            its_id = rs_its.getInt("HZRNITS_ID");
+                            
                         }
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ITS No existen registros");
                     }
                     
-                    //SPE
-                    {
-                        stmt = HZRNSPE_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1,its.getHZRNITS_ID());
-                        rs = pstmt.executeQuery();
+                    if(its_id != 0){
+                    
+                        //SPE
+                        {
+                            stmt = HZRNSPE_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1,its_id);
+                            rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            while (rs.next()) {
-                                SPE spe = new SPE();
-                                spe.setHZRNSPE_PORCENTAJE(rs.getBigDecimal("HZRNSPE_PORCENTAJE"));
-                                spe.setHZRNSPE_DEDUCCION(rs.getBigDecimal("HZRNSPE_DEDUCCION"));
-                                spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SPE spe = new SPE();
+                                    spe.setHZRNSPE_PORCENTAJE(rs.getBigDecimal("HZRNSPE_PORCENTAJE"));
+                                    spe.setHZRNSPE_DEDUCCION(rs.getBigDecimal("HZRNSPE_DEDUCCION"));
+                                    spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
 
-                                its.setDeducciones_pension(spe);
-                                spe = null;
+                                    its.setDeducciones_pension(spe);
+                                    spe = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
                             }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SPE].");                        
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SPE].");                        
+
+                        //SSP
+                        {
+                            stmt = HZRNSSP_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                        
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SSP ssp = new SSP();
+                                    ssp.setHZRNSSP_PORCENTAJE(rs.getBigDecimal("HZRNSSP_PORCENTAJE"));
+                                    ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getBigDecimal("HZRNSSP_DEDUC_SEG_PENSIONAL"));
+                                    ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getBigDecimal("HZRNSSP_PORCENTAJE_SUBSISTEN"));
+                                    ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getBigDecimal("HZRNSSP_DEDUC_SUBSISTEN"));
+                                    ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
+
+                                    its.setDeduc_fondo_seguridad_p(ssp);
+                                    ssp = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SSP].");                        
+                        }  
+
+                        //SIN
+                        {
+                            stmt = HZRNSIN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                          
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SIN sin = new SIN();
+                                    sin.setHZRNSIN_PORCENTAJE(rs.getBigDecimal("HZRNSIN_PORCENTAJE"));
+                                    sin.setHZRNSIN_DEDUCCION(rs.getBigDecimal("HZRNSIN_DEDUCCION"));
+                                    sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
+
+                                    its.deduc_sindicatos.set(i,sin);
+                                    sin = null;
+                                    if (i < its.deduc_sindicatos.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SIN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SIN].");                                                
+                        } 
+
+                      //SAN
+    //                {
+    //                    stmt = HZRNSAN_QUERY;
+    //                    pstmt = conn.prepareStatement(stmt);
+    //                    pstmt.setInt(1, its_id);                      
+    //                    rs = pstmt.executeQuery();
+    //        
+    //                    i= 0;
+    //                    if(rs != null){
+    //                        while (rs.next()) {
+    //                            SAN san = new SAN();                
+    //                            san.setHZRNSAN_SANCION_PUBLICA(rs.getBigDecimal("HZRNSAN_SANCION_PUBLICA"));
+    //                            san.setHZRNSAN_SANCION_PRIVADA(rs.getBigDecimal("HZRNSAN_SANCION_PRIVADA"));
+    //                            san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
+    //
+    //                            its.deduc_varias.set(i,san);
+    //                            san = null;
+    //                            if (i < its.deduc_varias.size()){i++;}
+    //                        }
+    //                    }else{
+    //                          throw new DataFormatException("Comprobante:getComprobanteExtracted:SAN No existen registros");
+    //                    }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SAN].");                                            
+    //                }  
+
+                        //SLI
+                        {
+                            stmt = HZRNSLI_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                           
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SLI sli = new SLI();
+                                    sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
+                                    sli.setHZRNSLI_DEDUCCION(rs.getBigDecimal("HZRNSLI_DEDUCCION"));
+                                    sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
+
+                                    its.deduc_libranza.set(i,sli);
+                                    sli = null;
+                                    if (i < its.deduc_libranza.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SLI No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SLI].");                                                
+                        }   
+
+                        //SOT
+                        {
+                            stmt = HZRNSOT_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                           
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                 while (rs.next()) {
+                                    SOT sot = new SOT();
+                                    sot.setHZRNSOT_PAGO_TERCERO(rs.getBigDecimal("HZRNSOT_PAGO_TERCERO"));
+                                    sot.setHZRNSOT_ANTICIPO(rs.getBigDecimal("HZRNSOT_ANTICIPO"));
+                                    sot.setHZRNSOT_OTRA_DEDUCCION(rs.getBigDecimal("HZRNSOT_OTRA_DEDUCCION"));
+                                    sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
+
+                                    its.otras_deduc.set(i,sot);
+                                    sot = null;
+                                    if (i < its.otras_deduc.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SOT No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SOT].");                                                
+                        }
+
+                        //SVA
+                        {
+                            stmt = HZRNSVA_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                                 
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SVA sva = new SVA();
+                                    sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getBigDecimal("HZRNSVA_PENSION_VOLUNTARIA"));
+                                    sva.setHZRNSVA_RENTENCION_FTE(rs.getBigDecimal("HZRNSVA_RENTENCION_FTE"));
+                                    sva.setHZRNSVA_AFC(rs.getBigDecimal("HZRNSVA_AFC"));
+                                    sva.setHZRNSVA_COOPERATIVA(rs.getBigDecimal("HZRNSVA_COOPERATIVA"));
+                                    sva.setHZRNSVA_EMBARGO(rs.getBigDecimal("HZRNSVA_EMBARGO"));
+                                    sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getBigDecimal("HZRNSVA_PLAN_COMPLEMENT"));
+                                    sva.setHZRNSVA_EDUCACION(rs.getBigDecimal("HZRNSVA_EDUCACION"));
+                                    sva.setHZRNSVA_REINTEGRO(rs.getBigDecimal("HZRNSVA_REINTEGRO"));
+                                    sva.setHZRNSVA_DEUDA(rs.getBigDecimal("HZRNSVA_DEUDA"));                
+                                    sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
+
+                                    its.setDeduc_varias(sva);
+                                    sva = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SVA No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SVA].");                                                
+                        } 
+                        
+                    }else{
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ITS No existen registros");
                     }
-
-                    //SSP
-                    {
-                        stmt = HZRNSSP_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                        
-                        rs = pstmt.executeQuery();
-
-                        if(rs != null){
-                            while (rs.next()) {
-                                SSP ssp = new SSP();
-                                ssp.setHZRNSSP_PORCENTAJE(rs.getBigDecimal("HZRNSSP_PORCENTAJE"));
-                                ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getBigDecimal("HZRNSSP_DEDUC_SEG_PENSIONAL"));
-                                ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getBigDecimal("HZRNSSP_PORCENTAJE_SUBSISTEN"));
-                                ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getBigDecimal("HZRNSSP_DEDUC_SUBSISTEN"));
-                                ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
-
-                                its.setDeduc_fondo_seguridad_p(ssp);
-                                ssp = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SSP].");                        
-                    }  
-
-                    //SIN
-                    {
-                        stmt = HZRNSIN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                SIN sin = new SIN();
-                                sin.setHZRNSIN_PORCENTAJE(rs.getBigDecimal("HZRNSIN_PORCENTAJE"));
-                                sin.setHZRNSIN_DEDUCCION(rs.getBigDecimal("HZRNSIN_DEDUCCION"));
-                                sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
-
-                                its.deduc_sindicatos.set(i,sin);
-                                sin = null;
-                                if (i < its.deduc_sindicatos.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SIN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SIN].");                                                
-                    } 
                     
-                  //SAN
-//                {
-//                    stmt = HZRNSAN_QUERY;
-//                    pstmt = conn.prepareStatement(stmt);
-//                    pstmt.setInt(1, its.getHZRNITS_ID());                      
-//                    rs = pstmt.executeQuery();
-//        
-//                    i= 0;
-//                    if(rs != null){
-//                        while (rs.next()) {
-//                            SAN san = new SAN();                
-//                            san.setHZRNSAN_SANCION_PUBLICA(rs.getBigDecimal("HZRNSAN_SANCION_PUBLICA"));
-//                            san.setHZRNSAN_SANCION_PRIVADA(rs.getBigDecimal("HZRNSAN_SANCION_PRIVADA"));
-//                            san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
-//
-//                            its.deduc_varias.set(i,san);
-//                            san = null;
-//                            if (i < its.deduc_varias.size()){i++;}
-//                        }
-//                    }else{
-//                          throw new DataFormatException("Comprobante:getComprobanteExtracted:SAN No existen registros");
-//                    }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SAN].");                                            
-//                }  
-                    
-                    //SLI
-                    {
-                        stmt = HZRNSLI_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                           
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                SLI sli = new SLI();
-                                sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
-                                sli.setHZRNSLI_DEDUCCION(rs.getBigDecimal("HZRNSLI_DEDUCCION"));
-                                sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
-
-                                its.deduc_libranza.set(i,sli);
-                                sli = null;
-                                if (i < its.deduc_libranza.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SLI No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SLI].");                                                
-                    }   
-                    
-                    //SOT
-                    {
-                        stmt = HZRNSOT_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                           
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                             while (rs.next()) {
-                                SOT sot = new SOT();
-                                sot.setHZRNSOT_PAGO_TERCERO(rs.getBigDecimal("HZRNSOT_PAGO_TERCERO"));
-                                sot.setHZRNSOT_ANTICIPO(rs.getBigDecimal("HZRNSOT_ANTICIPO"));
-                                sot.setHZRNSOT_OTRA_DEDUCCION(rs.getBigDecimal("HZRNSOT_OTRA_DEDUCCION"));
-                                sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
-
-                                its.otras_deduc.set(i,sot);
-                                sot = null;
-                                if (i < its.otras_deduc.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SOT No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SOT].");                                                
-                    }
-                    
-                    //SVA
-                    {
-                        stmt = HZRNSVA_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                                 
-                        rs = pstmt.executeQuery();
-
-                        if(rs != null){
-                            while (rs.next()) {
-                                SVA sva = new SVA();
-                                sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getBigDecimal("HZRNSVA_PENSION_VOLUNTARIA"));
-                                sva.setHZRNSVA_RENTENCION_FTE(rs.getBigDecimal("HZRNSVA_RENTENCION_FTE"));
-                                sva.setHZRNSVA_AFC(rs.getBigDecimal("HZRNSVA_AFC"));
-                                sva.setHZRNSVA_COOPERATIVA(rs.getBigDecimal("HZRNSVA_COOPERATIVA"));
-                                sva.setHZRNSVA_EMBARGO(rs.getBigDecimal("HZRNSVA_EMBARGO"));
-                                sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getBigDecimal("HZRNSVA_PLAN_COMPLEMENT"));
-                                sva.setHZRNSVA_EDUCACION(rs.getBigDecimal("HZRNSVA_EDUCACION"));
-                                sva.setHZRNSVA_REINTEGRO(rs.getBigDecimal("HZRNSVA_REINTEGRO"));
-                                sva.setHZRNSVA_DEUDA(rs.getBigDecimal("HZRNSVA_DEUDA"));                
-                                sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
-
-                                its.setDeduc_varias(sva);
-                                sva = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SVA No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SVA].");                                                
-                    } 
-                    
-                nom.setDeducciones_salud(its);
-                its = null;
-                calendario =Calendar.getInstance();
-                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITS].");
+                    nom.setDeducciones_salud(its);
+                    its = null;
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITS].");
                 }
                 
                  //TOT
@@ -1476,502 +1496,511 @@ public class Comprobante{
                             ite.setHZRNITE_SUELDO_TRAB(rs_ite.getBigDecimal("HZRNITE_SUELDO_TRAB"));
                             ite.setHZRNITE_ID(rs_ite.getInt("HZRNITE_ID"));
                             nom.setBasico_trab(ite);
+                            
+                            ite_id = rs_ite.getInt("HZRNITE_ID");
                         }
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ITE No existen registros");
                     }
 
-                    //ETR
-                    {
-                        stmt = HZRNETR_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());
-                        rs = pstmt.executeQuery();
+                    
+                    if(ite_id != 0){
+                    
+                        //ETR
+                        {
+                            stmt = HZRNETR_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);
+                            rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                ETR etr = new ETR();
-                                etr.setHZRNETR_AUX_TRANSPORTE(rs.getBigDecimal("HZRNETR_AUX_TRANSPORTE"));
-                                etr.setHZRNETR_VIAT_MANUT_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_SALARIAL"));
-                                etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
-                                etr.setHZRNETR_ITE_ID(rs.getInt("HZRNETR_ITE_ID"));
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    ETR etr = new ETR();
+                                    etr.setHZRNETR_AUX_TRANSPORTE(rs.getBigDecimal("HZRNETR_AUX_TRANSPORTE"));
+                                    etr.setHZRNETR_VIAT_MANUT_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_SALARIAL"));
+                                    etr.setHZRNETR_VIAT_MANUT_NO_SALARIAL(rs.getBigDecimal("HZRNETR_VIAT_MANUT_NO_SALARIAL"));
+                                    etr.setHZRNETR_ITE_ID(rs.getInt("HZRNETR_ITE_ID"));
 
-                                ite.transporte_pagado_trab.set(i,etr);
-                                etr = null;
-                                if (i < ite.transporte_pagado_trab.size()){i++;}
+                                    ite.transporte_pagado_trab.set(i,etr);
+                                    etr = null;
+                                    if (i < ite.transporte_pagado_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ETR No existen registros");
                             }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ETR No existen registros");
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ETR].");
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ETR].");
-                    }
-                    
-                    //EHE
-                    {
-                        stmt = HZRNEHE_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                        
-                        rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                EHE ehe = new EHE();
-                                ehe.setHZRNEHE_HORAS_EXTRA(rs.getString("HZRNEHE_HORAS_EXTRA"));                
-                                ehe.setHZRNEHE_HORA_INICIO(rs.getString("HZRNEHE_HORA_INICIO"));                
-                                ehe.setHZRNEHE_HORA_FIN(rs.getString("HZRNEHE_HORA_FIN"));                                
-                                ehe.setHZRNEHE_CANTIDAD(rs.getBigDecimal("HZRNEHE_CANTIDAD"));
-                                ehe.setHZRNEHE_PORCENTAJE(rs.getBigDecimal("HZRNEHE_PORCENTAJE"));
-                                ehe.setHZRNEHE_PAGO(rs.getBigDecimal("HZRNEHE_PAGO"));
-                                ehe.setHZRNEHE_ITE_ID(rs.getInt("HZRNEHE_ITE_ID"));
+                        //EHE
+                        {
+                            stmt = HZRNEHE_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                        
+                            rs = pstmt.executeQuery();
 
-                                ite.horas_extras_trab.set(i,ehe);
-                                ehe = null;
-                                if (i < ite.horas_extras_trab.size()){i++;}
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    EHE ehe = new EHE();
+                                    ehe.setHZRNEHE_HORAS_EXTRA(rs.getString("HZRNEHE_HORAS_EXTRA"));                
+                                    ehe.setHZRNEHE_HORA_INICIO(rs.getString("HZRNEHE_HORA_INICIO"));                
+                                    ehe.setHZRNEHE_HORA_FIN(rs.getString("HZRNEHE_HORA_FIN"));                                
+                                    ehe.setHZRNEHE_CANTIDAD(rs.getBigDecimal("HZRNEHE_CANTIDAD"));
+                                    ehe.setHZRNEHE_PORCENTAJE(rs.getBigDecimal("HZRNEHE_PORCENTAJE"));
+                                    ehe.setHZRNEHE_PAGO(rs.getBigDecimal("HZRNEHE_PAGO"));
+                                    ehe.setHZRNEHE_ITE_ID(rs.getInt("HZRNEHE_ITE_ID"));
+
+                                    ite.horas_extras_trab.set(i,ehe);
+                                    ehe = null;
+                                    if (i < ite.horas_extras_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EHE No existen registros");
                             }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EHE No existen registros");
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EHE].");                        
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EHE].");                        
-                    }
-                    
-                    //EVC
-                    {
-                        stmt = HZRNEVC_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                EVC evc = new EVC();
-                                evc.setHZRNEVC_FECHA_INICIO(rs.getString("HZRNEVC_FECHA_INICIO"));                
-                                evc.setHZRNEVC_FECHA_FIN(rs.getString("HZRNEVC_FECHA_FIN"));                
-                                evc.setHZRNEVC_CANTIDAD(rs.getLong("HZRNEVC_CANTIDAD"));                                
-                                evc.setHZRNEVC_PAGO(rs.getBigDecimal("HZRNEVC_PAGO"));
-                                evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
+                        //EVC
+                        {
+                            stmt = HZRNEVC_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
 
-                                ite.vacaciones_trabajador.set(i,evc);
-                                evc = null;
-                                if (i < ite.vacaciones_trabajador.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVC No existen registros");
-                        }    
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVC].");                        
-                    }
-                    
-                    //EVA
-                    {
-                        stmt = HZRNEVA_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    EVC evc = new EVC();
+                                    evc.setHZRNEVC_FECHA_INICIO(rs.getString("HZRNEVC_FECHA_INICIO"));                
+                                    evc.setHZRNEVC_FECHA_FIN(rs.getString("HZRNEVC_FECHA_FIN"));                
+                                    evc.setHZRNEVC_CANTIDAD(rs.getLong("HZRNEVC_CANTIDAD"));                                
+                                    evc.setHZRNEVC_PAGO(rs.getBigDecimal("HZRNEVC_PAGO"));
+                                    evc.setHZRNEVC_ITE_ID(rs.getInt("HZRNEVC_ITE_ID"));
 
-                        if(rs != null){
-                            i = 0;
-                            while (rs.next()) {
-                                EVA eva = new EVA();
-                                eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
-                                eva.setHZRNEVA_PAGO(rs.getBigDecimal("HZRNEVA_PAGO"));
-                                eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
-
-                                ite.vacaciones_comp_trab.set(i,eva);
-                                eva = null;
-                                if (i < ite.vacaciones_comp_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVA No existen registros");
-                        }    
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVA].");                        
-                    }
-                    
-                    //EPR
-                    {
-                        stmt = HZRNEPR_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        if(rs != null){  
-                            while (rs.next()) {
-                                EPR epr = new EPR();
-                                epr.setHZRNEPR_CANTIDAD(rs.getLong("HZRNEPR_CANTIDAD"));
-                                epr.setHZRNEPR_PAGO(rs.getBigDecimal("HZRNEPR_PAGO"));
-                                epr.setHZRNEPR_PAGONS(rs.getBigDecimal("HZRNEPR_PAGONS"));
-                                epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
-
-                                ite.setPrimas_trab(epr);
-                                epr = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EPR No existen registros");
+                                    ite.vacaciones_trabajador.set(i,evc);
+                                    evc = null;
+                                    if (i < ite.vacaciones_trabajador.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EVC No existen registros");
+                            }    
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVC].");                        
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EPR].");                        
-                    }
-                    
-                    //ECE
-                    {
-                        stmt = HZRNECE_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
+
+                        //EVA
+                        {
+                            stmt = HZRNEVA_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                i = 0;
+                                while (rs.next()) {
+                                    EVA eva = new EVA();
+                                    eva.setHZRNEVA_CANTIDAD(rs.getLong("HZRNEVA_CANTIDAD"));
+                                    eva.setHZRNEVA_PAGO(rs.getBigDecimal("HZRNEVA_PAGO"));
+                                    eva.setHZRNEVA_ITE_ID(rs.getInt("HZRNEVA_ITE_ID"));
+
+                                    ite.vacaciones_comp_trab.set(i,eva);
+                                    eva = null;
+                                    if (i < ite.vacaciones_comp_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EVA No existen registros");
+                            }    
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVA].");                        
+                        }
+
+                        //EPR
+                        {
+                            stmt = HZRNEPR_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){  
+                                while (rs.next()) {
+                                    EPR epr = new EPR();
+                                    epr.setHZRNEPR_CANTIDAD(rs.getLong("HZRNEPR_CANTIDAD"));
+                                    epr.setHZRNEPR_PAGO(rs.getBigDecimal("HZRNEPR_PAGO"));
+                                    epr.setHZRNEPR_PAGONS(rs.getBigDecimal("HZRNEPR_PAGONS"));
+                                    epr.setHZRNEPR_ITE_ID(rs.getInt("HZRNEPR_ITE_ID"));
+
+                                    ite.setPrimas_trab(epr);
+                                    epr = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EPR No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EPR].");                        
+                        }
+
+                        //ECE
+                        {
+                            stmt = HZRNECE_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ECE ece = new ECE();
+                                    ece.setHZRNECE_PAGO(rs.getBigDecimal("HZRNECE_PAGO"));
+                                    ece.setHZRNECE_PORCENTAJE(rs.getBigDecimal("HZRNECE_PORCENTAJE"));
+                                    ece.setHZRNECE_PAGO_INTERESES(rs.getBigDecimal("HZRNECE_PAGO_INTERESES"));
+                                    ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
+
+                                    ite.setCesantias_trab(ece);
+                                    ece = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ECE No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECE].");                        
+                        }
+
+                        //EIN
+                        {
+                            stmt = HZRNEIN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){   
+                                while (rs.next()) {
+                                    EIN ein = new EIN();
+                                    ein.setHZRNEIN_FECHA_INICIO(rs.getString("HZRNEIN_FECHA_INICIO"));
+                                    ein.setHZRNEIN_FECHA_FIN(rs.getString("HZRNEIN_FECHA_FIN"));
+                                    ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
+                                    ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
+                                    ein.setHZRNEIN_PAGO(rs.getBigDecimal("HZRNEIN_PAGO"));
+                                    ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
+
+                                    ite.incapacidades_trab.set(i,ein);
+                                    ein = null;
+                                    if (i < ite.incapacidades_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EIN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EIN].");                        
+                        }
+
+                        //ELI
+                        {
+                            stmt = HZRNELI_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ELI eli = new ELI();
+                                    eli.setHZRNELI_FECHA_INICIO(rs.getString("HZRNELI_FECHA_INICIO"));
+                                    eli.setHZRNELI_FECHA_FIN(rs.getString("HZRNELI_FECHA_FIN"));
+                                    eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
+                                    eli.setHZRNELI_PAGO(rs.getBigDecimal("HZRNELI_PAGO"));
+                                    eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
+
+                                    ite.licencia_mat_pat.set(i,eli);
+                                    eli = null;
+                                    if (i < ite.licencia_mat_pat.size()){i++;}
+
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ELI No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELI].");                        
+                        }
+
+                        //ELR
+                        {
+                            stmt = HZRNELR_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                           
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ELR elr = new ELR();
+                                    elr.setHZRNELR_FECHA_INICIO(rs.getString("HZRNELR_FECHA_INICIO"));
+                                    elr.setHZRNELR_FECHA_FIN(rs.getString("HZRNELR_FECHA_FIN"));
+                                    elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
+                                    elr.setHZRNELR_PAGO(rs.getBigDecimal("HZRNELR_PAGO"));
+                                    elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
+
+                                    ite.licencia_remunerada.set(i,elr);
+                                    elr = null;       
+                                    if (i < ite.licencia_remunerada.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ELR No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELR].");                        
+                        }
+
+                        //ELN
+                        {
+                            stmt = HZRNELN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                                  
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ELN eln = new ELN();
+                                    eln.setHZRNELN_FECHA_INICIO(rs.getString("HZRNELN_FECHA_INICIO"));
+                                    eln.setHZRNELN_FECHA_FIN(rs.getString("HZRNELN_FECHA_FIN"));
+                                    eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
+                                    eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
+
+                                    ite.licencia_no_remunerada.set(i,eln);
+                                    eln = null;
+                                    if (i < ite.licencia_no_remunerada.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ELN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELN].");                        
+                        }
+
+                        //EBN
+                        {
+                            stmt = HZRNEBN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                                  
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EBN ebn = new EBN();
+                                    ebn.setHZRNEBN_BONI_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_SALARIAL"));
+                                    ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_NO_SALARIAL"));
+                                    ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
+
+                                    ite.bonificacion_para_trab.set(i,ebn);
+                                    ebn = null;
+                                    if (i < ite.bonificacion_para_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EBN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBN].");                        
+                        }
+
+                        //EAX
+                        {
+                            stmt = HZRNEAX_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                          
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EAX eax = new EAX();
+                                    eax.setHZRNEAX_AUX_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_SALARIAL"));
+                                    eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_NO_SALARIAL"));
+                                    eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
+
+                                    ite.auxilio_trab.set(i,eax);
+                                    eax = null;
+                                    if (i < ite.auxilio_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EAX No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EAX].");                        
+                        }
+
+                         //EHL //NO SE EMITIRA POR PARTE DE LA UPB
+    //                {
+    //                    stmt = HZRNEHL_QUERY;
+    //                    pstmt = conn.prepareStatement(stmt);
+    //                    pstmt.setInt(1, ite_id);                                
+    //                    rs = pstmt.executeQuery();
+    //        
+    //                    i = 0;
+    //                    if(rs != null){
+    //                        while (rs.next()) {
+    //                            EHL ehl = new EHL();                  
+    //                            ehl.setHZRNEHL_FECHA_INICIO(rs.getString("HZRNEHL_FECHA_INICIO"));
+    //                            ehl.setHZRNEHL_FECHA_FIN(rs.getString("HZRNEHL_FECHA_FIN"));
+    //                            ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
+    //                            ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
+    //
+    //                            ite.huelgas_legales.set(i,ehl);
+    //                            ehl = null;
+    //                            if (i < ite.huelgas_legales.size()){i++;}
+    //                        }
+    //                    }else{
+    //                          throw new DataFormatException("Comprobante:getComprobanteExtracted:EHL No existen registros");
+    //                    }
+    //                } 
+
+                        //EOT
+                        {
+                            stmt = HZRNEOT_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                            
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EOT eot = new EOT();
+                                    eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
+                                    eot.setHZRNEOT_CONCEP_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_SALARIAL"));
+                                    eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_NO_SALARIAL"));
+                                    eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
+
+                                    ite.otros_conceptos_trab.set(i,eot);
+                                    eot = null;
+                                    if (i < ite.otros_conceptos_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EOT No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EOT].");                        
+                        }  
+
+                        //ECM
+                        {
+                            stmt = HZRNECM_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ECM ecm = new ECM();
+                                    ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_ORDINARIA"));
+                                    ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_EXTRAORDINARIA"));
+                                    ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
+
+                                    ite.compensaciones_dev_trab.set(i,ecm);
+                                    ecm = null;
+                                    if (i < ite.compensaciones_dev_trab.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ECM No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECM].");                        
+                        }   
+
+                        //EBO //NO SE EMITIRA POR PARTE DE LA UPB
+    //                    {
+    //                        stmt = HZRNEBO_QUERY;
+    //                        pstmt = conn.prepareStatement(stmt);
+    //                        pstmt.setInt(1, ite_id);                     
+    //                        rs = pstmt.executeQuery();
+    //
+    //                        i = 0;
+    //                        if(rs != null){
+    //                            while (rs.next()) {
+    //                                EBO ebo = new EBO();               
+    //                                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_SALARIAL"));
+    //                                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_NO_SALARIAL"));
+    //                                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
+    //                                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
+    //                                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
+    //
+    //                                ite.bonos_pagados_electro.set(i,ebo);
+    //                                ecm = ebo;
+    //                                if (i < ite.bonos_pagados_electro.size()){i++;}
+    //                            }
+    //                        }else{
+    //                              throw new DataFormatException("Comprobante:getComprobanteExtracted:EBO No existen registros");
+    //                        }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBO].");                    
+    //                    }
+
+                        //ECO
+                        {
+                            stmt = HZRNECO_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                         
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    ECO eco = new ECO();
+                                    eco.setHZRNECO_COMISION(rs.getBigDecimal("HZRNECO_COMISION"));
+                                    eco.setHZRNECO_PAGO_TERCERO(rs.getBigDecimal("HZRNECO_PAGO_TERCERO"));
+                                    eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getBigDecimal("HZRNECO_ANTICIPOS_NOMINA"));
+                                    eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
+
+                                    ite.pago_terceros_anticipos_nom.set(i,eco);
+                                    eco = null;
+                                    if (i < ite.pago_terceros_anticipos_nom.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:ECO No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECO].");                        
+                        } 
+
+                        //EVO
+                        {
+                            stmt = HZRNEVO_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, ite_id);                            
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    EVO evo = new EVO();
+                                    evo.setHZRNEVO_DOTACION(rs.getBigDecimal("HZRNEVO_DOTACION"));
+                                    evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getBigDecimal("HZRNEVO_APOYO_SOSTENIMIENT"));
+                                    evo.setHZRNEVO_TELETRABAJO(rs.getBigDecimal("HZRNEVO_TELETRABAJO"));
+                                    evo.setHZRNEVO_BONIF_RETIRO(rs.getBigDecimal("HZRNEVO_BONIF_RETIRO"));
+                                    evo.setHZRNEVO_INDEMNIZACION(rs.getBigDecimal("HZRNEVO_INDEMNIZACION"));
+                                    evo.setHZRNEVO_REINTEGRO(rs.getBigDecimal("HZRNEVO_REINTEGRO"));
+                                    evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
+
+                                    ite.setOpciones_varias_devengados(evo);
+                                    evo = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:EVO No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVO].");                        
+                        }
                         
-                        if(rs != null){
-                            while (rs.next()) {
-                                ECE ece = new ECE();
-                                ece.setHZRNECE_PAGO(rs.getBigDecimal("HZRNECE_PAGO"));
-                                ece.setHZRNECE_PORCENTAJE(rs.getBigDecimal("HZRNECE_PORCENTAJE"));
-                                ece.setHZRNECE_PAGO_INTERESES(rs.getBigDecimal("HZRNECE_PAGO_INTERESES"));
-                                ece.setHZRNECE_ITE_ID(rs.getInt("HZRNECE_ITE_ID"));
-
-                                ite.setCesantias_trab(ece);
-                                ece = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECE No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECE].");                        
-                    }
-                    
-                    //EIN
-                    {
-                        stmt = HZRNEIN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){   
-                            while (rs.next()) {
-                                EIN ein = new EIN();
-                                ein.setHZRNEIN_FECHA_INICIO(rs.getString("HZRNEIN_FECHA_INICIO"));
-                                ein.setHZRNEIN_FECHA_FIN(rs.getString("HZRNEIN_FECHA_FIN"));
-                                ein.setHZRNEIN_CANTIDAD(rs.getLong("HZRNEIN_CANTIDAD"));
-                                ein.setHZRNEIN_TIPO(rs.getInt("HZRNEIN_TIPO"));
-                                ein.setHZRNEIN_PAGO(rs.getBigDecimal("HZRNEIN_PAGO"));
-                                ein.setHZRNEIN_ITE_ID(rs.getInt("HZRNEIN_ITE_ID"));
-
-                                ite.incapacidades_trab.set(i,ein);
-                                ein = null;
-                                if (i < ite.incapacidades_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EIN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EIN].");                        
-                    }
-                    
-                    //ELI
-                    {
-                        stmt = HZRNELI_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ELI eli = new ELI();
-                                eli.setHZRNELI_FECHA_INICIO(rs.getString("HZRNELI_FECHA_INICIO"));
-                                eli.setHZRNELI_FECHA_FIN(rs.getString("HZRNELI_FECHA_FIN"));
-                                eli.setHZRNELI_CANTIDAD(rs.getLong("HZRNELI_CANTIDAD"));
-                                eli.setHZRNELI_PAGO(rs.getBigDecimal("HZRNELI_PAGO"));
-                                eli.setHZRNELI_ITE_ID(rs.getInt("HZRNELI_ITE_ID"));
-
-                                ite.licencia_mat_pat.set(i,eli);
-                                eli = null;
-                                if (i < ite.licencia_mat_pat.size()){i++;}
-
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELI No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELI].");                        
-                    }
-                    
-                    //ELR
-                    {
-                        stmt = HZRNELR_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                           
-                        rs = pstmt.executeQuery();
-                        
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ELR elr = new ELR();
-                                elr.setHZRNELR_FECHA_INICIO(rs.getString("HZRNELR_FECHA_INICIO"));
-                                elr.setHZRNELR_FECHA_FIN(rs.getString("HZRNELR_FECHA_FIN"));
-                                elr.setHZRNELR_CANTIDAD(rs.getLong("HZRNELR_CANTIDAD"));
-                                elr.setHZRNELR_PAGO(rs.getBigDecimal("HZRNELR_PAGO"));
-                                elr.setHZRNELR_ITE_ID(rs.getInt("HZRNELR_ITE_ID"));
-
-                                ite.licencia_remunerada.set(i,elr);
-                                elr = null;       
-                                if (i < ite.licencia_remunerada.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELR No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELR].");                        
-                    }
-                    
-                    //ELN
-                    {
-                        stmt = HZRNELN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                                  
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ELN eln = new ELN();
-                                eln.setHZRNELN_FECHA_INICIO(rs.getString("HZRNELN_FECHA_INICIO"));
-                                eln.setHZRNELN_FECHA_FIN(rs.getString("HZRNELN_FECHA_FIN"));
-                                eln.setHZRNELN_CANTIDAD(rs.getLong("HZRNELN_CANTIDAD"));
-                                eln.setHZRNELN_ITE_ID(rs.getInt("HZRNELN_ITE_ID"));
-
-                                ite.licencia_no_remunerada.set(i,eln);
-                                eln = null;
-                                if (i < ite.licencia_no_remunerada.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ELN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ELN].");                        
-                    }
-                    
-                    //EBN
-                    {
-                        stmt = HZRNEBN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                                  
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                EBN ebn = new EBN();
-                                ebn.setHZRNEBN_BONI_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_SALARIAL"));
-                                ebn.setHZRNEBN_BONI_NO_SALARIAL(rs.getBigDecimal("HZRNEBN_BONI_NO_SALARIAL"));
-                                ebn.setHZRNEBN_ITE_ID(rs.getInt("HZRNEBN_ITE_ID"));
-
-                                ite.bonificacion_para_trab.set(i,ebn);
-                                ebn = null;
-                                if (i < ite.bonificacion_para_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EBN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBN].");                        
-                    }
-                    
-                    //EAX
-                    {
-                        stmt = HZRNEAX_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                EAX eax = new EAX();
-                                eax.setHZRNEAX_AUX_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_SALARIAL"));
-                                eax.setHZRNEAX_AUX_NO_SALARIAL(rs.getBigDecimal("HZRNEAX_AUX_NO_SALARIAL"));
-                                eax.setHZRNEAX_ITE_ID(rs.getInt("HZRNEAX_ITE_ID"));
-
-                                ite.auxilio_trab.set(i,eax);
-                                eax = null;
-                                if (i < ite.auxilio_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EAX No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EAX].");                        
-                    }
-                    
-                     //EHL //NO SE EMITIRA POR PARTE DE LA UPB
-//                {
-//                    stmt = HZRNEHL_QUERY;
-//                    pstmt = conn.prepareStatement(stmt);
-//                    pstmt.setInt(1, ite.getHZRNITE_ID());                                
-//                    rs = pstmt.executeQuery();
-//        
-//                    i = 0;
-//                    if(rs != null){
-//                        while (rs.next()) {
-//                            EHL ehl = new EHL();                  
-//                            ehl.setHZRNEHL_FECHA_INICIO(rs.getString("HZRNEHL_FECHA_INICIO"));
-//                            ehl.setHZRNEHL_FECHA_FIN(rs.getString("HZRNEHL_FECHA_FIN"));
-//                            ehl.setHZRNEHL_CANTIDAD(rs.getLong("HZRNEHL_CANTIDAD"));
-//                            ehl.setHZRNEHL_ITE_ID(rs.getInt("HZRNEHL_ITE_ID"));
-//
-//                            ite.huelgas_legales.set(i,ehl);
-//                            ehl = null;
-//                            if (i < ite.huelgas_legales.size()){i++;}
-//                        }
-//                    }else{
-//                          throw new DataFormatException("Comprobante:getComprobanteExtracted:EHL No existen registros");
-//                    }
-//                } 
-                    
-                    //EOT
-                    {
-                        stmt = HZRNEOT_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                            
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                EOT eot = new EOT();
-                                eot.setHZRNEOT_DESC_CONCEPTO(rs.getString("HZRNEOT_DESC_CONCEPTO"));
-                                eot.setHZRNEOT_CONCEP_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_SALARIAL"));
-                                eot.setHZRNEOT_CONCEP_NO_SALARIAL(rs.getBigDecimal("HZRNEOT_CONCEP_NO_SALARIAL"));
-                                eot.setHZRNEOT_ITE_ID(rs.getInt("HZRNEOT_ITE_ID"));
-
-                                ite.otros_conceptos_trab.set(i,eot);
-                                eot = null;
-                                if (i < ite.otros_conceptos_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EOT No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EOT].");                        
-                    }  
-                    
-                    //ECM
-                    {
-                        stmt = HZRNECM_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ECM ecm = new ECM();
-                                ecm.setHZRNECM_COMPENS_ORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_ORDINARIA"));
-                                ecm.setHZRNECM_COMPENS_EXTRAORDINARIA(rs.getBigDecimal("HZRNECM_COMPENS_EXTRAORDINARIA"));
-                                ecm.setHZRNECM_ITE_ID(rs.getInt("HZRNECM_ITE_ID"));
-
-                                ite.compensaciones_dev_trab.set(i,ecm);
-                                ecm = null;
-                                if (i < ite.compensaciones_dev_trab.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECM No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECM].");                        
-                    }   
-                    
-                    //EBO //NO SE EMITIRA POR PARTE DE LA UPB
-//                    {
-//                        stmt = HZRNEBO_QUERY;
-//                        pstmt = conn.prepareStatement(stmt);
-//                        pstmt.setInt(1, ite.getHZRNITE_ID());                     
-//                        rs = pstmt.executeQuery();
-//
-//                        i = 0;
-//                        if(rs != null){
-//                            while (rs.next()) {
-//                                EBO ebo = new EBO();               
-//                                ebo.setHZRNEBO_PAGO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_NO_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_NO_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_ALIMENT_SALARIAL(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_SALARIAL"));
-//                                ebo.setHZRNEBO_PAGO_ALIMENT_NO_SALARY(rs.getBigDecimal("HZRNEBO_PAGO_ALIMENT_NO_SALARY"));
-//                                ebo.setHZRNEBO_ITE_ID(rs.getInt("HZRNEBO_ITE_ID"));
-//
-//                                ite.bonos_pagados_electro.set(i,ebo);
-//                                ecm = ebo;
-//                                if (i < ite.bonos_pagados_electro.size()){i++;}
-//                            }
-//                        }else{
-//                              throw new DataFormatException("Comprobante:getComprobanteExtracted:EBO No existen registros");
-//                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EBO].");                    
-//                    }
-                    
-                    //ECO
-                    {
-                        stmt = HZRNECO_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                         
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                ECO eco = new ECO();
-                                eco.setHZRNECO_COMISION(rs.getBigDecimal("HZRNECO_COMISION"));
-                                eco.setHZRNECO_PAGO_TERCERO(rs.getBigDecimal("HZRNECO_PAGO_TERCERO"));
-                                eco.setHZRNECO_ANTICIPOS_NOMINA(rs.getBigDecimal("HZRNECO_ANTICIPOS_NOMINA"));
-                                eco.setHZRNECO_ITE_ID(rs.getInt("HZRNECO_ITE_ID"));
-
-                                ite.pago_terceros_anticipos_nom.set(i,eco);
-                                eco = null;
-                                if (i < ite.pago_terceros_anticipos_nom.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:ECO No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [ECO].");                        
-                    } 
-                    
-                    //EVO
-                    {
-                        stmt = HZRNEVO_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, ite.getHZRNITE_ID());                            
-                        rs = pstmt.executeQuery();
-                        
-                        if(rs != null){
-                            while (rs.next()) {
-                                EVO evo = new EVO();
-                                evo.setHZRNEVO_DOTACION(rs.getBigDecimal("HZRNEVO_DOTACION"));
-                                evo.setHZRNEVO_APOYO_SOSTENIMIENT(rs.getBigDecimal("HZRNEVO_APOYO_SOSTENIMIENT"));
-                                evo.setHZRNEVO_TELETRABAJO(rs.getBigDecimal("HZRNEVO_TELETRABAJO"));
-                                evo.setHZRNEVO_BONIF_RETIRO(rs.getBigDecimal("HZRNEVO_BONIF_RETIRO"));
-                                evo.setHZRNEVO_INDEMNIZACION(rs.getBigDecimal("HZRNEVO_INDEMNIZACION"));
-                                evo.setHZRNEVO_REINTEGRO(rs.getBigDecimal("HZRNEVO_REINTEGRO"));
-                                evo.setHZRNEVO_ITE_ID(rs.getInt("HZRNEVO_ITE_ID"));
-
-                                ite.setOpciones_varias_devengados(evo);
-                                evo = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:EVO No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + ite.getHZRNITE_ID() + "> Mapping completed in [EVO].");                        
+                    }else{
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ITE No existen registros");
                     }
                                 
-                nom.setBasico_trab(ite);
-                ite  = null;
-                calendario =Calendar.getInstance();
-                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITE].");
+                    nom.setBasico_trab(ite);
+                    ite  = null;
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITE].");
                 }
                 
                 //ITS
@@ -1990,201 +2019,212 @@ public class Comprobante{
                             its.setHZRNITS_ID(rs_its.getInt("HZRNITS_ID"));
 
                             nom.setDeducciones_salud(its);
+                            
+                            its_id = rs_its.getInt("HZRNITS_ID");
+                            
                         }
                     }else{
                         throw new DataFormatException("Comprobante:getComprobanteExtracted:ITS No existen registros");
                     }
                     
-                    //SPE
-                    {
-                        stmt = HZRNSPE_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1,its.getHZRNITS_ID());
-                        rs = pstmt.executeQuery();
+                    if(its_id != 0){
+                    
+                        //SPE
+                        {
+                            stmt = HZRNSPE_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);
+                            rs = pstmt.executeQuery();
 
-                        if(rs != null){
-                            while (rs.next()) {
-                                SPE spe = new SPE();
-                                spe.setHZRNSPE_PORCENTAJE(rs.getBigDecimal("HZRNSPE_PORCENTAJE"));
-                                spe.setHZRNSPE_DEDUCCION(rs.getBigDecimal("HZRNSPE_DEDUCCION"));
-                                spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SPE spe = new SPE();
+                                    spe.setHZRNSPE_PORCENTAJE(rs.getBigDecimal("HZRNSPE_PORCENTAJE"));
+                                    spe.setHZRNSPE_DEDUCCION(rs.getBigDecimal("HZRNSPE_DEDUCCION"));
+                                    spe.setHZRNSPE_ITS_ID(rs.getInt("HZRNSPE_ITS_ID"));
 
-                                its.setDeducciones_pension(spe);
-                                spe = null;
+                                    its.setDeducciones_pension(spe);
+                                    spe = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
                             }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SPE No existen registros");
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SPE].");                        
                         }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SPE].");                        
+
+                        //SSP
+                        {
+                            stmt = HZRNSSP_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                        
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SSP ssp = new SSP();
+                                    ssp.setHZRNSSP_PORCENTAJE(rs.getBigDecimal("HZRNSSP_PORCENTAJE"));
+                                    ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getBigDecimal("HZRNSSP_DEDUC_SEG_PENSIONAL"));
+                                    ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getBigDecimal("HZRNSSP_PORCENTAJE_SUBSISTEN"));
+                                    ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getBigDecimal("HZRNSSP_DEDUC_SUBSISTEN"));
+                                    ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
+
+                                    its.setDeduc_fondo_seguridad_p(ssp);
+                                    ssp = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SSP].");                        
+                        }  
+
+                        //SIN
+                        {
+                            stmt = HZRNSIN_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                          
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SIN sin = new SIN();
+                                    sin.setHZRNSIN_PORCENTAJE(rs.getBigDecimal("HZRNSIN_PORCENTAJE"));
+                                    sin.setHZRNSIN_DEDUCCION(rs.getBigDecimal("HZRNSIN_DEDUCCION"));
+                                    sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
+
+                                    its.deduc_sindicatos.set(i,sin);
+                                    sin = null;
+                                    if (i < its.deduc_sindicatos.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SIN No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SIN].");                                                
+                        } 
+
+                      //SAN
+    //                {
+    //                    stmt = HZRNSAN_QUERY;
+    //                    pstmt = conn.prepareStatement(stmt);
+    //                    pstmt.setInt(1, its_id);                      
+    //                    rs = pstmt.executeQuery();
+    //        
+    //                    i= 0;
+    //                    if(rs != null){
+    //                        while (rs.next()) {
+    //                            SAN san = new SAN();                
+    //                            san.setHZRNSAN_SANCION_PUBLICA(rs.getBigDecimal("HZRNSAN_SANCION_PUBLICA"));
+    //                            san.setHZRNSAN_SANCION_PRIVADA(rs.getBigDecimal("HZRNSAN_SANCION_PRIVADA"));
+    //                            san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
+    //
+    //                            its.deduc_varias.set(i,san);
+    //                            san = null;
+    //                            if (i < its.deduc_varias.size()){i++;}
+    //                        }
+    //                    }else{
+    //                          throw new DataFormatException("Comprobante:getComprobanteExtracted:SAN No existen registros");
+    //                    }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SAN].");                                            
+    //                }  
+
+                        //SLI
+                        {
+                            stmt = HZRNSLI_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                           
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SLI sli = new SLI();
+                                    sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
+                                    sli.setHZRNSLI_DEDUCCION(rs.getBigDecimal("HZRNSLI_DEDUCCION"));
+                                    sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
+
+                                    its.deduc_libranza.set(i,sli);
+                                    sli = null;
+                                    if (i < its.deduc_libranza.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SLI No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SLI].");                                                
+                        }   
+
+                        //SOT
+                        {
+                            stmt = HZRNSOT_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                           
+                            rs = pstmt.executeQuery();
+
+                            i = 0;
+                            if(rs != null){
+                                 while (rs.next()) {
+                                    SOT sot = new SOT();
+                                    sot.setHZRNSOT_PAGO_TERCERO(rs.getBigDecimal("HZRNSOT_PAGO_TERCERO"));
+                                    sot.setHZRNSOT_ANTICIPO(rs.getBigDecimal("HZRNSOT_ANTICIPO"));
+                                    sot.setHZRNSOT_OTRA_DEDUCCION(rs.getBigDecimal("HZRNSOT_OTRA_DEDUCCION"));
+                                    sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
+
+                                    its.otras_deduc.set(i,sot);
+                                    sot = null;
+                                    if (i < its.otras_deduc.size()){i++;}
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SOT No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SOT].");                                                
+                        }
+
+                        //SVA
+                        {
+                            stmt = HZRNSVA_QUERY;
+                            pstmt = conn.prepareStatement(stmt);
+                            pstmt.setInt(1, its_id);                                 
+                            rs = pstmt.executeQuery();
+
+                            if(rs != null){
+                                while (rs.next()) {
+                                    SVA sva = new SVA();
+                                    sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getBigDecimal("HZRNSVA_PENSION_VOLUNTARIA"));
+                                    sva.setHZRNSVA_RENTENCION_FTE(rs.getBigDecimal("HZRNSVA_RENTENCION_FTE"));
+                                    sva.setHZRNSVA_AFC(rs.getBigDecimal("HZRNSVA_AFC"));
+                                    sva.setHZRNSVA_COOPERATIVA(rs.getBigDecimal("HZRNSVA_COOPERATIVA"));
+                                    sva.setHZRNSVA_EMBARGO(rs.getBigDecimal("HZRNSVA_EMBARGO"));
+                                    sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getBigDecimal("HZRNSVA_PLAN_COMPLEMENT"));
+                                    sva.setHZRNSVA_EDUCACION(rs.getBigDecimal("HZRNSVA_EDUCACION"));
+                                    sva.setHZRNSVA_REINTEGRO(rs.getBigDecimal("HZRNSVA_REINTEGRO"));
+                                    sva.setHZRNSVA_DEUDA(rs.getBigDecimal("HZRNSVA_DEUDA"));                
+                                    sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
+
+                                    its.setDeduc_varias(sva);
+                                    sva = null;
+                                }
+                            }else{
+                                throw new DataFormatException("Comprobante:getComprobanteExtracted:SVA No existen registros");
+                            }
+                            calendario =Calendar.getInstance();
+                            log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SVA].");                                                
+                        } 
+                        
+                    }else{
+                        throw new DataFormatException("Comprobante:getComprobanteExtracted:ITS No existen registros");
                     }
-
-                    //SSP
-                    {
-                        stmt = HZRNSSP_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                        
-                        rs = pstmt.executeQuery();
-
-                        if(rs != null){
-                            while (rs.next()) {
-                                SSP ssp = new SSP();
-                                ssp.setHZRNSSP_PORCENTAJE(rs.getBigDecimal("HZRNSSP_PORCENTAJE"));
-                                ssp.setHZRNSSP_DEDUC_SEG_PENSIONAL(rs.getBigDecimal("HZRNSSP_DEDUC_SEG_PENSIONAL"));
-                                ssp.setHZRNSSP_PORCENTAJE_SUBSISTEN(rs.getBigDecimal("HZRNSSP_PORCENTAJE_SUBSISTEN"));
-                                ssp.setHZRNSSP_DEDUC_SUBSISTEN(rs.getBigDecimal("HZRNSSP_DEDUC_SUBSISTEN"));
-                                ssp.setHZRNSSP_ITS_ID(rs.getInt("HZRNSSP_ITS_ID"));
-
-                                its.setDeduc_fondo_seguridad_p(ssp);
-                                ssp = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SSP No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SSP].");                        
-                    }  
-
-                    //SIN
-                    {
-                        stmt = HZRNSIN_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                          
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                SIN sin = new SIN();
-                                sin.setHZRNSIN_PORCENTAJE(rs.getBigDecimal("HZRNSIN_PORCENTAJE"));
-                                sin.setHZRNSIN_DEDUCCION(rs.getBigDecimal("HZRNSIN_DEDUCCION"));
-                                sin.setHZRNSIN_ITS_ID(rs.getInt("HZRNSIN_ITS_ID"));
-
-                                its.deduc_sindicatos.set(i,sin);
-                                sin = null;
-                                if (i < its.deduc_sindicatos.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SIN No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SIN].");                                                
-                    } 
                     
-                  //SAN
-//                {
-//                    stmt = HZRNSAN_QUERY;
-//                    pstmt = conn.prepareStatement(stmt);
-//                    pstmt.setInt(1, its.getHZRNITS_ID());                      
-//                    rs = pstmt.executeQuery();
-//        
-//                    i= 0;
-//                    if(rs != null){
-//                        while (rs.next()) {
-//                            SAN san = new SAN();                
-//                            san.setHZRNSAN_SANCION_PUBLICA(rs.getBigDecimal("HZRNSAN_SANCION_PUBLICA"));
-//                            san.setHZRNSAN_SANCION_PRIVADA(rs.getBigDecimal("HZRNSAN_SANCION_PRIVADA"));
-//                            san.setHZRNSAN_ITS_ID(rs.getInt("HZRNSAN_ITS_ID"));
-//
-//                            its.deduc_varias.set(i,san);
-//                            san = null;
-//                            if (i < its.deduc_varias.size()){i++;}
-//                        }
-//                    }else{
-//                          throw new DataFormatException("Comprobante:getComprobanteExtracted:SAN No existen registros");
-//                    }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SAN].");                                            
-//                }  
                     
-                    //SLI
-                    {
-                        stmt = HZRNSLI_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                           
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                            while (rs.next()) {
-                                SLI sli = new SLI();
-                                sli.setHZRNSLI_DESCRIPCION(rs.getString("HZRNSLI_DESCRIPCION"));
-                                sli.setHZRNSLI_DEDUCCION(rs.getBigDecimal("HZRNSLI_DEDUCCION"));
-                                sli.setHZRNSLI_ITS_ID(rs.getInt("HZRNSLI_ITS_ID"));
-
-                                its.deduc_libranza.set(i,sli);
-                                sli = null;
-                                if (i < its.deduc_libranza.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SLI No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SLI].");                                                
-                    }   
                     
-                    //SOT
-                    {
-                        stmt = HZRNSOT_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                           
-                        rs = pstmt.executeQuery();
-
-                        i = 0;
-                        if(rs != null){
-                             while (rs.next()) {
-                                SOT sot = new SOT();
-                                sot.setHZRNSOT_PAGO_TERCERO(rs.getBigDecimal("HZRNSOT_PAGO_TERCERO"));
-                                sot.setHZRNSOT_ANTICIPO(rs.getBigDecimal("HZRNSOT_ANTICIPO"));
-                                sot.setHZRNSOT_OTRA_DEDUCCION(rs.getBigDecimal("HZRNSOT_OTRA_DEDUCCION"));
-                                sot.setHZRNSOT_ITS_ID(rs.getInt("HZRNSOT_ITS_ID"));
-
-                                its.otras_deduc.set(i,sot);
-                                sot = null;
-                                if (i < its.otras_deduc.size()){i++;}
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SOT No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SOT].");                                                
-                    }
-                    
-                    //SVA
-                    {
-                        stmt = HZRNSVA_QUERY;
-                        pstmt = conn.prepareStatement(stmt);
-                        pstmt.setInt(1, its.getHZRNITS_ID());                                 
-                        rs = pstmt.executeQuery();
-
-                        if(rs != null){
-                            while (rs.next()) {
-                                SVA sva = new SVA();
-                                sva.setHZRNSVA_PENSION_VOLUNTARIA(rs.getBigDecimal("HZRNSVA_PENSION_VOLUNTARIA"));
-                                sva.setHZRNSVA_RENTENCION_FTE(rs.getBigDecimal("HZRNSVA_RENTENCION_FTE"));
-                                sva.setHZRNSVA_AFC(rs.getBigDecimal("HZRNSVA_AFC"));
-                                sva.setHZRNSVA_COOPERATIVA(rs.getBigDecimal("HZRNSVA_COOPERATIVA"));
-                                sva.setHZRNSVA_EMBARGO(rs.getBigDecimal("HZRNSVA_EMBARGO"));
-                                sva.setHZRNSVA_PLAN_COMPLEMENT(rs.getBigDecimal("HZRNSVA_PLAN_COMPLEMENT"));
-                                sva.setHZRNSVA_EDUCACION(rs.getBigDecimal("HZRNSVA_EDUCACION"));
-                                sva.setHZRNSVA_REINTEGRO(rs.getBigDecimal("HZRNSVA_REINTEGRO"));
-                                sva.setHZRNSVA_DEUDA(rs.getBigDecimal("HZRNSVA_DEUDA"));                
-                                sva.setHZRNSVA_ITS_ID(rs.getInt("HZRNSVA_ITS_ID"));
-
-                                its.setDeduc_varias(sva);
-                                sva = null;
-                            }
-                        }else{
-                            throw new DataFormatException("Comprobante:getComprobanteExtracted:SVA No existen registros");
-                        }
-                        calendario =Calendar.getInstance();
-                        log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] <" + its.getHZRNITS_ID() + "> Mapping completed in [SVA].");                                                
-                    } 
-                    
-                nom.setDeducciones_salud(its);
-                its = null;
-                calendario =Calendar.getInstance();
-                log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITS].");
+                    nom.setDeducciones_salud(its);
+                    its = null;
+                    calendario =Calendar.getInstance();
+                    log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getComprobanteExtracted> [" + cune_interno + "] Mapping completed in [ITS].");
                 }
                 
                  //TOT

@@ -27,7 +27,7 @@ public class SLI {
     public void setHZRNSLI_DESCRIPCION(String HZRNSLI_DESCRIPCION) throws DataFormatException {
         Data data = new Data();    
 
-        if(data.checklength(HZRNSLI_DESCRIPCION,14)){
+        if(data.checklength(HZRNSLI_DESCRIPCION,250)){
             this.HZRNSLI_DESCRIPCION = HZRNSLI_DESCRIPCION;
             data = null;            
         }else{

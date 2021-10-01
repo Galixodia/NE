@@ -423,7 +423,7 @@ public class ENC {
     public void setHZRNENC_TIPO_MONEDA(String HZRNENC_TIPO_MONEDA) throws DataFormatException {
         Data data = new Data();    
 
-        if(data.checklength(HZRNENC_TIPO_MONEDA,14)){
+        if(data.checklength(HZRNENC_TIPO_MONEDA,3)){
             this.HZRNENC_TIPO_MONEDA = HZRNENC_TIPO_MONEDA;
             data = null;            
         }else{
