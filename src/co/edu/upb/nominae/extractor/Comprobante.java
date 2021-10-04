@@ -104,7 +104,7 @@ public class Comprobante{
         if(cune_interno != null && tipo_doc != null){
             
             this.comp_alive = 1;
-            System.out.println("INICIO ____________________________________________________________________________");
+            //System.out.println("INICIO ____________________________________________________________________________");
             System.out.println("CUNE: " + cune_interno);
             System.out.println("TIPO_DOC: " + tipo_doc);
             
@@ -166,10 +166,8 @@ public class Comprobante{
             if (rs != null) {try {rs.close();} catch (SQLException e) { /* Ignored */}}
             if (pstmt != null) {try {pstmt.close();} catch (SQLException e) { /* Ignored */}}
             if (conn != null) {try {conn.close();} catch (SQLException e) { /* Ignored */}}
-            System.out.println("FIN _______________________________________________________________________________");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
+            //System.out.println("FIN _______________________________________________________________________________");
+            //System.out.println("");
         }
     }
     
@@ -177,8 +175,6 @@ public class Comprobante{
         
         calendario =Calendar.getInstance();
         log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] Starting getFileExtracted process.");
-        
-        //PENDIENTE----------------------------------------------------------------------------------------------------------------------------------------    
 
         if(tipo_doc.equalsIgnoreCase("NominaIndividual")){
             
@@ -213,12 +209,9 @@ public class Comprobante{
             
         }
         
-        
         calendario =Calendar.getInstance();
         log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted> [" + cune_interno + "] getFileExtracted process successfully.");
         
-        
-        //----------------------------------------------------------------------------------------------------------------------------------------  
     }
 
     private void getComprobanteExtracted() throws SQLException, DataFormatException, JAXBException  {
@@ -1277,7 +1270,6 @@ public class Comprobante{
  
         
         }else{
-            //con es nulo
             System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");    
         }
     }
@@ -2296,6 +2288,7 @@ public class Comprobante{
                             
                 if(nom != null){
                     xml_string = xml.ObjectToXML(nom);
+                    xml = null;
                     nom = null;
                     //System.out.println(xml_string);
                 }else{
@@ -2308,7 +2301,7 @@ public class Comprobante{
  
         
         }else{
-            //con es nulo
+
             System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");    
         }
     }
@@ -2462,6 +2455,7 @@ public class Comprobante{
                 if(nom != null){
                     xml_string = xml.ObjectToXML(nom);
                     nom = null;
+                    xml = null;
                     //System.out.println(xml_string);
                 }else{
                     throw new DataFormatException("Comprobante:getComprobanteExtracted: No existen registros");
