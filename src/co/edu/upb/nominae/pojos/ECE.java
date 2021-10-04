@@ -28,7 +28,7 @@ public class ECE {
 
     public void setHZRNECE_PAGO(BigDecimal HZRNECE_PAGO) throws DataFormatException {  
         if(HZRNECE_PAGO != null){
-            this.HZRNECE_PAGO = new DecimalFormat("#.000000").format(HZRNECE_PAGO).replace(",",".");
+            this.HZRNECE_PAGO = new DecimalFormat("0.000000").format(HZRNECE_PAGO).replace(",",".");
         }else{
             throw new DataFormatException("ECE:HZRNECE_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -40,7 +40,7 @@ public class ECE {
 
     public void setHZRNECE_PORCENTAJE(BigDecimal HZRNECE_PORCENTAJE) throws DataFormatException {
         if(HZRNECE_PORCENTAJE != null){
-            this.HZRNECE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNECE_PORCENTAJE).replace(",","."); 
+            this.HZRNECE_PORCENTAJE = new DecimalFormat("0.00").format(HZRNECE_PORCENTAJE).replace(",","."); 
         }else{
             throw new DataFormatException("ECE:HZRNECE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -52,7 +52,7 @@ public class ECE {
 
     public void setHZRNECE_PAGO_INTERESES(BigDecimal HZRNECE_PAGO_INTERESES) throws DataFormatException {
         if(HZRNECE_PAGO_INTERESES != null){
-            this.HZRNECE_PAGO_INTERESES = new DecimalFormat("#.000000").format(HZRNECE_PAGO_INTERESES).replace(",",".");
+            this.HZRNECE_PAGO_INTERESES = new DecimalFormat("0.000000").format(HZRNECE_PAGO_INTERESES).replace(",",".");
         }else{
             throw new DataFormatException("ECE:HZRNECE_PAGO_INTERESES:El campo es nulo o excede la longitud definida por la DIAN");
         } 

@@ -40,6 +40,9 @@ public class Comprobante{
     private String stmt;
     private PreparedStatement pstmt;
     private ResultSet rs;
+    private ResultSet rs_nom;
+    private ResultSet rs_ite;
+    private ResultSet rs_its;
     private Log log;
     private Calendar calendario;
     private int i;
@@ -48,63 +51,92 @@ public class Comprobante{
     private String num_doc;
     private String cune_interno;
     private String tipo_doc;
-    private final int ano;
-    private final int mes;
+    private int ano;
+    private int mes;
     private String xml_string;
     public int comp_alive;
-    private final String local_dir;
-    private final String log_file_name;
-    private final String db_url;
-    private final String db_user;
-    private final String db_pwd;
-    private DecimalFormat df = null;
+    private String local_dir;
+    private String log_file_name;
+    private String db_url;
+    private String db_user;
+    private String db_pwd;
+    private String sleep_milis;
+    private DecimalFormat df;
     private int ite_id;
     private int its_id;
     
+    
 
-    public Comprobante(String cune_interno, String tipo_doc, int ano, int mes, String local_dir, String db_url, String db_user, String db_pwd, String log_file_name, String ambiente) throws SQLException {
-        this.cune_interno = cune_interno;
-        this.tipo_doc = tipo_doc; 
-        this.ano = ano;
-        this.mes = mes;
+    public Comprobante(String local_dir, String db_url, String db_user, String db_pwd, String log_file_name, String ambiente, String sleep_milis) throws SQLException, InterruptedException {
+        
+        AMBIENTE = ambiente;
+        
         this.local_dir = local_dir; 
         this.db_url = db_url; 
         this.db_user = db_user; 
         this.db_pwd = db_pwd;
         this.log_file_name = log_file_name;
-        
-        calendario =Calendar.getInstance(); 
-        
-        AMBIENTE = ambiente;
+        this.sleep_milis = sleep_milis;
         
         log = new Log();
+        calendario =Calendar.getInstance(); 
         
-        stmt = null;
-        pstmt = null;
-        rs = null;
-        
-        i = 0; // Iterador para listas
-        ite_id = 0;
-        its_id = 0;
-
         calendario =Calendar.getInstance();
         log.logInFile(log_file_name,null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + this.cune_interno + "] (DB) Starting conection to data base.");
         
+        Thread.sleep(Integer.valueOf(sleep_milis));
         conn = DriverManager.getConnection(this.db_url, this.db_user, this.db_pwd);
-        
+
         calendario =Calendar.getInstance();
         log.logInFile(log_file_name,null, "(" + calendario.getTime() + "): <Comprobante:Comprobante> [" + this.cune_interno + "] (DB) Conection to data base successfully.");
+
+        stmt = COM_QUERY;
+        pstmt = conn.prepareStatement(stmt);
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            cune_interno = rs.getString("HZRNNOM_CUNE_INTERNO");
+            tipo_doc = rs.getString("HZRNNOM_TIPO_DOC");
+            ano = rs.getInt("HZRNNOM_ANO");
+            mes = rs.getInt("HZRNNOM_MES"); 
+        }
+
+        if(cune_interno != null && tipo_doc != null){
+            
+            this.comp_alive = 1;
+            System.out.println("INICIO ____________________________________________________________________________");
+            System.out.println("CUNE: " + cune_interno);
+            System.out.println("TIPO_DOC: " + tipo_doc);
+            
+        }else{
+            this.comp_alive = 0;
+        }
+
+        rs_nom = null;
+        rs_ite = null;
+        rs_its = null;
+        
+        i = 0; // Iterador para listas
+
+        df = null;
+        ite_id = 0;
+        its_id = 0;
+
     }
 
     public void run() throws SQLException {
-        System.out.println("CUNE_INTERNO: " + this.cune_interno);
-        System.out.println("TIPO_DOC: " + this.tipo_doc);
         try {
-            
-            this.comp_alive = 1;
+
+            updateStatus("EXTRACTING");
             getFileExtracted();
             getLocalFile();
-            getNullAll();
+            
+            if (rs_its != null) {try {rs_its.close();} catch (SQLException e) { /* Ignored */}}
+            if (rs_ite != null) {try {rs_ite.close();} catch (SQLException e) { /* Ignored */}}
+            if (rs_nom != null) {try {rs_nom.close();} catch (SQLException e) { /* Ignored */}}
+            if (rs != null) {try {rs.close();} catch (SQLException e) { /* Ignored */}}
+            if (pstmt != null) {try {pstmt.close();} catch (SQLException e) { /* Ignored */}}
+            if (conn != null) {try {conn.close();} catch (SQLException e) { /* Ignored */}}
             
         } catch (SQLException ex) {
             updateStatus("FAILEXTRACTION");
@@ -128,6 +160,12 @@ public class Comprobante{
             log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:run> [" + cune_interno + "] (FILE) Exception in file creation: " + ex.getMessage());
         } finally{
             getNullAll();
+            if (rs_its != null) {try {rs_its.close();} catch (SQLException e) { /* Ignored */}}
+            if (rs_ite != null) {try {rs_ite.close();} catch (SQLException e) { /* Ignored */}}
+            if (rs_nom != null) {try {rs_nom.close();} catch (SQLException e) { /* Ignored */}}
+            if (rs != null) {try {rs.close();} catch (SQLException e) { /* Ignored */}}
+            if (pstmt != null) {try {pstmt.close();} catch (SQLException e) { /* Ignored */}}
+            if (conn != null) {try {conn.close();} catch (SQLException e) { /* Ignored */}}
             System.out.println("FIN _______________________________________________________________________________");
             System.out.println("");
             System.out.println("");
@@ -146,7 +184,9 @@ public class Comprobante{
             
             calendario =Calendar.getInstance();
             log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (NominaIndividual) Starting extracting process.");          
+            
             getComprobanteExtracted();
+            
             calendario =Calendar.getInstance();
             log.logInFile(log_file_name + "-" + cune_interno, ano + "/" + mes + "/" + tipo_doc, "(" + calendario.getTime() + "): <Comprobante:getFileExtracted(NominaIndividual)> [" + cune_interno + "] (NominaIndividual) Extracting process successfully.");
             
@@ -190,7 +230,7 @@ public class Comprobante{
                 stmt = NOMINA_QUERY;
                 pstmt = conn.prepareStatement(stmt);
                 pstmt.setString(1, cune_interno);
-                ResultSet rs_nom = pstmt.executeQuery();
+                rs_nom = pstmt.executeQuery();
                 
                 NOMINA nom = new NOMINA();
                 if(rs_nom != null){
@@ -442,7 +482,7 @@ public class Comprobante{
                     stmt = HZRNITE_QUERY;
                     pstmt = conn.prepareStatement(stmt);
                     pstmt.setString(1, cune_interno);
-                    ResultSet rs_ite = pstmt.executeQuery();
+                    rs_ite = pstmt.executeQuery();
 
                     ITE ite = new ITE();
                     if(rs != null){
@@ -963,7 +1003,7 @@ public class Comprobante{
                     stmt = HZRNITS_QUERY;
                     pstmt = conn.prepareStatement(stmt);
                     pstmt.setString(1, cune_interno);                    
-                    ResultSet rs_its = pstmt.executeQuery();
+                    rs_its = pstmt.executeQuery();
                     
 
                     ITS its = new ITS();
@@ -1225,6 +1265,7 @@ public class Comprobante{
                 if(nom != null){
                     xml_string = xml.ObjectToXML(nom);
                     nom = null;
+                    xml = null;
                     //System.out.println(xml_string);
                 }else{
                     throw new DataFormatException("Comprobante:getComprobanteExtracted: No existen registros");
@@ -2465,20 +2506,22 @@ public class Comprobante{
         
     }
 
-    private void getNullAll() {
-        stmt = null;
-        pstmt = null;
-        rs = null;
+    private void getNullAll() {      
+        
         log = null;
         calendario = null;
         AMBIENTE = null;
-        prefijo = null;
-        num_doc = null;
         cune_interno = null;
         tipo_doc = null;
         xml_string = null;
-        conn = null;
+        local_dir = null;
+        log_file_name = null;
+        db_url = null;
+        db_user = null;
+        db_pwd = null;
         df = null;
+        prefijo = null;
+        num_doc = null;
         comp_alive=0;
     }
     

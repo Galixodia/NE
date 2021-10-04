@@ -64,7 +64,7 @@ public class ELI {
 
     public void setHZRNELI_PAGO(BigDecimal HZRNELI_PAGO) throws DataFormatException {
         if(HZRNELI_PAGO != null){
-            this.HZRNELI_PAGO = new DecimalFormat("#.000000").format(HZRNELI_PAGO).replace(",",".");  
+            this.HZRNELI_PAGO = new DecimalFormat("0.000000").format(HZRNELI_PAGO).replace(",",".");  
         }else{
             throw new DataFormatException("ELI:HZRNELI_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 

@@ -63,7 +63,7 @@ public class ELR {
 
     public void setHZRNELR_PAGO(BigDecimal HZRNELR_PAGO) throws DataFormatException {
         if(HZRNELR_PAGO != null){
-            this.HZRNELR_PAGO = new DecimalFormat("#.000000").format(HZRNELR_PAGO).replace(",","."); 
+            this.HZRNELR_PAGO = new DecimalFormat("0.000000").format(HZRNELR_PAGO).replace(",","."); 
         }else{
             throw new DataFormatException("ELR:HZRNELR_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 

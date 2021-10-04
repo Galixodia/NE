@@ -27,7 +27,7 @@ public class SOT {
 
     public void setHZRNSOT_PAGO_TERCERO(BigDecimal HZRNSOT_PAGO_TERCERO) {
         if(HZRNSOT_PAGO_TERCERO != null){
-            this.HZRNSOT_PAGO_TERCERO = new DecimalFormat("#.000000").format(HZRNSOT_PAGO_TERCERO).replace(",",".");  
+            this.HZRNSOT_PAGO_TERCERO = new DecimalFormat("0.000000").format(HZRNSOT_PAGO_TERCERO).replace(",",".");  
         }
     }
     @XmlTransient
@@ -37,7 +37,7 @@ public class SOT {
 
     public void setHZRNSOT_ANTICIPO(BigDecimal HZRNSOT_ANTICIPO) {
         if(HZRNSOT_ANTICIPO != null){
-            this.HZRNSOT_ANTICIPO = new DecimalFormat("#.000000").format(HZRNSOT_ANTICIPO).replace(",",".");  
+            this.HZRNSOT_ANTICIPO = new DecimalFormat("0.000000").format(HZRNSOT_ANTICIPO).replace(",",".");  
         }
     }
     @XmlTransient
@@ -47,7 +47,7 @@ public class SOT {
 
     public void setHZRNSOT_OTRA_DEDUCCION(BigDecimal HZRNSOT_OTRA_DEDUCCION) {
         if(HZRNSOT_OTRA_DEDUCCION != null){
-            this.HZRNSOT_OTRA_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSOT_OTRA_DEDUCCION).replace(",","."); 
+            this.HZRNSOT_OTRA_DEDUCCION = new DecimalFormat("0.000000").format(HZRNSOT_OTRA_DEDUCCION).replace(",","."); 
         }
     }
     @XmlTransient

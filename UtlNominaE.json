@@ -10,12 +10,12 @@
   "LocalDir":"null",
   "LogFileName":"NominaElectronicaUPB",
   "loop-milis":"60000",
-  "IterationSleep-milis":"0",
+  "IterationSleep-milis":"100",
   "MaxThreads":"1",
   "ThreadsCorrection":"2",
   "Environment":"TRN",
   "Ftp-data-block":"1000",
-  "Ftp-delay-shipp-secs":"30",
+  "Ftp-delay-shipp-secs":"2",
   "Queries":[
   	{
   		"Query":"prueba",

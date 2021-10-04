@@ -27,7 +27,7 @@ public class SPE {
 
     public void setHZRNSPE_PORCENTAJE(BigDecimal HZRNSPE_PORCENTAJE) throws DataFormatException {
         if(HZRNSPE_PORCENTAJE != null){
-            this.HZRNSPE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSPE_PORCENTAJE).replace(",",".");  
+            this.HZRNSPE_PORCENTAJE = new DecimalFormat("0.00").format(HZRNSPE_PORCENTAJE).replace(",",".");  
         }else{
             throw new DataFormatException("SPE:HZRNSPE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -39,7 +39,7 @@ public class SPE {
 
     public void setHZRNSPE_DEDUCCION(BigDecimal HZRNSPE_DEDUCCION) throws DataFormatException {   
         if(HZRNSPE_DEDUCCION != null){
-            this.HZRNSPE_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSPE_DEDUCCION).replace(",",".");
+            this.HZRNSPE_DEDUCCION = new DecimalFormat("0.000000").format(HZRNSPE_DEDUCCION).replace(",",".");
         }else{
             throw new DataFormatException("SPE:HZRNSPE_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         } 

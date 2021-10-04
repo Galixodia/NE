@@ -25,7 +25,7 @@ public class SIN {
 
     public void setHZRNSIN_PORCENTAJE(BigDecimal HZRNSIN_PORCENTAJE) throws DataFormatException {       
         if(HZRNSIN_PORCENTAJE != null){
-            this.HZRNSIN_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSIN_PORCENTAJE).replace(",",".");
+            this.HZRNSIN_PORCENTAJE = new DecimalFormat("0.00").format(HZRNSIN_PORCENTAJE).replace(",",".");
         }else{
             throw new DataFormatException("SIN:HZRNSIN_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         }
@@ -37,7 +37,7 @@ public class SIN {
 
     public void setHZRNSIN_DEDUCCION(BigDecimal HZRNSIN_DEDUCCION) throws DataFormatException {       
         if(HZRNSIN_DEDUCCION != null){
-            this.HZRNSIN_DEDUCCION = new DecimalFormat("#.000000").format(HZRNSIN_DEDUCCION).replace(",",".");
+            this.HZRNSIN_DEDUCCION = new DecimalFormat("0.000000").format(HZRNSIN_DEDUCCION).replace(",",".");
         }else{
             throw new DataFormatException("SIN:HZRNSIN_DEDUCCION:El campo es nulo o excede la longitud definida por la DIAN");
         }

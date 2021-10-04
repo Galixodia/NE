@@ -23,20 +23,9 @@ import java.util.Calendar;
 public final class Extractor {
        
     public UtilitiesFile utilities_file;
-    private Connection conn = null;
     private Log log;
     private Calendar calendario;
     public static Comprobante comp;
-    
-    private String stmt;
-    private PreparedStatement pstmt;
-    private ResultSet rs;
-    
-    private String cune;
-    private String tipo_doc;
-    private int affected;
-    private int ano;
-    private int mes;
     
     private String local_dir;
     private String db_url;
@@ -44,6 +33,7 @@ public final class Extractor {
     private String db_pwd;
     private String log_file_name;
     private String ambiente;
+    private String sleep_milis;
 
     public Extractor()  {
 
@@ -57,11 +47,9 @@ public final class Extractor {
             db_pwd = utilities_file.getPassword();
             log_file_name = utilities_file.getLog_file_name();
             ambiente = utilities_file.getEnvironment();
-            
-            conn = DriverManager.getConnection(db_url, db_user, db_pwd);
+            sleep_milis = utilities_file.getIteration_sleep_milis();
             
             createThreads();
-            
             
         } catch (SQLException ex) {
             calendario =Calendar.getInstance();
@@ -73,65 +61,22 @@ public final class Extractor {
             log = null;
             utilities_file = null;
             calendario = null;
-            conn = null;
         }
         
     }
-    
-    public void getCune() throws SQLException{
-            
-            stmt = "SELECT HZRNNOM_CUNE_INTERNO, HZRNNOM_TIPO_DOC, HZRNNOM_ANO, HZRNNOM_MES FROM UPB_NOMINAE.HZRNNOM WHERE (HZRNNOM_ESTADO IS NULL OR HZRNNOM_ESTADO IN ('REEXTRACT')) AND rownum <= 1";
-      
-            pstmt = conn.prepareStatement(stmt);
-            rs = pstmt.executeQuery();
-            
-            cune = null;
-            tipo_doc = null;
-            comp = null;
-            affected = 0;
 
-            while (rs.next()) {
-
-                cune = rs.getString("HZRNNOM_CUNE_INTERNO");
-                tipo_doc = rs.getString("HZRNNOM_TIPO_DOC");
-                ano = rs.getInt("HZRNNOM_ANO");
-                mes = rs.getInt("HZRNNOM_MES");
-
-                if(cune != null && tipo_doc != null){
-                    pstmt = conn.prepareStatement("UPDATE UPB_NOMINAE.HZRNNOM SET HZRNNOM_ESTADO = ? WHERE HZRNNOM_CUNE_INTERNO = ?",
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_UPDATABLE);
-                    pstmt.setString(1, "EXTRACTING");
-                    pstmt.setString(2, cune);
-                    affected = pstmt.executeUpdate();
-                    
-                    comp = new Comprobante(cune,tipo_doc,ano,mes,local_dir,db_url,db_user,db_pwd,log_file_name,ambiente);
-                    
-                    System.out.println("INICIO ____________________________________________________________________________");
-                    System.out.println("CUNE: " + cune);
-                    System.out.println("TIPO_DOC: " + tipo_doc);
-                    System.out.println("comp.comp_alive: " + comp.comp_alive);
-                    System.out.println("-------------------------------------------------------------------------------");
-                }
-            }
-    }
-    
     public void createThreads() throws SQLException, InterruptedException{
         while(true){
             
-            getCune();
+            comp = new Comprobante(local_dir,db_url,db_user,db_pwd,log_file_name,ambiente,sleep_milis); 
 
-            if(comp != null){
-                if(comp.comp_alive == 0){
-                    comp.run();
-                }else{
-                    Thread.sleep(Integer.valueOf(utilities_file.getIteration_sleep_milis()));
-                }     
+            if(comp.comp_alive == 1){
+                comp.run();
             }else{
                 calendario =Calendar.getInstance();
                 System.out.println( "[" + calendario.getTime() + "]No hay Documentos para Extraer...");
                 Thread.sleep(Integer.valueOf(utilities_file.getLoop_milis()));
-            } 
+            }     
         }
     }
     

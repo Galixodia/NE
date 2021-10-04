@@ -37,7 +37,7 @@ public class EVO {
 
     public void setHZRNEVO_DOTACION(BigDecimal HZRNEVO_DOTACION) {
         if(HZRNEVO_DOTACION != null){
-            this.HZRNEVO_DOTACION = new DecimalFormat("#.000000").format(HZRNEVO_DOTACION).replace(",",".");  
+            this.HZRNEVO_DOTACION = new DecimalFormat("0.000000").format(HZRNEVO_DOTACION).replace(",",".");  
         }
     }
     @XmlTransient
@@ -47,7 +47,7 @@ public class EVO {
 
     public void setHZRNEVO_APOYO_SOSTENIMIENT(BigDecimal HZRNEVO_APOYO_SOSTENIMIENT) {   
         if(HZRNEVO_APOYO_SOSTENIMIENT != null){
-            this.HZRNEVO_APOYO_SOSTENIMIENT = new DecimalFormat("#.000000").format(HZRNEVO_APOYO_SOSTENIMIENT).replace(",","."); 
+            this.HZRNEVO_APOYO_SOSTENIMIENT = new DecimalFormat("0.000000").format(HZRNEVO_APOYO_SOSTENIMIENT).replace(",","."); 
         }
     }
     @XmlTransient
@@ -57,7 +57,7 @@ public class EVO {
 
     public void setHZRNEVO_TELETRABAJO(BigDecimal HZRNEVO_TELETRABAJO) {
         if(HZRNEVO_TELETRABAJO != null){
-            this.HZRNEVO_TELETRABAJO = new DecimalFormat("#.000000").format(HZRNEVO_TELETRABAJO).replace(",","."); 
+            this.HZRNEVO_TELETRABAJO = new DecimalFormat("0.000000").format(HZRNEVO_TELETRABAJO).replace(",","."); 
         }
     }
     @XmlTransient
@@ -67,7 +67,7 @@ public class EVO {
 
     public void setHZRNEVO_BONIF_RETIRO(BigDecimal HZRNEVO_BONIF_RETIRO) {
         if(HZRNEVO_BONIF_RETIRO != null){
-            this.HZRNEVO_BONIF_RETIRO = new DecimalFormat("#.000000").format(HZRNEVO_BONIF_RETIRO).replace(",","."); 
+            this.HZRNEVO_BONIF_RETIRO = new DecimalFormat("0.000000").format(HZRNEVO_BONIF_RETIRO).replace(",","."); 
         }
     }
     @XmlTransient
@@ -77,7 +77,7 @@ public class EVO {
 
     public void setHZRNEVO_INDEMNIZACION(BigDecimal HZRNEVO_INDEMNIZACION) {
         if(HZRNEVO_INDEMNIZACION != null){
-            this.HZRNEVO_INDEMNIZACION = new DecimalFormat("#.000000").format(HZRNEVO_INDEMNIZACION).replace(",",".");  
+            this.HZRNEVO_INDEMNIZACION = new DecimalFormat("0.000000").format(HZRNEVO_INDEMNIZACION).replace(",",".");  
         }
     }
     @XmlTransient
@@ -87,7 +87,7 @@ public class EVO {
 
     public void setHZRNEVO_REINTEGRO(BigDecimal HZRNEVO_REINTEGRO) {
         if(HZRNEVO_REINTEGRO != null){
-            this.HZRNEVO_REINTEGRO = new DecimalFormat("#.000000").format(HZRNEVO_REINTEGRO).replace(",","."); 
+            this.HZRNEVO_REINTEGRO = new DecimalFormat("0.000000").format(HZRNEVO_REINTEGRO).replace(",","."); 
         }
     }
     @XmlTransient

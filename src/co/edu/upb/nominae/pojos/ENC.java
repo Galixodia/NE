@@ -188,7 +188,7 @@ public class ENC {
 
     public void setHZRNENC_TIEMPO_LAB(BigDecimal HZRNENC_TIEMPO_LAB) throws DataFormatException {              
         if(HZRNENC_TIEMPO_LAB != null){
-            this.HZRNENC_TIEMPO_LAB = new DecimalFormat("#.00").format(HZRNENC_TIEMPO_LAB).replace(",",".");
+            this.HZRNENC_TIEMPO_LAB = new DecimalFormat("0.00").format(HZRNENC_TIEMPO_LAB).replace(",",".");
         }else{
             this.HZRNENC_TIEMPO_LAB = String.valueOf(HZRNENC_TIEMPO_LAB);
         } 
@@ -437,7 +437,7 @@ public class ENC {
 
     public void setHZRNENC_TRM(BigDecimal HZRNENC_TRM) {
         if(HZRNENC_TRM != null){
-            this.HZRNENC_TRM = new DecimalFormat("#.000000").format(HZRNENC_TRM).replace(",",".");
+            this.HZRNENC_TRM = new DecimalFormat("0.000000").format(HZRNENC_TRM).replace(",",".");
         }
     }
     @XmlTransient

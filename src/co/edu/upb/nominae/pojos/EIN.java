@@ -81,7 +81,7 @@ public class EIN {
 
     public void setHZRNEIN_PAGO(BigDecimal HZRNEIN_PAGO) throws DataFormatException {
         if(HZRNEIN_PAGO != null){
-            this.HZRNEIN_PAGO = new DecimalFormat("#.000000").format(HZRNEIN_PAGO).replace(",",".");     
+            this.HZRNEIN_PAGO = new DecimalFormat("0.000000").format(HZRNEIN_PAGO).replace(",",".");     
         }else{
             throw new DataFormatException("EIN:HZRNEIN_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 

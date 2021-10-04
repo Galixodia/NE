@@ -46,7 +46,7 @@ public class SVA {
 
     public void setHZRNSVA_PENSION_VOLUNTARIA(BigDecimal HZRNSVA_PENSION_VOLUNTARIA) {
         if(HZRNSVA_PENSION_VOLUNTARIA != null){
-            this.HZRNSVA_PENSION_VOLUNTARIA = new DecimalFormat("#.000000").format(HZRNSVA_PENSION_VOLUNTARIA).replace(",","."); 
+            this.HZRNSVA_PENSION_VOLUNTARIA = new DecimalFormat("0.000000").format(HZRNSVA_PENSION_VOLUNTARIA).replace(",","."); 
         }
     }
     @XmlTransient
@@ -56,7 +56,7 @@ public class SVA {
 
     public void setHZRNSVA_RENTENCION_FTE(BigDecimal HZRNSVA_RENTENCION_FTE) {
         if(HZRNSVA_RENTENCION_FTE != null){
-            this.HZRNSVA_RENTENCION_FTE = new DecimalFormat("#.000000").format(HZRNSVA_RENTENCION_FTE).replace(",",".");  
+            this.HZRNSVA_RENTENCION_FTE = new DecimalFormat("0.000000").format(HZRNSVA_RENTENCION_FTE).replace(",",".");  
         }
     }
     @XmlTransient
@@ -66,7 +66,7 @@ public class SVA {
 
     public void setHZRNSVA_AFC(BigDecimal HZRNSVA_AFC) {
         if(HZRNSVA_AFC != null){
-            this.HZRNSVA_AFC = new DecimalFormat("#.000000").format(HZRNSVA_AFC).replace(",",".");   
+            this.HZRNSVA_AFC = new DecimalFormat("0.000000").format(HZRNSVA_AFC).replace(",",".");   
         }
     }
     @XmlTransient
@@ -76,7 +76,7 @@ public class SVA {
 
     public void setHZRNSVA_COOPERATIVA(BigDecimal HZRNSVA_COOPERATIVA) {
         if(HZRNSVA_COOPERATIVA != null){
-            this.HZRNSVA_COOPERATIVA = new DecimalFormat("#.000000").format(HZRNSVA_COOPERATIVA).replace(",",".");  
+            this.HZRNSVA_COOPERATIVA = new DecimalFormat("0.000000").format(HZRNSVA_COOPERATIVA).replace(",",".");  
         }
     }
     @XmlTransient
@@ -86,7 +86,7 @@ public class SVA {
 
     public void setHZRNSVA_EMBARGO(BigDecimal HZRNSVA_EMBARGO) {
         if(HZRNSVA_EMBARGO != null){
-            this.HZRNSVA_EMBARGO = new DecimalFormat("#.000000").format(HZRNSVA_EMBARGO).replace(",",".");  
+            this.HZRNSVA_EMBARGO = new DecimalFormat("0.000000").format(HZRNSVA_EMBARGO).replace(",",".");  
         }
     }
     @XmlTransient
@@ -96,7 +96,7 @@ public class SVA {
 
     public void setHZRNSVA_PLAN_COMPLEMENT(BigDecimal HZRNSVA_PLAN_COMPLEMENT) {
         if(HZRNSVA_PLAN_COMPLEMENT != null){
-            this.HZRNSVA_PLAN_COMPLEMENT = new DecimalFormat("#.000000").format(HZRNSVA_PLAN_COMPLEMENT).replace(",","."); 
+            this.HZRNSVA_PLAN_COMPLEMENT = new DecimalFormat("0.000000").format(HZRNSVA_PLAN_COMPLEMENT).replace(",","."); 
         }
     }
     @XmlTransient
@@ -106,7 +106,7 @@ public class SVA {
 
     public void setHZRNSVA_EDUCACION(BigDecimal HZRNSVA_EDUCACION) { 
         if(HZRNSVA_EDUCACION != null){
-            this.HZRNSVA_EDUCACION = new DecimalFormat("#.000000").format(HZRNSVA_EDUCACION).replace(",",".");
+            this.HZRNSVA_EDUCACION = new DecimalFormat("0.000000").format(HZRNSVA_EDUCACION).replace(",",".");
         }
     }
     @XmlTransient
@@ -116,7 +116,7 @@ public class SVA {
 
     public void setHZRNSVA_REINTEGRO(BigDecimal HZRNSVA_REINTEGRO) {
         if(HZRNSVA_REINTEGRO != null){
-            this.HZRNSVA_REINTEGRO = new DecimalFormat("#.000000").format(HZRNSVA_REINTEGRO).replace(",",".");  
+            this.HZRNSVA_REINTEGRO = new DecimalFormat("0.000000").format(HZRNSVA_REINTEGRO).replace(",",".");  
         }
     }
     @XmlTransient
@@ -126,7 +126,7 @@ public class SVA {
 
     public void setHZRNSVA_DEUDA(BigDecimal HZRNSVA_DEUDA) {
         if(HZRNSVA_DEUDA != null){
-            this.HZRNSVA_DEUDA = new DecimalFormat("#.000000").format(HZRNSVA_DEUDA).replace(",","."); 
+            this.HZRNSVA_DEUDA = new DecimalFormat("0.000000").format(HZRNSVA_DEUDA).replace(",","."); 
         }
     }
     @XmlTransient

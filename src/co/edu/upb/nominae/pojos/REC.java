@@ -306,7 +306,7 @@ public class REC {
 
     public void setHZRNREC_SUELDO(BigDecimal HZRNREC_SUELDO) throws DataFormatException {
         if(HZRNREC_SUELDO != null){
-            this.HZRNREC_SUELDO = new DecimalFormat("#.000000").format(HZRNREC_SUELDO).replace(",",".");    
+            this.HZRNREC_SUELDO = new DecimalFormat("0.000000").format(HZRNREC_SUELDO).replace(",",".");    
         }else{
             this.HZRNREC_SUELDO = String.valueOf(HZRNREC_SUELDO);
         }

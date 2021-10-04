@@ -45,7 +45,7 @@ public class EOT {
 
     public void setHZRNEOT_CONCEP_SALARIAL(BigDecimal HZRNEOT_CONCEP_SALARIAL) {
         if(HZRNEOT_CONCEP_SALARIAL != null){
-            this.HZRNEOT_CONCEP_SALARIAL = new DecimalFormat("#.000000").format(HZRNEOT_CONCEP_SALARIAL).replace(",",".");  
+            this.HZRNEOT_CONCEP_SALARIAL = new DecimalFormat("0.000000").format(HZRNEOT_CONCEP_SALARIAL).replace(",",".");  
         }
     }
     @XmlTransient
@@ -55,7 +55,7 @@ public class EOT {
 
     public void setHZRNEOT_CONCEP_NO_SALARIAL(BigDecimal HZRNEOT_CONCEP_NO_SALARIAL) {
         if(HZRNEOT_CONCEP_NO_SALARIAL != null){
-            this.HZRNEOT_CONCEP_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEOT_CONCEP_NO_SALARIAL).replace(",",".");   
+            this.HZRNEOT_CONCEP_NO_SALARIAL = new DecimalFormat("0.000000").format(HZRNEOT_CONCEP_NO_SALARIAL).replace(",",".");   
         }
     }
     @XmlTransient

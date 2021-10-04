@@ -79,7 +79,7 @@ public class EHE {
 
     public void setHZRNEHE_CANTIDAD(BigDecimal HZRNEHE_CANTIDAD) throws DataFormatException {
         if(HZRNEHE_CANTIDAD != null){
-            this.HZRNEHE_CANTIDAD = new DecimalFormat("#.000000").format(HZRNEHE_CANTIDAD).replace(",",".");     
+            this.HZRNEHE_CANTIDAD = new DecimalFormat("0.000000").format(HZRNEHE_CANTIDAD).replace(",",".");     
         }else{
             throw new DataFormatException("EHE:HZRNEHE_CANTIDAD:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -91,7 +91,7 @@ public class EHE {
 
     public void setHZRNEHE_PORCENTAJE(BigDecimal HZRNEHE_PORCENTAJE) throws DataFormatException {     
         if(HZRNEHE_PORCENTAJE != null){
-            this.HZRNEHE_PORCENTAJE = new DecimalFormat("#.00").format(HZRNEHE_PORCENTAJE).replace(",",".");
+            this.HZRNEHE_PORCENTAJE = new DecimalFormat("0.00").format(HZRNEHE_PORCENTAJE).replace(",",".");
         }else{
             throw new DataFormatException("EHE:HZRNEHE_PORCENTAJE:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -103,7 +103,7 @@ public class EHE {
 
     public void setHZRNEHE_PAGO(BigDecimal HZRNEHE_PAGO) throws DataFormatException {
         if(HZRNEHE_PAGO != null){
-            this.HZRNEHE_PAGO = new DecimalFormat("#.000000").format(HZRNEHE_PAGO).replace(",",".");   
+            this.HZRNEHE_PAGO = new DecimalFormat("0.000000").format(HZRNEHE_PAGO).replace(",",".");   
         }else{
             throw new DataFormatException("EHE:HZRNEHE_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         } 

@@ -27,7 +27,7 @@ public class ECO {
 
     public void setHZRNECO_COMISION(BigDecimal HZRNECO_COMISION) {
         if(HZRNECO_COMISION != null){
-            this.HZRNECO_COMISION = new DecimalFormat("#.000000").format(HZRNECO_COMISION).replace(",",".");  
+            this.HZRNECO_COMISION = new DecimalFormat("0.000000").format(HZRNECO_COMISION).replace(",",".");  
         }
     }
     @XmlTransient
@@ -37,7 +37,7 @@ public class ECO {
 
     public void setHZRNECO_PAGO_TERCERO(BigDecimal HZRNECO_PAGO_TERCERO) {       
         if(HZRNECO_PAGO_TERCERO != null){
-            this.HZRNECO_PAGO_TERCERO = new DecimalFormat("#.000000").format(HZRNECO_PAGO_TERCERO).replace(",","."); 
+            this.HZRNECO_PAGO_TERCERO = new DecimalFormat("0.000000").format(HZRNECO_PAGO_TERCERO).replace(",","."); 
         }
     }
     @XmlTransient
@@ -47,7 +47,7 @@ public class ECO {
 
     public void setHZRNECO_ANTICIPOS_NOMINA(BigDecimal HZRNECO_ANTICIPOS_NOMINA) {
         if(HZRNECO_ANTICIPOS_NOMINA != null){
-            this.HZRNECO_ANTICIPOS_NOMINA = new DecimalFormat("#.000000").format(HZRNECO_ANTICIPOS_NOMINA).replace(",",".");  
+            this.HZRNECO_ANTICIPOS_NOMINA = new DecimalFormat("0.000000").format(HZRNECO_ANTICIPOS_NOMINA).replace(",",".");  
         }
     }
     @XmlTransient

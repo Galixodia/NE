@@ -70,7 +70,7 @@ public class EVC {
 
     public void setHZRNEVC_PAGO(BigDecimal HZRNEVC_PAGO) throws DataFormatException {
         if(HZRNEVC_PAGO != null){
-            this.HZRNEVC_PAGO = new DecimalFormat("#.000000").format(HZRNEVC_PAGO).replace(",",".");    
+            this.HZRNEVC_PAGO = new DecimalFormat("0.000000").format(HZRNEVC_PAGO).replace(",",".");    
         }else{
             throw new DataFormatException("EVC:HZRNEVC_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }

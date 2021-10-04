@@ -51,7 +51,7 @@ public class EVA {
 
     public void setHZRNEVA_PAGO(BigDecimal HZRNEVA_PAGO) throws DataFormatException {          
         if(HZRNEVA_PAGO != null){
-            this.HZRNEVA_PAGO = new DecimalFormat("#.000000").format(HZRNEVA_PAGO).replace(",","."); 
+            this.HZRNEVA_PAGO = new DecimalFormat("0.000000").format(HZRNEVA_PAGO).replace(",","."); 
         }else{
             throw new DataFormatException("EVA:HZRNEVA_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }

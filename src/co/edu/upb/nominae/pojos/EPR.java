@@ -45,7 +45,7 @@ public class EPR {
 
     public void setHZRNEPR_PAGO(BigDecimal HZRNEPR_PAGO) throws DataFormatException {
         if(HZRNEPR_PAGO != null){
-            this.HZRNEPR_PAGO = this.HZRNEPR_PAGO = new DecimalFormat("#.000000").format(HZRNEPR_PAGO).replace(",",".");  
+            this.HZRNEPR_PAGO = this.HZRNEPR_PAGO = new DecimalFormat("0.000000").format(HZRNEPR_PAGO).replace(",",".");  
         }else{
             throw new DataFormatException("EPR:HZRNEPR_PAGO:El campo es nulo o excede la longitud definida por la DIAN");
         }       
@@ -57,7 +57,7 @@ public class EPR {
 
     public void setHZRNEPR_PAGONS(BigDecimal HZRNEPR_PAGONS) {
         if(HZRNEPR_PAGONS != null){
-            this.HZRNEPR_PAGONS = new DecimalFormat("#.000000").format(HZRNEPR_PAGONS).replace(",","."); 
+            this.HZRNEPR_PAGONS = new DecimalFormat("0.000000").format(HZRNEPR_PAGONS).replace(",","."); 
         }  
     }
     @XmlTransient

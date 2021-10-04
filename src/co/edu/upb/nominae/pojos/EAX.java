@@ -24,7 +24,7 @@ public class EAX {
 
     public void setHZRNEAX_AUX_SALARIAL(BigDecimal HZRNEAX_AUX_SALARIAL) {
         if(HZRNEAX_AUX_SALARIAL != null){
-            this.HZRNEAX_AUX_SALARIAL = new DecimalFormat("#.000000").format(HZRNEAX_AUX_SALARIAL).replace(",",".");  
+            this.HZRNEAX_AUX_SALARIAL = new DecimalFormat("0.000000").format(HZRNEAX_AUX_SALARIAL).replace(",",".");  
         }
     }
     @XmlTransient
@@ -34,7 +34,7 @@ public class EAX {
 
     public void setHZRNEAX_AUX_NO_SALARIAL(BigDecimal HZRNEAX_AUX_NO_SALARIAL) {
         if(HZRNEAX_AUX_NO_SALARIAL != null){
-            this.HZRNEAX_AUX_NO_SALARIAL = new DecimalFormat("#.000000").format(HZRNEAX_AUX_NO_SALARIAL).replace(",",".");    
+            this.HZRNEAX_AUX_NO_SALARIAL = new DecimalFormat("0.000000").format(HZRNEAX_AUX_NO_SALARIAL).replace(",",".");    
         }
     }
     @XmlTransient

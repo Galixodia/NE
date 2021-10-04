@@ -30,7 +30,7 @@ public class SSP {
 
     public void setHZRNSSP_PORCENTAJE(BigDecimal HZRNSSP_PORCENTAJE) {
         if(HZRNSSP_PORCENTAJE != null){
-            this.HZRNSSP_PORCENTAJE = new DecimalFormat("#.00").format(HZRNSSP_PORCENTAJE).replace(",",".");  
+            this.HZRNSSP_PORCENTAJE = new DecimalFormat("0.00").format(HZRNSSP_PORCENTAJE).replace(",",".");  
         }
     }
     @XmlTransient
@@ -40,7 +40,7 @@ public class SSP {
 
     public void setHZRNSSP_DEDUC_SEG_PENSIONAL(BigDecimal HZRNSSP_DEDUC_SEG_PENSIONAL) {
         if(HZRNSSP_DEDUC_SEG_PENSIONAL != null){
-            this.HZRNSSP_DEDUC_SEG_PENSIONAL = new DecimalFormat("#.000000").format(HZRNSSP_DEDUC_SEG_PENSIONAL).replace(",",".");  
+            this.HZRNSSP_DEDUC_SEG_PENSIONAL = new DecimalFormat("0.000000").format(HZRNSSP_DEDUC_SEG_PENSIONAL).replace(",",".");  
         }
     }
     @XmlTransient
@@ -50,7 +50,7 @@ public class SSP {
 
     public void setHZRNSSP_PORCENTAJE_SUBSISTEN(BigDecimal HZRNSSP_PORCENTAJE_SUBSISTEN) {
         if(HZRNSSP_PORCENTAJE_SUBSISTEN != null){
-            this.HZRNSSP_PORCENTAJE_SUBSISTEN = new DecimalFormat("#.00").format(HZRNSSP_PORCENTAJE_SUBSISTEN).replace(",",".");
+            this.HZRNSSP_PORCENTAJE_SUBSISTEN = new DecimalFormat("0.00").format(HZRNSSP_PORCENTAJE_SUBSISTEN).replace(",",".");
         }
     }
     @XmlTransient
@@ -60,7 +60,7 @@ public class SSP {
 
     public void setHZRNSSP_DEDUC_SUBSISTEN(BigDecimal HZRNSSP_DEDUC_SUBSISTEN) {
         if(HZRNSSP_DEDUC_SUBSISTEN != null){
-            this.HZRNSSP_DEDUC_SUBSISTEN = new DecimalFormat("#.000000").format(HZRNSSP_DEDUC_SUBSISTEN).replace(",","."); 
+            this.HZRNSSP_DEDUC_SUBSISTEN = new DecimalFormat("0.000000").format(HZRNSSP_DEDUC_SUBSISTEN).replace(",","."); 
         }
     }
     @XmlTransient
