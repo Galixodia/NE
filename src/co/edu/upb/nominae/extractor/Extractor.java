@@ -3,10 +3,6 @@ package co.edu.upb.nominae.extractor;
 import co.edu.upb.pojos.utilities.UtilitiesFile;
 import co.edu.upb.utilities.Log;
 import co.edu.upb.utilities.Utilities;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 

@@ -105,8 +105,7 @@ public class Comprobante{
             
             this.comp_alive = 1;
             //System.out.println("INICIO ____________________________________________________________________________");
-            System.out.println("CUNE: " + cune_interno);
-            System.out.println("TIPO_DOC: " + tipo_doc);
+            System.out.println("CUNE: " + cune_interno + " || " + "TIPO_DOC: " + tipo_doc);
             
         }else{
             this.comp_alive = 0;
@@ -2467,7 +2466,6 @@ public class Comprobante{
  
         
         }else{
-            //con es nulo
             System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@");    
         }
     }
