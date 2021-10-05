@@ -39,7 +39,7 @@ public class TOT {
 
     public void setHZRNTOT_REDONDEO(BigDecimal HZRNTOT_REDONDEO) {
         if(HZRNTOT_REDONDEO != null){
-            this.HZRNTOT_REDONDEO = new DecimalFormat("0.000000").format(HZRNTOT_REDONDEO).replace(",",".");
+            this.HZRNTOT_REDONDEO = new DecimalFormat("0.00").format(HZRNTOT_REDONDEO).replace(",",".");
         }
     }
     @XmlTransient
@@ -49,7 +49,7 @@ public class TOT {
 
     public void setHZRNTOT_DEVENGADOS_TOTAL(BigDecimal HZRNTOT_DEVENGADOS_TOTAL) throws DataFormatException {
         if(HZRNTOT_DEVENGADOS_TOTAL != null){
-            this.HZRNTOT_DEVENGADOS_TOTAL = new DecimalFormat("0.000000").format(HZRNTOT_DEVENGADOS_TOTAL).replace(",","."); 
+            this.HZRNTOT_DEVENGADOS_TOTAL = new DecimalFormat("0.00").format(HZRNTOT_DEVENGADOS_TOTAL).replace(",","."); 
         }else{
             throw new DataFormatException("TOT:HZRNTOT_DEVENGADOS_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -61,7 +61,7 @@ public class TOT {
 
     public void setHZRNTOT_DEDUCCIONES_TOTAL(BigDecimal HZRNTOT_DEDUCCIONES_TOTAL) throws DataFormatException { 
         if(HZRNTOT_DEDUCCIONES_TOTAL != null){
-            this.HZRNTOT_DEDUCCIONES_TOTAL = new DecimalFormat("0.000000").format(HZRNTOT_DEDUCCIONES_TOTAL).replace(",",".");  
+            this.HZRNTOT_DEDUCCIONES_TOTAL = new DecimalFormat("0.00").format(HZRNTOT_DEDUCCIONES_TOTAL).replace(",",".");  
         }else{
             throw new DataFormatException("TOT:HZRNTOT_DEDUCCIONES_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         } 
@@ -73,7 +73,7 @@ public class TOT {
 
     public void setHZRNTOT_COMPROBANTE_TOTAL(BigDecimal HZRNTOT_COMPROBANTE_TOTAL) throws DataFormatException {
         if(HZRNTOT_COMPROBANTE_TOTAL != null){
-            this.HZRNTOT_COMPROBANTE_TOTAL =  new DecimalFormat("0.000000").format(HZRNTOT_COMPROBANTE_TOTAL).replace(",","."); 
+            this.HZRNTOT_COMPROBANTE_TOTAL =  new DecimalFormat("0.00").format(HZRNTOT_COMPROBANTE_TOTAL).replace(",","."); 
         }else{
             throw new DataFormatException("TOT:HZRNTOT_COMPROBANTE_TOTAL:El campo es nulo o excede la longitud definida por la DIAN");
         } 
