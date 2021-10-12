@@ -49,7 +49,7 @@ public class EHE {
     public void setHZRNEHE_HORAS_EXTRA(String HZRNEHE_HORAS_EXTRA) throws DataFormatException {
         Data data = new Data();    
 
-        if(data.checklength(HZRNEHE_HORAS_EXTRA,100)){
+        if(data.checklength(HZRNEHE_HORAS_EXTRA,10)){
             this.HZRNEHE_HORAS_EXTRA = HZRNEHE_HORAS_EXTRA;
             data = null;            
         }else{

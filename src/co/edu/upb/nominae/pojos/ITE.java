@@ -83,7 +83,14 @@ public class ITE {
     }
 
     public void setHZRNITE_DIAS_TRAB(String HZRNITE_DIAS_TRAB) throws DataFormatException {
-        this.HZRNITE_DIAS_TRAB = HZRNITE_DIAS_TRAB;
+        Data data = new Data();        
+  
+        if(data.checklength(HZRNITE_DIAS_TRAB,2)){
+            this.HZRNITE_DIAS_TRAB = HZRNITE_DIAS_TRAB;
+            data = null;            
+        }else{
+            throw new DataFormatException("ITE:HZRNITE_DIAS_TRAB:El campo es nulo o excede la longitud definida por la DIAN");
+        }    
     }
     @XmlTransient
     public String getHZRNITE_SUELDO_TRAB() {
